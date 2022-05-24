@@ -1,0 +1,20 @@
+---
+
+proxmox_template_default_storage: rbd
+
+proxmox_ceph_enabled: true
+proxmox_ceph_replicas: 2
+proxmox_ceph_osds:
+  - /dev/sda4
+  - /dev/sdb4
+proxmox_ceph_pools:
+  - name: rbd
+    add_to_storages: 1
+
+dhcp_global_domain_name_servers:
+  - 1.1.1.1
+  - 8.8.8.8
+
+dhcp_global_domain_search:
+  - vm.athena.mareo.fr
+  - mareo.fr

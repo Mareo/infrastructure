@@ -1,0 +1,23 @@
+# yamllint disable rule:line-length
+---
+
+collections:
+  - name: community.general
+    version: 4.8.0
+  - name: community.hashi_vault
+    version: 2.4.0
+  - name: community.crypto
+    version: 2.3.1
+  - name: kubernetes.core
+    version: 2.3.1
+
+roles:
+  - name: ansible-community.ansible-vault
+    src: git+https://github.com/ansible-community/ansible-vault.git
+    version: 2022.05.01
+  - name: xanmanning.k3s
+    version: v3.1.2
+  - name: ipr-cnrs.nftables
+    version: v2.0.1
+  - name: bertvv.dhcp
+    version: v3.1.0

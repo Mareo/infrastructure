@@ -1,0 +1,21 @@
+---
+
+- hosts: k3s
+  roles:
+    - role: xanmanning.k3s
+  tasks:
+    - name: Create kubeconfig symlink
+      when: k3s_control_node is defined and k3s_control_node
+      file:
+        src: /etc/rancher/k3s/k3s.yaml
+        path: ~/.kube/config
+        state: link
+  tags:
+    - k3s
+
+- hosts: k3s
+  roles:
+    - role: mareo.argocd
+      when: k3s_control_node is defined and k3s_control_node
+  tags:
+    - argocd

@@ -1,0 +1,4 @@
+---
+
+group_packages:
+  - qemu-guest-agent

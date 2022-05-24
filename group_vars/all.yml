@@ -1,0 +1,17 @@
+---
+
+# yamllint disable rule:line-length
+ssh_authorized_keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVxiogrQvZfJs23ajIV9ooc8hWGJyumLHM0t+E4Hv4m cardno:000611341889
+# yamllint enable rule:line-length
+
+default_timezone: "Europe/Paris"
+
+nft_global_rules:
+  "050 allow ICMP":
+    - ip protocol icmp accept
+    - ip6 nexthdr icmpv6 accept
+
+nft_output_rules:
+  "000 policy":
+    - type filter hook output priority 0; policy accept;

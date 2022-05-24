@@ -1,0 +1,31 @@
+---
+
+- hosts: proxmox
+  roles:
+    - mareo.proxmox
+  tags:
+    - proxmox
+
+- hosts: proxmox
+  tasks:
+    - name: Blacklist iptables modules
+      lineinfile:
+        path: /etc/modprobe.d/blacklist-xtables.conf
+        line: "install {{ item }} /bin/false"
+        create: true
+      loop:
+        - x_tables
+        - iptable_nat
+        - ip6table_nat
+  roles:
+    - ipr-cnrs.nftables
+  tags:
+    - proxmox
+    - nftables
+
+- hosts: proxmox
+  roles:
+    - bertvv.dhcp
+  tags:
+    - proxmox
+    - dhcp

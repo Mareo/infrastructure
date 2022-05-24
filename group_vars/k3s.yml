@@ -1,0 +1,12 @@
+---
+
+k3s_release_version: v1.23.6+k3s1
+
+k3s_server:
+  tls-san:
+    - api.k3s.athena.mareo.fr
+  docker: false
+  cluster-cidr: 172.20.0.0/16
+  service-cidr: 172.21.0.0/16
+  disable:
+    - traefik
