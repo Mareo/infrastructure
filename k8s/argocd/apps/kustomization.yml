@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - cert-manager.yml
+  - cert-manager
   - ingress-nginx.yml
   - vault.yml
   - vault-secrets-operator.yml

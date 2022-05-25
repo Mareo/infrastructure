@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: default-issuer
+spec:
+  acme:
+    email: caa@mareo.fr
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: default-issuer-account-key
+    solvers:
+      - http01:
+          ingress:
+            class: public

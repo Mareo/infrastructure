@@ -18,3 +18,36 @@ dhcp_global_domain_name_servers:
 dhcp_global_domain_search:
   - vm.athena.mareo.fr
   - mareo.fr
+
+nft_define_host:
+  self:
+    name: self
+    value: '65.108.17.229'
+  k3s:
+    name: k3s
+    value: "192.168.0.1"
+
+forwarded_ports:
+  - dport: http
+    host: "$k3s"
+    port: 30080
+  - dport: https
+    host: "$k3s"
+    port: 30443
+
+# yamllint disable rule:line-length
+nft_forward_host_rules: "{{ nft_forward_host_rules_yaml|from_yaml }}"
+nft__nat_host_prerouting_rules: "{{ nft__nat_host_prerouting_rules_yaml|from_yaml }}"
+
+nft_forward_host_rules_yaml: |
+  "200 port forwarding":
+  {% for fwd in forwarded_ports %}
+    - ip daddr {{ fwd.host }} {{ fwd.protocol|default('tcp') }} dport {{ fwd.port|default(fwd.dport) }} accept
+  {% endfor %}
+
+nft__nat_host_prerouting_rules_yaml: |
+  "200 port forwarding":
+  {% for fwd in forwarded_ports %}
+    - ip daddr $self {{ fwd.protocol|default('tcp') }} dport {{ fwd.dport }} dnat to {{ fwd.host }}:{{ fwd.port|default(fwd.dport) }}
+  {% endfor %}
+# yamllint enable rule:line-length

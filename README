@@ -1,0 +1,8 @@
+poetry run ansible-playbook -l proxmox playbooks/main.yml
+cd terraform/
+terraform init
+terraform apply
+poetry run ansible-playbook -l proxmox_vm playbooks/main.yml
+cd k8s/secrets
+terraform init
+terraform apply

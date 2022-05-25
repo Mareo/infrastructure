@@ -3,8 +3,8 @@ locals {
     {
       name      = "k3s-1.vm.athena.mareo.fr"
       tags      = ["ansible", "k3s_masters"]
-      cores     = 4
-      memory    = 8 * 1024
+      cores     = 6
+      memory    = 16 * 1024
       disk_size = "64G"
     }
   ]
