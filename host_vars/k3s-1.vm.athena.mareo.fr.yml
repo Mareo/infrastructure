@@ -7,3 +7,5 @@ argocd_apps:
     repo: git://mareo.fr/infrastructure
     path: k8s/argocd
     sync_policy: automated
+    dest_name: in-cluster
+    auto_prune: true
