@@ -1,3 +1,9 @@
 ---
 
 k3s_control_node: true
+
+argocd_apps:
+  infrastructure:
+    repo: https://mareo.fr/infrastructure
+    path: k8s/argocd
+    sync_policy: automated

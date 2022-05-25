@@ -1,0 +1,104 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cert-manager
+  labels:
+    app: cert-manager
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: "{{name}}-cert-manager"
+      labels:
+        app: cert-manager
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: cert-manager
+      source:
+        repoURL: https://charts.jetstack.io
+        chart: cert-manager
+        targetRevision: v1.8.0
+        helm:
+          parameters:
+            - name: installCRDs
+              value: "true"
+            - name: prometheus.servicemonitor.enabled
+              value: "true"
+          values: |
+            installCRDs: true
+            fullnameOverride: cert-manager
+            podDnsPolicy: "None"
+            podDnsConfig:
+              nameservers:
+                - "1.1.1.1"
+                - "1.0.0.1"
+            resources:
+              requests:
+                cpu: 50m
+                memory: 64Mi
+            prometheus:
+              servicemonitor:
+                enabled: true
+            webhook:
+              resources:
+                requests:
+                  cpu: 50m
+                  memory: 32Mi
+            cainjector:
+              resources:
+                requests:
+                  cpu: 50m
+                  memory: 128Mi
+      ignoreDifferences:
+        - group: apiextensions.k8s.io
+          kind: CustomResourceDefinition
+          jsonPointers:
+            - /spec/validation/openAPIV3Schema/properties/spec/properties/solver/properties/dns01/properties/webhook/properties/config/x-kubernetes-preserve-unknown-fields
+            - /spec/validation/openAPIV3Schema/properties/spec/properties/acme/properties/solvers/items/properties/dns01/properties/webhook/properties/config/x-kubernetes-preserve-unknown-fields
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cert-manager-designate-webhook
+  labels:
+    app: cert-manager
+spec:
+  generators:
+    - list:
+        elements:
+          - name: prod-1
+  template:
+    metadata:
+      name: "{{name}}-cert-manager-designate-webhook"
+      labels:
+        app: cert-manager
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: cert-manager
+      source:
+        repoURL: https://github.com/syseleven/designate-certmanager-webhook.git
+        targetRevision: d1109b98a58256d54b061bd8a4c578d380de47f2
+        path: helm/designate-certmanager-webhook
+        helm:
+          values: |
+            fullnameOverride: cert-manager-designate-webhook
+            credentialsSecret: openstack-cloud-credentials
+            image:
+              repository: syseleven/designate-certmanager-webhook
+              tag: 0.2.13

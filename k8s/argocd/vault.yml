@@ -1,0 +1,88 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: vault
+  labels:
+    app: vault
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-vault"
+      labels:
+        app: vault
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: vault
+      source:
+        repoURL: https://helm.releases.hashicorp.com
+        chart: vault
+        targetRevision: 0.19.0
+        helm:
+          values: |
+            fullnameOverride: vault
+            global:
+              enabled: true
+              tlsDisable: false
+            injector:
+              enabled: false
+            server:
+              standalone:
+                enabled: true
+                config: |
+                  ui = true
+
+                  listener "tcp" {
+                    address = "[::]:8200"
+                    cluster_address = "[::]:8201"
+                    tls_cert_file = "/vault/userconfig/tls/tls.crt"
+                    tls_key_file = "/vault/userconfig/tls/tls.key"
+                  }
+                  storage "file" {
+                    path = "/vault/data"
+                  }
+              volumes:
+                - name: tls
+                  secret:
+                    secretName: vault-tls
+              volumeMounts:
+                - mountPath: /vault/userconfig/tls
+                  name: tls
+                  readOnly: true
+              dataStorage:
+                enabled: true
+                size: 10Gi
+              auditStorage:
+                enabled: true
+                size: 10Gi
+              readinessProbe:
+                enabled: true
+                path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+              service:
+                type: NodePort
+                nodePort: 30820
+              ingress:
+                enabled: true
+                annotations:
+                  nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+                  cert-manager.io/cluster-issuer: default-issuer
+                hosts:
+                  - host: vault.undercloud.cri.epita.fr
+                  - host: vault.cri.epita.fr
+                tls:
+                  - hosts:
+                      - vault.undercloud.cri.epita.fr
+                      - vault.cri.epita.fr
+                    secretName: vault-tls

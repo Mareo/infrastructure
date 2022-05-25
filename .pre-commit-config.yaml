@@ -7,6 +7,8 @@ repos:
       - id: check-shebang-scripts-are-executable
       - id: check-added-large-files
       - id: check-yaml
+        args:
+          - --multi
       - id: end-of-file-fixer
       - id: trailing-whitespace
   - repo: https://github.com/adrienverge/yamllint.git
