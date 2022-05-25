@@ -79,10 +79,8 @@ spec:
                   nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
                   cert-manager.io/cluster-issuer: default-issuer
                 hosts:
-                  - host: vault.undercloud.cri.epita.fr
-                  - host: vault.cri.epita.fr
+                  - host: vault.mareo.fr
                 tls:
                   - hosts:
-                      - vault.undercloud.cri.epita.fr
-                      - vault.cri.epita.fr
+                      - vault.mareo.fr
                     secretName: vault-tls
