@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: ingress
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -11,3 +13,6 @@ spec:
     path: k8s/ingress/
   destination:
     name: in-cluster
+  syncPolicy:
+    automated:
+      prune: true
