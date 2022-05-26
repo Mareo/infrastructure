@@ -15,14 +15,6 @@ provider "proxmox" {
   pm_api_url          = "https://athena.mareo.fr:8006/api2/json"
   pm_api_token_id     = "root@pam!terraform"
   pm_api_token_secret = "43bad468-f5d7-48fd-9528-98217954d88f"
-
-  pm_log_enable = true
-  pm_log_file   = "terraform-plugin-proxmox.log"
-  pm_debug      = true
-  pm_log_levels = {
-    _default    = "debug"
-    _capturelog = ""
-  }
 }
 
 provider "dns" {

@@ -1,6 +1,6 @@
 ---
 kind: Kustomization
-namespace: argocd
+namespace: default
 
 resources:
   - kubernetes.yml
