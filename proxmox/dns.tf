@@ -1,5 +1,6 @@
 locals {
   dns_cnames = toset([
+    "api.k8s.mareo.fr",
     "argocd.mareo.fr.",
     "auth.mareo.fr.",
     "vault.mareo.fr.",

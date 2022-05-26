@@ -26,9 +26,9 @@
       {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
-            (pkgs.poetry2nix.mkPoetryEnv {
-              projectDir = self;
-            })
+            #(pkgs.poetry2nix.mkPoetryEnv {
+            #  projectDir = self;
+            #})
             git
             poetry
             pre-commit
@@ -36,6 +36,10 @@
             terraform
             vault
           ];
+
+          shellHook = ''
+            source ./config.sh
+          '';
         };
       }
     ));

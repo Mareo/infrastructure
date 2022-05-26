@@ -10,6 +10,13 @@
         src: /etc/rancher/k3s/k3s.yaml
         path: ~/.kube/config
         state: link
+    - name: Fetch kubeconfig file
+      when: k3s_control_node is defined and k3s_control_node
+      fetch:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: ../secrets/kubeconfig
+        fail_on_missing: true
+        flat: true
   tags:
     - k3s
 

@@ -6524,3 +6524,220 @@ Server: pve-api-daemon/3.0
 {"data":{"members":[{"uptime":8429,"template":0,"maxcpu":6,"diskread":1252749502,"disk":0,"type":"qemu","status":"running","maxdisk":68719476736,"vmid":100,"cpu":0.0115809331086327,"mem":2667462656,"id":"qemu/100","diskwrite":587759616,"name":"k3s-1.vm.athena.mareo.fr","node":"athena","netout":3335784,"maxmem":17179869184,"netin":32402291}]}}
 [90mWed, 25 May 2022 21:15:41 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:1517[0m[36m >[0m VM Net Config 'map[0:map[bridge:vmbr0 id:0 macaddr:0e:a6:7d:72:7e:01 model:virtio tag:-1]]' from '[map[bridge:vmbr0 macaddr:0e:a6:7d:72:7e:01 model:virtio tag:-1]]' set as '[map[bridge:vmbr0 firewall:false link_down:false macaddr:0e:a6:7d:72:7e:01 model:virtio mtu:0 queues:0 rate:0 tag:-1]]' type of 'string' [36mloggerName=[0mresource_vm_read [36mvmid=[0m100
 [90mWed, 25 May 2022 21:15:41 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:1519[0m[36m >[0m Finished VM read resulting in data: '{"additional_wait":0,"agent":0,"args":"","automatic_reboot":true,"balloon":512,"bios":"seabios","boot":"order=scsi0;ide2","bootdisk":"","bridge":"","ci_wait":0,"cicustom":"","cipassword":"","ciuser":"root","clone":"ubuntu-22.04-cloudinit-amd64","clone_wait":0,"cloudinit_cdrom_storage":"rbd","cores":6,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"aio":"","backup":0,"cache":"none","discard":"on","file":"base-9000-disk-0/vm-100-disk-0","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"64G","slot":0,"ssd":1,"storage":"rbd","storage_type":"rbd","type":"scsi","volume":"rbd:base-9000-disk-0/vm-100-disk-0"}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":false,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"network,disk,usb","ipconfig0":"ip=dhcp","ipconfig1":"","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":16384,"name":"k3s-1.vm.athena.mareo.fr","nameserver":"","network":[{"bridge":"vmbr0","firewall":false,"link_down":false,"macaddr":"0e:a6:7d:72:7e:01","model":"virtio","mtu":0,"queues":0,"rate":0,"tag":-1}],"nic":"","numa":false,"onboot":true,"oncreate":true,"os_network_config":"","os_type":"cloud-init","pool":"athena","preprovision":true,"pxe":false,"qemu_os":"other","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVxiogrQvZfJs23ajIV9ooc8hWGJyumLHM0t+E4Hv4m cardno-000611341889\n\n","storage":"","storage_type":"","tablet":false,"tags":"ansible,k3s_masters","target_node":"athena","unused_disk":[],"usb":[],"vcpus":6,"vga":[{"memory":0,"type":"serial0"}],"vlan":-1,"vmid":0}' [36mloggerName=[0mresource_vm_read [36mvmid=[0m100
+[90mThu, 26 May 2022 14:05:49 +0200[0m [32mINF[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/util.go:155[0m[36m >[0m Enabling the capture of log-library logs as ithe _capturelog flag was detected
+[90mThu, 26 May 2022 14:05:49 +0200[0m [32mINF[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/util.go:188[0m[36m >[0m Logging Started. Root Logger Set to level debug
+[90mThu, 26 May 2022 14:05:49 +0200[0m [32mINF[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:1322[0m[36m >[0m Reading configuration for vmid [36mloggerName=[0mresource_vm_read [36mvmid=[0m100
+2022/05/26 14:05:49 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/resources?type=vm HTTP/1.1
+Host: athena.mareo.fr:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=root@pam!terraform=43bad468-f5d7-48fd-9528-98217954d88f
+Accept-Encoding: gzip
+
+2022/05/26 14:05:49 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 617
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 26 May 2022 12:05:49 GMT
+Expires: Thu, 26 May 2022 12:05:49 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"id":"qemu/100","type":"qemu","diskread":1569120446,"status":"running","cpu":0.012076763493153,"mem":3597332480,"pool":"athena","diskwrite":4951412736,"node":"athena","vmid":100,"maxdisk":68719476736,"uptime":69030,"disk":0,"netout":44031236,"template":0,"maxmem":17179869184,"name":"k3s-1.vm.athena.mareo.fr","netin":216495410,"maxcpu":6},{"netin":0,"name":"ubuntu-22.04-cloudinit-amd64","maxcpu":1,"template":1,"maxmem":536870912,"disk":0,"netout":0,"node":"athena","vmid":9000,"maxdisk":2361393152,"uptime":0,"diskwrite":0,"mem":0,"id":"qemu/9000","type":"qemu","diskread":0,"status":"stopped","cpu":0}]}
+2022/05/26 14:05:49 >>>>>>>>>> REQUEST:
+GET /api2/json/nodes/athena/qemu/100/config HTTP/1.1
+Host: athena.mareo.fr:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=root@pam!terraform=43bad468-f5d7-48fd-9528-98217954d88f
+Accept-Encoding: gzip
+
+2022/05/26 14:05:49 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 872
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 26 May 2022 12:05:49 GMT
+Expires: Thu, 26 May 2022 12:05:49 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":{"hotplug":"network,disk,usb","ciuser":"root","serial0":"socket","onboot":1,"bios":"seabios","smbios1":"uuid=f9cfe5ae-033c-4c51-b495-9f7eac16f458","sockets":1,"vga":"type=serial0","balloon":512,"net0":"virtio=0e:a6:7d:72:7e:01,bridge=vmbr0","memory":16384,"cores":6,"scsi0":"rbd:base-9000-disk-0/vm-100-disk-0,discard=on,format=raw,size=64G,ssd=1","vmgenid":"b79ce06d-53e4-49fa-bb82-3ade073a55ae","cpu":"host","digest":"9f4063dfd351209bf1426b007442f8aced8b4501","sshkeys":"ssh-ed25519%20AAAAC3NzaC1lZDI1NTE5AAAAIMVxiogrQvZfJs23ajIV9ooc8hWGJyumLHM0t%2BE4Hv4m%20cardno-000611341889%0A%0A","kvm":1,"ide2":"rbd:vm-100-cloudinit,media=cdrom","agent":"0","tablet":0,"vcpus":6,"scsihw":"virtio-scsi-pci","boot":"order=scsi0;ide2","tags":"ansible,k3s_masters","ipconfig0":"ip=dhcp","numa":0,"name":"k3s-1.vm.athena.mareo.fr","meta":"creation-qemu=6.2.0,ctime=1653157370"}}
+2022/05/26 14:05:49 >>>>>>>>>> REQUEST:
+GET /api2/json/nodes/athena/storage/rbd/content HTTP/1.1
+Host: athena.mareo.fr:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=root@pam!terraform=43bad468-f5d7-48fd-9528-98217954d88f
+Accept-Encoding: gzip
+
+2022/05/26 14:05:49 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 451
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 26 May 2022 12:05:49 GMT
+Expires: Thu, 26 May 2022 12:05:49 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"parent":null,"format":"raw","content":"images","vmid":9000,"size":2361393152,"name":"base-9000-disk-0","volid":"rbd:base-9000-disk-0"},{"parent":"base-9000-disk-0@__base__","content":"images","format":"raw","size":68719476736,"name":"vm-100-disk-0","vmid":100,"volid":"rbd:base-9000-disk-0/vm-100-disk-0"},{"parent":null,"format":"raw","content":"images","size":4194304,"name":"vm-100-cloudinit","vmid":100,"volid":"rbd:vm-100-cloudinit"}]}
+2022/05/26 14:05:49 >>>>>>>>>> REQUEST:
+GET /api2/json/nodes/athena/storage/rbd/status HTTP/1.1
+Host: athena.mareo.fr:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=root@pam!terraform=43bad468-f5d7-48fd-9528-98217954d88f
+Accept-Encoding: gzip
+
+2022/05/26 14:05:49 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 146
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 26 May 2022 12:05:49 GMT
+Expires: Thu, 26 May 2022 12:05:49 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":{"shared":1,"active":1,"used":7228017356,"enabled":1,"total":6554778782412,"avail":6547550765056,"content":"rootdir,images","type":"rbd"}}
+2022/05/26 14:05:49 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/ha/resources/100 HTTP/1.1
+Host: athena.mareo.fr:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=root@pam!terraform=43bad468-f5d7-48fd-9528-98217954d88f
+Accept-Encoding: gzip
+
+2022/05/26 14:05:49 <<<<<<<<<< RESULT:
+HTTP/1.1 500 no such resource 'vm:100'
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 26 May 2022 12:05:49 GMT
+Expires: Thu, 26 May 2022 12:05:49 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2022/05/26 14:05:49 [DEBUG][GetJsonRetryable] Sleeping for 1 seconds before asking url /cluster/ha/resources/100
+2022/05/26 14:05:50 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/ha/resources/100 HTTP/1.1
+Host: athena.mareo.fr:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=root@pam!terraform=43bad468-f5d7-48fd-9528-98217954d88f
+Accept-Encoding: gzip
+
+2022/05/26 14:05:51 <<<<<<<<<< RESULT:
+HTTP/1.1 500 no such resource 'vm:100'
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 26 May 2022 12:05:51 GMT
+Expires: Thu, 26 May 2022 12:05:51 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2022/05/26 14:05:51 [DEBUG][GetJsonRetryable] Sleeping for 2 seconds before asking url /cluster/ha/resources/100
+2022/05/26 14:05:53 >>>>>>>>>> REQUEST:
+GET /api2/json/cluster/ha/resources/100 HTTP/1.1
+Host: athena.mareo.fr:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=root@pam!terraform=43bad468-f5d7-48fd-9528-98217954d88f
+Accept-Encoding: gzip
+
+2022/05/26 14:05:53 <<<<<<<<<< RESULT:
+HTTP/1.1 500 no such resource 'vm:100'
+Connection: close
+Content-Length: 13
+Cache-Control: max-age=0
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 26 May 2022 12:05:53 GMT
+Expires: Thu, 26 May 2022 12:05:53 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":null}
+2022/05/26 14:05:53 [DEBUG][GetJsonRetryable] Sleeping for 3 seconds before asking url /cluster/ha/resources/100
+2022/05/26 14:05:56 [DEBUG] VM 100(%!s(<nil>)) has no HA config
+2022/05/26 14:05:56 >>>>>>>>>> REQUEST:
+GET /api2/json/nodes/athena/qemu/100/status/current HTTP/1.1
+Host: athena.mareo.fr:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=root@pam!terraform=43bad468-f5d7-48fd-9528-98217954d88f
+Accept-Encoding: gzip
+
+2022/05/26 14:05:56 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 2328
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 26 May 2022 12:05:56 GMT
+Expires: Thu, 26 May 2022 12:05:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":{"tags":"ansible,k3s_masters","freemem":13185003520,"ha":{"managed":0},"balloon":17179869184,"diskread":1569120446,"shares":1000,"status":"running","serial":1,"cpu":0.0150546047018785,"blockstat":{"ide2":{"invalid_flush_operations":0,"invalid_wr_operations":0,"invalid_unmap_operations":0,"account_invalid":true,"idle_time_ns":69034046479348,"unmap_total_time_ns":0,"account_failed":true,"unmap_operations":0,"wr_highest_offset":0,"timed_stats":[],"failed_flush_operations":0,"invalid_rd_operations":0,"unmap_merged":0,"rd_total_time_ns":5919320,"failed_rd_operations":0,"unmap_bytes":0,"wr_total_time_ns":0,"rd_bytes":133310,"wr_bytes":0,"wr_merged":0,"failed_wr_operations":0,"wr_operations":0,"failed_unmap_operations":0,"rd_operations":39,"rd_merged":0,"flush_total_time_ns":0,"flush_operations":0},"scsi0":{"timed_stats":[],"wr_highest_offset":21592526848,"unmap_operations":2865,"account_failed":true,"unmap_total_time_ns":7389395520,"idle_time_ns":3009411279,"account_invalid":true,"invalid_unmap_operations":0,"invalid_wr_operations":0,"invalid_flush_operations":0,"flush_operations":30373,"flush_total_time_ns":208502287452,"rd_merged":0,"rd_operations":25774,"failed_unmap_operations":0,"failed_wr_operations":0,"wr_operations":373801,"wr_merged":0,"wr_bytes":4954251264,"rd_bytes":1568987136,"wr_total_time_ns":24152605582916,"unmap_bytes":320802816,"failed_rd_operations":0,"rd_total_time_ns":210731506273,"unmap_merged":0,"failed_flush_operations":0,"invalid_rd_operations":0}},"diskwrite":4954251264,"vmid":100,"ballooninfo":{"mem_swapped_out":0,"last_update":1653566756,"actual":17179869184,"minor_page_faults":30205746,"total_mem":16780046336,"max_mem":17179869184,"mem_swapped_in":0,"free_mem":13185003520,"major_page_faults":9967},"running-machine":"pc-i440fx-6.2+pve0","netin":216496065,"disk":0,"balloon_min":536870912,"netout":44032452,"cpus":6,"maxmem":17179869184,"name":"k3s-1.vm.athena.mareo.fr","running-qemu":"6.2.0","nics":{"tap100i0":{"netin":216496065,"netout":44032452}},"mem":3595042816,"qmpstatus":"running","uptime":69044,"maxdisk":68719476736,"proxmox-support":{"query-bitmap-info":true,"pbs-dirty-bitmap":true,"pbs-dirty-bitmap-savevm":true,"pbs-dirty-bitmap-migration":true,"pbs-library-version":"1.3.1 (4d450bb294cac5316d2f23bf087c4b02c0543d79)","pbs-masterkey":true},"pid":381499}}
+2022/05/26 14:05:56 [DEBUG] VM status: running
+[90mThu, 26 May 2022 14:05:56 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:1351[0m[36m >[0m [READ] Received Config from Proxmox API: {"vmid":0,"name":"k3s-1.vm.athena.mareo.fr","desc":"","bios":"seabios","onboot":true,"tablet":false,"agent":0,"memory":16384,"balloon":512,"os":"other","cores":6,"sockets":1,"vcpus":6,"cpu":"host","numa":false,"kvm":true,"hotplug":"network,disk,usb","iso":"rbd:vm-100-cloudinit","pxe":false,"fullclone":null,"boot":"order=scsi0;ide2","scsihw":"virtio-scsi-pci","disk":{"0":{"discard":"on","file":"base-9000-disk-0/vm-100-disk-0","format":"raw","size":"64G","slot":0,"ssd":1,"storage":"rbd","storage_type":"rbd","type":"scsi","volume":"rbd:base-9000-disk-0/vm-100-disk-0"}},"unused_disk":{},"vga":{"type":"serial0"},"network":{"0":{"bridge":"vmbr0","id":0,"macaddr":"0e:a6:7d:72:7e:01","model":"virtio"}},"serial":{"0":{"id":0,"type":"socket"}},"tags":"ansible,k3s_masters","args":"","diskGB":0,"storage":"","storageType":"","nic":"","bridge":"","vlan":-1,"mac":"","ciuser":"root","cipassword":"","cicustom":"","searchdomain":"","nameserver":"","sshkeys":"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVxiogrQvZfJs23ajIV9ooc8hWGJyumLHM0t+E4Hv4m cardno-000611341889\n\n","ipconfig0":"ip=dhcp","ipconfig1":"","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","ipconfig6":"","ipconfig7":"","ipconfig8":"","ipconfig9":"","ipconfig10":"","ipconfig11":"","ipconfig12":"","ipconfig13":"","ipconfig14":"","ipconfig15":""} [36mloggerName=[0mresource_vm_read [36mvmid=[0m100
+[90mThu, 26 May 2022 14:05:56 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:1443[0m[36m >[0m Unused Disk Block Processed 'map[0:map[bridge:vmbr0 id:0 macaddr:0e:a6:7d:72:7e:01 model:virtio]]' [36mloggerName=[0mresource_vm_read [36mvmid=[0m100
+2022/05/26 14:05:56 [ERROR] setting state: Invalid address to set: []string{"features"}
+[90mThu, 26 May 2022 14:05:56 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:1457[0m[36m >[0m Network block received 'map[0:map[bridge:vmbr0 id:0 macaddr:0e:a6:7d:72:7e:01 model:virtio]]' [36mloggerName=[0mresource_vm_read [36mvmid=[0m100
+2022/05/26 14:05:56 >>>>>>>>>> REQUEST:
+GET /api2/json/pools HTTP/1.1
+Host: athena.mareo.fr:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=root@pam!terraform=43bad468-f5d7-48fd-9528-98217954d88f
+Accept-Encoding: gzip
+
+2022/05/26 14:05:56 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 30
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 26 May 2022 12:05:56 GMT
+Expires: Thu, 26 May 2022 12:05:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":[{"poolid":"athena"}]}
+2022/05/26 14:05:56 >>>>>>>>>> REQUEST:
+GET /api2/json/pools/athena HTTP/1.1
+Host: athena.mareo.fr:8006
+User-Agent: Go-http-client/1.1
+Accept: application/json
+Authorization: PVEAPIToken=root@pam!terraform=43bad468-f5d7-48fd-9528-98217954d88f
+Accept-Encoding: gzip
+
+2022/05/26 14:05:56 <<<<<<<<<< RESULT:
+HTTP/1.1 200 OK
+Content-Length: 348
+Cache-Control: max-age=0
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 26 May 2022 12:05:56 GMT
+Expires: Thu, 26 May 2022 12:05:56 GMT
+Pragma: no-cache
+Server: pve-api-daemon/3.0
+
+{"data":{"members":[{"id":"qemu/100","type":"qemu","cpu":0.0173708409648935,"diskread":1569120446,"status":"running","mem":3594981376,"diskwrite":4954042368,"uptime":69040,"node":"athena","vmid":100,"maxdisk":68719476736,"netout":44032410,"disk":0,"maxmem":17179869184,"template":0,"netin":216496023,"name":"k3s-1.vm.athena.mareo.fr","maxcpu":6}]}}
+[90mThu, 26 May 2022 14:05:56 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:1517[0m[36m >[0m VM Net Config 'map[0:map[bridge:vmbr0 id:0 macaddr:0e:a6:7d:72:7e:01 model:virtio tag:-1]]' from '[map[bridge:vmbr0 macaddr:0e:a6:7d:72:7e:01 model:virtio tag:-1]]' set as '[map[bridge:vmbr0 firewall:false link_down:false macaddr:0e:a6:7d:72:7e:01 model:virtio mtu:0 queues:0 rate:0 tag:-1]]' type of 'string' [36mloggerName=[0mresource_vm_read [36mvmid=[0m100
+[90mThu, 26 May 2022 14:05:56 +0200[0m [33mDBG[0m [1mgithub.com/Telmate/terraform-provider-proxmox/proxmox/resource_vm_qemu.go:1519[0m[36m >[0m Finished VM read resulting in data: '{"additional_wait":0,"agent":0,"args":"","automatic_reboot":true,"balloon":512,"bios":"seabios","boot":"order=scsi0;ide2","bootdisk":"","bridge":"","ci_wait":0,"cicustom":"","cipassword":"","ciuser":"root","clone":"ubuntu-22.04-cloudinit-amd64","clone_wait":0,"cloudinit_cdrom_storage":"rbd","cores":6,"cpu":"host","default_ipv4_address":"","define_connection_info":true,"desc":"","disk":[{"aio":"","backup":0,"cache":"none","discard":"on","file":"base-9000-disk-0/vm-100-disk-0","format":"raw","iothread":0,"mbps":0,"mbps_rd":0,"mbps_rd_max":0,"mbps_wr":0,"mbps_wr_max":0,"media":"","replicate":0,"size":"64G","slot":0,"ssd":1,"storage":"rbd","storage_type":"rbd","type":"scsi","volume":"rbd:base-9000-disk-0/vm-100-disk-0"}],"disk_gb":0,"force_create":false,"force_recreate_on_change_of":"","full_clone":false,"guest_agent_ready_timeout":100,"hagroup":"","hastate":"","hotplug":"network,disk,usb","ipconfig0":"ip=dhcp","ipconfig1":"","ipconfig2":"","ipconfig3":"","ipconfig4":"","ipconfig5":"","iso":"","kvm":true,"mac":"","memory":16384,"name":"k3s-1.vm.athena.mareo.fr","nameserver":"","network":[{"bridge":"vmbr0","firewall":false,"link_down":false,"macaddr":"0e:a6:7d:72:7e:01","model":"virtio","mtu":0,"queues":0,"rate":0,"tag":-1}],"nic":"","numa":false,"onboot":true,"oncreate":true,"os_network_config":"","os_type":"cloud-init","pool":"athena","preprovision":true,"pxe":false,"qemu_os":"other","reboot_required":false,"scsihw":"virtio-scsi-pci","searchdomain":"","serial":[{"id":0,"type":"socket"}],"sockets":1,"ssh_forward_ip":"","ssh_host":"","ssh_port":"","ssh_private_key":"","ssh_user":"","sshkeys":"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVxiogrQvZfJs23ajIV9ooc8hWGJyumLHM0t+E4Hv4m cardno-000611341889\n\n","storage":"","storage_type":"","tablet":false,"tags":"ansible,k3s_masters","target_node":"athena","unused_disk":[],"usb":[],"vcpus":6,"vga":[{"memory":0,"type":"serial0"}],"vlan":-1,"vmid":0}' [36mloggerName=[0mresource_vm_read [36mvmid=[0m100

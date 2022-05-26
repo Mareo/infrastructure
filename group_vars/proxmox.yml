@@ -26,6 +26,8 @@ nft_forward_rules:
 nft__nat_postrouting_rules:
   "900 masquerade":
     - ip daddr != $rfc1918 ip saddr $rfc1918 masquerade
+  "910 hairpin":
+    - ip daddr $rfc1918 ip saddr $rfc1918 masquerade
 
 proxmox_network_bridges:
   - name: vmbr0

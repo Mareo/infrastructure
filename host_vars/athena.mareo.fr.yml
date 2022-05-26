@@ -10,6 +10,7 @@ proxmox_ceph_osds:
 proxmox_ceph_pools:
   - name: rbd
     add_to_storages: 1
+  - name: kubernetes
 
 dhcp_global_domain_name_servers:
   - 1.1.1.1
