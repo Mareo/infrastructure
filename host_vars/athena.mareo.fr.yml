@@ -35,6 +35,8 @@ forwarded_ports:
   - dport: https
     host: "$k3s"
     port: 30443
+  - dport: 6443
+    host: "$k3s"
 
 # yamllint disable rule:line-length
 nft_forward_host_rules: "{{ nft_forward_host_rules_yaml|from_yaml }}"

@@ -1,12 +1,19 @@
+locals {
+  sa_name      = "vault-secrets-operator"
+  sa_namespace = "vault-secrets-operator"
+}
+
 data "kubernetes_service_account" "vault-secrets-operator" {
   metadata {
-    name = "vault-secrets-operator"
+    name      = local.sa_name
+    namespace = local.sa_namespace
   }
 }
 
 data "kubernetes_secret" "vault-secrets-operator" {
   metadata {
-    name = data.kubernetes_service_account.vault-secrets-operator.default_secret_name
+    name      = data.kubernetes_service_account.vault-secrets-operator.default_secret_name
+    namespace = local.sa_namespace
   }
 
   binary_data = {
@@ -38,18 +45,18 @@ resource "vault_kubernetes_auth_backend_config" "k8s" {
 resource "vault_policy" "k8s_vault-secrets-operator" {
   name = "k8s_vault-secrets-operator"
 
-  policy = <<-EOP
-    path = "${vault_auth_backend.k8s.path}/data/*" {
+  policy = <<-EOT
+    path "${vault_mount.k8s.path}/data/*" {
       capabilities = ["read"]
     }
-  EOP
+  EOT
 }
 
 resource "vault_kubernetes_auth_backend_role" "k8s_vault-secrets-operator" {
   backend                          = vault_auth_backend.k8s.path
   role_name                        = "k8s_vault-secrets-operator"
-  bound_service_account_names      = [data.kubernetes_service_account.vault-secrets-operator.metadata[0]]
-  bound_service_account_namespaces = [data.kubernetes_secret.vault-secrets-operator.metadata[1]]
+  bound_service_account_names      = [local.sa_name]
+  bound_service_account_namespaces = [local.sa_namespace]
   token_policies                   = [vault_policy.k8s_vault-secrets-operator.name]
   token_ttl                        = 24 * 60 * 60 # 24h
 }

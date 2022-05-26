@@ -16,7 +16,7 @@ provider "vault" {
 }
 
 provider "kubernetes" {
-  host           = "api.k8s.mareo.fr"
+  host           = "https://api.k8s.mareo.fr:6443"
   config_path    = "../secrets/kubeconfig"
   config_context = "default"
 }
