@@ -6,4 +6,4 @@ resources:
   - cert-manager
   - ingress.yml
   - ingress-nginx.yml
-  - vault
+  - vault.yml

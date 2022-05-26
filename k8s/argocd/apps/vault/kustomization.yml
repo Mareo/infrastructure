@@ -1,7 +1,0 @@
----
-kind: Kustomization
-namespace: argocd
-
-resources:
-  - vault.yml
-  - vault-secrets-operator.yml
