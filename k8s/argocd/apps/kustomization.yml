@@ -4,6 +4,6 @@ namespace: argocd
 
 resources:
   - cert-manager
-  - ingress
+  - ingress.yml
   - ingress-nginx.yml
   - vault
