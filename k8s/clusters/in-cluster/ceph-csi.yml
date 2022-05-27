@@ -10,8 +10,9 @@ spec:
     kind: ClusterSecretStore
   target:
     template:
-      annotations:
-        argocd.argoproj.io/compare-options: IgnoreExtraneous
+      metadata:
+        annotations:
+          argocd.argoproj.io/compare-options: IgnoreExtraneous
   dataFrom:
     - extract:
         key: ceph-csi/cephfs-secret
