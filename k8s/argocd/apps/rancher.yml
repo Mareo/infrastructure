@@ -1,0 +1,48 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: rancher
+  labels:
+    app: rancher
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-rancher"
+      labels:
+        app: rancher
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: cattle-system
+      source:
+        repoURL: https://releases.rancher.com/server-charts/stable
+        chart: rancher
+        targetRevision: 2.6.4
+        helm:
+          values: |
+            fullnameOverride: rancher
+            hostname: rancher.mareo.fr
+            replicas: 1
+            customLogos:
+              enabled: true
+              storageClass: local-path
+            ingress:
+              enabled: true
+              extraAnnotations:
+                cert-manager.io/cluster-issuer: default-issuer
+                kubernetes.io/ingress.class: public
+                nginx.ingress.kubernetes.io/proxy-body-size: 20m
+              tls:
+                source: secret
+                secretName: rancher-tls

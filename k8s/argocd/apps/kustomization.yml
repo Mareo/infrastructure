@@ -3,9 +3,12 @@ kind: Kustomization
 namespace: argocd
 
 resources:
+  - cephfs-csi.yml
   - cert-manager.yml
   - clusters.yml
   - external-secrets-operator.yml
   - ingress-nginx.yml
+  - rancher.yml
+  - rbd-csi.yml
   - vault.yml
   - vaultwarden.yml

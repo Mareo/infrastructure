@@ -1,0 +1,57 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: rbd-csi
+  labels:
+    app: rbd-csi
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+            pool: kubernetes
+  template:
+    metadata:
+      name: "{{name}}-rbd-csi"
+      labels:
+        app: rbd-csi
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: kube-system
+      source:
+        repoURL: https://ceph.github.io/csi-charts
+        chart: ceph-csi-rbd
+        targetRevision: 3.5.1
+        helm:
+          values: |
+            fullnameOverride: ceph-csi-rbd
+            # deployed by cephfs-csi
+            externallyManagedConfigmap: true
+            nodeplugin:
+              tolerations:
+                - operator: Exists
+                  effect: "NoSchedule"
+                - operator: Exists
+                  effect: "NoExecute"
+            storageClass:
+              name: csi-rbd-sc-retain
+              create: true
+              clusterID: f750781a-463e-4415-bf93-4dcc6d7991ab
+              pool: "{{ pool }}"
+              mounter: kernel
+              reclaimPolicy: Retain
+              mountOptions:
+                - relatime
+      ignoreDifferences:
+        - group: rbac.authorization.k8s.io
+          kind: ClusterRole
+          jsonPointers:
+            - /rules

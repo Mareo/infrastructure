@@ -1,0 +1,59 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cephfs-csi
+  labels:
+    app: cephfs-csi
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+            subvolumeGroup: k8s.mareo.fr
+  template:
+    metadata:
+      name: "{{name}}-cephfs-csi"
+      labels:
+        app: cephfs-csi
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: kube-system
+      source:
+        repoURL: https://ceph.github.io/csi-charts
+        chart: ceph-csi-cephfs
+        targetRevision: 3.5.1
+        helm:
+          values: |
+            fullnameOverride: ceph-csi-cephfs
+            csiConfig:
+              - clusterID: 59e105f8-4d0a-11eb-a533-5bf9e1a239a6
+                monitors:
+                  - 172.31.0.254:6789
+                cephFS:
+                  subvolumeGroup: {{subvolumeGroup}}
+            nodeplugin:
+              tolerations:
+                - operator: Exists
+                  effect: "NoSchedule"
+                - operator: Exists
+                  effect: "NoExecute"
+            storageClass:
+              name: csi-cephfs-sc-retain
+              create: true
+              clusterID: 59e105f8-4d0a-11eb-a533-5bf9e1a239a6
+              fsName: cephfs
+              mounter: kernel
+              reclaimPolicy: Retain
+      ignoreDifferences:
+        - group: rbac.authorization.k8s.io
+          kind: ClusterRole
+          jsonPointers:
+            - /rules
