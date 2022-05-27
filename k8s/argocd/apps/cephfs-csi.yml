@@ -39,6 +39,8 @@ spec:
                   - 172.31.0.254:6789
                 cephFS:
                   subvolumeGroup: {{subvolumeGroup}}
+            provisioner:
+              replicaCount: 1
             nodeplugin:
               tolerations:
                 - operator: Exists
