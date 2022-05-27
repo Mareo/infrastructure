@@ -34,9 +34,6 @@ spec:
             fullnameOverride: rancher
             hostname: rancher.mareo.fr
             replicas: 1
-            customLogos:
-              enabled: true
-              storageClass: local-path
             ingress:
               enabled: true
               extraAnnotations:
