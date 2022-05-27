@@ -1,0 +1,24 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: csi-cephfs-secret
+spec:
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  dataFrom:
+    - extract:
+        key: ceph-csi/cephfs-secret
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: csi-rbd-secret
+spec:
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  dataFrom:
+    - extract:
+        key: ceph-csi/rbd-secret
