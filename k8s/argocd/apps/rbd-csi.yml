@@ -35,6 +35,8 @@ spec:
             fullnameOverride: ceph-csi-rbd
             # deployed by cephfs-csi
             externallyManagedConfigmap: true
+            provisioner:
+              replicaCount: 1
             nodeplugin:
               tolerations:
                 - operator: Exists
