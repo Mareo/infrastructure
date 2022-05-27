@@ -1,0 +1,59 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: vaultwarden
+  labels:
+    app: vaultwarden
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-vaultwarden"
+      labels:
+        app: vaultwarden
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: vaultwarden
+      source:
+        repoURL: https://k8s-at-home.com/charts/
+        chart: vaultwarden
+        targetRevision: 4.2.3
+        helm:
+          releaseName: vaultwarden
+          values: |
+            env.TZ: "Europe/Paris"
+            ingress:
+              main:
+                annotations:
+                  cert-manager.io/cluster-issuer: default-issuer
+                ingressClassName: public
+                hosts:
+                  - host: vaultwarden.mareo.fr
+                    paths:
+                      - path: /
+                        pathType: Prefix
+                        service:
+                          name: main
+                          port:
+                            name: http
+                tls:
+                  - hosts:
+                      - vaultwarden.mareo.fr
+                    secretName: vaultwarden-tls
+
+            persistence:
+              config:
+                enabled: true
+                type: emptyDir

@@ -8,3 +8,4 @@ resources:
   - external-secrets-operator.yml
   - ingress-nginx.yml
   - vault.yml
+  - vaultwarden.yml
