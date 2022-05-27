@@ -1,5 +1,4 @@
 ---
 kind: Kustomization
-namespace: default
 
 resources: []

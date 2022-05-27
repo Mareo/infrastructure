@@ -1,7 +1,0 @@
----
-kind: Kustomization
-namespace: argocd
-
-resources:
-  - cert-manager.yml
-  - default-issuer.yml
