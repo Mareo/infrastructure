@@ -1,6 +1,23 @@
 ---
+apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
   - ../base/
   - ceph-csi.yml
+
+patches:
+  - target:
+      kind: ExternalSecret
+    patch: |-
+      apiVersion: external-secrets.io/v1beta1
+      kind: ExternalSecret
+      metadata:
+        name: unused
+      spec:
+        target:
+          template:
+            metadata:
+              annotations:
+                argocd.argoproj.io/compare-options: IgnoreExtraneous
+                argocd.argoproj.io/sync-options: Prune=false
