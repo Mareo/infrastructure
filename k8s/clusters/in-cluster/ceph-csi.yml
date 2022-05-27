@@ -8,9 +8,10 @@ spec:
   secretStoreRef:
     name: vault-backend
     kind: ClusterSecretStore
-  template:
-    annotations:
-      argocd.argoproj.io/compare-options: IgnoreExtraneous
+  target:
+    template:
+      annotations:
+        argocd.argoproj.io/compare-options: IgnoreExtraneous
   dataFrom:
     - extract:
         key: ceph-csi/cephfs-secret
