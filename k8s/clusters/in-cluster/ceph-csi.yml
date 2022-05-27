@@ -3,6 +3,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: csi-cephfs-secret
+  namespace: kube-system
 spec:
   secretStoreRef:
     name: vault-backend
@@ -15,6 +16,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: csi-rbd-secret
+  namespace: kube-system
 spec:
   secretStoreRef:
     name: vault-backend
