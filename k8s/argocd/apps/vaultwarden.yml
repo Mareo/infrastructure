@@ -36,6 +36,7 @@ spec:
             env.TZ: "Europe/Paris"
             ingress:
               main:
+                enabled: true
                 annotations:
                   cert-manager.io/cluster-issuer: default-issuer
                 ingressClassName: public
