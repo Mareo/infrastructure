@@ -46,9 +46,15 @@ spec:
                       - path: /
                         pathType: Prefix
                         service:
-                          name: main
-                          port:
-                            name: http
+                          port: http
+                      - path: /notifications/hub/negotiate
+                        pathType: Prefix
+                        service:
+                          port: http
+                      - path: /notifications/hub
+                        pathType: Prefix
+                        service:
+                          port: websocket
                 tls:
                   - hosts:
                       - vaultwarden.mareo.fr
