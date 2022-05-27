@@ -8,7 +8,6 @@ resources:
   - clusters.yml
   - external-secrets-operator.yml
   - ingress-nginx.yml
-  - rancher.yml
   - rbd-csi.yml
   - vault.yml
   - vaultwarden.yml
