@@ -40,21 +40,8 @@ spec:
                 annotations:
                   cert-manager.io/cluster-issuer: default-issuer
                 ingressClassName: public
-                hosts:
-                  - host: vaultwarden.mareo.fr
-                    paths:
-                      - path: /
-                        pathType: Prefix
-                        service:
-                          port: http
-                      - path: /notifications/hub/negotiate
-                        pathType: Prefix
-                        service:
-                          port: http
-                      - path: /notifications/hub
-                        pathType: Prefix
-                        service:
-                          port: websocket
+                hosts[1]:
+                  host: vaultwarden.mareo.fr
                 tls:
                   - hosts:
                       - vaultwarden.mareo.fr
