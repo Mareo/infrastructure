@@ -40,7 +40,7 @@ spec:
                 annotations:
                   cert-manager.io/cluster-issuer: default-issuer
                 ingressClassName: public
-                hosts[1]:
+                hosts[0]:
                   host: vaultwarden.mareo.fr
                 tls:
                   - hosts:
