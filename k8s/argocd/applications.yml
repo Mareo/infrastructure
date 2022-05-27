@@ -1,0 +1,20 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: applications
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app: argocd
+spec:
+  project: default
+  source:
+    repoURL: git://git.mareo.fr/infrastructure
+    targetRevision: HEAD
+    path: "k8s/argocd/"
+  destination:
+    name: in-cluster
+  syncPolicy:
+    automated:
+      prune: true
