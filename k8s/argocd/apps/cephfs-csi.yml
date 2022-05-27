@@ -34,7 +34,7 @@ spec:
           values: |
             fullnameOverride: ceph-csi-cephfs
             csiConfig:
-              - clusterID: 59e105f8-4d0a-11eb-a533-5bf9e1a239a6
+              - clusterID: f750781a-463e-4415-bf93-4dcc6d7991ab
                 monitors:
                   - 172.31.0.254:6789
                 cephFS:
@@ -48,7 +48,7 @@ spec:
             storageClass:
               name: csi-cephfs-sc-retain
               create: true
-              clusterID: 59e105f8-4d0a-11eb-a533-5bf9e1a239a6
+              clusterID: f750781a-463e-4415-bf93-4dcc6d7991ab
               fsName: cephfs
               mounter: kernel
               reclaimPolicy: Retain
