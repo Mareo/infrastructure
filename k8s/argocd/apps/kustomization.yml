@@ -8,7 +8,7 @@ resources:
   - clusters.yml
   - external-secrets-operator.yml
   - ingress-nginx.yml
-  - netxcloud.yml
+  - nextcloud.yml
   - rbd-csi.yml
   - vault.yml
   - vaultwarden.yml
