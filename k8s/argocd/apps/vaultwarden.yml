@@ -35,7 +35,7 @@ spec:
           values: |
             env:
               TZ: "Europe/Paris"
-              SIGNUPS_ALLOWED: true
+              SIGNUPS_ALLOWED: false
               DOMAIN: https://vaultwarden.mareo.fr
             persistence:
               config:
