@@ -6,11 +6,3 @@ terraform {
     }
   }
 }
-
-provider "vault" {
-
-}
-
-module "k8s-mareo-fr" {
-  source = "./k8s.mareo.fr"
-}

@@ -3,25 +3,6 @@ locals {
   sa_namespace = "external-secrets-operator"
 }
 
-data "kubernetes_service_account" "external-secrets-operator" {
-  metadata {
-    name      = local.sa_name
-    namespace = local.sa_namespace
-  }
-}
-
-data "kubernetes_secret" "external-secrets-operator" {
-  metadata {
-    name      = data.kubernetes_service_account.external-secrets-operator.default_secret_name
-    namespace = local.sa_namespace
-  }
-
-  binary_data = {
-    "ca.crt" = ""
-    "token"  = ""
-  }
-}
-
 resource "vault_mount" "k8s" {
   path = "k8s"
   type = "kv"
