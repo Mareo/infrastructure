@@ -36,6 +36,13 @@ spec:
             ingress:
               enabled: true
               className: public
+              annotations:
+                nginx.ingress.kubernetes.io/proxy-body-size: 4G
+                cert-manager.io/cluster-issuer: default-issuer
+              tls:
+                - secretName: nextcloud-tls
+                  hosts:
+                    - nextcloud.mareo.fr
             nextcloud:
               host: nextcloud.mareo.fr
               existingSecret:
