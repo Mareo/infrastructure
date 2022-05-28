@@ -34,7 +34,7 @@ spec:
           releaseName: nextcloud
           values: |
             ingress:
-              enables: true
+              enabled: true
               className: public
             nextcloud:
               host: nextcloud.mareo.fr
