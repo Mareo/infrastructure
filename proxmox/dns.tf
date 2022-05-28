@@ -3,7 +3,7 @@ locals {
     "api.k8s.mareo.fr.",
     "argocd.mareo.fr.",
     "auth.mareo.fr.",
-    "rancher.mareo.fr.",
+    "nextcloud.mareo.fr.",
     "vault.mareo.fr.",
     "vaultwarden.mareo.fr.",
   ])
