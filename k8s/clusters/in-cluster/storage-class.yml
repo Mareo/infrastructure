@@ -1,0 +1,71 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-cephfs-sc-delete
+  labels:
+    app: ceph-csi-cephfs
+parameters:
+  clusterID: f750781a-463e-4415-bf93-4dcc6d7991ab
+
+  fsName: cephfs
+  mounter: kernel
+
+  csi.storage.k8s.io/controller-expand-secret-name: csi-cephfs-secret
+  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
+  csi.storage.k8s.io/node-stage-secret-name: csi-cephfs-secret
+  csi.storage.k8s.io/node-stage-secret-namespace: kube-system
+  csi.storage.k8s.io/provisioner-secret-name: csi-cephfs-secret
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+provisioner: cephfs.csi.ceph.com
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: csi-cephfs-sc
+driver: cephfs.csi.ceph.com
+parameters:
+  clusterID: f750781a-463e-4415-bf93-4dcc6d7991ab
+
+  csi.storage.k8s.io/snapshotter-secret-name: csi-cephfs-secret
+  csi.storage.k8s.io/snapshotter-secret-namespace: kube-system
+deletionPolicy: Delete
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-rbd-sc-delete
+  labels:
+    app: ceph-csi-rbd
+parameters:
+  clusterID: f750781a-463e-4415-bf93-4dcc6d7991ab
+
+  pool: kubernetes
+  mounter: kernel
+  imageFeatures: layering
+
+  csi.storage.k8s.io/controller-expand-secret-name: csi-rbd-secret
+  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
+  csi.storage.k8s.io/node-stage-secret-name: csi-rbd-secret
+  csi.storage.k8s.io/node-stage-secret-namespace: kube-system
+  csi.storage.k8s.io/provisioner-secret-name: csi-rbd-secret
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+provisioner: rbd.csi.ceph.com
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+mountOptions:
+  - relatime
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: csi-rbd-sc
+driver: cephfs.csi.ceph.com
+parameters:
+  clusterID: f750781a-463e-4415-bf93-4dcc6d7991ab
+
+  csi.storage.k8s.io/snapshotter-secret-name: csi-rbd-secret
+  csi.storage.k8s.io/snapshotter-secret-namespace: kube-system
+deletionPolicy: Delete
