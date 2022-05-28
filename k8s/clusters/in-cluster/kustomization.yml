@@ -6,6 +6,7 @@ resources:
   - ../base/
   - ceph-csi.yml
   - storage-class.yml
+  - nextcloud-secret.yml
 
 patches:
   - target:
