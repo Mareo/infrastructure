@@ -35,9 +35,10 @@ spec:
           values: |
             env:
               TZ: "Europe/Paris"
-              #SIGNUPS_ALLOWED: false
+              SIGNUPS_ALLOWED: true
               DOMAIN: https://vaultwarden.mareo.fr
             persistence:
               config:
                 enabled: true
                 type: pvc
+                storageClass: csi-rbd-sc-retain
