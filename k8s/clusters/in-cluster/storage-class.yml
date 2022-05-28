@@ -21,18 +21,6 @@ provisioner: cephfs.csi.ceph.com
 allowVolumeExpansion: true
 reclaimPolicy: Delete
 ---
-apiVersion: snapshot.storage.k8s.io/v1
-kind: VolumeSnapshotClass
-metadata:
-  name: csi-cephfs-sc
-driver: cephfs.csi.ceph.com
-parameters:
-  clusterID: f750781a-463e-4415-bf93-4dcc6d7991ab
-
-  csi.storage.k8s.io/snapshotter-secret-name: csi-cephfs-secret
-  csi.storage.k8s.io/snapshotter-secret-namespace: kube-system
-deletionPolicy: Delete
----
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -57,15 +45,3 @@ allowVolumeExpansion: true
 reclaimPolicy: Delete
 mountOptions:
   - relatime
----
-apiVersion: snapshot.storage.k8s.io/v1
-kind: VolumeSnapshotClass
-metadata:
-  name: csi-rbd-sc
-driver: cephfs.csi.ceph.com
-parameters:
-  clusterID: f750781a-463e-4415-bf93-4dcc6d7991ab
-
-  csi.storage.k8s.io/snapshotter-secret-name: csi-rbd-secret
-  csi.storage.k8s.io/snapshotter-secret-namespace: kube-system
-deletionPolicy: Delete
