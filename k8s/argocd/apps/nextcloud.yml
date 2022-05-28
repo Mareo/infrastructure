@@ -1,0 +1,48 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nextcloud
+  labels:
+    app: nextcloud
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-nextcloud"
+      labels:
+        app: nextcloud
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: nextcloud
+      source:
+        repoURL: https://nextcloud.github.io/helm/
+        chart: nextcloud
+        targetRevision: 2.14.3
+        helm:
+          releaseName: nextcloud
+          values: |
+            ingress:
+              enables: true
+              className: public
+            nextcloud:
+              host: nextcloud.mareo.fr
+              existingSecret:
+                enabled: true
+                secretName: nextcloud
+                usernameKey: username
+                passwordKey: password
+            persistence:
+              enabled: true
+              storage-class: csi-rbd-sc-retain
