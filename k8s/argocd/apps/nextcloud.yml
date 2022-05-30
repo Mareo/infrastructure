@@ -37,10 +37,13 @@ spec:
               enabled: true
               className: public
               annotations:
+                cert-manager.io/cluster-issuer: default-issuer
                 nginx.ingress.kubernetes.io/proxy-body-size: 4G
                 nginx.ingress.kubernetes.io/enable-cors: "true"
                 nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
-                cert-manager.io/cluster-issuer: default-issuer
+                ingress.kubernetes.io/configuration-snippet: |
+                  location = /.well-known/carddav { return 301 /remote.php/dav/; }
+                  location = /.well-known/caldav  { return 301 /remote.php/dav/; }
               tls:
                 - secretName: nextcloud-tls
                   hosts:
