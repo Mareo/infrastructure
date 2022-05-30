@@ -58,3 +58,5 @@ spec:
               size: 1Ti
             phpClientHttpsFix:
               enabled: true
+            cronjob:
+              enabled: true

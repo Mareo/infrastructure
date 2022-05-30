@@ -15,4 +15,4 @@ nft_global_rules:
 
 nft_output_rules:
   "000 policy":
-    T- type filter hook output priority 0; policy accept;
+    - type filter hook output priority 0; policy accept;
