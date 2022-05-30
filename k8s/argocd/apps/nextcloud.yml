@@ -94,9 +94,9 @@ spec:
                   ),
                   'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
                 );
-            user.config.php: |-
-              <?php
-                $CONFIG = array (
-                  'default_language' => 'en',
-                  'default_phone_region' => 'FR',
-                );
+              user.config.php: |-
+                <?php
+                  $CONFIG = array (
+                    'default_language' => 'en',
+                    'default_phone_region' => 'FR',
+                  );
