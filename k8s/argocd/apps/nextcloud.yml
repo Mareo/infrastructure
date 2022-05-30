@@ -76,6 +76,22 @@ spec:
                 secretName: nextcloud
                 usernameKey: username
                 passwordKey: password
+              configs:
+                proxy.config.php: |-
+                  <?php
+                  $CONFIG = array (
+                    'trusted_proxies' => array(
+                      0 => '127.0.0.1',
+                      1 => '172.16.0.0/12',
+                    ),
+                    'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+                  );
+                user.config.php: |-
+                  <?php
+                    $CONFIG = array (
+                      'default_language' => 'en',
+                      'default_phone_region' => 'FR',
+                    );
             persistence:
               enabled: true
               storage-class: csi-cephfs-sc-retain
@@ -84,19 +100,3 @@ spec:
               enabled: true
             cronjob:
               enabled: true
-            configs:
-              proxy.config.php: |-
-                <?php
-                $CONFIG = array (
-                  'trusted_proxies' => array(
-                    0 => '127.0.0.1',
-                    1 => '172.16.0.0/12',
-                  ),
-                  'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
-                );
-              user.config.php: |-
-                <?php
-                  $CONFIG = array (
-                    'default_language' => 'en',
-                    'default_phone_region' => 'FR',
-                  );
