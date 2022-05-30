@@ -41,9 +41,30 @@ spec:
                 nginx.ingress.kubernetes.io/proxy-body-size: 4G
                 nginx.ingress.kubernetes.io/enable-cors: "true"
                 nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
-                ingress.kubernetes.io/configuration-snippet: |
-                  location = /.well-known/carddav { return 301 /remote.php/dav/; }
-                  location = /.well-known/caldav  { return 301 /remote.php/dav/; }
+                ingress.kubernetes.io/configuration-snippet: |-
+                    server_tokens off;
+                    proxy_hide_header X-Powered-By;
+
+                    rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
+                    rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+                    rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
+                    location = /.well-known/carddav {
+                      return 301 $scheme://$host/remote.php/dav;
+                    }
+                    location = /.well-known/caldav {
+                      return 301 $scheme://$host/remote.php/dav;
+                    }
+                    location = /robots.txt {
+                      allow all;
+                      log_not_found off;
+                      access_log off;
+                    }
+                    location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
+                      deny all;
+                    }
+                    location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
+                      deny all;
+                    }
               tls:
                 - secretName: nextcloud-tls
                   hosts:
@@ -63,3 +84,18 @@ spec:
               enabled: true
             cronjob:
               enabled: true
+            configs:
+              proxy.config.php: |-
+                <?php
+                $CONFIG = array (
+                  'trusted_proxies' => array(
+                    0 => '127.0.0.1',
+                    1 => '172.16.0.0/12',
+                  ),
+                  'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+                );
+            user.config.php: |-
+              <?php
+                $CONFIG = array (
+                  'default_language' => 'en',
+                  'default_phone_region' => 'FR',
