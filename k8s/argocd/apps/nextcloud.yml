@@ -52,4 +52,5 @@ spec:
                 passwordKey: password
             persistence:
               enabled: true
-              storage-class: csi-rbd-sc-retain
+              storage-class: csi-cephfs-sc-retain
+              size: 1Ti
