@@ -99,3 +99,4 @@ spec:
                 $CONFIG = array (
                   'default_language' => 'en',
                   'default_phone_region' => 'FR',
+                );
