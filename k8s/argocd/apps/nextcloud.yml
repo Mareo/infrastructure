@@ -38,6 +38,8 @@ spec:
               className: public
               annotations:
                 nginx.ingress.kubernetes.io/proxy-body-size: 4G
+                nginx.ingress.kubernetes.io/enable-cors: "true"
+                nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
                 cert-manager.io/cluster-issuer: default-issuer
               tls:
                 - secretName: nextcloud-tls
@@ -54,3 +56,5 @@ spec:
               enabled: true
               storage-class: csi-cephfs-sc-retain
               size: 1Ti
+            phpClientHttpsFix:
+              enabled: true
