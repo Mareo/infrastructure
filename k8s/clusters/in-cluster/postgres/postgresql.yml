@@ -16,7 +16,7 @@ spec:
 
   # databases: name -> owner
   databases:
-    nextcloud: nextcloud
+    nextcloud: nextcloud.nextcloud
 
   postgresql:
     version: "14"
