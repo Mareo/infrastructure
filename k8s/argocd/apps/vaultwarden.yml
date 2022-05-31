@@ -34,9 +34,28 @@ spec:
           releaseName: vaultwarden
           values: |
             env:
-              TZ: "Europe/Paris"
-              SIGNUPS_ALLOWED: false
-              DOMAIN: https://vaultwarden.mareo.fr
+              - name: TZ
+                value: "Europe/Paris"
+              - name: SIGNUPS_ALLOWED
+                value: "false"
+              - name: DOMAIN
+                value: https://vaultwarden.mareo.fr
+              - name: DATABASE_HOST
+                value: in-cluster-main-cluster.postgres.svc.cluster.local
+              - name: DATABASE_DB
+                value: vaultwarden
+              - name: DATABASE_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: vaultwarden.vaultwarden.in-cluster-main-cluster.credentials
+                    key: username
+              - name: DATABASE_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: vaultwarden.vaultwarden.in-cluster-main-cluster.credentials
+                    key: password
+              - name: DATABASE_URL
+                value: "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST)/$(DATABASE_DB)"
             persistence:
               config:
                 enabled: true

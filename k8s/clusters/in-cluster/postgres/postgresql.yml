@@ -13,10 +13,12 @@ spec:
   # users: name -> permissions (usually [])
   users:
     nextcloud.nextcloud: []
+    vaultwarden.vaultwarden: []
 
   # databases: name -> owner
   databases:
     nextcloud: nextcloud.nextcloud
+    vaultwarden: vaultwarden.vaultwarden
 
   postgresql:
     version: "14"
