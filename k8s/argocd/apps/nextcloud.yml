@@ -97,7 +97,7 @@ spec:
                       1 => '172.16.0.0/12',
                     ),
                     'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
-                    'overwirteprotocol' => 'https',
+                    'overwriteprotocol' => 'https',
                   );
                 user.config.php: |-
                   <?php
