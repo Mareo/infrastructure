@@ -1,0 +1,9 @@
+---
+kind: Kustomization
+namespace: postgres
+
+resources:
+  - ../../base
+
+  - namespace.yml
+  - postgresql.yml

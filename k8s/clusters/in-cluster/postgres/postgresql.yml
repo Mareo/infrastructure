@@ -1,0 +1,27 @@
+---
+apiVersion: acid.zalan.do/v1
+kind: postgresql
+metadata:
+  name: main-cluster
+spec:
+  teamId: in-cluster
+  volume:
+    size: 10Gi
+  numberOfInstances: 1
+
+  # users: name -> permissions (usually [])
+  users:
+    nextcloud.nextcloud: []
+
+  # databases: name -> owner
+  databases:
+    nextcloud: nextcloud
+
+  postgresql:
+    version: "14"
+
+  additionalVolumes:
+    - name: pgbackup
+      mountPath: /home/postgres/pgbackup
+      volumeSource:
+        emptyDir: {}

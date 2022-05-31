@@ -4,6 +4,8 @@ kind: Kustomization
 
 resources:
   - ../base/
+  - postgres
+
   - ceph-csi.yml
   - storage-class.yml
   - nextcloud-secret.yml
