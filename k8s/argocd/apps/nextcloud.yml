@@ -69,6 +69,18 @@ spec:
                 - secretName: nextcloud-tls
                   hosts:
                     - nextcloud.mareo.fr
+            internalDatabase:
+              enabled: false
+            externalDatabase:
+              enabled: true
+              type: postgresql
+              host: in-cluster-main-cluster.postgres
+              datatabase: nextcloud
+              existingSecret:
+                enabled: true
+                secretName: nextcloud.nextcloud.in-cluster-main-cluster.credentials
+                usernameKey: username
+                passwordKey: password
             nextcloud:
               host: nextcloud.mareo.fr
               existingSecret:
