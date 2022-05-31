@@ -1,0 +1,22 @@
+# yamllint disable rule:line-length
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-operator
+data:
+  workers: "1"
+
+  enable_pod_antiaffinity: "true"
+
+  enable_cross_namespace_secret: "true"
+  secret_name_template: '{username}.{cluster}.credentials'
+
+  enable_crd_validation: "true"
+  enable_lazy_spilo_upgrade: "false"
+  enable_shm_volume: "true"
+
+  delete_annotation_date_key: "delete-date"
+  delete_annotation_name_key: "delete-clustername"
+
+  additional_pod_capabilities: "SYS_NICE"
