@@ -94,7 +94,8 @@ spec:
                     );
             persistence:
               enabled: true
-              storage-class: csi-cephfs-sc-retain
+              storageClass: csi-cephfs-sc-retain
+              accessMode: ReadWriteMany
               size: 1Ti
             phpClientHttpsFix:
               enabled: true
