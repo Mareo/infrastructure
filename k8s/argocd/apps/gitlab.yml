@@ -63,3 +63,20 @@ spec:
                   enabled: true
                 terraformState:
                   enabled: true
+              gitlab:
+                webservice:
+                  ingress:
+                    tls:
+                      secretName: gitlab-tls
+                kas:
+                  ingress:
+                    tls:
+                      secretName: gitlab-tls
+              registry:
+                ingress:
+                  tls:
+                    secretName: registry-tls
+              minio:
+                ingress:
+                  tls:
+                    secretName: minio-tls
