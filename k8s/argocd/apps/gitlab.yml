@@ -32,6 +32,8 @@ spec:
         targetRevision: 6.0.0
         helm:
           values: |
+            upgradeCheck:
+              enabled: false
             certmanager:
               install: false
             nginx-ingress:
