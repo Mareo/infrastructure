@@ -7,6 +7,7 @@ resources:
   - cert-manager.yml
   - clusters.yml
   - external-secrets-operator.yml
+  - gitlab.yml
   - ingress-nginx.yml
   - nextcloud.yml
   - rbd-csi.yml
