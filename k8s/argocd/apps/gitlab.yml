@@ -33,9 +33,14 @@ spec:
         helm:
           values: |
             global:
+              certamanger:
+                install: false
+              nginx-ingress:
+                enabled: false
               hosts:
                 domain: gitlab.mareo.fr
               ingress:
+                class: public
                 configureCertmanager: false
               psql:
                 host: in-cluster-main-cluster.postgres.svc.cluster.local
