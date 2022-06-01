@@ -68,6 +68,7 @@ spec:
                 ingress:
                   tls:
                     secretName: gitlab-tls
+                    smartcardSecretName: smartcard-tls
               kas:
                 ingress:
                   tls:
