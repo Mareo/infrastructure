@@ -33,7 +33,7 @@ spec:
         helm:
           values: |
             global:
-              certamanger:
+              certmanager:
                 install: false
               nginx-ingress:
                 enabled: false
