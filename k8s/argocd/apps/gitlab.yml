@@ -40,7 +40,8 @@ spec:
               enabled: false
             global:
               hosts:
-                domain: gitlab.mareo.fr
+                domain: mareo.fr
+                https: true
               ingress:
                 class: public
                 configureCertmanager: false
