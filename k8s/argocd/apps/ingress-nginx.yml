@@ -32,6 +32,8 @@ spec:
             enabled: true
             default: true
             name: "public"
+          tcp:
+            22: gitlab/gitlab-gitlab-shell:22
           config:
             forwarded-for-header: "true"
             use-http2: "true"

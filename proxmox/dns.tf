@@ -3,10 +3,17 @@ locals {
     "api.k8s.mareo.fr.",
     "argocd.mareo.fr.",
     "auth.mareo.fr.",
-    "gitlab.mareo.fr.",
     "nextcloud.mareo.fr.",
     "vault.mareo.fr.",
     "vaultwarden.mareo.fr.",
+
+    # Gitlab
+    "gitlab.mareo.fr.",
+    "kas.mareo.fr.",
+    "minio.mareo.fr.",
+    "pages.mareo.fr.",
+    "registry.mareo.fr.",
+    "smartcard.mareo.fr.",
   ])
 }
 

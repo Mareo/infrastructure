@@ -45,6 +45,8 @@ spec:
               ingress:
                 class: public
                 configureCertmanager: false
+                annotations:
+                   cert-manager.io/cluster-issuer: default-issuer
               psql:
                 host: in-cluster-main-cluster.postgres.svc.cluster.local
                 database: gitlab
