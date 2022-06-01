@@ -1,0 +1,55 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: gitlab
+  labels:
+    app: gitlab
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-gitlab"
+      labels:
+        app: gitlab
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: gitlab
+      source:
+        repoURL: https://charts.gitlab.io/
+        chart: gitlab
+        targetRevision: 6.0.0
+        helm:
+          values: |
+            global:
+              hosts:
+                domain: gitlab.mareo.fr
+              ingress:
+                configureCertmanager: false
+              psql:
+                host: in-cluster-main-cluster.postgres.svc.cluster.local
+                database: gitlab
+                username: gitlab.gitlab
+                password:
+                  useSecret: true
+                  secret: gitlab.gitlab.in-cluster-main-cluster.credentials
+                  key: password
+              appConfig:
+                enableUsagePing: false
+                enableSeatLink: false
+                usernameChangingEnabled: false
+                dependencyProxy:
+                  enabled: true
+                terraformState:
+                  enabled: true
