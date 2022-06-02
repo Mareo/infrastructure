@@ -34,6 +34,8 @@ spec:
           values: |
             upgradeCheck:
               enabled: false
+            postgresql:
+              install: false
             certmanager:
               install: false
             nginx-ingress:
@@ -47,6 +49,9 @@ spec:
                 configureCertmanager: false
                 annotations:
                    cert-manager.io/cluster-issuer: default-issuer
+              initialRootPassword:
+                secret: gitlab-initial-root-password
+                key: password
               psql:
                 host: in-cluster-main-cluster.postgres.svc.cluster.local
                 database: gitlab
