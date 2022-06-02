@@ -44,10 +44,6 @@ spec:
               install: false
             operator:
               enabled: false
-            gitaly:
-              persistence:
-                enabled: true
-                storageClass: csi-rbd-sc-retain
             global:
               hosts:
                 domain: mareo.fr
@@ -89,6 +85,10 @@ spec:
             gitlab-runner:
               install: false
             gitlab:
+              gitaly:
+                persistence:
+                  enabled: true
+                  storageClass: csi-rbd-sc-retain
               webservice:
                 ingress:
                   tls:
