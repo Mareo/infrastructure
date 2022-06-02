@@ -40,6 +40,10 @@ spec:
               install: false
             nginx-ingress:
               enabled: false
+            prometheus:
+              install: false
+            operator:
+              enabled: false
             gitaly:
               persistence:
                 enabled: true
@@ -71,10 +75,19 @@ spec:
                 enableUsagePing: false
                 enableSeatLink: false
                 usernameChangingEnabled: false
-                dependencyProxy:
+                lfs:
                   enabled: true
+                  proxy_download: true
+                artifacts:
+                  enabled: true
+                  proxy_download: true
                 terraformState:
                   enabled: true
+                dependencyProxy:
+                  enabled: true
+              time_zone: Europe/Paris
+            gitlab-runner:
+              install: false
             gitlab:
               webservice:
                 ingress:
