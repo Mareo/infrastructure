@@ -40,6 +40,10 @@ spec:
               install: false
             nginx-ingress:
               enabled: false
+            gitaly:
+              persistence:
+                enabled: true
+                storageClass: csi-rbd-sc-retain
             global:
               hosts:
                 domain: mareo.fr
