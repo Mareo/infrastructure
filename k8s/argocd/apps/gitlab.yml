@@ -49,6 +49,9 @@ spec:
                 configureCertmanager: false
                 annotations:
                    cert-manager.io/cluster-issuer: default-issuer
+              shell:
+                tcp:
+                  proxyProtocol: true
               initialRootPassword:
                 secret: gitlab-initial-root-password
                 key: password
