@@ -89,6 +89,10 @@ spec:
                 persistence:
                   enabled: true
                   storageClass: csi-rbd-sc-retain
+              redis:
+                persistence:
+                  enabled: true
+                  storageClass: csi-rbd-sc-retain
               webservice:
                 ingress:
                   tls:
