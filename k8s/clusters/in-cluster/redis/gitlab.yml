@@ -2,7 +2,7 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: redis-password
+  name: gitlab-redis-password
   namespace: gitlab
 spec:
   secretStoreRef:
@@ -39,5 +39,5 @@ spec:
   annotations: {}
   password:
     secretKeyRef:
-      name: redis-password
+      name: gitlab-redis-password
       key: password

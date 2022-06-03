@@ -92,7 +92,7 @@ spec:
                 - name: REDIS_PASSWORD
                   valueFrom:
                     secretKeyRef:
-                      name: redis-password
+                      name: nextcloud-redis-password
                       key: password
               configs:
                 redis.config.php: |-

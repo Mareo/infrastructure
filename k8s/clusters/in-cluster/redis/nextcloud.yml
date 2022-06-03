@@ -2,7 +2,7 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: redis-password
+  name: nextcloud-redis-password
   namespace: nextcloud
 spec:
   secretStoreRef:
@@ -39,5 +39,5 @@ spec:
   annotations: {}
   password:
     secretKeyRef:
-      name: redis-password
+      name: nextcloud-redis-password
       key: password

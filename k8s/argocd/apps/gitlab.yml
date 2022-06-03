@@ -64,7 +64,7 @@ spec:
               redis:
                 host: redis-redis-master.gitlab.svc
                 password:
-                  secret: redis-password
+                  secret: gitlab-redis-password
                   key: password
               psql:
                 host: in-cluster-main-cluster.postgres.svc.cluster.local
