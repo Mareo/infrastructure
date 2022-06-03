@@ -85,10 +85,28 @@ spec:
               host: nextcloud.mareo.fr
               existingSecret:
                 enabled: true
-                secretName: nextcloud
+                secretName: nextcloud-initial-account-credentials
                 usernameKey: username
                 passwordKey: password
+              extraEnv:
+                - name: REDIS_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: redis-password
+                      key: password
               configs:
+                redis.config.php: |-
+                  <?php
+                  $CONFIG = array (
+                    'redis' => array(
+                      'host' => 'redis-redis-master.nextcloud.svc',
+                      'port' => '6379',
+                      'timeout' => 0.0,
+                      'password' => getenv('REDIS_PASSWORD'),
+                    ),
+                    'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+                    'overwriteprotocol' => 'https',
+                  );
                 proxy.config.php: |-
                   <?php
                   $CONFIG = array (
@@ -114,3 +132,5 @@ spec:
               enabled: true
             cronjob:
               enabled: true
+            redis:
+              enabled: false
