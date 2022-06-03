@@ -1,0 +1,5 @@
+---
+kind: Kustomization
+
+resources:
+  - github.com/amaizfinance/redis-operator/deploy?ref=v0.2.1

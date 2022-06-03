@@ -5,11 +5,12 @@ kind: Kustomization
 resources:
   - ../base/
   - postgres
+  - redis
 
   - ceph-csi.yml
   - gitlab-secret.yml
   - nextcloud-secret.yml
-  - storage-class.yml
+  - redis-operator.yml
 
 patches:
   - target:

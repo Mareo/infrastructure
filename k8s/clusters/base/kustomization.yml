@@ -6,3 +6,4 @@ resources:
   - vault-secret-store.yml
 
   - postgres-operator
+  - redis-operator
