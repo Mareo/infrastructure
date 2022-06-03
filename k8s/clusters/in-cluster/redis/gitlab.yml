@@ -16,6 +16,7 @@ apiVersion: k8s.amaiz.com/v1alpha1
 kind: Redis
 metadata:
   name: redis
+  namespace: gitlab
 spec:
   replicas: 3
   redis:
