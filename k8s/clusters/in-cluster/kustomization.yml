@@ -10,7 +10,6 @@ resources:
   - ceph-csi.yml
   - gitlab-secret.yml
   - nextcloud-secret.yml
-  - redis-operator.yml
 
 patches:
   - target:
