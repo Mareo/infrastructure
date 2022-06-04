@@ -11,6 +11,7 @@ resources:
   - ingress-nginx.yml
   - nextcloud.yml
   - rbd-csi.yml
+  - redis.yml
   - redis-operator.yml
   - vault.yml
   - vaultwarden.yml
