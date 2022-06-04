@@ -33,6 +33,7 @@ spec:
         helm:
           releaseName: nextcloud
           values: |
+            image.tag: 23.0.5-apache
             ingress:
               enabled: true
               className: public
