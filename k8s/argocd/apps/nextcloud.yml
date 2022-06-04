@@ -94,6 +94,8 @@ spec:
                     secretKeyRef:
                       name: nextcloud-redis
                       key: password
+              defaultConfigs:
+                redis.config.php: false
               configs:
                 redis.config.php: |-
                   <?php
