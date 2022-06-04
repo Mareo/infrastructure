@@ -9,10 +9,12 @@ spec:
     - list:
         elements:
           - name: gitlab
+            cluster: in-cluster
             namespace: gitlab
             secretName: gitlab-redis-password
             secretKey: password
           - name: nextcloud
+            cluster: in-cluster
             namespace: nextcloud
             secretName: nextcloud-redis-password
             secretKey: password
@@ -28,7 +30,7 @@ spec:
         automated:
           prune: true
       destination:
-        name: "{{name}}"
+        name: "{{cluster}}"
         namespace: "{{namespace}}"
       project: default
       source:
