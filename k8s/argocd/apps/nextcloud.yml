@@ -99,7 +99,7 @@ spec:
                   <?php
                   $CONFIG = array (
                     'redis' => array(
-                      'host' => 'redis-redis-master.nextcloud.svc',
+                      'host' => 'nextcloud-redis.nextcloud.svc',
                       'port' => '6379',
                       'timeout' => 0.0,
                       'password' => getenv('REDIS_PASSWORD'),

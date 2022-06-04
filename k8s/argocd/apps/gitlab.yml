@@ -62,7 +62,7 @@ spec:
                 secret: gitlab-initial-root-password
                 key: password
               redis:
-                host: redis-redis-master.gitlab.svc
+                host: gitlab-redis.gitlab.svc
                 password:
                   secret: gitlab-redis-password
                   key: password

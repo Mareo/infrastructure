@@ -37,6 +37,7 @@ spec:
         repoURL: https://ot-container-kit.github.io/helm-charts/
         chart: redis
         targetRevision: 0.10.1
+        releaseName: "{{name}}-redis"
         helm:
           values: |
             redisStandalone:
