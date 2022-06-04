@@ -11,12 +11,12 @@ spec:
           - name: gitlab
             cluster: in-cluster
             namespace: gitlab
-            secretName: gitlab-redis-password
+            secretName: gitlab-redis
             secretKey: password
           - name: nextcloud
             cluster: in-cluster
             namespace: nextcloud
-            secretName: nextcloud-redis-password
+            secretName: nextcloud-redis
             secretKey: password
   template:
     metadata:
