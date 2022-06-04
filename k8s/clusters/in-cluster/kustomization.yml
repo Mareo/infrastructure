@@ -6,9 +6,10 @@ resources:
   - ../base/
   - postgres
 
-  - ceph-csi.yml
+  - ceph-csi-secrets.yml
   - gitlab-secrets.yml
   - nextcloud-secrets.yml
+  - storage-class.yml
 
 patches:
   - target:
