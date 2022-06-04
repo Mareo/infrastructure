@@ -131,6 +131,7 @@ spec:
               size: 1Ti
             startupProbe:
               enabled: true
+              failureThreshold: 60
             phpClientHttpsFix:
               enabled: true
             cronjob:
