@@ -94,10 +94,8 @@ spec:
                     secretKeyRef:
                       name: nextcloud-redis
                       key: password
-              defaultConfigs:
-                redis.config.php: false
               configs:
-                config.php: |-
+                redis.config.php: |-
                   <?php
                   $CONFIG = array (
                     'memcache.distributed' => '\OC\Memcache\Redis',
