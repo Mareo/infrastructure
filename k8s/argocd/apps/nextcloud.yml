@@ -97,7 +97,7 @@ spec:
               defaultConfigs:
                 redis.config.php: false
               configs:
-                redis.config.php: |-
+                config.php: |-
                   <?php
                   $CONFIG = array (
                     'memcache.distributed' => '\OC\Memcache\Redis',
