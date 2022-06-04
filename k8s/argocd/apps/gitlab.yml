@@ -31,6 +31,7 @@ spec:
         chart: gitlab
         targetRevision: 6.0.1
         helm:
+          releaseName: gitlab
           values: |
             upgradeCheck:
               enabled: false
