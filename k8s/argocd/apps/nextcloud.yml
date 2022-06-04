@@ -94,18 +94,19 @@ spec:
                     secretKeyRef:
                       name: nextcloud-redis
                       key: password
+              defaultConfigs:
+                redis.config.php: false
               configs:
                 redis.config.php: |-
                   <?php
                   $CONFIG = array (
+                    'memcache.distributed' => '\OC\Memcache\Redis',
+                    'memcache.locking' => '\OC\Memcache\Redis',
                     'redis' => array(
                       'host' => 'nextcloud-redis.nextcloud.svc',
                       'port' => '6379',
-                      'timeout' => 0.0,
                       'password' => getenv('REDIS_PASSWORD'),
                     ),
-                    'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
-                    'overwriteprotocol' => 'https',
                   );
                 proxy.config.php: |-
                   <?php
