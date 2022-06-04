@@ -20,9 +20,9 @@ spec:
             secretKey: password
   template:
     metadata:
-      name: "{{name}}-redis"
+      name: "{{cluster}}-{{name}}-redis"
       labels:
-        app: "{{name}}-redis"
+        app: "{{cluster}}-{{name}}-redis"
     spec:
       syncPolicy:
         syncOptions:
