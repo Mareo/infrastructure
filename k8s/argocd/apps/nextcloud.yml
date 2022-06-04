@@ -129,6 +129,8 @@ spec:
               storageClass: csi-cephfs-sc-retain
               accessMode: ReadWriteMany
               size: 1Ti
+            startupProbe:
+              enabled: true
             phpClientHttpsFix:
               enabled: true
             cronjob:
