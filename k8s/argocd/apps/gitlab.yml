@@ -96,10 +96,6 @@ spec:
                 persistence:
                   enabled: true
                   storageClass: csi-rbd-sc-retain
-              minio:
-                persistence:
-                  enabled: true
-                  storageClass: csi-rbd-sc-retain
               webservice:
                 ingress:
                   tls:
@@ -117,3 +113,6 @@ spec:
               ingress:
                 tls:
                   secretName: minio-tls
+              persistence:
+                enabled: true
+                storageClass: csi-rbd-sc-retain
