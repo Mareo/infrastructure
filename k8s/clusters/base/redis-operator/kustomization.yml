@@ -1,8 +1,0 @@
----
-kind: Kustomization
-
-commonAnnotations:
-  argocd.argoproj.io/sync-wave: "-1"
-
-resources:
-  - github.com/amaizfinance/redis-operator/deploy?ref=v0.2.1

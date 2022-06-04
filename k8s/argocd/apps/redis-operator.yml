@@ -1,0 +1,26 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: in-cluster-redis-operator
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app: redis-operator
+spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: in-cluster
+    namespace: redis-operator
+  project: default
+  source:
+    repoURL: https://ot-container-kit.github.io/helm-charts/
+    chart: redis-operator
+    targetRevision: 0.10.3
+    helm:
+      values: |

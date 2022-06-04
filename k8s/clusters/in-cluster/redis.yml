@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  generator:
+    - list:
+        elements:
+          - name: gitlab
+            namespace: gitlab
+            secretName: gitlab-redis-password
+            secretKey: password
+          - name: nextcloud
+            namespace: nextcloud
+            secretName: nextcloud-redis-password
+            secretKey: password
+  template:
+    metadata:
+      name: "{{name}}-redis"
+      labels:
+        app: "{{name}}-redis"
+    spec:
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: "{{namespace}}"
+      project: default
+      source:
+        repoURL: https://ot-container-kit.github.io/helm-charts/
+        chart: redis
+        targetRevision: 0.10.1
+        helm:
+          values: |
+            redisStandalone:
+              redisSecret:
+                secretName: "{{secretName}}"
+                secretKey: "{{secretKey}}"
+            storageSpec:
+              volumeClaimTemplate:
+                spec:
+                  storageClassName: csi-rbd-sc-delete
