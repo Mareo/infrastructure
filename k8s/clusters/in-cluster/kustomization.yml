@@ -7,8 +7,8 @@ resources:
   - postgres
 
   - ceph-csi.yml
-  - gitlab-secret.yml
-  - nextcloud-secret.yml
+  - gitlab-secrets.yml
+  - nextcloud-secrets.yml
 
 patches:
   - target:
