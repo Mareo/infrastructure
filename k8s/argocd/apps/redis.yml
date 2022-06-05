@@ -18,6 +18,11 @@ spec:
             namespace: nextcloud
             secretName: nextcloud-redis
             secretKey: password
+          - name: authentik
+            cluster: in-cluster
+            namespace: authentik
+            secretName: authentik-redis
+            secretKey: password
   template:
     metadata:
       name: "{{cluster}}-{{name}}-redis"
