@@ -12,5 +12,7 @@ spec:
     - extract:
         key: argocd/oidc-authentik
   target:
-    labels:
-      app.kubernetes.io/part-of: argocd
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/part-of: argocd

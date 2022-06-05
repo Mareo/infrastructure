@@ -4,6 +4,7 @@ locals {
       name  = "Marin Hannache"
       email = "mareo@mareo.fr"
       groups = [
+        "argocd_admins",
         "gitlab_admins",
         "nextcloud_admins",
         "vault_admins",
