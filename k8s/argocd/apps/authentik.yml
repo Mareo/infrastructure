@@ -47,11 +47,12 @@ spec:
                 - hosts:
                     - auth.mareo.fr
                   secretName: "authentik-tls"
-            postgresql:
-              host: in-cluster-main-cluster.postgres.svc.cluster.local
-              name: "authentik"
-            redis:
-                host: authentik-redis.authentik.svc
+            authentik:
+              postgresql:
+                host: in-cluster-main-cluster.postgres.svc.cluster.local
+                name: "authentik"
+              redis:
+                  host: authentik-redis.authentik.svc
             env:
               AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: false
               AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: false
