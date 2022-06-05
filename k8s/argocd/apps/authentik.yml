@@ -61,10 +61,14 @@ spec:
                 secretKeyRef:
                   name: authentik-app
                   key: secret_key
-              AUTHENTIK_BOOTSTRAP_PASSWORD:
+              AK_ADMIN_PASS:
                 secretKeyRef:
                   name: authentik-app
                   key: bootstrap_password
+              AK_ADMIN_TOKEN:
+                secretKeyRef:
+                  name: authentik-app
+                  key: bootstrap_token
               AUTHENTIK_POSTGRESQL__USER:
                 secretKeyRef:
                   name: authentik.authentik.in-cluster-main-cluster.credentials
