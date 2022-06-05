@@ -39,14 +39,14 @@ resource "vault_jwt_auth_backend_role" "authentik" {
   allowed_redirect_uris = authentik_provider_oauth2.vault.redirect_uris
 }
 
-data "vault_identity_group" "vault_admins" {
-  group_name = "vault_admins"
+data "vault_identity_group" "admins" {
+  group_name = "admins"
 }
 
 resource "vault_identity_group_alias" "vault_admins" {
   name           = "vault_admins"
   mount_accessor = vault_jwt_auth_backend.authentik.accessor
-  canonical_id   = data.vault_identity_group.vault_admins.id
+  canonical_id   = data.vault_identity_group.admins.id
 }
 
 resource "authentik_provider_oauth2" "vault" {

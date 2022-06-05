@@ -1,5 +1,5 @@
-resource "vault_identity_group" "vault_admins" {
-  name     = "vault_admins"
+resource "vault_identity_group" "admins" {
+  name     = "admins"
   type     = "external"
   policies = ["admin"]
 
