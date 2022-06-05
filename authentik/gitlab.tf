@@ -34,10 +34,21 @@ resource "authentik_provider_oauth2" "gitlab" {
 }
 
 resource "authentik_application" "gitlab" {
-  name              = "GitLab"
-  slug              = "gitlab"
-  protocol_provider = authentik_provider_oauth2.gitlab.id
-  meta_icon         = "https://about.gitlab.com/images/press/press-kit-icon.svg"
-  meta_launch_url   = "https://gitlab.mareo.fr/"
-  meta_publisher    = "GitLab Inc."
+  name               = "GitLab"
+  slug               = "gitlab"
+  protocol_provider  = authentik_provider_oauth2.gitlab.id
+  meta_icon          = "https://about.gitlab.com/images/press/press-kit-icon.svg"
+  meta_launch_url    = "https://gitlab.mareo.fr/"
+  meta_publisher     = "GitLab Inc."
+  policy_engine_mode = "any"
+}
+
+resource "authentik_policy_binding" "gitlab_group-filtering" {
+  for_each = { for idx, value in [
+    "gitlab",
+    "gitlab_admins",
+  ] : idx => value }
+  target = authentik_application.gitlab.uuid
+  group  = authentik_group.groups[each.value].id
+  order  = each.key
 }

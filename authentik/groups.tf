@@ -1,5 +1,7 @@
 locals {
   groups = [
+    "argocd",
+    "argocd_admins",
     "gitlab",
     "gitlab_admins",
     "nextcloud",
