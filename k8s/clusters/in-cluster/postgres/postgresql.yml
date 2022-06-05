@@ -12,12 +12,14 @@ spec:
 
   # users: name -> permissions (usually [])
   users:
+    authentik.authentik: []
     gitlab.gitlab: []
     nextcloud.nextcloud: []
     vaultwarden.vaultwarden: []
 
   # databases: name -> owner
   databases:
+    authentik: authentik.authentik
     gitlab: gitlab.gitlab
     nextcloud: nextcloud.nextcloud
     vaultwarden: vaultwarden.vaultwarden

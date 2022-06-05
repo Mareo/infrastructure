@@ -56,6 +56,14 @@ spec:
               AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: false
               AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: false
             envValueFrom:
+              AUTHENTIK_SECRET_KEY:
+                secretKeyRef:
+                  name: authentik-app
+                  key: secret_key
+              AUTHENTIK_BOOTSTRAP_PASSWORD:
+                secretKeyRef:
+                  name: authentik-app
+                  key: bootstrap_password
               AUTHENTIK_POSTGRESQL__USER:
                 secretKeyRef:
                   name: authentik.authentik.in-cluster-main-cluster.credentials
@@ -68,7 +76,3 @@ spec:
                 secretKeyRef:
                   name: authentik-redis
                   key: password
-              AUTHENTIK_SECRET_KEY:
-                secretKeyRef:
-                  name: authentik
-                  key: secret_key
