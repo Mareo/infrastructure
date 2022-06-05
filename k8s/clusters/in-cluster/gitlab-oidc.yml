@@ -1,0 +1,37 @@
+# yamllint disable rule:line-length
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: gitlab-oidc-authentik
+  namespace: gitlab
+spec:
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  dataFrom:
+    - extract:
+        key: gitlab/oidc-authentik
+  template:
+    engineVersion: v2
+    type: Opaque
+    data:
+      provider: |
+        {
+          "name": "openid_connect",
+          "label": "authentik",
+          "args": {
+            "name": "openid_connect",
+            "scope": ["openid", "profile", "email"],
+            "response_type": "code",
+            "issuer": "https://auth.mareo.fr/application/o/gitlab/",
+            "discovery": true,
+            "client_auth_method": "query",
+            "uid_field": "username",
+            "client_options": {
+              "identifier": "{{ .client_id }}",
+              "secret": "{{ .client_secret }}",
+              "redirect_uri": "https://gitlab.mareo.fr/users/auth/openid_connect/callback"
+            }
+          }
+        }

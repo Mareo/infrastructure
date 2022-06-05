@@ -89,6 +89,16 @@ spec:
                   enabled: true
                 dependencyProxy:
                   enabled: true
+                omniauth:
+                  enabled: true
+                  allowSingleSignOn:
+                    - openid_connect
+                  autoLinkLdapUser: true
+                  providers:
+                    - secret: gitlab-oidc-authentik
+                  syncProfileAttributes:
+                    - name
+                    - email
               time_zone: Europe/Paris
             gitlab-runner:
               install: false
