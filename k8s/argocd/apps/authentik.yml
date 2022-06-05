@@ -40,11 +40,12 @@ spec:
                 cert-manager.io/cluster-issuer: default-issuer
               hosts:
                 - host: auth.mareo.fr
-                  paths: "/"
-                  pathType: Prefix
+                  paths:
+                    - path: "/"
+                      pathType: Prefix
               tls:
                 - hosts:
-                  - auth.mareo.fr
+                    - auth.mareo.fr
                   secretName: "authentik-tls"
             postgresql:
               host: in-cluster-main-cluster.postgres.svc.cluster.local
