@@ -23,7 +23,7 @@ resource "authentik_provider_oauth2" "argocd" {
   client_id          = random_password.argocd_client-id.result
   client_secret      = random_password.argocd_client-secret.result
   redirect_uris = [
-    "https://argocd.mareo.fr/users/auth/openid_connect/callback"
+    "https://argocd.mareo.fr/auth/callback"
   ]
   property_mappings = [
     data.authentik_scope_mapping.scope-openid.id,
