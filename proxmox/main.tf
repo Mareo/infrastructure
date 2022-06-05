@@ -14,7 +14,7 @@ terraform {
 provider "proxmox" {
   pm_api_url          = "https://athena.mareo.fr:8006/api2/json"
   pm_api_token_id     = "root@pam!terraform"
-  pm_api_token_secret = "43bad468-f5d7-48fd-9528-98217954d88f"
+  pm_api_token_secret = trimspace(file("../secrets/proxmox_token"))
 }
 
 provider "dns" {
@@ -22,7 +22,7 @@ provider "dns" {
     server        = "prometheus.mareo.fr"
     key_name      = "athena.mareo.fr."
     key_algorithm = "hmac-sha256"
-    key_secret    = "SmkBx0fmqT2VRUl/eZrQooGCnsHJNvLv47ddCLthXQQ="
+    key_secret    = trimspace(file("../secrets/dns_key"))
   }
 }
 
