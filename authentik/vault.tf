@@ -24,6 +24,10 @@ resource "vault_jwt_auth_backend" "authentik" {
   oidc_client_id     = random_password.vault_client-id.result
   oidc_client_secret = random_password.vault_client-secret.result
   default_role       = "authentik"
+
+  tune {
+    listing_visibility = "unauth"
+  }
 }
 
 resource "vault_jwt_auth_backend_role" "authentik" {
