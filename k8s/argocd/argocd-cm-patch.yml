@@ -10,11 +10,3 @@ data:
     issuer: https://auth.mareo.fr/application/o/argocd/
     clientID: $argocd-oidc-authentik:client_id
     clientSecret: $argocd-oidc-authentik:client_secret
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: argocd-cm-rbac
-data:
-  policy.csv: |
-    g, group:argocd_admins, role:admin
