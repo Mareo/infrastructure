@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: argocd-cm-rbac
+  name: argocd-rbac-cm
 data:
   policy.csv: |
     g, group:argocd_admins, role:admin
