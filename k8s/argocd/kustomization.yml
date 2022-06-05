@@ -12,4 +12,4 @@ resources:
   - apps
 
 patches:
-  - path: argocd-cm.yml
+  - path: argocd-cm-patch.yml

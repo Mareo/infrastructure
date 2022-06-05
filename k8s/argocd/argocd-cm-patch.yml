@@ -6,6 +6,6 @@ data:
   url: "https://argocd.mareo.fr"
   oidc.config: |
     name: authentik
-    issuer: https://auth.mareo.fr/o/
+    issuer: https://auth.mareo.fr/application/o/argocd/
     clientID: $argocd-oidc-authentik:client_id
     clientSecret: $argocd-oidc-authentik:client_secret
