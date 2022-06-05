@@ -5,4 +5,4 @@ metadata:
   name: argocd-rbac-cm
 data:
   policy.csv: |
-    g, group:argocd_admins, role:admin
+    g, argocd_admins, role:admin
