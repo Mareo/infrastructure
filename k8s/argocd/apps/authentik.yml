@@ -1,0 +1,73 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: authentik
+  labels:
+    app: authentik
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-authentik"
+      labels:
+        app: authentik
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: authentik
+      source:
+        repoURL: https://charts.goauthentik.io/
+        chart: authentik
+        targetRevision: 2022.5.1
+        helm:
+          releaseName: authentik
+          values: |
+            ingress:
+              enabled: true
+              ingressClassName: public
+              annotations:
+                cert-manager.io/cluster-issuer: default-issuer
+              hosts:
+                - host: auth.mareo.fr
+                  paths: "/"
+                  pathType: Prefix
+              tls:
+                - hosts:
+                  - auth.mareo.fr
+                  secretName: "authentik-tls"
+            postgresql:
+              host: in-cluster-main-cluster.postgres.svc.cluster.local
+              name: "authentik"
+            redis:
+                host: authentik-redis.authentik.svc
+            env:
+              AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: false
+              AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: false
+            envValueFrom:
+              AUTHENTIK_POSTGRESQL__USER:
+                secretKeyRef:
+                  name: authentik.authentik.in-cluster-main-cluster.credentials
+                  key: username
+              AUTHENTIK_POSTGRESQL__PASSWORD:
+                secretKeyRef:
+                  name: authentik.authentik.in-cluster-main-cluster.credentials
+                  key: password
+              AUTHENTIK_REDIS__PASSWORD:
+                secretKeyRef:
+                  name: authentik-redis
+                  key: password
+              AUTHENTIK_SECRET_KEY:
+                secretKeyRef:
+                  name: authentik
+                  key: secret_key

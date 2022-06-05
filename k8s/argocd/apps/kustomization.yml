@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: argocd
 
 resources:
+  - authentik.yml
   - cephfs-csi.yml
   - cert-manager.yml
   - clusters.yml

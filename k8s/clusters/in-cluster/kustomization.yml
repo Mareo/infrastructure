@@ -6,6 +6,7 @@ resources:
   - ../base/
   - postgres
 
+  - authentik-secrets.yml
   - ceph-csi-secrets.yml
   - gitlab-secrets.yml
   - nextcloud-secrets.yml
