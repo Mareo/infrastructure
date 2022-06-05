@@ -25,6 +25,12 @@ resource "authentik_provider_oauth2" "gitlab" {
   redirect_uris = [
     "https://gitlab.mareo.fr/users/auth/openid_connect/callback"
   ]
+  property_mappings = [
+    data.authentik_scope_mapping.scope-openid.id,
+    data.authentik_scope_mapping.scope-profile.id,
+    data.authentik_scope_mapping.scope-email.id,
+  ]
+  signing_key = data.authentik_certificate_key_pair.default.id
 }
 
 resource "authentik_application" "gitlab" {

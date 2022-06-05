@@ -91,6 +91,7 @@ spec:
                   enabled: true
                 omniauth:
                   enabled: true
+                  blockAutoCreatedUsers: false
                   allowSingleSignOn:
                     - openid_connect
                   autoLinkLdapUser: true
