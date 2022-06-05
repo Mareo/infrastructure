@@ -1,3 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
 data:
   url: "https://argocd.mareo.fr"
   oidc.config: |

@@ -6,8 +6,10 @@ resources:
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.3.3
   - github.com/argoproj/argo-cd/manifests/addons/applicationset/stable?ref=v2.3.3
   - applications.yml
-  - argocd-cm.yml
   - ingress.yml
   - argocd-oidc.yml
 
   - apps
+
+patches:
+  - path: argocd-cm.yml
