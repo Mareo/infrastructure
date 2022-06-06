@@ -1,6 +1,5 @@
 /.ansible
 /.cache
-/roles/
 /secrets/
 
 .terraform
