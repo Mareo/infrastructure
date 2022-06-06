@@ -20,7 +20,7 @@ spec:
         provider: |
           {
             "name": "saml",
-            "label": "authentik",
+            "label": "authentik (SAML)",
             "groups_attribute": "http://schemas.xmlsoap.org/claims/Group",
             "external_groups": ["gitlab_externals"],
             "admin_groups": ["gitlab_admins"],
@@ -28,7 +28,7 @@ spec:
               "name": "saml",
               "assertion_consumer_service_url": "https://gitlab.mareo.fr/users/auth/saml/callback",
               "idp_cert_fingerprint": "{{ .idp_cert_fingerprint }}",
-              "idp_sso_target_url": "https://authentik.company/application/saml/gitlab-saml/sso/binding/redirect/",
+              "idp_sso_target_url": "https://auth.mareo.fr/application/saml/gitlab-saml/sso/binding/redirect/",
               "issuer": "https://gitlab.mareo.fr",
               "name_identifier_format": "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
               "attribute_statements": {

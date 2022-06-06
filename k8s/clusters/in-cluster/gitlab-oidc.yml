@@ -20,7 +20,7 @@ spec:
         provider: |
           {
             "name": "openid_connect",
-            "label": "authentik",
+            "label": "authentik (OIDC)",
             "args": {
               "name": "openid_connect",
               "scope": ["openid", "profile", "email"],
