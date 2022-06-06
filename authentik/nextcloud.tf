@@ -44,6 +44,7 @@ resource "authentik_provider_saml" "nextcloud-saml" {
     data.authentik_property_mapping_saml.username.id,
     data.authentik_property_mapping_saml.uid.id,
     authentik_property_mapping_saml.nextcloud-groups.id,
+    authentik_property_mapping_saml.nextcloud-quota.id,
   ]
 }
 
@@ -76,5 +77,13 @@ resource "authentik_property_mapping_saml" "nextcloud-groups" {
       yield group.name
     if ak_is_group_member(request.user, name="nextcloud_admins"):
       yield "admin"
+  EOT
+}
+
+resource "authentik_property_mapping_saml" "nextcloud-quota" {
+  name       = "SAML NextCloud Groups"
+  saml_name  = "nextcloud_quota"
+  expression = <<-EOT
+    return user.group_attributes().get("nextcloud_quota", "default")
   EOT
 }

@@ -3,6 +3,9 @@ locals {
     "mareo" = {
       name  = "Marin Hannache"
       email = "mareo@mareo.fr"
+      attributes = {
+        nextcloud_quota = "none"
+      }
       groups = [
         "argocd_admins",
         "gitlab_admins",
@@ -24,5 +27,5 @@ resource "authentik_user" "users" {
     try(each.value.is_admin, false) ? [data.authentik_group.admins.id] : []
   )
   is_active  = try(each.value.is_active, true)
-  attributes = try(each.value.attributes, "{}")
+  attributes = jsonencode(try(each.value.attributes, {}))
 }
