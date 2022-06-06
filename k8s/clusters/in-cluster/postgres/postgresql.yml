@@ -33,10 +33,10 @@ spec:
       volumeSource:
         emptyDir: {}
 
-  requests:
-    cpu: 100m
-    memory: 500Mi
-
-  limits:
-    cpu: 1
-    memory: 1Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 500Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
