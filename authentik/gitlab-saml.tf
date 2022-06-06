@@ -42,6 +42,7 @@ resource "authentik_policy_binding" "gitlab-saml_group-filtering" {
   for_each = { for idx, value in [
     "gitlab",
     "gitlab_externals",
+    "gitlab_auditors",
     "gitlab_admins",
   ] : idx => value }
   target = authentik_application.gitlab-saml.uuid

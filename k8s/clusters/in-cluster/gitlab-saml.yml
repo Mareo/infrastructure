@@ -23,6 +23,7 @@ spec:
             "label": "authentik (SAML)",
             "groups_attribute": "http://schemas.xmlsoap.org/claims/Group",
             "external_groups": ["gitlab_externals"],
+            "auditor_groups": ["gitlab_auditors"],
             "admin_groups": ["gitlab_admins"],
             "args": {
               "name": "saml",
@@ -31,6 +32,11 @@ spec:
               "idp_sso_target_url": "https://auth.mareo.fr/application/saml/gitlab-saml/sso/binding/redirect/",
               "issuer": "https://gitlab.mareo.fr",
               "name_identifier_format": "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
+              "upstream_two_factor_authn_contexts": [
+                "urn:oasis:names:tc:SAML:2.0:ac:classes:CertificateProtectedTransport",
+                "urn:oasis:names:tc:SAML:2.0:ac:classes:SecondFactorOTPSMS",
+                "urn:oasis:names:tc:SAML:2.0:ac:classes:SecondFactorIGTOKEN"
+              ],
               "attribute_statements": {
                 "email": ['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
                 "name": ['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
