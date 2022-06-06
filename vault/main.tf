@@ -15,6 +15,10 @@ terraform {
   }
 }
 
+provider "vault" {
+  address = yamldecode(file("../config.yml")).vault_addr
+}
+
 module "k8s-mareo-fr" {
   source = "./k8s.mareo.fr"
 }

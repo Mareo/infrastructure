@@ -38,7 +38,7 @@ resource "vault_jwt_auth_backend_role" "authentik" {
   role_name      = "authentik"
   token_policies = ["default"]
 
-  oidc_scopes  = ["openid", "profile", "email"]
+  oidc_scopes  = ["profile", "email"]
   groups_claim = "groups"
   user_claim   = "sub"
   role_type    = "oidc"

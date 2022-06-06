@@ -25,7 +25,7 @@ resource "vault_policy" "k8s_external-secrets-operator" {
   name = "external-secrets-operator"
 
   policy = <<-EOT
-    path "${vault_mount.k8s.path}/*" {
+    path "${vault_mount.k8s.path}/data/*" {
       capabilities = ["read"]
     }
   EOT
