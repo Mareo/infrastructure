@@ -20,7 +20,7 @@ terraform {
 }
 
 provider "vault" {
-
+  address = yamldecode(file("../config.yml")).vault_addr
 }
 
 provider "authentik" {

@@ -52,5 +52,5 @@ metadata:
   namespace: gitlab
 type: Opaque
 stringData:
-  provider:
-    name: group_saml
+  provider: |
+    { "name": "group_saml" }
