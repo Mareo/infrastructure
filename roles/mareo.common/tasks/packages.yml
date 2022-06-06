@@ -15,7 +15,7 @@
     name: "{{ default_packages|default([]) }}"
 
 - name: Install group specific packages (Debian)
-  when: 
+  when:
     - ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
     - group_packages
   apt:
