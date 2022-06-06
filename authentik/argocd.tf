@@ -22,6 +22,7 @@ resource "authentik_provider_oauth2" "argocd" {
   authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
   client_id          = random_password.argocd_client-id.result
   client_secret      = random_password.argocd_client-secret.result
+  token_validity     = "days=1"
   redirect_uris = [
     "https://argocd.mareo.fr/auth/callback"
   ]

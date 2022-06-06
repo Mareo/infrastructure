@@ -98,9 +98,9 @@ spec:
                   autoLinkLdapUser: true
                   autoLinkSamlUser: true
                   providers:
+                    - secret: gitlab-saml-group
                     - secret: gitlab-saml-authentik
                     - secret: gitlab-oidc-authentik
-                    - name: group_saml
                   syncProfileAttributes:
                     - name
                     - email
