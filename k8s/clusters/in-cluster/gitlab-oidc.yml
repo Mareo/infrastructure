@@ -30,8 +30,8 @@ spec:
               "client_auth_method": "query",
               "uid_field": "username",
               "client_options": {
-                "identifier": "{{ .client_id }}",
-                "secret": "{{ .client_secret }}",
+                "identifier": "{{ .client_id | js }}",
+                "secret": "{{ .client_secret | js }}",
                 "redirect_uri": "https://gitlab.mareo.fr/users/auth/openid_connect/callback"
               }
             }

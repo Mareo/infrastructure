@@ -2,7 +2,7 @@ resource "vault_generic_secret" "gitlab_saml-authentik" {
   path         = "k8s/gitlab/saml-authentik"
   disable_read = true
   data_json = jsonencode({
-    idp_cert_fingerprint = data.authentik_certificate_key_pair.default.fingerprint256
+    idp_cert = data.authentik_certificate_key_pair.default.certificate_data
   })
 }
 
@@ -21,7 +21,10 @@ resource "authentik_provider_saml" "gitlab-saml" {
     data.authentik_property_mapping_saml.email.id,
     data.authentik_property_mapping_saml.username.id,
     data.authentik_property_mapping_saml.uid.id,
+    data.authentik_property_mapping_saml.groups.id,
   ]
+
+  assertion_valid_not_before = "minutes=-3"
 }
 
 resource "authentik_application" "gitlab-saml" {

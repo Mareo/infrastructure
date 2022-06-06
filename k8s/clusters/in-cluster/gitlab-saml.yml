@@ -27,7 +27,7 @@ spec:
             "args": {
               "name": "saml",
               "assertion_consumer_service_url": "https://gitlab.mareo.fr/users/auth/saml/callback",
-              "idp_cert": "{{ .idp_cert }}",
+              "idp_cert": "{{ .idp_cert | js }}",
               "idp_sso_target_url": "https://auth.mareo.fr/application/saml/gitlab-saml/sso/binding/redirect/",
               "issuer": "https://gitlab.mareo.fr",
               "name_identifier_format": "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
