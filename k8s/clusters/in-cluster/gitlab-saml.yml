@@ -44,3 +44,13 @@ spec:
               }
             }
           }
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitlab-saml-group
+  namespace: gitlab
+type: Opaque
+stringData:
+  provider:
+    name: group_saml
