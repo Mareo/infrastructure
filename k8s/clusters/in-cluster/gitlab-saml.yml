@@ -1,0 +1,40 @@
+# yamllint disable rule:line-length
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: gitlab-saml-authentik
+  namespace: gitlab
+spec:
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  dataFrom:
+    - extract:
+        key: gitlab/saml-authentik
+  target:
+    template:
+      engineVersion: v2
+      type: Opaque
+      data:
+        provider: |
+          {
+            "name": "saml",
+            "label": "authentik",
+            "groups_attribute": "http://schemas.xmlsoap.org/claims/Group",
+            "external_groups": ["gitlab_externals"],
+            "admin_groups": ["gitlab_admins"],
+            "args": {
+              "name": "saml",
+              "assertion_consumer_service_url": "https://gitlab.mareo.fr/users/auth/saml/callback",
+              "idp_cert_fingerprint": "{{ .idp_cert_fingerprint }}",
+              "idp_sso_target_url": "https://authentik.company/application/saml/gitlab-saml/sso/binding/redirect/",
+              "issuer": "https://gitlab.mareo.fr",
+              "name_identifier_format": "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
+              "attribute_statements": {
+                "email": ['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
+                "name": ['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
+                "nickname": ['http://schemas.goauthentik.io/2021/02/saml/username']
+              }
+            }
+          }

@@ -3,6 +3,7 @@ locals {
     "argocd",
     "argocd_admins",
     "gitlab",
+    "gitlab_externals",
     "gitlab_admins",
     "nextcloud",
     "nextcloud_admins",

@@ -93,9 +93,12 @@ spec:
                   enabled: true
                   blockAutoCreatedUsers: false
                   allowSingleSignOn:
+                    - saml
                     - openid_connect
                   autoLinkLdapUser: true
+                  autoLinkSamlUser: true
                   providers:
+                    - secret: gitlab-saml-authentik
                     - secret: gitlab-oidc-authentik
                   syncProfileAttributes:
                     - name
