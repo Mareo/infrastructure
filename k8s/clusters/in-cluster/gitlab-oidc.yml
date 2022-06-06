@@ -25,7 +25,7 @@ spec:
               "name": "openid_connect",
               "scope": ["openid", "profile", "email"],
               "response_type": "code",
-              "issuer": "https://auth.mareo.fr/application/o/gitlab/",
+              "issuer": "https://auth.mareo.fr/application/o/gitlab-oidc/",
               "discovery": true,
               "client_auth_method": "query",
               "uid_field": "username",
