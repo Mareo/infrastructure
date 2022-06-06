@@ -1,0 +1,68 @@
+---
+
+- name: "Check whether {{ item.name }} exists"
+  command:
+    argv:
+      - qm
+      - config
+      - "{{ item.id }}"
+  register: command_output
+  failed_when: False
+  changed_when: False
+  check_mode: no
+
+- name: "Create {{ item.name }} template"
+  when: command_output.rc != 0
+  block:
+    - name: "Download {{ item.name }} image"
+      get_url:
+        url: "{{ item.url }}"
+        dest: "{{ (proxmox_local_path, 'images', item.name) | path_join }}"
+      register: file
+
+    - name: "Create VM {{ item.id }}"
+      command:
+        argv:
+          - qm
+          - create
+          - "{{ item.id }}"
+          - --boot
+          - order=scsi0
+          - --name
+          - "{{ item.name }}"
+          - --scsihw
+          - virtio-scsi-pci
+          - --serial0
+          - socket
+          - --vga
+          - type=serial0
+
+    - name: "Import {{ item.name }} disk"
+      command:
+        argv:
+          - qm
+          - importdisk
+          - "{{ item.id }}"
+          - "{{ file.dest }}"
+          - "{{ item.storage|default(proxmox_template_default_storage) }}"
+      register: importdisk_result
+
+    - name: "Parse disk path"
+      set_fact:
+        disk_path: "{{ importdisk_result.stdout_lines[-1] | regex_search('unused[0-9]:(.*:.*).$', '\\1') | first }}"
+
+    - name: "Attach {{ disk_path }} disk to {{ item.name }} template"
+      command:
+        argv:
+          - qm
+          - set
+          - "{{ item.id }}"
+          - --scsi0
+          - "{{ disk_path }}"
+
+    - name: "Convert {{ item.name }} to template"
+      command:
+        argv:
+          - qm
+          - template
+          - "{{ item.id }}"

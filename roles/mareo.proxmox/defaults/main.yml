@@ -1,0 +1,28 @@
+---
+
+proxmox_storage_local: local
+proxmox_template_default_storage: "{{ proxmox_storage_local }}"
+
+proxmox_extra_images: []
+proxmox_default_images:
+  - type: iso
+    name: ubuntu-22.04-live-server-amd64.iso
+    url: "http://releases.ubuntu.com/jammy/ubuntu-22.04-live-server-amd64.iso"
+  - type: template
+    name: ubuntu-22.04-cloudinit-amd64
+    id: 9000
+
+proxmox_ceph_enabled: false
+proxmox_ceph_address: 172.31.0.1/24
+proxmox_ceph_network: "{{ proxmox_ceph_address|ansible.utils.ipaddr('network') }}"
+proxmox_ceph_cluster_network: "{{ proxmox_ceph_network }}"
+proxmox_ceph_replicas: 3
+proxmox_ceph_osds: []
+proxmox_ceph_pools:
+  - name: rbd
+    add_to_storages: 1
+
+proxmox_network_bridges:
+  - name: vmbr0
+    addresses:
+      - 192.168.0.1/24

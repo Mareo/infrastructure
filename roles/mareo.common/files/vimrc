@@ -1,0 +1,15 @@
+silent! source $VIMRUNTIME/defaults.vim
+
+syntax on
+set number
+set laststatus=2
+set statusline=%f\ %l\|%c\ %m%=%p%%\ (%Y%R)
+set tabstop=8
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
+set autoindent
+set cinoptions=(0,u0,U0,t0,g0,N-s
+set mouse=
+set ttymouse=

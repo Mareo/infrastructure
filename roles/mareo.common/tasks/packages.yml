@@ -1,0 +1,31 @@
+---
+
+- name: Install aptitude using apt (Debian)
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  apt:
+    name: aptitude
+    state: latest  # noqa package-latest
+    update_cache: true
+    force_apt_get: true
+
+- name: Install default packages (Debian)
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  apt:
+    state: present
+    name: "{{ default_packages|default([]) }}"
+
+- name: Install group specific packages (Debian)
+  when: 
+    - ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - group_packages
+  apt:
+    state: present
+    name: "{{ group_packages }}"
+
+- name: Install host specific packages (Debian)
+  when:
+    - ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - host_packages
+  apt:
+    state: present
+    name: "{{ host_packages }}"

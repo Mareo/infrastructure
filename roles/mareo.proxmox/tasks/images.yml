@@ -1,0 +1,21 @@
+---
+
+- name: Get local storage path
+  when: proxmox_default_images
+  block:
+    - shell: "grep -oPz '(?s)dir: {{ proxmox_storage_local }}\\n\\s*path\\s*\\K\\S*' /etc/pve/storage.cfg | tr -cd '[:print:]'"
+      register: command_output
+      check_mode: no
+      changed_when: False
+    - set_fact:
+        proxmox_local_path: "{{ command_output.stdout }}"
+
+- name: "Ensure default images are present (ISOs)"
+  include_tasks: iso.yml
+  with_items: "{{ proxmox_default_images + proxmox_extra_images }}"
+  when: proxmox_local_path and item.type == "iso"
+
+- name: "Ensure default images are present (templates)"
+  include_tasks: template.yml
+  with_items: "{{ proxmox_default_images + proxmox_extra_images }}"
+  when: proxmox_local_path and item.type == "template"

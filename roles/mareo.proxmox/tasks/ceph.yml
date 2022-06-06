@@ -1,0 +1,44 @@
+---
+
+- name: Getting local storage path
+  when: proxmox_ceph_enabled
+  block:
+    - name: Install Ceph packages
+      command:
+        cmd: pveceph install
+        creates: /usr/bin/ceph
+
+    - name: Init Proxmox Ceph cluster
+      command:
+        argv:
+          - pveceph
+          - init
+          - --network
+          - "{{ proxmox_ceph_network }}"
+          - --cluster-network
+          - "{{ proxmox_ceph_cluster_network }}"
+          - --size
+          - "{{ proxmox_ceph_replicas }}"
+        creates: /etc/pve/ceph.conf
+
+    - name: Create mon
+      command:
+        cmd: pveceph mon create
+        creates: /etc/pve/priv/ceph.mon.keyring
+      retries: 3
+      delay: 5
+      register: result
+      until: result.rc == 0
+
+    - name: Set osd_crush_chooseleaf_type to osd
+      community.general.ini_file:
+        path: /etc/pve/ceph.conf
+        section: global
+        option: osd_crush_chooseleaf_type
+        value: "0"
+
+    - include_tasks: ceph_osd.yml
+      loop: "{{ proxmox_ceph_osds }}"
+
+    - include_tasks: ceph_pools.yml
+      loop: "{{ proxmox_ceph_pools }}"

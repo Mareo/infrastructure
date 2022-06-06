@@ -1,0 +1,20 @@
+---
+
+- name: Check whether {{ item }} is in use
+  command:
+    argv:
+      - pvdisplay
+      - "{{ item }}"
+  register: command_output
+  failed_when: False
+  changed_when: False
+  check_mode: no
+
+- name: "Create OSDs {{ item }}"
+  when: command_output.rc != 0
+  command:
+    argv:
+      - pveceph
+      - osd
+      - create
+      - "{{ item }}"

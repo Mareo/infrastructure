@@ -1,0 +1,18 @@
+---
+
+argocd_version: v2.3.4
+argocd_bin_url: "https://github.com/argoproj/argo-cd/releases/download/{{ argocd_version }}/argocd-linux-amd64"
+argocd_bin_path: /usr/local/bin/argocd
+argocd_bin_checksum: sha1:af1dd6e99a91063b022152883c294866aa9a5f08
+
+argocd_manifests_url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+argocd_manifests_path: /etc/manifests/argocd-install.yml
+
+argocd_apps:
+  guestbook:
+    repo: https://github.com/argoproj/argocd-example-apps.git
+    path: guestbook
+    dest_server: in-cluster
+    dest_namespace: default
+    sync_policy: automated
+    auto_prune: true

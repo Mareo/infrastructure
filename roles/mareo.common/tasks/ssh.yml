@@ -1,0 +1,26 @@
+---
+
+- name: Disable ssh password authentification
+  block:
+    - name: Remove all occurrence of ssh password authentification yes
+      lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: '^\s*#*\s*PasswordAuthentication\s*yes'
+        state: absent
+        validate: '/usr/sbin/sshd -f %s -t'
+      notify: restart sshd
+
+    - name: Add PasswordAuthentication no to config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        line: 'PasswordAuthentication no'
+        validate: '/usr/sbin/sshd -f %s -t'
+      notify: restart sshd
+  when: authorize_ssh_password is not defined
+        or authorize_ssh_password == false
+
+- name: Set ssh authorized_keys
+  authorized_key:
+    key: "{{ ssh_authorized_keys | join('\n') }}"
+    user: root
+    exclusive: true

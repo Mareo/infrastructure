@@ -1,0 +1,19 @@
+---
+
+- name: bashrc
+  copy:
+    src: bashrc
+    dest: /root/.bashrc
+    mode: 0600
+
+- name: vimrc
+  copy:
+    src: vimrc
+    dest: /root/.vimrc
+    mode: 0600
+
+- name: tmux.conf
+  copy:
+    src: tmux.conf
+    dest: /root/.tmux.conf
+    mode: 0600

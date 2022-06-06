@@ -1,0 +1,21 @@
+{% if proxmox_ceph_enabled %}
+auto ceph
+iface ceph inet static
+    address {{ proxmox_ceph_address }}
+    bridge_ports none
+{% endif %}
+
+{% for br in proxmox_network_bridges %}
+auto {{ br.name }}
+iface {{ br.name }} inet static
+    {% for addr in br.addresses|ansible.utils.ipv4 -%}
+    address {{ addr }}
+    {% endfor -%}
+    bridge_ports none
+{% if br.addresses|ansible.utils.ipv6 %}
+iface {{ br.name }} inet6 static
+    {% for addr in br.addresses|ansible.utils.ipv6 -%}
+    address {{ addr }}
+    {% endfor %}
+{% endif %}
+{% endfor %}

@@ -1,0 +1,20 @@
+---
+
+- import_tasks: network.yml
+  tags:
+    - network
+
+- import_tasks: ceph.yml
+  tags:
+    - proxmox_ceph
+
+- import_tasks: images.yml
+  tags:
+    - proxmox_images
+
+- name: "Remove subscription warning"
+  replace:
+    path: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+    before: 'No valid subscription'
+    regexp: 'Ext\.Msg\.show\(\{'
+    replace: "void({"

@@ -1,0 +1,84 @@
+---
+
+- name: Install role dependency
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  apt:
+    name: python3-kubernetes
+    state: present
+
+- name: Download ArgoCD binary
+  get_url:
+    url: "{{ argocd_bin_url }}"
+    dest: "{{ argocd_bin_path }}"
+    mode: "0755"
+    checksum: "{{ argocd_bin_checksum }}"
+
+- name: Create manifests directory
+  file:
+    path: "{{ argocd_manifests_path|dirname }}"
+    state: directory
+
+- name: Fetch ArgoCD manifests
+  get_url:
+    url: "{{ argocd_manifests_url }}"
+    dest: "{{ argocd_manifests_path }}"
+
+- name: Create argocd namespace
+  kubernetes.core.k8s:
+    name: argocd
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Apply ArgoCD manifests
+  kubernetes.core.k8s:
+    src: "{{ argocd_manifests_path }}"
+    namespace: argocd
+    state: present
+
+- name: Wait for ArgoCD to be ready
+  command: kubectl wait -n argocd --for=condition=available --timeout=0 --all deploy
+  register: result
+  until: result.rc == 0
+  retries: 40
+  delay: 10
+  check_mode: no
+  changed_when: false
+
+- name: "Check connection to ArgoCD"
+  command:
+    argv:
+      - argocd
+      - --port-forward-namespace
+      - argocd
+      - --port-forward
+      - app
+      - list
+  register: auth_check
+  check_mode: no
+  changed_when: false
+  failed_when: false
+
+- when: auth_check.rc != 0
+  block:
+    - name: Get initial admin password
+      command: "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}'"
+      register: admin_password
+      check_mode: no
+      changed_when: false
+    
+    - name: Login to ArgoCD
+      command:
+        argv:
+          - argocd
+          - --port-forward-namespace
+          - argocd
+          - --port-forward
+          - login
+          - --username
+          - admin
+          - --password
+          - "{{ admin_password.stdout|b64decode }}"
+
+- include_tasks: app.yml
+  with_dict: "{{ argocd_apps }}"
