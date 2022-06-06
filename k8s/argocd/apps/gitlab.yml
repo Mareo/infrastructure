@@ -106,7 +106,7 @@ spec:
                     - email
               time_zone: Europe/Paris
             gitlab-runner:
-              install: false
+              install: true
             gitlab:
               gitaly:
                 persistence:
