@@ -27,6 +27,9 @@ resource "vault_jwt_auth_backend" "authentik" {
 
   tune {
     listing_visibility = "unauth"
+    default_lease_ttl  = "768h"
+    max_lease_ttl      = "768h"
+    token_type         = "default-service"
   }
 }
 
@@ -75,6 +78,7 @@ resource "authentik_provider_oauth2" "vault" {
 resource "authentik_application" "vault" {
   name               = "HashiCorp Vault"
   slug               = "vault"
+  group              = "Infrastructure"
   protocol_provider  = authentik_provider_oauth2.vault.id
   meta_icon          = "https://registry.terraform.io/images/providers/vault.svg"
   meta_launch_url    = "https://vault.mareo.fr/"

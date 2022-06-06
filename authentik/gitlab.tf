@@ -36,6 +36,7 @@ resource "authentik_provider_oauth2" "gitlab" {
 resource "authentik_application" "gitlab" {
   name               = "GitLab"
   slug               = "gitlab"
+  group              = "Services"
   protocol_provider  = authentik_provider_oauth2.gitlab.id
   meta_icon          = "https://about.gitlab.com/images/press/press-kit-icon.svg"
   meta_launch_url    = "https://gitlab.mareo.fr/"

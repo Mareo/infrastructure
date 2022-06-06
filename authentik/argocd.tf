@@ -36,6 +36,7 @@ resource "authentik_provider_oauth2" "argocd" {
 resource "authentik_application" "argocd" {
   name               = "ArgoCD"
   slug               = "argocd"
+  group              = "Infrastructure"
   protocol_provider  = authentik_provider_oauth2.argocd.id
   meta_icon          = "https://cncf-branding.netlify.app/img/projects/argo/icon/color/argo-icon-color.svg"
   meta_launch_url    = "https://argocd.mareo.fr/auth/login"
