@@ -12,5 +12,5 @@ data:
     issuer: https://auth.mareo.fr/application/o/argocd/
     clientID: $argocd-oidc-authentik:client_id
     clientSecret: $argocd-oidc-authentik:client_secret
-    cliClientID: $argocd-cli-oidc-authentik:client_id
+    cliClientID: argocd-cli
     logoutURL: https://auth.mareo.fr/if/session-end/argocd/?id_token_hint={{token}}&post_logout_redirect_uri={{logoutRedirectURL}}
