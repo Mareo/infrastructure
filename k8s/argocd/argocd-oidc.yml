@@ -16,21 +16,3 @@ spec:
       metadata:
         labels:
           app.kubernetes.io/part-of: argocd
----
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: argocd-cli-oidc-authentik
-  namespace: argocd
-spec:
-  secretStoreRef:
-    name: vault-backend
-    kind: ClusterSecretStore
-  dataFrom:
-    - extract:
-        key: argocd/cli-oidc-authentik
-  target:
-    template:
-      metadata:
-        labels:
-          app.kubernetes.io/part-of: argocd
