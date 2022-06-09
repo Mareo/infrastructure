@@ -6,6 +6,8 @@ locals {
     "gitlab_externals",
     "gitlab_auditors",
     "gitlab_admins",
+    "kubernetes",
+    "kubernetes_admins",
     "nextcloud",
     "nextcloud_admins",
     "vault",

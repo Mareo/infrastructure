@@ -4,7 +4,7 @@ metadata:
   name: oidc-cluster-admin
 subjects:
 - kind: Group
-  name: oidc:kubernetes_admins
+  name: authentik:kubernetes_admins
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole

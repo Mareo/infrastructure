@@ -1,4 +1,4 @@
-resource "random_password" "vault_client-id" {
+resource "random_string" "vault_client-id" {
   length  = 32
   special = false
 }
@@ -12,7 +12,7 @@ resource "vault_generic_secret" "vault_oidc-authentik" {
   path         = "k8s/vault/oidc-authentik"
   disable_read = true
   data_json = jsonencode({
-    client_id     = random_password.vault_client-id.result
+    client_id     = random_string.vault_client-id.result
     client_secret = random_password.vault_client-secret.result
   })
 }
@@ -21,7 +21,7 @@ resource "vault_jwt_auth_backend" "authentik" {
   path               = "oidc"
   type               = "oidc"
   oidc_discovery_url = "https://auth.mareo.fr/application/o/vault/"
-  oidc_client_id     = random_password.vault_client-id.result
+  oidc_client_id     = random_string.vault_client-id.result
   oidc_client_secret = random_password.vault_client-secret.result
   default_role       = "authentik"
 
@@ -59,7 +59,7 @@ resource "vault_identity_group_alias" "vault_admins" {
 resource "authentik_provider_oauth2" "vault" {
   name               = "vault"
   authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
-  client_id          = random_password.vault_client-id.result
+  client_id          = random_string.vault_client-id.result
   client_secret      = random_password.vault_client-secret.result
   redirect_uris = [
     "https://vault.mareo.fr/ui/vault/auth/oidc/oidc/callback",

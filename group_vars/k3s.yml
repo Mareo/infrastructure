@@ -10,3 +10,9 @@ k3s_server:
   service-cidr: 172.21.0.0/16
   disable:
     - traefik
+  kubelet-arg=oidc-issuer-url: https://auth.mareo.fr/application/o/kubernetes/
+  kubelet-arg=oidc-client-id: kubernetes
+  kubelet-arg=oidc-username-claim: username
+  kubelet-arg=oidc-username-prefix: authentik:
+  kubelet-arg=oidc-groups-claim: groups
+  kubelet-arg=oidc-groups-prefix: authentik:
