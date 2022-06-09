@@ -2,6 +2,7 @@
 kind: Kustomization
 
 resources:
+  - cluster-role-binding.yml
   - default-issuer.yml
   - vault-secret-store.yml
 
