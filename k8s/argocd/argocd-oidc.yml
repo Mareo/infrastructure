@@ -4,6 +4,8 @@ kind: ExternalSecret
 metadata:
   name: argocd-oidc-authentik
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   secretStoreRef:
     name: vault-backend
