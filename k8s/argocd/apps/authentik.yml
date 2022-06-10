@@ -33,6 +33,8 @@ spec:
         helm:
           releaseName: authentik
           values: |
+            image:
+              tag: 2022.6.1
             ingress:
               enabled: true
               ingressClassName: public
