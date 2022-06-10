@@ -9,6 +9,7 @@ locals {
       groups = [
         "argocd_admins",
         "gitlab_admins",
+        "kubernetes_admins",
         "nextcloud_admins",
         "vault_admins",
       ]

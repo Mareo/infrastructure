@@ -16,9 +16,11 @@ resource "authentik_provider_oauth2" "kubernetes" {
   authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
   client_id          = random_string.kubernetes_client-id.result
   client_type        = "public"
+  token_validity     = "days=1"
   redirect_uris = [
     "http://localhost:8000"
   ]
+  sub_mode = "user_username"
   property_mappings = [
     data.authentik_scope_mapping.scope-openid.id,
     data.authentik_scope_mapping.scope-profile.id,
@@ -34,7 +36,7 @@ resource "authentik_provider_oauth2" "kubernetes" {
 }
 
 resource "authentik_application" "kubernetes" {
-  name               = "Kubernets (OIDC)"
+  name               = "Kubernets"
   slug               = "kubernetes"
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_oauth2.kubernetes.id
