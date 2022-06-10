@@ -3,6 +3,8 @@ apiVersion: acid.zalan.do/v1
 kind: postgresql
 metadata:
   name: in-cluster-main-cluster
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   teamId: in-cluster
   volume:
