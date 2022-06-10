@@ -31,6 +31,7 @@ spec:
         chart: ceph-csi-rbd
         targetRevision: 3.6.1
         helm:
+          releaseName: rbd-csi
           values: |
             fullnameOverride: ceph-csi-rbd
             # deployed by cephfs-csi

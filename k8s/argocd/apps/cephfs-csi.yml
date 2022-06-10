@@ -31,6 +31,7 @@ spec:
         chart: ceph-csi-cephfs
         targetRevision: 3.6.1
         helm:
+          releaseName: cephfs-csi
           values: |
             fullnameOverride: ceph-csi-cephfs
             cephConfConfigMapName: ceph-config-cephfs
