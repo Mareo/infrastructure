@@ -5,7 +5,7 @@ metadata:
   name: argocd-oidc-authentik
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   secretStoreRef:
     name: vault-backend
