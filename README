@@ -1,8 +1,23 @@
+# Hypervisor setup
+
 poetry run ansible-playbook -l proxmox playbooks/main.yml
+
+# VMs setup
 cd proxmox/
 terraform init
 terraform apply
+cd ..
 poetry run ansible-playbook -l proxmox_vm playbooks/main.yml
+
+# Vault setup
 cd vault/
+terraform init
+terraform apply
+poetry run ../scripts/vault-init.sh
+poetry run ../scripts/vault-unseal.sh
+poetry run ../scripts/vault-login-as-root.sh
+
+# Authentik setup
+cd authentik/
 terraform init
 terraform apply

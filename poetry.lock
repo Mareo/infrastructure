@@ -522,6 +522,20 @@ optional = false
 python-versions = ">=3.5"
 
 [[package]]
+name = "shyaml"
+version = "0.6.2"
+description = "YAML for command line"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pyyaml = "*"
+
+[package.extras]
+test = ["docshtest (==0.0.3)"]
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -621,7 +635,7 @@ pyyaml = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "67e0a36bd436c6e3b572c06027626f02ea2c130e66a8b2f49f50de35762cdd1e"
+content-hash = "59d62359f0b1e3b7ce6311fc6ae46f5477033afebc88c186bb02fbbfc19a7057"
 
 [metadata.files]
 ansible = [
@@ -980,6 +994,10 @@ rich = [
     {file = "ruamel.yaml.clib-0.2.6-cp39-cp39-win32.whl", hash = "sha256:3fb9575a5acd13031c57a62cc7823e5d2ff8bc3835ba4d94b921b4e6ee664104"},
     {file = "ruamel.yaml.clib-0.2.6-cp39-cp39-win_amd64.whl", hash = "sha256:825d5fccef6da42f3c8eccd4281af399f21c02b32d98e113dbc631ea6a6ecbc7"},
     {file = "ruamel.yaml.clib-0.2.6.tar.gz", hash = "sha256:4ff604ce439abb20794f05613c374759ce10e3595d1867764dd1ae675b85acbd"},
+]
+shyaml = [
+    {file = "shyaml-0.6.2-py2.py3-none-any.whl", hash = "sha256:d4849f0a280dea2da6d952539bc6a867ddf9c7026b026eb3170185e638da73ef"},
+    {file = "shyaml-0.6.2.tar.gz", hash = "sha256:696e94f1c49d496efa58e09b49c099f5ebba7e24b5abe334f15e9759740b7fd0"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},

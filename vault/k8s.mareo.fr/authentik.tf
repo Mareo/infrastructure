@@ -33,8 +33,7 @@ resource "vault_generic_secret" "authentik" {
 
 resource "random_password" "authentik_redis-password" {
   length           = 32
-  special          = true
-  override_special = "!#$%&*()-_=+[]{}<>:?"
+  special          = false
 }
 
 resource "vault_generic_secret" "authentik_redis-password" {
