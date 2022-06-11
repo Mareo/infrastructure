@@ -81,7 +81,7 @@ resource "authentik_property_mapping_saml" "nextcloud-groups" {
 }
 
 resource "authentik_property_mapping_saml" "nextcloud-quota" {
-  name       = "SAML NextCloud Groups"
+  name       = "SAML NextCloud Quota"
   saml_name  = "nextcloud_quota"
   expression = <<-EOT
     return user.group_attributes().get("nextcloud_quota", "default")
