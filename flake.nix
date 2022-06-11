@@ -36,10 +36,6 @@
             terraform
             vault
           ];
-
-          shellHook = ''
-            source ./config.sh
-          '';
         };
       }
     ));
