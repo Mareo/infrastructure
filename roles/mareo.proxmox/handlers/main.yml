@@ -3,3 +3,8 @@
   service:
     name: networking
     state: reloaded
+
+- name: restart radosgw
+  service:
+    name: ceph-radosgw@rgw
+    state: restarted

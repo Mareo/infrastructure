@@ -14,6 +14,7 @@ nft_input_group_rules:
     - tcp dport 60000-60050  # live migration
   "101 ceph":
     - ip daddr $ceph_addr ip saddr $rfc1918 tcp dport $ceph_ports accept
+    - tcp dport {7480, 7443} accept # rgw
 
 nft_define:
   rfc1918:

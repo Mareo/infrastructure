@@ -1,0 +1,40 @@
+---
+
+- name: Check whether radosgw user {{ item.uid }} exists
+  command:
+    argv:
+      - radosgw-admin
+      - user
+      - info
+      - "--uid={{ item.uid }}"
+  register: result
+  failed_when: False
+  changed_when: False
+  check_mode: no
+
+- name: "Create radosgw user"
+  when: result.rc != 0
+  command:
+    argv:
+      - radosgw-admin
+      - user
+      - create
+      - "--uid={{ item.uid }}"
+      - "--display-name={{ item.display_name }}"
+      - "--email={{ item.email|default('') }}"
+      - "--caps={{ item.caps|default('') }}"
+      - "--max-buckets={{ item.max_buckets|default(-1) }}"
+  register: create_result
+
+- set_fact:
+    rgw_user_info: "{{ result.stdout | from_json }}"
+  when: result.rc == 0
+
+- set_fact:
+    rgw_user_info: "{{ create_result.stdout | from_json }}"
+  when: result.rc != 0
+
+- name: "Save user {{ item.uid }} keys"
+  copy:
+    dest: "/etc/ceph/rgw_user_{{ item.uid }}.yml"
+    content: "{{ rgw_user_info['keys'][0] | to_nice_yaml }}"

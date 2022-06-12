@@ -1,0 +1,54 @@
+---
+
+- name: Check whether radosgw user exists
+  command:
+    argv:
+      - ceph
+      - auth
+      - get
+      - client.rgw
+  register: result
+  failed_when: False
+  changed_when: False
+  check_mode: no
+
+- name: "Create radosgw user"
+  when: result.rc != 0
+  command:
+    argv:
+      - ceph
+      - auth
+      - get-or-create
+      - client.rgw
+      - osd
+      - "allow rwx"
+      - mon
+      - "allow rwx"
+      - -o
+      - "/etc/pve/priv/ceph.client.rgw.keyring"
+
+- name: "Add configuration for radosgw (host)"
+  community.general.ini_file:
+    path: /etc/pve/ceph.conf
+    section: client.rgw
+    option: host
+    value: "{{ ansible_facts['hostname'] }}"
+  notify:
+    - restart radosgw
+
+- name: "Add configuration for radosgw (rgw frontends)"
+  community.general.ini_file:
+    path: /etc/pve/ceph.conf
+    section: client.rgw
+    option: rgw frontends
+    value: "beast port={{ proxmox_ceph_rgw_port }}{% if proxmox_ceph_rgw_sslport %} ssl_port={{ proxmox_ceph_rgw_sslport }} ssl_certificate=/etc/pve/local/pveproxy-ssl.pem ssl_private_key=/etc/pve/local/pveproxy-ssl.key{% endif %}"
+  notify:
+    - restart radosgw
+
+- name: "Enable radosgw service"
+  service:
+    name: ceph-radosgw@rgw
+    enabled: yes
+
+- include_tasks: ceph_rgw_user.yml
+  loop: "{{ proxmox_ceph_rgw_users }}"

@@ -8,6 +8,18 @@
 
 - hosts: proxmox
   tasks:
+    - name: Fetch rgw admin secret file
+      fetch:
+        src: /etc/ceph/rgw_user_admin.yml
+        dest: ../secrets/rgw_user_admin.yml
+        fail_on_missing: true
+        flat: true
+  tags:
+    - secrets
+    - proxmox
+
+- hosts: proxmox
+  tasks:
     - name: Blacklist iptables modules
       lineinfile:
         path: /etc/modprobe.d/blacklist-xtables.conf

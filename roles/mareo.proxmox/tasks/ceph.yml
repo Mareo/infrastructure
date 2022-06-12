@@ -42,3 +42,6 @@
 
     - include_tasks: ceph_pools.yml
       loop: "{{ proxmox_ceph_pools }}"
+
+    - include_tasks: ceph_rgw.yml
+      when: proxmox_ceph_rgw_enabled

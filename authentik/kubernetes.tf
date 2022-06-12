@@ -1,20 +1,7 @@
-resource "random_string" "kubernetes_client-id" {
-  length  = 32
-  special = false
-}
-
-resource "vault_generic_secret" "kubernetes_oidc-authentik" {
-  path         = "k8s/k8s-auth/oidc-authentik"
-  disable_read = true
-  data_json = jsonencode({
-    client_id     = random_string.kubernetes_client-id.result
-  })
-}
-
 resource "authentik_provider_oauth2" "kubernetes" {
   name               = "kubernetes"
   authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
-  client_id          = random_string.kubernetes_client-id.result
+  client_id          = "kubernetes"
   client_type        = "public"
   token_validity     = "days=1"
   redirect_uris = [
@@ -36,7 +23,7 @@ resource "authentik_provider_oauth2" "kubernetes" {
 }
 
 resource "authentik_application" "kubernetes" {
-  name               = "Kubernets"
+  name               = "Kubernetes"
   slug               = "kubernetes"
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_oauth2.kubernetes.id

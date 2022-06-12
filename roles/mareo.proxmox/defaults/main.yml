@@ -22,6 +22,14 @@ proxmox_ceph_pools:
   - name: rbd
     add_to_storages: 1
 
+proxmox_ceph_rgw_enabled: false
+proxmox_ceph_rgw_port: 7480
+proxmox_ceph_rgw_sslport: 7443
+proxmox_ceph_rgw_users:
+  - uid: admin
+    display_name: admin
+    caps: "buckets=*;users=*"
+
 proxmox_network_bridges:
   - name: vmbr0
     addresses:

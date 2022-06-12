@@ -10,6 +10,11 @@
         src: /etc/rancher/k3s/k3s.yaml
         path: ~/.kube/config
         state: link
+  tags:
+    - k3s
+
+- hosts: k3s
+  tasks:
     - name: Fetch kubeconfig file
       when: k3s_control_node is defined and k3s_control_node
       fetch:
@@ -17,8 +22,16 @@
         dest: ../secrets/kubeconfig
         fail_on_missing: true
         flat: true
+    - name: Patch kubeconfig file
+      when: k3s_control_node is defined and k3s_control_node
+      replace:
+        path: ../secrets/kubeconfig
+        regexp: "server: https://127.0.0.1:"
+        replace: "server: https://api.k8s.mareo.fr:"
+      delegate_to: localhost
   tags:
     - k3s
+    - secrets
 
 - hosts: k3s
   roles:

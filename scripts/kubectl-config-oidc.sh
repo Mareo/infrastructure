@@ -9,3 +9,5 @@ kubectl config set-credentials "${1:-oidc}" \
   --exec-arg=--oidc-client-id=kubernetes \
   --exec-arg=--oidc-extra-scope=profile \
   --exec-arg=--oidc-extra-scope=email
+
+kubectl config set-context --current --user="${1:-oidc}"

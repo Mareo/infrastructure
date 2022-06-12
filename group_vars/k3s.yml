@@ -13,7 +13,7 @@ k3s_server:
   kube-apiserver-arg:
     - "oidc-issuer-url=https://auth.mareo.fr/application/o/kubernetes/"
     - "oidc-client-id=kubernetes"
-    - "oidc-username-claim=username"
+    - "oidc-username-claim=sub"
     - "oidc-username-prefix=authentik:"
     - "oidc-groups-claim=groups"
     - "oidc-groups-prefix=authentik:"
