@@ -28,7 +28,6 @@ proxmox_ceph_rgw_sslport: 7443
 proxmox_ceph_rgw_users:
   - uid: admin
     display_name: admin
-    caps: "buckets=*;users=*"
 
 proxmox_network_bridges:
   - name: vmbr0

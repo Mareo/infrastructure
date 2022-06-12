@@ -13,6 +13,10 @@ terraform {
       version = "2.2.3"
     }
   }
+
+  backend "s3" {
+    key = "vault"
+  }
 }
 
 provider "vault" {

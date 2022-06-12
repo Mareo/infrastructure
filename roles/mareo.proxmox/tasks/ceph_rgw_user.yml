@@ -23,7 +23,7 @@
       - "--display-name={{ item.display_name }}"
       - "--email={{ item.email|default('') }}"
       - "--caps={{ item.caps|default('') }}"
-      - "--max-buckets={{ item.max_buckets|default(-1) }}"
+      - "--max-buckets={{ item.max_buckets|default(0) }}"
   register: create_result
 
 - set_fact:

@@ -9,6 +9,10 @@ terraform {
       version = "3.2.3"
     }
   }
+
+  backend "s3" {
+    key = "proxmox"
+  }
 }
 
 provider "proxmox" {

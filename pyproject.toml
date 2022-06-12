@@ -11,6 +11,7 @@ flit_core = "^3.7.1"
 ansible = "^5.8.0"
 netaddr = "^0.8.0"
 shyaml = "^0.6.2"
+awscli = "^1.25.7"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.19.0"
