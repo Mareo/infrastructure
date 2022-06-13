@@ -10,10 +10,11 @@
   tasks:
     - name: Fetch rgw admin secret file
       fetch:
-        src: /etc/ceph/rgw_user_admin.yml
-        dest: ../secrets/rgw_user_admin.yml
+        src: "/etc/ceph/rgw_user_{{ item.uid }}.yml"
+        dest: "../secrets/rgw_user_{{ item.uid }}.yml"
         fail_on_missing: true
         flat: true
+      loop: "{{ proxmox_ceph_rgw_users }}"
   tags:
     - secrets
     - proxmox

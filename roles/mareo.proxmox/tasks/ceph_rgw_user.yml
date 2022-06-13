@@ -38,3 +38,14 @@
   copy:
     dest: "/etc/ceph/rgw_user_{{ item.uid }}.yml"
     content: "{{ rgw_user_info['keys'][0] | to_nice_yaml }}"
+
+- name: "Create buckets"
+  amazon.aws.s3_bucket:
+    aws_access_key: "{{ rgw_user_info['keys'][0]['access_key'] }}"
+    aws_secret_key: "{{ rgw_user_info['keys'][0]['secret_key'] }}"
+    ceph: yes
+    name: "{{ bucket }}"
+    s3_url: "http://localhost:{{ proxmox_ceph_rgw_port }}"
+  with_items: "{{ item.buckets|default([]) }}"
+  loop_control:
+    loop_var: bucket

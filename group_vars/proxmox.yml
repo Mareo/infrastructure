@@ -44,6 +44,30 @@ proxmox_network_bridges:
     addresses:
       - 192.168.0.254/24
 
+proxmox_ceph_rgw_users:
+  - uid: terraform
+    display_name: terraform
+    max_buckets: 1
+    buckets:
+      - terraform
+  - uid: gitlab
+    display_name: gitlab
+    max_buckets: 8
+    buckets:
+      - artifacts
+      - external-diffs
+      - lfs-objects
+      - uploads
+      - packages
+      - dependency-proxy
+      - terraform-state
+      - pages
+  - uid: nextcloud
+    display_name: nextcloud
+    max_buckets: 1
+    bucket:
+      - nextcloud
+
 dhcp_subnets: "{{ dhcp_subnets_yaml|from_yaml }}"
 dhcp_interfaces: "{{ dhcp_interfaces_yaml|from_yaml|join(' ') }}"
 

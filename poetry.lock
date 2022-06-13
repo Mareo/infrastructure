@@ -103,6 +103,22 @@ rsa = ">=3.1.2,<4.8"
 s3transfer = ">=0.6.0,<0.7.0"
 
 [[package]]
+name = "boto3"
+version = "1.24.7"
+description = "The AWS SDK for Python"
+category = "main"
+optional = false
+python-versions = ">= 3.7"
+
+[package.dependencies]
+botocore = ">=1.27.7,<1.28.0"
+jmespath = ">=0.7.1,<2.0.0"
+s3transfer = ">=0.6.0,<0.7.0"
+
+[package.extras]
+crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
+
+[[package]]
 name = "botocore"
 version = "1.27.7"
 description = "Low-level, data-driven core of boto 3."
@@ -719,7 +735,7 @@ pyyaml = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "57ce250eab6a909af0d56d7731d6abfb7c8b365a784dbe2155860c17695040a0"
+content-hash = "38c34a36175fa19820f67a17964dd62a7160a5a490c4ebdeb62956c7d0010c40"
 
 [metadata.files]
 ansible = [
@@ -747,6 +763,10 @@ attrs = [
 awscli = [
     {file = "awscli-1.25.7-py3-none-any.whl", hash = "sha256:b141a2cdd07003e267e5740b84f239f38375be7d836b2aacbc92db346d6c8764"},
     {file = "awscli-1.25.7.tar.gz", hash = "sha256:0ed4ef063e7417a8ae80f4186614d3c28f442e3ec04baa2233fb77ee310ceaea"},
+]
+boto3 = [
+    {file = "boto3-1.24.7-py3-none-any.whl", hash = "sha256:925a34a55257219f4601e803951fd4d61ed6eac2208dc834a04fe150b03f265e"},
+    {file = "boto3-1.24.7.tar.gz", hash = "sha256:6e243e28c804dccd2015935acfac0567e1861b20fdd96aa47f232b47aa214a69"},
 ]
 botocore = [
     {file = "botocore-1.27.7-py3-none-any.whl", hash = "sha256:3e0cbe26f08fe9a3f6df5de4dcc3bef686e01ba5f79ad03ffbe79d92f51ecea5"},

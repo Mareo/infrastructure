@@ -1,5 +1,10 @@
 ---
 
+- name: Install ansible amazon.aws.s3_bucket dependencies
+  package:
+    name: python3-boto3
+    state: present
+
 - name: Getting local storage path
   when: proxmox_ceph_enabled
   block:

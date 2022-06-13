@@ -1,6 +1,8 @@
 # Hypervisor setup
-
 poetry run ansible-playbook -l proxmox playbooks/main.yml
+
+# Terraform setup
+poetry run ./scripts/terraform-setup.sh
 
 # VMs setup
 cd proxmox/
