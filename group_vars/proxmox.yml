@@ -15,6 +15,7 @@ nft_input_group_rules:
   "101 ceph":
     - ip daddr $ceph_addr ip saddr $rfc1918 tcp dport $ceph_ports accept
     - tcp dport {7480, 7443} accept  # rgw
+    - tcp dport 8443 accept  # dashboard
 
 nft_define:
   rfc1918:
@@ -65,12 +66,12 @@ proxmox_ceph_rgw_users:
   - uid: nextcloud
     display_name: nextcloud
     max_buckets: 1
-    bucket:
+    buckets:
       - nextcloud
   - uid: postgresql
     display_name: postgresql
     max_buckets: 1
-    bucket:
+    buckets:
       - postgresql
 
 dhcp_subnets: "{{ dhcp_subnets_yaml|from_yaml }}"
