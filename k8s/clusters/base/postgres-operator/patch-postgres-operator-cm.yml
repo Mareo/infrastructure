@@ -20,3 +20,5 @@ data:
   delete_annotation_name_key: "delete-clustername"
 
   additional_pod_capabilities: "SYS_NICE"
+
+  pod_environment_secret: "postgres-pod-secrets"

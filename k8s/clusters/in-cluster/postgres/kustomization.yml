@@ -4,4 +4,5 @@ namespace: postgres
 
 resources:
   - namespace.yml
+  - pod-secrets.yml
   - postgresql.yml

@@ -1,3 +1,4 @@
+# yamllint disable rule:line-length
 ---
 
 - hosts: k3s
@@ -17,17 +18,14 @@
   tasks:
     - name: Fetch kubeconfig file
       when: k3s_control_node is defined and k3s_control_node
-      fetch:
+      slurp:
         src: /etc/rancher/k3s/k3s.yaml
-        dest: ../secrets/kubeconfig
-        fail_on_missing: true
-        flat: true
-    - name: Patch kubeconfig file
+      register: k3s_yaml
+    - name: Write kubeconfig file
       when: k3s_control_node is defined and k3s_control_node
-      replace:
-        path: ../secrets/kubeconfig
-        regexp: "server: https://127.0.0.1:"
-        replace: "server: https://api.k8s.mareo.fr:"
+      copy:
+        dest: ../secrets/kubeconfig
+        content: "{{ k3s_yaml.content | b64decode | replace('https://127.0.0.1', 'https://api.k8s.mareo.fr') }}"
       delegate_to: localhost
   tags:
     - k3s
