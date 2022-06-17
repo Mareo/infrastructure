@@ -132,20 +132,13 @@ spec:
               webservice:
                 ingress:
                   tls:
-                    secretName: gitlab-tls
-                    smartcardSecretName: smartcard-tls
+                    secretName: gitlab-webservice-tls
+                    smartcardSecretName: gitlab-smartcard-tls
               kas:
                 ingress:
                   tls:
-                    secretName: kas-tls
+                    secretName: gitlab-kas-tls
             registry:
               ingress:
                 tls:
-                  secretName: registry-tls
-            minio:
-              ingress:
-                tls:
-                  secretName: minio-tls
-              persistence:
-                enabled: true
-                storageClass: csi-rbd-sc-retain
+                  secretName: gitlab-registry-tls
