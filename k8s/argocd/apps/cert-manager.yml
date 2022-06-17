@@ -34,11 +34,6 @@ spec:
           values: |
             installCRDs: true
             fullnameOverride: cert-manager
-            podDnsPolicy: "None"
-            podDnsConfig:
-              nameservers:
-                - "1.1.1.1"
-                - "1.0.0.1"
             resources:
               requests:
                 cpu: 50m
