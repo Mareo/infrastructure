@@ -41,7 +41,7 @@ patchesJson6902:
         path: /spec/acme/solvers/-
         value:
           selector:
-            dnsZone:
+            dnsZones:
               - "mareo.fr"
           dns01:
             rfc2136:
