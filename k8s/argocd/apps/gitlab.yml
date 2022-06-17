@@ -114,7 +114,7 @@ spec:
                     - email
               time_zone: Europe/Paris
               pages:
-                enables: true
+                enabled: true
                 accessControl: true
                 host: pages.mareo.fr
             gitlab-runner:
