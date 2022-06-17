@@ -12,6 +12,7 @@ locals {
     "kas.mareo.fr.",
     "minio.mareo.fr.",
     "pages.mareo.fr.",
+    "*.pages.mareo.fr.",
     "registry.mareo.fr.",
     "smartcard.mareo.fr.",
   ])

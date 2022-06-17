@@ -113,6 +113,10 @@ spec:
                     - name
                     - email
               time_zone: Europe/Paris
+              pages:
+                enables: true
+                accessControl: true
+                host: pages.mareo.fr
             gitlab-runner:
               install: true
             gitlab:
