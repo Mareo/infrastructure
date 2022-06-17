@@ -22,5 +22,5 @@ spec:
           region: ceph
           endpoint: "https://athena.mareo.fr:7443"
           path_style: true
-          aws_access_key_id: "{{ .s3_client_id | js }}"
-          aws_secret_access_key: "{{ .s3_client_secret | js }}"
+          aws_access_key_id: "{{ .s3_access_key | js }}"
+          aws_secret_access_key: "{{ .s3_secret_key | js }}"
