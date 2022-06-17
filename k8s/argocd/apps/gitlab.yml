@@ -142,7 +142,7 @@ spec:
               ingress:
                 tls:
                   secretName: gitlab-registry-tls
-            pages:
+            gitlab-pages:
               ingress:
                 tls:
                   secretName: gitlab-pages-tls
