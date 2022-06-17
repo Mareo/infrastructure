@@ -30,3 +30,23 @@ patches:
               annotations:
                 argocd.argoproj.io/compare-options: IgnoreExtraneous
                 argocd.argoproj.io/sync-options: Prune=false
+
+patchesJson6902:
+  - target:
+      kind: ClusterIssuer
+      name: default-issuer
+    patch: |-
+      - op: add
+        path: /spec/acme/solvers/-
+        value:
+          selector:
+            dnsZone:
+              - "mareo.fr"
+          dns01:
+            rfc2136:
+              nameserver: "prometheus.mareo.fr"
+              tsigKeyName: "athena.mareo.fr."
+              tsigAlgorithm: HMACSHA256
+              tsigSecretSecretRef:
+                name: tsig-secret
+                key: mareo.fr
