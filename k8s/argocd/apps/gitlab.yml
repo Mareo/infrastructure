@@ -116,6 +116,12 @@ spec:
               pages:
                 enabled: true
                 accessControl: true
+                externalHttp:
+                  - 0.0.0.0
+                  - "[::]"
+                externalHttps:
+                  - 0.0.0.0
+                  - "[::]"
                 host: pages.mareo.fr
             gitlab-runner:
               install: true
