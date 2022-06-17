@@ -54,6 +54,8 @@ spec:
               ingress:
                 class: public
                 configureCertmanager: false
+                tls:
+                  secretName: gitlab-tls
                 annotations:
                    cert-manager.io/cluster-issuer: default-issuer
               shell:
