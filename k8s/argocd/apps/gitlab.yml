@@ -117,6 +117,9 @@ spec:
                 enabled: true
                 accessControl: true
                 host: pages.mareo.fr
+              oauth:
+                gitlab-pages:
+                  authScope: api_read
             gitlab-runner:
               install: true
             gitlab:
