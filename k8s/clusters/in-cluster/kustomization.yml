@@ -8,6 +8,7 @@ resources:
 
   - authentik-secrets.yml
   - ceph-csi-secrets.yml
+  - gitlab-object-storage.yml
   - gitlab-oidc.yml
   - gitlab-saml.yml
   - gitlab-secrets.yml

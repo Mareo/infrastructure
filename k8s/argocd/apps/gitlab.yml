@@ -75,6 +75,8 @@ spec:
                   useSecret: true
                   secret: gitlab.gitlab.in-cluster-main-cluster.credentials
                   key: password
+              minio:
+                enabled: false
               appConfig:
                 enableUsagePing: false
                 enableSeatLink: false
@@ -89,6 +91,12 @@ spec:
                   enabled: true
                 dependencyProxy:
                   enabled: true
+                object_store:
+                  enabled: true
+                  proxy_download: true
+                  connection:
+                    secret: gitlab-object-storage
+                    key: connection
                 omniauth:
                   enabled: true
                   blockAutoCreatedUsers: false
