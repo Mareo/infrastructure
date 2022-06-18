@@ -34,7 +34,6 @@ spec:
             name: "public"
           extraArgs:
             enable-ssl-passthrough: ""
-            enable-snippets: ""
           config:
             forwarded-for-header: "true"
             use-http2: "true"
