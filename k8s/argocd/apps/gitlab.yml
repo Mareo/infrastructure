@@ -119,6 +119,10 @@ spec:
                 enabled: true
                 accessControl: true
                 host: pages.mareo.fr
+                externalHttp:
+                  - 65.108.17.229
+                externalHttps:
+                  - 65.108.17.229
               oauth:
                 gitlab-pages:
                   authScope: read_api
