@@ -33,8 +33,7 @@ spec:
             default: true
             name: "public"
           extraArgs:
-            enable-ssl-passthrough: true
-            enable-snippets: true
+            enable-ssl-passthrough: ""
           config:
             forwarded-for-header: "true"
             use-http2: "true"
