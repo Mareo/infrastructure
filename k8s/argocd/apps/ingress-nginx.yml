@@ -32,8 +32,8 @@ spec:
             enabled: true
             default: true
             name: "public"
-          tcp:
-            22: gitlab/gitlab-gitlab-shell:22
+          extraArgs:
+            - "--enable-ssl-passthrough"
           config:
             forwarded-for-header: "true"
             use-http2: "true"
@@ -54,6 +54,8 @@ spec:
               memory: 400Mi
           minAvailable: 1
           replicaCount: 1
+        tcp:
+          22: gitlab/gitlab-gitlab-shell:22
         defaultBackend:
           enabled: true
           replicaCount: 1
