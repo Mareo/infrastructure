@@ -75,6 +75,7 @@ spec:
                 nodePort: 30820
               ingress:
                 enabled: true
+                ingressClassName: public
                 annotations:
                   nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
                   cert-manager.io/cluster-issuer: default-issuer
