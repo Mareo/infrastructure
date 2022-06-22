@@ -35,7 +35,8 @@ spec:
           extraArgs:
             enable-ssl-passthrough: ""
           config:
-            forwarded-for-header: "true"
+            forwarded-for-header: "proxy_protocl"
+            enable-real-ip: "true"
             use-http2: "true"
             server-tokens: "false"
             log-format-escape-json: "true"
