@@ -33,6 +33,18 @@ spec:
         helm:
           releaseName: vaultwarden
           values: |
+            ingress:
+              main:
+                enabled: true
+                annotations:
+                   cert-manager.io/cluster-issuer: default-issuer
+                ingressClassName: public
+                hosts:
+                  - host: vaultwarden.mareo.fr
+                tls:
+                  - secretName: vaultwarden-tls
+                    hosts:
+                      - vaultwarden.mareo.fr
             env:
               - name: TZ
                 value: "Europe/Paris"
