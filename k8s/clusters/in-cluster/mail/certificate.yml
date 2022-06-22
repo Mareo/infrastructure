@@ -5,6 +5,7 @@ metadata:
   name: postfix-tls
 spec:
   dnsNames:
+    - athena.mareo.fr
     - mail.mareo.fr
     - smtp.mareo.fr
   issuerRef:
