@@ -35,6 +35,7 @@ spec:
           extraArgs:
             enable-ssl-passthrough: ""
           config:
+            use-proxy-protocol: "true"
             enable-real-ip: "true"
             use-http2: "true"
             server-tokens: "false"
