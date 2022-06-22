@@ -22,7 +22,7 @@ configMapGenerator:
       - "OPENDKIM_DOMAIN=mareo.fr"
       - "OPENDKIM_SELECTOR=athena"
       - "OPENDKIM_SUBDOMAINS=yes"
-      - "OPENDKIM_KEYFILE=/secrets/opendkim/mareo"
+      - "OPENDKIM_KEYFILE=/secrets/opendkim/athena"
   - name: postfix-config
     behavior: merge
     literals:
