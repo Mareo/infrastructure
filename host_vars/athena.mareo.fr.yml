@@ -38,6 +38,15 @@ forwarded_ports:
     port: 30443
   - dport: 6443
     host: "$k3s"
+  - dport: smtp
+    host: "$k3s"
+    port: 30025
+  - dport: submissions
+    host: "$k3s"
+    port: 30465
+  - dport: submission
+    host: "$k3s"
+    port: 30587
 
 # yamllint disable rule:line-length
 nft_forward_host_rules: "{{ nft_forward_host_rules_yaml|from_yaml }}"
