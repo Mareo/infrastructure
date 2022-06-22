@@ -18,6 +18,7 @@ resources:
   - gitlab-secrets.yml
   - nextcloud-secrets.yml
   - storage-class.yml
+  - vaultwarden-secrets.yml
 
 patches:
   - target:
