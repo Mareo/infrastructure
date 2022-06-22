@@ -34,7 +34,7 @@ spec:
           releaseName: authentik
           values: |
             image:
-              tag: 2022.6.2
+              tag: 2022.6.3
             ingress:
               enabled: true
               ingressClassName: public
