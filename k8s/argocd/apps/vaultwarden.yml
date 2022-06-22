@@ -89,6 +89,11 @@ spec:
                   secretKeyRef:
                     name: vaultwarden.vaultwarden.in-cluster-main-cluster.credentials
                     key: password
+              - name: ADMIN_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: vaultwarden-admin
+                    key: token
               - name: DATABASE_URL
                 value: "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST)/$(DATABASE_DB)"
             persistence:
