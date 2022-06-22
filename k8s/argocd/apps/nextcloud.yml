@@ -126,6 +126,14 @@ spec:
                       'default_language' => 'en',
                       'default_phone_region' => 'FR',
                     );
+            mail:
+              enabled: true
+              fromAddress: no-reply@nextcloud.mareo.fr
+              domain: nextcloud.mareo.fr
+              smtp:
+                host: postfix.mail.svc
+                secure: ""
+                port: 25
             persistence:
               enabled: true
               storageClass: csi-cephfs-sc-retain
