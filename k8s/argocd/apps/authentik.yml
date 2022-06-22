@@ -58,6 +58,8 @@ spec:
             env:
               AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: false
               AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: false
+              AUTHENTIK_EMAIL__HOST: postfix.mail.svc
+              AUTHENTIK_EMAIL__FROM: no-reply@auth.mareo.fr
             envValueFrom:
               AUTHENTIK_SECRET_KEY:
                 secretKeyRef:
