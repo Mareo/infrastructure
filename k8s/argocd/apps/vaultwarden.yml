@@ -34,7 +34,7 @@ spec:
           releaseName: vaultwarden
           values: |
             ingress:
-              vaultwarden:
+              main:
                 enabled: true
                 annotations:
                    cert-manager.io/cluster-issuer: default-issuer
@@ -45,12 +45,14 @@ spec:
                       - path: /
                         pathType: Prefix
                         service:
-                          name: vaultwarden
                           port: http
-                      - path: /notification/hub
+                      - path: /notifications/hub/negotiate
                         pathType: Prefix
                         service:
-                          name: vaultwarden
+                          port: http
+                      - path: /notifications/hub
+                        pathType: Prefix
+                        service:
                           port: websocket
                 tls:
                   - secretName: vaultwarden-tls
