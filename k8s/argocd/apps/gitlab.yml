@@ -79,6 +79,16 @@ spec:
                   key: password
               minio:
                 enabled: false
+              email:
+                display_name: "GitLab"
+                from: "no-reply@gitlab.mareo.fr"
+              smtp:
+                enabled: true
+                domain: gitlab.mareo.fr
+                address: postfix.mail.svc
+                port: 25
+                tls: false
+                authentifcation: ""
               appConfig:
                 enableUsagePing: false
                 enableSeatLink: false
