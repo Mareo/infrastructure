@@ -11,6 +11,10 @@ resources:
   - secrets.yml
   - service.yml
 
+replicas:
+  - name: dovecot
+    count: 0
+
 configMapGenerator:
   - name: opendkim-config
     behavior: merge
