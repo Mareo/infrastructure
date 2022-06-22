@@ -1,25 +1,32 @@
+# Operator setup
+
+    $ poetry install
+    $ poetry run ansible-playbook playbooks/main.yml -t secrets  # skip on first install
+
 # Hypervisor setup
-poetry run ansible-playbook -l proxmox playbooks/main.yml
+
+    $ poetry run ansible-playbook -l proxmox playbooks/main.yml
 
 # Terraform setup
-poetry run ./scripts/terraform-setup.sh
+
+    $ poetry run ./scripts/terraform-setup.sh
 
 # VMs setup
-cd proxmox/
-terraform init
-terraform apply
-cd ..
-poetry run ansible-playbook -l proxmox_vm playbooks/main.yml
+    $ cd proxmox/
+    $ terraform init
+    $ terraform apply
+    $ cd ..
+    $ poetry run ansible-playbook -l proxmox_vm playbooks/main.yml
 
 # Vault setup
-cd vault/
-terraform init
-terraform apply
-poetry run ../scripts/vault-init.sh
-poetry run ../scripts/vault-unseal.sh
-poetry run ../scripts/vault-login-as-root.sh
+    $ cd vault/
+    $ terraform init
+    $ terraform apply
+    $ poetry run ../scripts/vault-init.sh
+    $ poetry run ../scripts/vault-unseal.sh
+    $ poetry run ../scripts/vault-login-as-root.sh
 
 # Authentik setup
-cd authentik/
-terraform init
-terraform apply
+    $ cd authentik/
+    $ terraform init
+    $ terraform apply

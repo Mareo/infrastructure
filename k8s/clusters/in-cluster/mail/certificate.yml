@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: postfix-tls
+spec:
+  dnsNames:
+    - mail.mareo.fr
+    - smtp.mareo.fr
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: default-issuer
+  secretName: postfix-tls

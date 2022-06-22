@@ -1,0 +1,27 @@
+# yamllint disable rule:line-length
+---
+kind: Kustomization
+
+commonLabels:
+  app: mail
+
+resources:
+  - postfix.yml
+  - dovecot.yml
+
+configMapGenerator:
+  - name: dovecot-config
+    literals: []
+  - name: opendkim-config
+    literals: []
+  - name: postfix-config
+    literals:
+      - "POSTFIX_SMTPD_SASL_PATH=inet:dovecot:113"
+  - name: postfix-config-files
+    files: []
+  - name: postsrsd-config
+    literals: []
+
+images:
+  - name: registry.cri.epita.fr/cri/docker/mail
+    newTag: 57c73a64d37cf58756b71dd2f820b7e3c001cc82

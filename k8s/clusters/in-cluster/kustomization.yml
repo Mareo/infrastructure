@@ -4,7 +4,10 @@ kind: Kustomization
 
 resources:
   - ../base/
+  - ../../apps/postgres-operator/
+  - mail
   - postgres
+
 
   - authentik-secrets.yml
   - ceph-csi-secrets.yml

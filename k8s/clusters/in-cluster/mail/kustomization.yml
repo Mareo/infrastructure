@@ -1,0 +1,34 @@
+# yamllint disable rule:line-length
+---
+kind: Kustomization
+namespace: mail
+
+resources:
+  - namespace.yml
+  - ../../../apps/mail/
+
+  - certificate.yml
+  - secrets.yml
+  - service.yml
+
+configMapGenerator:
+  - name: opendkim-config
+    behavior: merge
+    literals:
+      - "OPENDKIM_DOMAIN=mareo.fr"
+      - "OPENDKIM_SELECTOR=athena"
+      - "OPENDKIM_SUBDOMAINS=yes"
+      - "OPENDKIM_KEYFILE=/secrets/opendkim/mareo"
+  - name: postfix-config
+    behavior: merge
+    literals:
+      - "POSTFIX_MYHOSTNAME=mail.mareo.fr"
+      - "POSTFIX_MYDOMAIN=mareo.fr"
+      - "POSTFIX_MYDESTINATION="
+      - "POSTFIX_SMTPD_RELAY_RESTRICTIONS=permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination"
+      - "POSTFIX_SMTPD_SENDER_RESTRICTIONS=permit_mynetworks, reject_sender_login_mismatch"
+      - "POSTFIX_SMTPD_TLS_ASK_CCERT=yes"
+  - name: postsrsd-config
+    behavior: merge
+    literals:
+      - "POSTSRSD_DOMAIN=mareo.fr"
