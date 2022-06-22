@@ -40,6 +40,16 @@ spec:
                 value: "false"
               - name: DOMAIN
                 value: https://vaultwarden.mareo.fr
+              - name: HELO_NAME
+                value: vaultwarden.mareo.fr
+              - name: SMTP_HOST
+                value: postfix.mail.svc
+              - name: SMTP_PORT
+                value: 25
+              - name: SMTP_FROM
+                value: "Vaultwarden <no-reply@vaultwarden.mareo.fr>"
+              - name: SMTP_SECURITY
+                value: "off"
               - name: DATABASE_HOST
                 value: in-cluster-main-cluster.postgres.svc.cluster.local
               - name: DATABASE_DB
