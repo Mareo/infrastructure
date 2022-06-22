@@ -34,13 +34,24 @@ spec:
           releaseName: vaultwarden
           values: |
             ingress:
-              main:
+              vaultwarden:
                 enabled: true
                 annotations:
                    cert-manager.io/cluster-issuer: default-issuer
                 ingressClassName: public
                 hosts:
                   - host: vaultwarden.mareo.fr
+                    paths:
+                      - path: /
+                        pathType: Prefix
+                        service:
+                          name: vaultwarden
+                          port: http
+                      - path: /notification/hub
+                        pathType: Prefix
+                        service:
+                          name: vaultwarden
+                          port: websocket
                 tls:
                   - secretName: vaultwarden-tls
                     hosts:
