@@ -1,2 +1,0 @@
-query_filter      = (&(objectClass=inetOrgPerson)(|(mail=%s)(mailalias=%s)))
-result_attribute  = uid

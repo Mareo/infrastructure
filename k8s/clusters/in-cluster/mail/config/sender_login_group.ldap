@@ -1,5 +1,0 @@
-query_filter      = (&(|(objectClass=groupOfMembers)(objectClass=groupOfUniqueMembers))(mailalias=%s))
-result_attribute  = uid
-
-leaf_result_attribute    = uid
-special_result_attribute = owner
