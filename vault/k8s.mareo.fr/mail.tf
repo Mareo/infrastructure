@@ -13,7 +13,7 @@ resource "vault_generic_secret" "mail_postsrsd" {
 
 resource "tls_private_key" "mail_opendkim-athena" {
   algorithm = "RSA"
-  rsa_bits  = 4096
+  rsa_bits  = 2048
 }
 
 resource "vault_generic_secret" "mail_opendkim" {
