@@ -23,6 +23,7 @@ configMapGenerator:
       - "OPENDKIM_SELECTOR=athena"
       - "OPENDKIM_SUBDOMAINS=yes"
       - "OPENDKIM_KEYFILE=/secrets/opendkim/athena"
+      - "OPENDKIM_MACROLIST=csl:{dkimsign}=yes,dkimsign=yes"
   - name: postfix-config
     behavior: merge
     literals:
@@ -33,6 +34,7 @@ configMapGenerator:
       - "POSTFIX_SMTPD_RELAY_RESTRICTIONS=permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination"
       - "POSTFIX_SMTPD_SENDER_RESTRICTIONS=permit_mynetworks, reject_sender_login_mismatch"
       - "POSTFIX_SMTPD_TLS_ASK_CCERT=yes"
+      - "POSTFIX_MILTER_MACRO_DEFAULTS=dkimsign=yes"
   - name: postsrsd-config
     behavior: merge
     literals:
