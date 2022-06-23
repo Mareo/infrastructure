@@ -24,3 +24,21 @@ resource "vault_generic_secret" "mail_opendkim" {
   })
 }
 
+resource "dns_txt_record_set" "mail_dkim-athena" {
+  zone = "mareo.fr."
+  name = "athena._domainkey"
+  txt = [
+    format(
+      "v=DKIM1; k=rsa; p=%s",
+      replace(
+        replace(
+          tls_private_key.mail_opendkim-athena.public_key_pem,
+          "/--*.*--*/",
+          ""
+        ),
+        "\n",
+        "",
+      )
+    )
+  ]
+}
