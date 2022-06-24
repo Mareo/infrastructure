@@ -1,0 +1,13 @@
+---
+kind: Kustomization
+namespace: postgres-operator
+
+commonAnnotations:
+  argocd.argoproj.io/sync-wave: "-1"
+
+resources:
+  - namespace.yml
+  - github.com/zalando/postgres-operator/manifests?ref=v1.8.0
+
+patchesStrategicMerge:
+  - patch-postgres-operator-cm.yml

@@ -1,0 +1,7 @@
+/.ansible
+/.cache
+/secrets/
+/roles/
+
+.terraform
+.direnv

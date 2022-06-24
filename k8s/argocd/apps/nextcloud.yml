@@ -1,0 +1,150 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nextcloud
+  labels:
+    app: nextcloud
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-nextcloud"
+      labels:
+        app: nextcloud
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: nextcloud
+      source:
+        repoURL: https://nextcloud.github.io/helm/
+        chart: nextcloud
+        targetRevision: 2.14.3
+        helm:
+          releaseName: nextcloud
+          values: |
+            image:
+              tag: 23.0.5-apache
+            ingress:
+              enabled: true
+              className: public
+              annotations:
+                cert-manager.io/cluster-issuer: default-issuer
+                nginx.ingress.kubernetes.io/proxy-body-size: 4G
+                nginx.ingress.kubernetes.io/enable-cors: "true"
+                nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
+                ingress.kubernetes.io/configuration-snippet: |-
+                    server_tokens off;
+                    proxy_hide_header X-Powered-By;
+
+                    rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
+                    rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+                    rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
+                    location = /.well-known/carddav {
+                      return 301 $scheme://$host/remote.php/dav;
+                    }
+                    location = /.well-known/caldav {
+                      return 301 $scheme://$host/remote.php/dav;
+                    }
+                    location = /robots.txt {
+                      allow all;
+                      log_not_found off;
+                      access_log off;
+                    }
+                    location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
+                      deny all;
+                    }
+                    location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
+                      deny all;
+                    }
+              tls:
+                - secretName: nextcloud-tls
+                  hosts:
+                    - nextcloud.mareo.fr
+            internalDatabase:
+              enabled: false
+            externalDatabase:
+              enabled: true
+              type: postgresql
+              host: in-cluster-main-cluster.postgres.svc.cluster.local
+              datatabase: nextcloud
+              existingSecret:
+                enabled: true
+                secretName: nextcloud.nextcloud.in-cluster-main-cluster.credentials
+                usernameKey: username
+                passwordKey: password
+            nextcloud:
+              host: nextcloud.mareo.fr
+              existingSecret:
+                enabled: true
+                secretName: nextcloud-initial-account-credentials
+                usernameKey: username
+                passwordKey: password
+              extraEnv:
+                - name: REDIS_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: nextcloud-redis
+                      key: password
+              defaultConfigs:
+                redis.config.php: false
+              configs:
+                redis.config.php: |-
+                  <?php
+                  $CONFIG = array (
+                    'memcache.distributed' => '\OC\Memcache\Redis',
+                    'memcache.locking' => '\OC\Memcache\Redis',
+                    'redis' => array(
+                      'host' => 'nextcloud-redis.nextcloud.svc',
+                      'port' => '6379',
+                      'password' => getenv('REDIS_PASSWORD'),
+                    ),
+                  );
+                proxy.config.php: |-
+                  <?php
+                  $CONFIG = array (
+                    'trusted_proxies' => array(
+                      0 => '127.0.0.1',
+                      1 => '172.16.0.0/12',
+                    ),
+                    'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+                    'overwriteprotocol' => 'https',
+                  );
+                user.config.php: |-
+                  <?php
+                    $CONFIG = array (
+                      'default_language' => 'en',
+                      'default_phone_region' => 'FR',
+                    );
+            mail:
+              enabled: true
+              fromAddress: no-reply@nextcloud.mareo.fr
+              domain: nextcloud.mareo.fr
+              smtp:
+                host: postfix.mail.svc
+                secure: ""
+                port: 25
+            persistence:
+              enabled: true
+              storageClass: csi-cephfs-sc-retain
+              accessMode: ReadWriteMany
+              size: 1Ti
+            startupProbe:
+              enabled: true
+              failureThreshold: 60
+            phpClientHttpsFix:
+              enabled: true
+            cronjob:
+              enabled: true
+            redis:
+              enabled: false

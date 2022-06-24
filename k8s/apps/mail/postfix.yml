@@ -1,0 +1,154 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postfix
+spec:
+  serviceName: postfix-headless
+  replicas: 1
+  selector:
+    matchLabels:
+      component: postfix
+  template:
+    metadata:
+      labels:
+        component: postfix
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: postfix
+          image: registry.cri.epita.fr/cri/docker/mail
+          args: ["postfix"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 1
+              memory: 200Mi
+          env:
+            - name: POSTFIX_SMTP_TLS_CHAIN_FILES
+              value: "/secrets/postfix/tls.key, /secrets/postfix/tls.crt"
+            - name: POSTFIX_SMTPD_TLS_CHAIN_FILES
+              value: "/secrets/postfix/tls.key, /secrets/postfix/tls.crt"
+            - name: POSTFIX_SMTPD_TLS_SECURITY_LEVEL
+              value: "may"
+          envFrom:
+            - configMapRef:
+                name: postfix-config
+          ports:
+            - containerPort: 25
+              protocol: TCP
+              name: smtp
+            - containerPort: 465
+              protocol: TCP
+              name: smtps
+            - containerPort: 587
+              protocol: TCP
+              name: submission
+          readinessProbe:
+            tcpSocket:
+              port: smtp
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: smtp
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          volumeMounts:
+            - name: postfix-config-files
+              mountPath: /config/postfix
+              readOnly: true
+            - name: postfix-spool
+              mountPath: /var/spool/postfix
+            - name: postfix-chroot
+              mountPath: /var/spool/postfix/dev
+              subPath: dev/
+            - name: postfix-chroot
+              mountPath: /var/spool/postfix/etc
+              subPath: etc/
+            - name: postfix-chroot
+              mountPath: /var/spool/postfix/usr
+              subPath: usr/
+            - name: postfix-tls
+              mountPath: /secrets/postfix
+        - name: postsrsd
+          image: registry.cri.epita.fr/cri/docker/mail
+          args: ["postsrsd"]
+          env:
+            - name: POSTSRSD_SECRET_FILE
+              value: "/secrets/postsrsd/secret"
+          envFrom:
+            - configMapRef:
+                name: postsrsd-config
+          volumeMounts:
+            - name: postsrsd-secret
+              mountPath: /secrets/postsrsd
+        - name: opendkim
+          image: registry.cri.epita.fr/cri/docker/mail
+          args: ["opendkim"]
+          envFrom:
+            - configMapRef:
+                name: opendkim-config
+          volumeMounts:
+            - name: opendkim-keys
+              mountPath: /secrets/opendkim
+            - name: postfix-spool
+              mountPath: /var/spool/postfix/opendkim
+              subPath: opendkim
+      volumes:
+        - name: postfix-config-files
+          projected:
+            sources:
+              - configMap:
+                  name: postfix-config-files
+        - name: postfix-chroot
+          emptyDir: {}
+        - name: postfix-tls
+          secret:
+            secretName: postfix-tls
+            defaultMode: 0440
+        - name: postsrsd-secret
+          secret:
+            secretName: postsrsd-secret
+            defaultMode: 0444
+        - name: opendkim-keys
+          secret:
+            secretName: opendkim-keys
+            defaultMode: 0440
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - mail
+                    - key: component
+                      operator: In
+                      values:
+                        - postfix
+                topologyKey: kubernetes.io/hostname
+  volumeClaimTemplates:
+    - metadata:
+        name: postfix-spool
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 4Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postfix-headless
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    component: postfix

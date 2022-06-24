@@ -1,0 +1,8 @@
+---
+
+exclude_paths:
+  - .cache/
+
+use_default_rules: true
+
+offline: false

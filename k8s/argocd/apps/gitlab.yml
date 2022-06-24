@@ -1,0 +1,162 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: gitlab
+  labels:
+    app: gitlab
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-gitlab"
+      labels:
+        app: gitlab
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: gitlab
+      source:
+        repoURL: https://charts.gitlab.io/
+        chart: gitlab
+        targetRevision: 6.0.3
+        helm:
+          releaseName: gitlab
+          values: |
+            upgradeCheck:
+              enabled: false
+            postgresql:
+              install: false
+            certmanager:
+              install: false
+            nginx-ingress:
+              enabled: false
+            prometheus:
+              install: false
+            redis:
+              install: false
+            operator:
+              enabled: false
+            global:
+              hosts:
+                domain: mareo.fr
+                https: true
+              ingress:
+                class: public
+                configureCertmanager: false
+                tls:
+                  secretName: gitlab-tls
+                annotations:
+                   cert-manager.io/cluster-issuer: default-issuer
+              shell:
+                tcp:
+                  proxyProtocol: true
+              initialRootPassword:
+                secret: gitlab-initial-root-password
+                key: password
+              redis:
+                host: gitlab-redis.gitlab.svc
+                password:
+                  secret: gitlab-redis
+                  key: password
+              psql:
+                host: in-cluster-main-cluster.postgres.svc.cluster.local
+                database: gitlab
+                username: gitlab.gitlab
+                password:
+                  useSecret: true
+                  secret: gitlab.gitlab.in-cluster-main-cluster.credentials
+                  key: password
+              minio:
+                enabled: false
+              email:
+                display_name: "GitLab"
+                from: "no-reply@gitlab.mareo.fr"
+              smtp:
+                enabled: true
+                domain: gitlab.mareo.fr
+                address: postfix.mail.svc
+                port: 25
+                tls: false
+                authentication: ""
+              appConfig:
+                enableUsagePing: false
+                enableSeatLink: false
+                usernameChangingEnabled: false
+                lfs:
+                  enabled: true
+                  proxy_download: true
+                artifacts:
+                  enabled: true
+                  proxy_download: true
+                terraformState:
+                  enabled: true
+                dependencyProxy:
+                  enabled: true
+                object_store:
+                  enabled: true
+                  proxy_download: true
+                  connection:
+                    secret: gitlab-object-storage
+                    key: connection
+                omniauth:
+                  enabled: true
+                  blockAutoCreatedUsers: false
+                  allowSingleSignOn:
+                    - saml
+                    - openid_connect
+                  autoLinkLdapUser: true
+                  autoLinkSamlUser: true
+                  providers:
+                    - secret: gitlab-saml-group
+                    - secret: gitlab-saml-authentik
+                    - secret: gitlab-oidc-authentik
+                  syncProfileAttributes:
+                    - name
+                    - email
+              time_zone: Europe/Paris
+              pages:
+                enabled: true
+                accessControl: true
+                host: pages.mareo.fr
+                externalHttp:
+                  - 65.108.17.229
+                externalHttps:
+                  - 65.108.17.229
+              oauth:
+                gitlab-pages:
+                  authScope: read_api
+            gitlab-runner:
+              install: true
+            gitlab:
+              gitaly:
+                persistence:
+                  enabled: true
+                  storageClass: csi-rbd-sc-retain
+              webservice:
+                ingress:
+                  tls:
+                    secretName: gitlab-webservice-tls
+                    smartcardSecretName: gitlab-smartcard-tls
+              kas:
+                ingress:
+                  tls:
+                    secretName: gitlab-kas-tls
+              gitlab-pages:
+                ingress:
+                  tls:
+                    secretName: gitlab-pages-tls
+            registry:
+              ingress:
+                tls:
+                  secretName: gitlab-registry-tls

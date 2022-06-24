@@ -1,0 +1,19 @@
+---
+
+k3s_release_version: v1.23.6+k3s1
+
+k3s_server:
+  tls-san:
+    - api.k8s.mareo.fr
+  docker: false
+  cluster-cidr: 172.20.0.0/16
+  service-cidr: 172.21.0.0/16
+  disable:
+    - traefik
+  kube-apiserver-arg:
+    - "oidc-issuer-url=https://auth.mareo.fr/application/o/kubernetes/"
+    - "oidc-client-id=kubernetes"
+    - "oidc-username-claim=sub"
+    - "oidc-username-prefix=authentik:"
+    - "oidc-groups-claim=groups"
+    - "oidc-groups-prefix=authentik:"

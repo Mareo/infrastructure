@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  gather_facts: true
+  tags:
+    - "always"
+    - "gather_facts"
+
+- import_playbook: common.yml
+- import_playbook: proxmox.yml
+- import_playbook: k3s.yml

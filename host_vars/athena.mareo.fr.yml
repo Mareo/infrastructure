@@ -1,0 +1,66 @@
+---
+
+proxmox_template_default_storage: rbd
+
+proxmox_ceph_enabled: true
+proxmox_ceph_replicas: 2
+proxmox_ceph_osds:
+  - /dev/sda4
+  - /dev/sdb4
+proxmox_ceph_pools:
+  - name: rbd
+    add_to_storages: 1
+  - name: kubernetes
+proxmox_ceph_rgw_enabled: true
+
+dhcp_global_domain_name_servers:
+  - 1.1.1.1
+  - 8.8.8.8
+
+dhcp_global_domain_search:
+  - vm.athena.mareo.fr
+  - mareo.fr
+
+nft_define_host:
+  self:
+    name: self
+    value: '65.108.17.229'
+  k3s:
+    name: k3s
+    value: "192.168.0.1"
+
+forwarded_ports:
+  - dport: http
+    host: "$k3s"
+    port: 30080
+  - dport: https
+    host: "$k3s"
+    port: 30443
+  - dport: 6443
+    host: "$k3s"
+  - dport: smtp
+    host: "$k3s"
+    port: 30025
+  - dport: submissions
+    host: "$k3s"
+    port: 30465
+  - dport: submission
+    host: "$k3s"
+    port: 30587
+
+# yamllint disable rule:line-length
+nft_forward_host_rules: "{{ nft_forward_host_rules_yaml|from_yaml }}"
+nft__nat_host_prerouting_rules: "{{ nft__nat_host_prerouting_rules_yaml|from_yaml }}"
+
+nft_forward_host_rules_yaml: |
+  "200 port forwarding":
+  {% for fwd in forwarded_ports %}
+    - ip daddr {{ fwd.host }} {{ fwd.protocol|default('tcp') }} dport {{ fwd.port|default(fwd.dport) }} accept
+  {% endfor %}
+
+nft__nat_host_prerouting_rules_yaml: |
+  "200 port forwarding":
+  {% for fwd in forwarded_ports %}
+    - ip daddr $self {{ fwd.protocol|default('tcp') }} dport {{ fwd.dport }} dnat to {{ fwd.host }}:{{ fwd.port|default(fwd.dport) }}
+  {% endfor %}
+# yamllint enable rule:line-length

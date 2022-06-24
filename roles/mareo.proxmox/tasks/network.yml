@@ -1,0 +1,24 @@
+- name: Enable forwarding and rp filter (ipv4)
+  sysctl:
+    name: "{{ item }}"
+    value: 1
+    sysctl_set: yes
+  loop:
+    - net.ipv4.conf.all.forwarding
+    - net.ipv4.conf.all.rp_filter
+
+- name: Enable forwarding (ipv6)
+  sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: 1
+    sysctl_set: yes
+
+- name: Configure interfaces
+  block:
+    - name: Update /etc/network/interfaces
+      blockinfile:
+        path: /etc/network/interfaces
+        block: "{{ lookup('template', 'proxmox-bridges.conf.j2') }}"
+        insertafter: EOF
+      notify:
+        - reload networking

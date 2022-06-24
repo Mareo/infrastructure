@@ -1,0 +1,18 @@
+---
+kind: Kustomization
+namespace: argocd
+
+resources:
+  - authentik.yml
+  - cephfs-csi.yml
+  - cert-manager.yml
+  - clusters.yml
+  - external-secrets-operator.yml
+  - gitlab.yml
+  - ingress-nginx.yml
+  - nextcloud.yml
+  - rbd-csi.yml
+  - redis.yml
+  - redis-operator.yml
+  - vault.yml
+  - vaultwarden.yml

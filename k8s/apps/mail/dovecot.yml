@@ -1,0 +1,80 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dovecot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: dovecot
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        component: dovecot
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: dovecot
+          image: registry.cri.epita.fr/cri/docker/mail
+          args: ["dovecot"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 1
+              memory: 200Mi
+          env:
+            - name: DOVECOT_SASL_PORT
+              value: "113"
+          envFrom:
+            - configMapRef:
+                name: dovecot-config
+          ports:
+            - containerPort: 113
+              protocol: TCP
+              name: sasl
+          readinessProbe:
+            tcpSocket:
+              port: sasl
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: sasl
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - mail
+                    - key: component
+                      operator: In
+                      values:
+                        - dovecot
+                topologyKey: kubernetes.io/hostname
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dovecot
+spec:
+  type: ClusterIP
+  selector:
+    component: dovecot
+  ports:
+    - name: dovecot-sasl
+      port: 113
+      targetPort: sasl

@@ -1,0 +1,103 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: vaultwarden
+  labels:
+    app: vaultwarden
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-vaultwarden"
+      labels:
+        app: vaultwarden
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: vaultwarden
+      source:
+        repoURL: https://k8s-at-home.com/charts/
+        chart: vaultwarden
+        targetRevision: 4.2.3
+        helm:
+          releaseName: vaultwarden
+          values: |
+            ingress:
+              main:
+                enabled: true
+                annotations:
+                   cert-manager.io/cluster-issuer: default-issuer
+                ingressClassName: public
+                hosts:
+                  - host: vaultwarden.mareo.fr
+                    paths:
+                      - path: /
+                        pathType: Prefix
+                        service:
+                          port: 80
+                      - path: /notifications/hub/negotiate
+                        pathType: Prefix
+                        service:
+                          port: 80
+                      - path: /notifications/hub
+                        pathType: Prefix
+                        service:
+                          port: 3012
+                tls:
+                  - secretName: vaultwarden-tls
+                    hosts:
+                      - vaultwarden.mareo.fr
+            env:
+              - name: TZ
+                value: "Europe/Paris"
+              - name: SIGNUPS_ALLOWED
+                value: "false"
+              - name: DOMAIN
+                value: https://vaultwarden.mareo.fr
+              - name: HELO_NAME
+                value: vaultwarden.mareo.fr
+              - name: SMTP_HOST
+                value: postfix.mail.svc
+              - name: SMTP_PORT
+                value: 25
+              - name: SMTP_FROM
+                value: "no-reply@vaultwarden.mareo.fr"
+              - name: SMTP_SECURITY
+                value: "off"
+              - name: DATABASE_HOST
+                value: in-cluster-main-cluster.postgres.svc.cluster.local
+              - name: DATABASE_DB
+                value: vaultwarden
+              - name: DATABASE_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: vaultwarden.vaultwarden.in-cluster-main-cluster.credentials
+                    key: username
+              - name: DATABASE_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: vaultwarden.vaultwarden.in-cluster-main-cluster.credentials
+                    key: password
+              - name: ADMIN_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: vaultwarden-admin
+                    key: token
+              - name: DATABASE_URL
+                value: "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST)/$(DATABASE_DB)"
+            persistence:
+              config:
+                enabled: true
+                type: pvc
+                storageClass: csi-rbd-sc-retain

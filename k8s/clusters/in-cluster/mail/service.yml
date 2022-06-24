@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postfix
+spec:
+  type: NodePort
+  externalTrafficPolicy: Local
+  selector:
+    component: postfix
+  ports:
+    - name: postfix-smtp
+      port: 25
+      nodePort: 30025
+      targetPort: smtp
+    - name: postfix-smtps
+      port: 465
+      nodePort: 30465
+      targetPort: smtps
+    - name: postfix-submission
+      port: 587
+      nodePort: 30587
+      targetPort: submission

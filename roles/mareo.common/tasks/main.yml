@@ -1,0 +1,29 @@
+---
+
+- import_tasks: ssh.yml
+  tags:
+    - ssh
+    - openssh
+
+- import_tasks: packages.yml
+  tags:
+    - pkg
+    - pkgs
+    - packages
+
+- import_tasks: time.yml
+  tags:
+    - time
+    - timezone
+    - tz
+
+- import_tasks: confs.yml
+  tags:
+    - confs
+    - dotfiles
+
+- import_tasks: ubuntu-motd.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- import_tasks: cloud-init.yml
+  when: ansible_distribution == 'Ubuntu'

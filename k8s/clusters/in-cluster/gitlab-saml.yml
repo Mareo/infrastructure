@@ -1,0 +1,56 @@
+# yamllint disable rule:line-length
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: gitlab-saml-authentik
+  namespace: gitlab
+spec:
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  dataFrom:
+    - extract:
+        key: gitlab/saml-authentik
+  target:
+    template:
+      engineVersion: v2
+      type: Opaque
+      data:
+        provider: |
+          {
+            "name": "saml",
+            "label": "authentik (SAML)",
+            "groups_attribute": "http://schemas.xmlsoap.org/claims/Group",
+            "external_groups": ["gitlab_externals"],
+            "auditor_groups": ["gitlab_auditors"],
+            "admin_groups": ["gitlab_admins"],
+            "args": {
+              "name": "saml",
+              "assertion_consumer_service_url": "https://gitlab.mareo.fr/users/auth/saml/callback",
+              "idp_cert": "{{ .idp_cert | js }}",
+              "idp_sso_target_url": "https://auth.mareo.fr/application/saml/gitlab-saml/sso/binding/redirect/",
+              "issuer": "https://gitlab.mareo.fr",
+              "name_identifier_format": "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
+              "upstream_two_factor_authn_contexts": [
+                "urn:oasis:names:tc:SAML:2.0:ac:classes:CertificateProtectedTransport",
+                "urn:oasis:names:tc:SAML:2.0:ac:classes:SecondFactorOTPSMS",
+                "urn:oasis:names:tc:SAML:2.0:ac:classes:SecondFactorIGTOKEN"
+              ],
+              "attribute_statements": {
+                "email": ['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
+                "name": ['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
+                "nickname": ['http://schemas.goauthentik.io/2021/02/saml/username']
+              }
+            }
+          }
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitlab-saml-group
+  namespace: gitlab
+type: Opaque
+stringData:
+  provider: |
+    { "name": "group_saml" }

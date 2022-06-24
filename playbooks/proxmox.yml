@@ -1,0 +1,44 @@
+---
+
+- hosts: proxmox
+  roles:
+    - mareo.proxmox
+  tags:
+    - proxmox
+
+- hosts: proxmox
+  tasks:
+    - name: Fetch rgw admin secret file
+      fetch:
+        src: "/etc/ceph/rgw_user_{{ item.uid }}.yml"
+        dest: "../secrets/rgw_user_{{ item.uid }}.yml"
+        fail_on_missing: true
+        flat: true
+      loop: "{{ proxmox_ceph_rgw_users }}"
+  tags:
+    - secrets
+    - proxmox
+
+- hosts: proxmox
+  tasks:
+    - name: Blacklist iptables modules
+      lineinfile:
+        path: /etc/modprobe.d/blacklist-xtables.conf
+        line: "install {{ item }} /bin/false"
+        create: true
+      loop:
+        - x_tables
+        - iptable_nat
+        - ip6table_nat
+  roles:
+    - ipr-cnrs.nftables
+  tags:
+    - proxmox
+    - nftables
+
+- hosts: proxmox
+  roles:
+    - bertvv.dhcp
+  tags:
+    - proxmox
+    - dhcp

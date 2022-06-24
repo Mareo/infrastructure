@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: clusters
+  labels:
+    app: clusters
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: "{{name}}"
+      labels:
+        app: clusters
+    spec:
+      project: default
+      source:
+        repoURL: git://git.mareo.fr/infrastructure
+        targetRevision: HEAD
+        path: "k8s/clusters/{{name}}"
+      destination:
+        name: "{{name}}"
+      syncPolicy:
+        automated:
+          prune: true

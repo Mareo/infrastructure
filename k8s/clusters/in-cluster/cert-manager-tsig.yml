@@ -1,0 +1,14 @@
+# yamllint disable rule:line-length
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: tsig-secret
+  namespace: cert-manager
+spec:
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  dataFrom:
+    - extract:
+        key: cert-manager/tsig

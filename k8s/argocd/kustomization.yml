@@ -1,0 +1,16 @@
+---
+kind: Kustomization
+namespace: argocd
+
+resources:
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.3.3
+  - github.com/argoproj/argo-cd/manifests/addons/applicationset/stable?ref=v2.3.3
+  - applications.yml
+  - ingress.yml
+  - argocd-oidc.yml
+
+  - apps
+
+patches:
+  - path: argocd-cm-patch.yml
+  - path: argocd-rbac-cm-patch.yml

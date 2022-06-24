@@ -1,0 +1,34 @@
+---
+
+- name: Check whether pool {{ item.name }} exists
+  command:
+    argv:
+      - pveceph
+      - pool
+      - get
+      - "{{ item.name }}"
+  register: result
+  failed_when: False
+  changed_when: False
+  check_mode: no
+
+- name: "Create pool {{ item.name }}"
+  when: result.rc != 0
+  command:
+    argv:
+      - pveceph
+      - pool
+      - create
+      - "{{ item.name }}"
+      -  --add_storages
+      - "{{ item.add_to_storages|default(0) }}"
+      -  --application
+      - "{{ item.application|default('rbd') }}"
+      - --size
+      - "{{ item.min_replicas|default(2) }}"
+      - --size
+      - "{{ item.replicas|default(proxmox_ceph_replicas) }}"
+      - --pg_num
+      - "{{ item.pg_num|default(128) }}"
+      - --pg_autoscale_mode
+      - "{{ item.pg_autoscale_mode|default('on') }}"

@@ -1,0 +1,54 @@
+ssh_authorized_keys: []
+
+default_packages:
+  # System
+  - molly-guard
+
+  # Utilities
+  - curl
+  - git
+  - jq
+  - less
+  - lzop
+  - ncdu
+  - pbzip2
+  - rsync
+  - tmux
+  - tree
+  - unzip
+  - vim
+  - wget
+  - zip
+
+  # Network configuration
+  - bridge-utils
+  - iproute2
+  - iptables
+
+  # Monitoring and diagnostic
+  - dmidecode
+  - dnsutils
+  - ethtool
+  - hdparm
+  - htop
+  - iftop
+  - iotop
+  - iperf3
+  - ldnsutils
+  - lshw
+  - mtr-tiny
+  - nethogs
+  - pciutils
+  - speedtest-cli
+  - strace
+  - sysstat
+  - tcpdump
+  - traceroute
+  - usbutils
+  - util-linux
+
+group_packages: []
+
+host_packages: []
+
+default_timezone: "UTC"
