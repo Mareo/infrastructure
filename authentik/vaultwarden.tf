@@ -19,7 +19,7 @@ resource "vault_generic_secret" "vaultwarden_mail" {
   path         = "k8s/vaultwarden/mail"
   disable_read = true
   data_json = jsonencode({
-    username = authentik_user.authentik_mail.username
-    password = authentik_token.authentik_mail.key
+    username = authentik_user.vaultwarden_mail.username
+    password = authentik_token.vaultwarden_mail.key
   })
 }

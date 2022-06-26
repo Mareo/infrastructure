@@ -87,9 +87,11 @@ spec:
               host: nextcloud.mareo.fr
               existingSecret:
                 enabled: true
-                secretName: nextcloud-initial-account-credentials
-                usernameKey: username
-                passwordKey: password
+                secretName: nextcloud-secret
+                usernameKey: initial-account-username
+                passwordKey: initial-account-password
+                smtpUsernameKey: smtp-username
+                smtpPasswordKey: smtp-password
               extraEnv:
                 - name: REDIS_PASSWORD
                   valueFrom:
@@ -131,9 +133,9 @@ spec:
               fromAddress: no-reply@nextcloud.mareo.fr
               domain: nextcloud.mareo.fr
               smtp:
-                host: postfix.mail.svc
-                secure: ""
-                port: 25
+                host: athena.mareo.fr
+                secure: "ssl"
+                port: 465
             persistence:
               enabled: true
               storageClass: csi-cephfs-sc-retain
