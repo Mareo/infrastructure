@@ -76,14 +76,14 @@ spec:
                 secretKeyRef:
                   name: authentik-app
                   key: bootstrap_token
-              AUTHENTIK_EMAIL__USERNAME:
-                secretKeyRef:
-                  name: authentik-mail
-                  key: username
-              AUTHENTIK_EMAIL__PASSWORD:
-                secretKeyRef:
-                  name: authentik-mail
-                  key: password
+#             AUTHENTIK_EMAIL__USERNAME:
+#               secretKeyRef:
+#                 name: authentik-mail
+#                 key: username
+#             AUTHENTIK_EMAIL__PASSWORD:
+#               secretKeyRef:
+#                 name: authentik-mail
+#                 key: password
               AUTHENTIK_POSTGRESQL__USER:
                 secretKeyRef:
                   name: authentik.authentik.in-cluster-main-cluster.credentials
