@@ -1,24 +1,15 @@
 ---
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+apiversion: kustomize.config.k8s.io/v1beta1
+kind: kustomization
 
 resources:
   - ../base/
   - ../../apps/postgres-operator/
-  - mail
-  - postgres
+  - mail/
+  - postgres/
+  - secrets/
 
-
-  - authentik-secrets.yml
-  - ceph-csi-secrets.yml
-  - cert-manager-tsig.yml
-  - gitlab-object-storage.yml
-  - gitlab-oidc.yml
-  - gitlab-saml.yml
-  - gitlab-secrets.yml
-  - nextcloud-secrets.yml
   - storage-class.yml
-  - vaultwarden-secrets.yml
 
 patches:
   - target:
