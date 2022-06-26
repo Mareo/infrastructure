@@ -13,9 +13,18 @@ resources:
 
 replicas:
   - name: dovecot
-    count: 0
+    count: 1
 
 configMapGenerator:
+  - name: dovecot-config
+    behavior: merge
+    literals:
+      - "DOVECOT_FEATURES=ldap sasl-tcp"
+      - "DOVECOT_LDAP_URIS=ldap://ak-outpost-mail-ldap.authentik.svc"
+      - "DOVECOT_LDAP_BASE=dc=mail,dc=mareo,dc=fr"
+      - "DOVECOT_LDAP_USER_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(uid=%n))"
+      - "DOVECOT_LDAP_PASS_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(uid=%n))"
+      - "DOVECOT_LDAP_ITERATE_FILTER=(memberOf=cn=mail,ou=groups,dc=mail,dc=epita,dc=fr)"
   - name: opendkim-config
     behavior: merge
     literals:
@@ -27,6 +36,8 @@ configMapGenerator:
   - name: postfix-config
     behavior: merge
     literals:
+      - "LDAP_SERVER_HOST=ldap://ak-outpost-mail-ldap.authentik.svc"¬
+      - "LDAP_SEARCH_BASE=dc=mail,dc=epita,dc=fr"¬
       - "POSTFIX_MYHOSTNAME=athena.mareo.fr"
       - "POSTFIX_MYDOMAIN=mareo.fr"
       - "POSTFIX_MYDESTINATION="
@@ -35,7 +46,33 @@ configMapGenerator:
       - "POSTFIX_SMTPD_SENDER_RESTRICTIONS=permit_mynetworks, reject_sender_login_mismatch"
       - "POSTFIX_SMTPD_TLS_ASK_CCERT=yes"
       - "POSTFIX_MILTER_MACRO_DEFAULTS=dkimsign=yes"
+ #- name: postfix-config-files
+ #  behavior: merge
+ #  files:
+ #    - config/sender_login_group.ldap
+ #    - config/sender_login_service_account.ldap
+ #    - config/sender_login_user.ldap
   - name: postsrsd-config
     behavior: merge
     literals:
       - "POSTSRSD_DOMAIN=mareo.fr"
+
+patches:
+  - target:
+      kind: Deployment
+      name: dovecot
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom/-
+        value:
+          secretRef:
+            name: dovecot-secret
+  - target:
+      kind: StatefulSet
+      name: postfix
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom/-
+        value:
+          secretRef:
+            name: postfix-secret
