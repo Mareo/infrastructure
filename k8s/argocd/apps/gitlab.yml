@@ -85,10 +85,14 @@ spec:
               smtp:
                 enabled: true
                 domain: gitlab.mareo.fr
-                address: postfix.mail.svc
-                port: 25
-                tls: false
-                authentication: ""
+                address: athena.mareo.fr
+                port: 465
+                tls: true
+                authentication: "plain"
+                user_name: "gitlab-mail"
+                password:
+                  secret: "gitlab-mail"
+                  key: "password"
               appConfig:
                 enableUsagePing: false
                 enableSeatLink: false
