@@ -24,7 +24,9 @@ configMapGenerator:
       - "DOVECOT_LDAP_BASE=dc=mail,dc=mareo,dc=fr"
       - "DOVECOT_LDAP_USER_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%n))"
       - "DOVECOT_LDAP_PASS_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%n))"
+      - "DOVECOT_LDAP_PASS_ATTRS=cn=user,uidNumber=userdb_uid,gidNumber=userdb_gid"
       - "DOVECOT_LDAP_ITERATE_FILTER=(memberOf=cn=mail,ou=groups,dc=mail,dc=epita,dc=fr)"
+      - "DOVECOT_LDAP_ITERATE_ATTRS=cn=user"
   - name: opendkim-config
     behavior: merge
     literals:
