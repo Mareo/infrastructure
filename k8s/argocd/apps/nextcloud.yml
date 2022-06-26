@@ -128,14 +128,14 @@ spec:
                       'default_language' => 'en',
                       'default_phone_region' => 'FR',
                     );
-            mail:
-              enabled: true
-              fromAddress: no-reply@nextcloud.mareo.fr
-              domain: nextcloud.mareo.fr
-              smtp:
-                host: athena.mareo.fr
-                secure: "ssl"
-                port: 465
+              mail:
+                enabled: true
+                fromAddress: no-reply@nextcloud.mareo.fr
+                domain: nextcloud.mareo.fr
+                smtp:
+                  host: athena.mareo.fr
+                  secure: "ssl"
+                  port: 465
             persistence:
               enabled: true
               storageClass: csi-cephfs-sc-retain
