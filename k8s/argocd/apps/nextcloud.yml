@@ -130,7 +130,7 @@ spec:
                     );
               mail:
                 enabled: true
-                fromAddress: no-reply@nextcloud.mareo.fr
+                fromAddress: no-reply
                 domain: nextcloud.mareo.fr
                 smtp:
                   host: athena.mareo.fr
