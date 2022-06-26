@@ -7,6 +7,7 @@ locals {
         nextcloud_quota = "none"
       }
       groups = [
+	"mail",
         "argocd_admins",
         "gitlab_admins",
         "kubernetes_admins",

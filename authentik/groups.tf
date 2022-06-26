@@ -8,6 +8,7 @@ locals {
     "gitlab_admins",
     "kubernetes",
     "kubernetes_admins",
+    "mail",
     "nextcloud",
     "nextcloud_admins",
     "vault",
