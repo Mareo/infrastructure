@@ -56,11 +56,10 @@ spec:
               redis:
                   host: authentik-redis.authentik.svc
               email:
-                port:
-                  host: athena.mareo.fr
-                  port: 465
-                  use_ssl: true
-                  from: no-reply@auth.mareo.fr
+                host: athena.mareo.fr
+                port: 465
+                use_ssl: true
+                from: no-reply@auth.mareo.fr
             env:
               AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: false
               AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: false
