@@ -1,8 +1,9 @@
 
 resource "authentik_provider_ldap" "mail" {
-  name      = "mail-ldap"
-  base_dn   = "dc=mail,dc=mareo,dc=fr"
-  bind_flow = data.authentik_flow.default-authentication-flow.id
+  name         = "mail-ldap"
+  base_dn      = "dc=mail,dc=mareo,dc=fr"
+  bind_flow    = data.authentik_flow.default-authentication-flow.id
+  search_group = authentik_group.groups["mail_service_accounts"].id
 }
 
 resource "authentik_application" "mail" {
@@ -36,6 +37,7 @@ resource "authentik_outpost" "mail-ldap" {
 resource "authentik_user" "mail_dovecot" {
   username = "mail-dovecot"
   name     = "mail-dovecot"
+  groups   = [authentik_group.groups["mail_service_accounts"].id]
   attributes = jsonencode({
     "goauthentik.io/user/service-account": true
   })
@@ -44,6 +46,7 @@ resource "authentik_user" "mail_dovecot" {
 resource "authentik_user" "mail_postfix" {
   username = "mail-postfix"
   name     = "mail-postfix"
+  groups   = [authentik_group.groups["mail_service_accounts"].id]
   attributes = jsonencode({
     "goauthentik.io/user/service-account": true
   })
@@ -74,7 +77,7 @@ resource "vault_generic_secret" "mail_dovecot" {
       authentik_user.mail_dovecot.username,
       authentik_provider_ldap.mail.base_dn,
     )
-    DOBECOT_LDAP_DNPASS = authentik_token.mail_dovecot.key
+    DOVECOT_LDAP_DNPASS = authentik_token.mail_dovecot.key
   })
 }
 

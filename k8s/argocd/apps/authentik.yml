@@ -89,3 +89,11 @@ spec:
                 secretKeyRef:
                   name: authentik-redis
                   key: password
+              AUTHENTIK_EMAIL__USERNAME:
+                secretKeyRef:
+                  name: authentik-mail
+                  key: username
+              AUTHENTIK_EMAIL__PASSWORD:
+                secretKeyRef:
+                  name: authentik-mail
+                  key: password

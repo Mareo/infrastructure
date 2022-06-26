@@ -43,3 +43,12 @@ resource "vault_generic_secret" "authentik_redis-password" {
     password = random_password.authentik_redis-password.result
   })
 }
+
+resource "vault_generic_secret" "authentik_mail" {
+  path         = "k8s/authentik/mail"
+  disable_read = true
+  data_json = jsonencode({
+    username = "FIXME"
+    password = "FIXME"
+  })
+}

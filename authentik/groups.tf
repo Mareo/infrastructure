@@ -9,6 +9,7 @@ locals {
     "kubernetes",
     "kubernetes_admins",
     "mail",
+    "mail_service_accounts",
     "nextcloud",
     "nextcloud_admins",
     "vault",
