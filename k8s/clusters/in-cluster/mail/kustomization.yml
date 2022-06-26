@@ -22,8 +22,8 @@ configMapGenerator:
       - "DOVECOT_FEATURES=ldap sasl-tcp"
       - "DOVECOT_LDAP_URIS=ldap://ak-outpost-mail-ldap.authentik.svc"
       - "DOVECOT_LDAP_BASE=dc=mail,dc=mareo,dc=fr"
-      - "DOVECOT_LDAP_USER_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(uid=%n))"
-      - "DOVECOT_LDAP_PASS_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(uid=%n))"
+      - "DOVECOT_LDAP_USER_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%n))"
+      - "DOVECOT_LDAP_PASS_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%n))"
       - "DOVECOT_LDAP_ITERATE_FILTER=(memberOf=cn=mail,ou=groups,dc=mail,dc=epita,dc=fr)"
   - name: opendkim-config
     behavior: merge
