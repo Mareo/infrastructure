@@ -68,13 +68,23 @@ spec:
               - name: HELO_NAME
                 value: vaultwarden.mareo.fr
               - name: SMTP_HOST
-                value: postfix.mail.svc
+                value: athena.mareo.fr
               - name: SMTP_PORT
-                value: 25
+                value: 465
               - name: SMTP_FROM
                 value: "no-reply@vaultwarden.mareo.fr"
               - name: SMTP_SECURITY
-                value: "off"
+                value: "force_tls"
+              - name: SMTP_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: vaultwarden-mail
+                    key: username
+              - name: SMTP_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: vaultwarden-mail
+                    key: password
               - name: DATABASE_HOST
                 value: in-cluster-main-cluster.postgres.svc.cluster.local
               - name: DATABASE_DB
