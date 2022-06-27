@@ -1,5 +1,0 @@
-query_filter      = (&(objectClass=group)(|(allowed_emails=%s)(allowed_emails=%d)(allowed_emails=all)))
-result_attribute  = cn
-
-leaf_result_attribute    = cn
-special_result_attribute = member

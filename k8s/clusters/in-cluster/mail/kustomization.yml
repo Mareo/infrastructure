@@ -25,7 +25,7 @@ configMapGenerator:
       - "DOVECOT_LDAP_USER_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%n))"
       - "DOVECOT_LDAP_PASS_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%n))"
       - "DOVECOT_LDAP_PASS_ATTRS=cn=user,uidNumber=userdb_uid,gidNumber=userdb_gid"
-      - "DOVECOT_LDAP_ITERATE_FILTER=(memberOf=cn=mail,ou=groups,dc=mail,dc=epita,dc=fr)"
+      - "DOVECOT_LDAP_ITERATE_FILTER=(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)"
       - "DOVECOT_LDAP_ITERATE_ATTRS=cn=user"
   - name: opendkim-config
     behavior: merge
@@ -39,20 +39,19 @@ configMapGenerator:
     behavior: merge
     literals:
       - "LDAP_SERVER_HOST=ldap://ak-outpost-mail-ldap.authentik.svc"
-      - "LDAP_SEARCH_BASE=dc=mail,dc=epita,dc=fr"
+      - "LDAP_SEARCH_BASE=dc=mail,dc=mareo,dc=fr"
       - "POSTFIX_MYHOSTNAME=athena.mareo.fr"
       - "POSTFIX_MYDOMAIN=mareo.fr"
       - "POSTFIX_MYDESTINATION="
       - "POSTFIX_MYNETWORKS=127.0.0.0/8, [::1/128], 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"
       - "POSTFIX_SMTPD_RELAY_RESTRICTIONS=permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination"
       - "POSTFIX_SMTPD_SENDER_RESTRICTIONS=permit_mynetworks, reject_sender_login_mismatch"
-      - "POSTFIX_SMTPD_SENDER_LOGIN_MAPS=unionmap:{ldap:/etc/postfix/sender_login_group.ldap,ldap:/etc/postfix/sender_login_user.ldap}"
+      - "POSTFIX_SMTPD_SENDER_LOGIN_MAPS=ldap:/etc/postfix/sender_login_user.ldap"
       - "POSTFIX_SMTPD_TLS_ASK_CCERT=yes"
       - "POSTFIX_MILTER_MACRO_DEFAULTS=dkimsign=yes"
   - name: postfix-config-files
     behavior: merge
     files:
-      - config/sender_login_group.ldap
       - config/sender_login_user.ldap
   - name: postsrsd-config
     behavior: merge
