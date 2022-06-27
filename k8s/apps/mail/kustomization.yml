@@ -25,4 +25,4 @@ configMapGenerator:
 
 images:
   - name: registry.cri.epita.fr/cri/docker/mail
-    newTag: 57c73a64d37cf58756b71dd2f820b7e3c001cc82
+    newTag: 7d7a9441080e3be7e33428c8909a64d9c76a4ff7
