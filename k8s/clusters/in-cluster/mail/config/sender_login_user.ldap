@@ -1,0 +1,2 @@
+query_filter      = (&(objectClass=inetOrgPerson)(|(mail=%s)(allowed_emails=%s)(allowed_emails=%d)(allowed_emails=all))
+result_attribute  = cn

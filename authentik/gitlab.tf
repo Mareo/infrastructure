@@ -4,6 +4,9 @@ resource "authentik_user" "gitlab_mail" {
   groups   = [authentik_group.groups["mail"].id]
   attributes = jsonencode({
     "goauthentik.io/user/service-account": true
+    allowed_emails = [
+      "gitlab.mareo.fr",
+    ]
   })
 }
 

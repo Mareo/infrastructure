@@ -5,9 +5,13 @@ locals {
       email = "mareo@mareo.fr"
       attributes = {
         nextcloud_quota = "none"
+        allowed_emails = [
+          "mareo.fr",
+          "marin@hannache.fr",
+        ]
       }
       groups = [
-	"mail",
+        "mail",
         "argocd_admins",
         "gitlab_admins",
         "kubernetes_admins",
