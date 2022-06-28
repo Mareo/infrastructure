@@ -29,12 +29,12 @@ spec:
       source:
         repoURL: https://nextcloud.github.io/helm/
         chart: nextcloud
-        targetRevision: 2.14.3
+        targetRevision: 3.0.0
         helm:
           releaseName: nextcloud
           values: |
             image:
-              tag: 23.0.5-apache
+              tag: 24.0.2-apache
             ingress:
               enabled: true
               className: public
