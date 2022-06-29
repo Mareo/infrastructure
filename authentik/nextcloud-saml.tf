@@ -36,6 +36,8 @@ resource "authentik_provider_saml" "nextcloud-saml" {
   signing_kp         = data.authentik_certificate_key_pair.default.id
   verification_kp    = authentik_certificate_key_pair.nextcloud-saml.id
 
+  assertion_valid_not_before = "minutes=-3"
+
   name_id_mapping = data.authentik_property_mapping_saml.username.id
   property_mappings = [
     data.authentik_property_mapping_saml.upn.id,

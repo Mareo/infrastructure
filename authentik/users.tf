@@ -6,7 +6,7 @@ locals {
       attributes = {
         nextcloud_quota = "none"
         allowed_emails = [
-          "mareo.fr",
+          "@mareo.fr",
           "marin@hannache.fr",
         ]
       }
@@ -19,6 +19,17 @@ locals {
         "vault_admins",
       ]
       is_admin = true
+    }
+    "lea" = {
+      name  = "Léa Assako"
+      email = "assakolea@gmail.com"
+      attributes = {
+        nextcloud_quota = "10G"
+      }
+      groups = [
+        "gitlab",
+        "nextcloud",
+      ]
     }
   }
 }

@@ -29,3 +29,7 @@ resource "authentik_flow_stage_binding" "default-provider-authorization-one-time
   stage  = authentik_stage_consent.permanent-consent.id
   order  = 0
 }
+
+data "authentik_source" "inbuilt" {
+  managed = "goauthentik.io/sources/inbuilt"
+}
