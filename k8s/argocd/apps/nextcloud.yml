@@ -34,7 +34,7 @@ spec:
           releaseName: nextcloud
           values: |
             image:
-              tag: 23.0.6-apache
+              tag: 24.0.2-apache
             ingress:
               enabled: true
               className: public
@@ -143,7 +143,7 @@ spec:
               size: 1Ti
             startupProbe:
               enabled: true
-              failureThreshold: 60
+              failureThreshold: 120
             phpClientHttpsFix:
               enabled: true
             cronjob:
