@@ -43,7 +43,7 @@ spec:
                 nginx.ingress.kubernetes.io/proxy-body-size: 4G
                 nginx.ingress.kubernetes.io/enable-cors: "true"
                 nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
-                ingress.kubernetes.io/configuration-snippet: |-
+                nginx.ingress.kubernetes.io/configuration-snippet: |-
                     server_tokens off;
                     proxy_hide_header X-Powered-By;
 
