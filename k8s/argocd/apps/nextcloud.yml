@@ -75,6 +75,16 @@ spec:
                     location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
                       deny all;
                     }
+                    location /remote.php/dav/ {
+                      # empty
+                    }
+                    location / {
+                      if ($request_method = 'OPTIONS') {
+                        more_set_headers 'Content-Type: text/plain charset=UTF-8';
+                        more_set_headers 'Content-Length: 0';
+                        return 204;
+                      }
+                    }
               tls:
                 - secretName: nextcloud-tls
                   hosts:
