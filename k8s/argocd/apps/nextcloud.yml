@@ -55,11 +55,6 @@ spec:
                     if ($request_uri !~ "^/remote.php/dav/") {
                       set $cors $request_method;
                     }
-                    if ($cors = 'OPTIONS' ) {
-                      more_set_headers 'Content-Type: text/plain charset=UTF-8';
-                      more_set_headers 'Content-Length: 0';
-                      return 204;
-                    }
                     location = /.well-known/carddav {
                       return 301 https://$host/remote.php/dav;
                     }
@@ -83,6 +78,11 @@ spec:
                     rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
                     rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
                     rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
+                    if ($cors = 'OPTIONS' ) {
+                      more_set_headers 'Content-Type: text/plain charset=UTF-8';
+                      more_set_headers 'Content-Length: 0';
+                      return 204;
+                    }
               tls:
                 - secretName: nextcloud-tls
                   hosts:
