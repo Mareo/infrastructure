@@ -29,12 +29,12 @@ spec:
       source:
         repoURL: https://charts.goauthentik.io/
         chart: authentik
-        targetRevision: 2022.6.3
+        targetRevision: 2022.7.3
         helm:
           releaseName: authentik
           values: |
             image:
-              tag: 2022.6.3
+              tag: 2022.7.3
             ingress:
               enabled: true
               ingressClassName: public
