@@ -34,7 +34,7 @@ spec:
           releaseName: nextcloud
           values: |
             image:
-              tag: 24.0.2-apache
+              tag: 24.0.3-apache
             ingress:
               enabled: true
               className: public
