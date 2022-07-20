@@ -10,6 +10,8 @@ resource "authentik_application" "mail" {
   name              = "mail-ldap"
   slug              = "mail-ldap"
   protocol_provider = authentik_provider_ldap.mail.id
+  group             = "Services"
+  meta_icon         = "https://upload.wikimedia.org/wikipedia/commons/e/ec/Circle-icons-mail.svg"
 }
 
 resource "authentik_outpost" "mail-ldap" {
@@ -22,33 +24,35 @@ resource "authentik_outpost" "mail-ldap" {
   ]
 
   config = jsonencode({
-    log_level                      = "info"
-    object_naming_template         = "ak-outpost-%(name)s"
+    log_level              = "info"
+    object_naming_template = "ak-outpost-%(name)s"
 
-    authentik_host                 = "https://auth.mareo.fr/"
-    authentik_host_browser         = "https://auth.mareo.fr/"
-    authentik_host_insecure        = false
+    authentik_host          = "https://auth.mareo.fr/"
+    authentik_host_browser  = "https://auth.mareo.fr/"
+    authentik_host_insecure = false
 
-    kubernetes_replicas            = 1
-    kubernetes_service_type        = "ClusterIP"
+    kubernetes_replicas     = 1
+    kubernetes_service_type = "ClusterIP"
   })
 }
 
 resource "authentik_user" "mail_dovecot" {
   username = "mail-dovecot"
   name     = "mail-dovecot"
+  path     = "services"
   groups   = [authentik_group.groups["mail_service_accounts"].id]
   attributes = jsonencode({
-    "goauthentik.io/user/service-account": true
+    "goauthentik.io/user/service-account" = true
   })
 }
 
 resource "authentik_user" "mail_postfix" {
   username = "mail-postfix"
   name     = "mail-postfix"
+  path     = "services"
   groups   = [authentik_group.groups["mail_service_accounts"].id]
   attributes = jsonencode({
-    "goauthentik.io/user/service-account": true
+    "goauthentik.io/user/service-account" = true
   })
 }
 
@@ -93,4 +97,3 @@ resource "vault_generic_secret" "mail_postfix" {
     LDAP_BIND_PW = authentik_token.mail_postfix.key
   })
 }
-

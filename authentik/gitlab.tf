@@ -1,9 +1,10 @@
 resource "authentik_user" "gitlab_mail" {
   username = "gitlab-mail"
   name     = "gitlab-mail"
+  path     = "services"
   groups   = [authentik_group.groups["mail"].id]
   attributes = jsonencode({
-    "goauthentik.io/user/service-account": true
+    "goauthentik.io/user/service-account" = true
     allowed_emails = [
       "gitlab.mareo.fr",
     ]

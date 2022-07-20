@@ -1,9 +1,10 @@
 resource "authentik_user" "nextcloud_mail" {
   username = "nextcloud-mail"
   name     = "nextcloud-mail"
+  path     = "services"
   groups   = [authentik_group.groups["mail"].id]
   attributes = jsonencode({
-    "goauthentik.io/user/service-account": true
+    "goauthentik.io/user/service-account" = true
     allowed_emails = [
       "nextcloud.mareo.fr",
     ]

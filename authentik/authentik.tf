@@ -1,9 +1,10 @@
 resource "authentik_user" "authentik_mail" {
   username = "authentik-mail"
   name     = "authentik-mail"
+  path     = "services"
   groups   = [authentik_group.groups["mail"].id]
   attributes = jsonencode({
-    "goauthentik.io/user/service-account": true
+    "goauthentik.io/user/service-account" = true
     allowed_emails = [
       "auth.mareo.fr",
     ]
