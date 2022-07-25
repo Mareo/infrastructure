@@ -29,6 +29,9 @@
               projectDir = self;
             })
             git
+            jq
+            kubectl
+            kubelogin-oidc
             poetry
             pre-commit
             shellcheck
