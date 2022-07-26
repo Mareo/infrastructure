@@ -1,5 +1,9 @@
 terraform {
   required_providers {
+    vault = {
+      source  = "hashicorp/vault"
+      version = "3.6.0"
+    }
     gitlab = {
       source  = "gitlabhq/gitlab"
       version = "3.16.1"
@@ -13,6 +17,10 @@ terraform {
   backend "s3" {
     key = "gitlab"
   }
+}
+
+provider "vault" {
+  address = yamldecode(file("../config.yml")).vault_addr
 }
 
 provider "gitlab" {
@@ -33,4 +41,8 @@ resource "gitlab_personal_access_token" "root_terraform" {
 resource "local_sensitive_file" "gitlab-token" {
   content  = gitlab_personal_access_token.root_terraform.token
   filename = "${path.root}/../secrets/gitlab_token"
+}
+
+data "vault_generic_secret" "argocd_webhook-token" {
+  path = "k8s/argocd/webhooks"
 }
