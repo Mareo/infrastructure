@@ -15,7 +15,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: git://git.mareo.fr/infrastructure
+        repoURL: https://gitlab.mareo.fr/iac/infrastructure
         targetRevision: HEAD
         path: "k8s/clusters/{{name}}"
       destination:
