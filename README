@@ -13,14 +13,12 @@
 
 # VMs setup
     $ cd proxmox/
-    $ terraform init
     $ terraform apply
     $ cd ..
     $ poetry run ansible-playbook -l proxmox_vm playbooks/main.yml
 
 # Vault setup
     $ cd vault/
-    $ terraform init
     $ terraform apply
     $ poetry run ../scripts/vault-init.sh
     $ poetry run ../scripts/vault-unseal.sh
@@ -28,5 +26,9 @@
 
 # Authentik setup
     $ cd authentik/
-    $ terraform init
+    $ terraform apply
+
+# GitLab setup
+    $ poetry run scripts/gitlab-login-as-root.sh
+    $ cd gitlab/
     $ terraform apply

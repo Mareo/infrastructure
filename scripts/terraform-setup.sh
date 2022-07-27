@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-BASEDIR="$(dirname "$0")/../"
+BASEDIR="$(realpath "$(dirname "$0")/..")"
 
 TERRAFORM_BUCKET="$(shyaml get-value terraform_bucket < "${BASEDIR}/config.yml")"
 S3_ENDPOINT_URL="$(shyaml get-value s3_endpoint_url < "${BASEDIR}/config.yml")"
@@ -20,3 +20,7 @@ skip_credentials_validation = true
 skip_region_validation      = true
 force_path_style            = true
 EOF
+
+for dir in proxmox vault authentik gitlab; do
+	terraform -chdir="${BASEDIR}/${dir}" init -backend-config="${BASEDIR}/secrets/terraform_config" -upgrade
+done

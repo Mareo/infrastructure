@@ -2,7 +2,7 @@
 
 set -e
 
-BASEDIR="$(dirname "$0")/.."
+BASEDIR="$(realpath "$(dirname "$0")/..")"
 
 VAULT_ADDR="$(shyaml get-value vault_addr < "${BASEDIR}/config.yml")"
 export VAULT_ADDR
