@@ -12,6 +12,10 @@ terraform {
       source  = "hashicorp/local"
       version = "2.2.3"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.2.0"
+    }
   }
 
   backend "s3" {

@@ -4,6 +4,12 @@ resource "gitlab_group" "iac" {
   visibility_level = "public"
 }
 
+resource "gitlab_group_membership" "iac_mareo" {
+  group_id     = gitlab_group.iac.id
+  user_id      = gitlab_user.mareo.id
+  access_level = "owner"
+}
+
 resource "gitlab_project" "iac_infrastructure" {
   name             = "infrastructure"
   namespace_id     = gitlab_group.iac.id

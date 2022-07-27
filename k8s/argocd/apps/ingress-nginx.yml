@@ -42,6 +42,8 @@ spec:
             enableHttps: true
             type: NodePort
             nodePorts:
+              tcp:
+                22: 30022
               http: 30080
               https: 30443
           resources:
@@ -51,7 +53,7 @@ spec:
           minAvailable: 1
           replicaCount: 1
         tcp:
-          22: gitlab/gitlab-gitlab-shell:22
+          30022: gitlab/gitlab-gitlab-shell:22
         defaultBackend:
           enabled: true
           replicaCount: 1
