@@ -1,5 +1,8 @@
 ---
 
+
+sshd_port: 2222
+
 proxmox_template_default_storage: rbd
 
 proxmox_ceph_enabled: true
@@ -30,6 +33,9 @@ nft_define_host:
     value: "192.168.0.1"
 
 forwarded_ports:
+  - dport: ssh
+    host: "$k3s"
+    port: 30022
   - dport: http
     host: "$k3s"
     port: 30080
@@ -48,7 +54,11 @@ forwarded_ports:
     host: "$k3s"
     port: 30587
 
+
 # yamllint disable rule:line-length
+nft_input_host_rules:
+  "050 accept ssh":
+    - "tcp dport {{ sshd_port }} accept"
 nft_forward_host_rules: "{{ nft_forward_host_rules_yaml|from_yaml }}"
 nft__nat_host_prerouting_rules: "{{ nft__nat_host_prerouting_rules_yaml|from_yaml }}"
 

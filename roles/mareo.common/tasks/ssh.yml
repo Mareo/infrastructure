@@ -19,6 +19,14 @@
   when: authorize_ssh_password is not defined
         or authorize_ssh_password == false
 
+- name: Set sshd port
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regex: '^(\s*#*\s*)?Port'
+    line: 'Port {{ sshd_port }}'
+    validate: '/usr/sbin/sshd -f %s -t'
+  notify: restart sshd
+
 - name: Set ssh authorized_keys
   authorized_key:
     key: "{{ ssh_authorized_keys | join('\n') }}"

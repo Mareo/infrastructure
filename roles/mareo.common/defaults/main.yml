@@ -1,3 +1,4 @@
+sshd_port: 22
 ssh_authorized_keys: []
 
 default_packages:

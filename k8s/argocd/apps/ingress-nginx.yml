@@ -53,7 +53,7 @@ spec:
           minAvailable: 1
           replicaCount: 1
         tcp:
-          30022: gitlab/gitlab-gitlab-shell:22
+          22: gitlab/gitlab-gitlab-shell:22
         defaultBackend:
           enabled: true
           replicaCount: 1
