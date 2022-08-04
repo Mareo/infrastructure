@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: external-ingress
+  name: petitstream-dev
   annotations:
     cert-manager.io/cluster-issuer: default-issuer
 spec:
@@ -16,7 +16,7 @@ spec:
               service:
                 name: petitstream
                 port:
-                  name: https
+                  name: http
   tls:
     - hosts:
         - dev.petitstream.com
