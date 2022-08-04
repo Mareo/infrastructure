@@ -15,7 +15,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: argocd-server
+                name: petitstream
                 port:
                   name: https
   tls:
