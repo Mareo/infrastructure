@@ -3,6 +3,7 @@ athena.mareo.fr
 
 [proxmox_vm]
 k3s-1.vm.athena.mareo.fr
+petitstream.vm.athena.mareo.fr
 
 [dhcp:children]
 proxmox

@@ -31,6 +31,8 @@ nft_define_host:
   k3s:
     name: k3s
     value: "192.168.0.1"
+    name: petitstream
+    value: "192.168.0.10"
 
 forwarded_ports:
   - dport: ssh
@@ -42,8 +44,6 @@ forwarded_ports:
   - dport: https
     host: "$k3s"
     port: 30443
-  - dport: 6443
-    host: "$k3s"
   - dport: smtp
     host: "$k3s"
     port: 30025
@@ -53,6 +53,12 @@ forwarded_ports:
   - dport: submission
     host: "$k3s"
     port: 30587
+  - dport: 6443
+    host: "$k3s"
+
+  - dport: 2210
+    host: "$petitstream"
+    port: 22
 
 
 # yamllint disable rule:line-length
