@@ -6,4 +6,4 @@ namespace: petitstream
 resources:
   - namespace.yml
   - service.yml
-  - ingress.yml
+  - ingresses.yml
