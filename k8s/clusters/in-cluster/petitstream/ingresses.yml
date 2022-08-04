@@ -1,28 +1,3 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: petitstream-dev
-  annotations:
-    cert-manager.io/cluster-issuer: default-issuer
-    nginx.ingress.kubernetes.io/proxy-read-timeout: 3600
-    nginx.ingress.kubernetes.io/proxy-send-timeout: 3600
-spec:
-  ingressClassName: public
-  rules:
-    - host: dev.petitstream.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: petitstream
-                port:
-                  number: 8000
-  tls:
-    - hosts:
-        - dev.petitstream.com
-      secretName: petitstream-dev-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -51,3 +26,29 @@ spec:
         - petitstream.com
         - www.petitstream.com
       secretName: petitstream-prod-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: petitstream-dev
+  annotations:
+    cert-manager.io/cluster-issuer: default-issuer
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 3600
+    nginx.ingress.kubernetes.io/proxy-send-timeout: 3600
+spec:
+  ingressClassName: public
+  rules:
+    - host: dev.petitstream.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: petitstream
+                port:
+                  number: 8000
+  tls:
+    - hosts:
+        - dev.petitstream.com
+      secretName: petitstream-dev-tls
