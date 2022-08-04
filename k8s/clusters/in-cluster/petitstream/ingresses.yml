@@ -18,7 +18,7 @@ spec:
               service:
                 name: petitstream
                 port:
-                  number: 80
+                  number: 8000
   tls:
     - hosts:
         - dev.petitstream.com
