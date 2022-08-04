@@ -45,10 +45,25 @@ spec:
                 name: petitstream
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - petitstream.com
+      secretName: petitstream-prod-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: www-petitstream-prod
+  annotations:
+    cert-manager.io/cluster-issuer: default-issuer
+    nginx.ingress.kubernetes.io/permanent-redirect: https://petitstream.com/$1
+spec:
+  ingressClassName: public
+  rules:
     - host: www.petitstream.com
       http:
         paths:
-          - path: /
+          - path: /(.*)
             pathType: Prefix
             backend:
               service:
@@ -57,6 +72,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - petitstream.com
         - www.petitstream.com
-      secretName: petitstream-prod-tls
+      secretName: www-petitstream-prod-tls
