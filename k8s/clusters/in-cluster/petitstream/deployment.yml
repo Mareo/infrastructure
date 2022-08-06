@@ -19,7 +19,8 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: bitnami/php-fpm:8.1
+          image: petitstream/petitstream:latest
+          imagePullPolicy: Always
           env:
             - name: NODE_ENV
               value: development
@@ -92,7 +93,8 @@ spec:
     spec:
       containers:
         - name: backend
-          image: bitnami/php-fpm:8.1
+          image: petitstream/petitstream:latest
+          imagePullPolicy: Always
           env:
             - name: NODE_ENV
               value: development
