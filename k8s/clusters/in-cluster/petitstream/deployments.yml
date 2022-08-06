@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: petitstream/petitstream:latest
+          image: petitstream/petitstream.com:latest
           imagePullPolicy: Always
           imagePullSecrets:
             - name: registry
@@ -95,7 +95,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: petitstream/petitstream:latest
+          image: petitstream/petitstream.com:latest
           imagePullPolicy: Always
           imagePullSecrets:
             - name: registry
