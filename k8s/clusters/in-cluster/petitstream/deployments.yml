@@ -61,16 +61,16 @@ spec:
             - name: DATABASE_HOST
               value: in-cluster-main-cluster.postgres.svc.cluster.local
             - name: DATABASE_DB
-              value: petitstream-dev
+              value: petitstream_dev
             - name: DATABASE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: petitstream.petitstream-dev.in-cluster-main-cluster.credentials
+                  name: petitstream.petitstream_dev.in-cluster-main-cluster.credentials
                   key: username
             - name: DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: petitstream.petitstream-dev.in-cluster-main-cluster.credentials
+                  name: petitstream.petitstream_dev.in-cluster-main-cluster.credentials
                   key: password
             - name: DATABASE_URL
               value: "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST)/$(DATABASE_DB)"
@@ -141,16 +141,16 @@ spec:
             - name: DATABASE_HOST
               value: in-cluster-main-cluster.postgres.svc.cluster.local
             - name: DATABASE_DB
-              value: petitstream-dev
+              value: petitstream_dev
             - name: DATABASE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: petitstream.petitstream-dev.in-cluster-main-cluster.credentials
+                  name: petitstream.petitstream_dev.in-cluster-main-cluster.credentials
                   key: username
             - name: DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: petitstream.petitstream-dev.in-cluster-main-cluster.credentials
+                  name: petitstream.petitstream_dev.in-cluster-main-cluster.credentials
                   key: password
             - name: DATABASE_URL
               value: "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST)/$(DATABASE_DB)"
