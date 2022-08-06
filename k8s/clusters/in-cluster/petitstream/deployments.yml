@@ -93,6 +93,8 @@ spec:
       labels:
         component: petitstream-backend-dev
     spec:
+      imagePullSecrets:
+        - name: registry
       containers:
         - name: backend
           image: petitstream/petitstream.com:latest
