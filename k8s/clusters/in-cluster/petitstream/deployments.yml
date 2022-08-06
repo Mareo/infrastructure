@@ -22,6 +22,8 @@ spec:
       containers:
         - name: frontend
           image: petitstream/petitstream.com:latest
+          command:
+            - /app/entrypoint.sh
           args:
             - backend
           imagePullPolicy: Always
@@ -100,6 +102,8 @@ spec:
       containers:
         - name: backend
           image: petitstream/petitstream.com:latest
+          command:
+            - /app/entrypoint.sh
           args:
             - backend
           imagePullPolicy: Always
