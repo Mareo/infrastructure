@@ -30,7 +30,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: petitstream-dev
+  name: petitstream-frontend-dev
   annotations:
     cert-manager.io/cluster-issuer: default-issuer
     nginx.ingress.kubernetes.io/proxy-read-timeout: 3600
@@ -45,9 +45,36 @@ spec:
             pathType: Prefix
             backend:
               service:
+                name: petitstream-frontend-dev
+                port:
+                  name: frontend
+  tls:
+    - hosts:
+        - dev.petitstream.com
+      secretName: petitstream-dev-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: petitstream-backend-dev
+  annotations:
+    cert-manager.io/cluster-issuer: default-issuer
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 3600
+    nginx.ingress.kubernetes.io/proxy-send-timeout: 3600
+spec:
+  ingressClassName: public
+  rules:
+    - host: dev.petitstream.com
+      http:
+        paths:
+          - path: /api(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
                 name: petitstream-dev
                 port:
-                  name: app
+                  name: backend
   tls:
     - hosts:
         - dev.petitstream.com
@@ -71,7 +98,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: petitstream-assets-dev
+                name: petitstream-assets
                 port:
                   number: 7443
   tls:

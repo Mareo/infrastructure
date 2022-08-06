@@ -9,7 +9,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: petitstream-assets-dev
+  name: petitstream-assets
 spec:
   type: ExternalName
   externalName: athena.mareo.fr
@@ -17,12 +17,25 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: petitstream-dev
+  name: petitstream-frontend-dev
 spec:
   type: ClusterIP
   selector:
-    component: petitstream-dev
+    component: petitstream-frontend-dev
   ports:
-    - name: app
-      port: 9000
-      targetPort: app
+    - name: frontend
+      port: 3000
+      targetPort: frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petitstream-backend-dev
+spec:
+  type: ClusterIP
+  selector:
+    component: petitstream-backend-dev
+  ports:
+    - name: backend
+      port: 3000
+      targetPort: backend

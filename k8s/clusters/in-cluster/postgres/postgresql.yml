@@ -17,6 +17,8 @@ spec:
     authentik.authentik: []
     gitlab.gitlab: []
     nextcloud.nextcloud: []
+    petitstream-dev.petitstream: []
+    petitstream.petitstream: []
     vaultwarden.vaultwarden: []
 
   # databases: name -> owner
@@ -24,6 +26,8 @@ spec:
     authentik: authentik.authentik
     gitlab: gitlab.gitlab
     nextcloud: nextcloud.nextcloud
+    petitstream-dev: petitstream-dev.petitstream
+    petitstream: petitstream.petitstream
     vaultwarden: vaultwarden.vaultwarden
 
   postgresql:
