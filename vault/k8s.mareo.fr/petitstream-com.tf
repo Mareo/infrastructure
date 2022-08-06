@@ -1,3 +1,12 @@
+resource "vault_generic_secret" "petitstream_registry" {
+  path         = "k8s/petitstream/registry"
+  disable_read = true
+  data_json = jsonencode({
+    username = "FIXME"
+    password = "FIXME"
+  })
+}
+
 resource "vault_generic_secret" "petitstream_twitch" {
   path         = "k8s/petitstream/twitch"
   disable_read = true
@@ -7,7 +16,7 @@ resource "vault_generic_secret" "petitstream_twitch" {
   })
 }
 
-resource "vault_generic_secret" "petitstream_object" {
+resource "vault_generic_secret" "petitstream_object-storage" {
   path         = "k8s/petitstream/object-storage"
   disable_read = true
   data_json = jsonencode({

@@ -73,6 +73,12 @@ proxmox_ceph_rgw_users:
     max_buckets: 1
     buckets:
       - postgresql
+  - uid: petitsream
+    display_name: petitstream
+    max_buckets: 2
+    buckets:
+      - petitstream-dev
+      - petitstream
 
 dhcp_subnets: "{{ dhcp_subnets_yaml|from_yaml }}"
 dhcp_interfaces: "{{ dhcp_interfaces_yaml|from_yaml|join(' ') }}"

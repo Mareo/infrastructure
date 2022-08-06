@@ -21,6 +21,8 @@ spec:
         - name: frontend
           image: petitstream/petitstream:latest
           imagePullPolicy: Always
+          imagePullSecrets:
+            - name: registry
           env:
             - name: NODE_ENV
               value: development
@@ -59,12 +61,12 @@ spec:
             - name: DATABASE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: petitstream-dev.petitstream.in-cluster-main-cluster.credentials
+                  name: petitstream.petitstream-dev.in-cluster-main-cluster.credentials
                   key: username
             - name: DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: petitstream-dev.petitstream.in-cluster-main-cluster.credentials
+                  name: petitstream.petitstream-dev.in-cluster-main-cluster.credentials
                   key: password
             - name: DATABASE_URL
               value: "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST)/$(DATABASE_DB)"
@@ -95,6 +97,8 @@ spec:
         - name: backend
           image: petitstream/petitstream:latest
           imagePullPolicy: Always
+          imagePullSecrets:
+            - name: registry
           env:
             - name: NODE_ENV
               value: development
@@ -133,12 +137,12 @@ spec:
             - name: DATABASE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: petitstream-dev.petitstream.in-cluster-main-cluster.credentials
+                  name: petitstream.petitstream-dev.in-cluster-main-cluster.credentials
                   key: username
             - name: DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: petitstream-dev.petitstream.in-cluster-main-cluster.credentials
+                  name: petitstream.petitstream-dev.in-cluster-main-cluster.credentials
                   key: password
             - name: DATABASE_URL
               value: "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST)/$(DATABASE_DB)"
