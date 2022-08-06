@@ -25,7 +25,7 @@ spec:
           command:
             - /app/entrypoint.sh
           args:
-            - backend
+            - frontend
           imagePullPolicy: Always
           env:
             - name: NODE_ENV
