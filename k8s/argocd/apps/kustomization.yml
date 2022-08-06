@@ -9,7 +9,8 @@ resources:
   - clusters.yml
   - external-secrets-operator.yml
   - gitlab.yml
-  - ingress-nginx.yml
+  - ingress-nginx-internal.yml
+  - ingress-nginx-public.yml
   - nextcloud.yml
   - rbd-csi.yml
   - redis.yml

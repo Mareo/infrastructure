@@ -24,7 +24,7 @@ spec:
     targetRevision: 4.1.0
     helm:
       values: |
-        fullnameOverride: ingress-nginx
+        fullnameOverride: ingress-nginx-public
         controller:
           watchIngressWithoutClass: true
           ingressClass: "public"
