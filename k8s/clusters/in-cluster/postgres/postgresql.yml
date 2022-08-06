@@ -17,7 +17,7 @@ spec:
     authentik.authentik: []
     gitlab.gitlab: []
     nextcloud.nextcloud: []
-    petitstream.petitstream_dev: []
+    petitstream.petitstream-dev: []
     petitstream.petitstream: []
     vaultwarden.vaultwarden: []
 
@@ -26,7 +26,7 @@ spec:
     authentik: authentik.authentik
     gitlab: gitlab.gitlab
     nextcloud: nextcloud.nextcloud
-    petitstream_dev: petitstream.petitstream_dev
+    petitstream_dev: petitstream.petitstream-dev
     petitstream: petitstream.petitstream
     vaultwarden: vaultwarden.vaultwarden
 

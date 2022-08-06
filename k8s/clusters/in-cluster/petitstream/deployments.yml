@@ -36,18 +36,6 @@ spec:
               value: ./
             - name: ORIGIN
               value: https://dev.petitstream.com
-            - name: TWITCH_PRIMARY_STREAM_PICKER
-              value: "true"
-            - name: TWITCH_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: petitstream-twitch
-                  key: client_id
-            - name: TWITCH_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: petitstream-twitch
-                  key: client_secret
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
@@ -58,22 +46,6 @@ spec:
                 secretKeyRef:
                   name: petitstream-object-storage
                   key: s3_secret_key
-            - name: DATABASE_HOST
-              value: in-cluster-main-cluster.postgres.svc.cluster.local
-            - name: DATABASE_DB
-              value: petitstream_dev
-            - name: DATABASE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: petitstream.petitstream-dev.in-cluster-main-cluster.credentials
-                  key: username
-            - name: DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: petitstream.petitstream-dev.in-cluster-main-cluster.credentials
-                  key: password
-            - name: DATABASE_URL
-              value: "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST)/$(DATABASE_DB)"
           ports:
             - containerPort: 3000
               protocol: TCP
@@ -89,9 +61,7 @@ spec:
     matchLabels:
       component: petitstream-backend-dev
   strategy:
-    rollingUpdate:
-      maxSurge: 50%
-      maxUnavailable: 50%
+    type: Recreate
   template:
     metadata:
       labels:
@@ -158,3 +128,9 @@ spec:
             - containerPort: 3000
               protocol: TCP
               name: backend
+          livenessProbe:
+            httpGet:
+              path: /get_next_stream
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 5
