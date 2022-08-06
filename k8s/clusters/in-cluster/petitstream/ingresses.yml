@@ -72,7 +72,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: petitstream-dev
+                name: petitstream-backend-dev
                 port:
                   name: backend
   tls:
