@@ -21,4 +21,4 @@ data:
 
   additional_pod_capabilities: "SYS_NICE"
 
-  pod_environment_secret: "postgres-pod-secrets"
+  #pod_environment_secret: "postgres-pod-secrets"
