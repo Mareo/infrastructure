@@ -22,6 +22,8 @@ spec:
       containers:
         - name: frontend
           image: petitstream/petitstream.com:latest
+          args:
+            - backend
           imagePullPolicy: Always
           env:
             - name: NODE_ENV
@@ -98,6 +100,8 @@ spec:
       containers:
         - name: backend
           image: petitstream/petitstream.com:latest
+          args:
+            - backend
           imagePullPolicy: Always
           env:
             - name: NODE_ENV
