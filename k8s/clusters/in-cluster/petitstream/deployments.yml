@@ -17,12 +17,12 @@ spec:
       labels:
         component: petitstream-frontend-dev
     spec:
+      imagePullSecrets:
+        - name: registry
       containers:
         - name: frontend
           image: petitstream/petitstream.com:latest
           imagePullPolicy: Always
-          imagePullSecrets:
-            - name: registry
           env:
             - name: NODE_ENV
               value: development
@@ -97,8 +97,6 @@ spec:
         - name: backend
           image: petitstream/petitstream.com:latest
           imagePullPolicy: Always
-          imagePullSecrets:
-            - name: registry
           env:
             - name: NODE_ENV
               value: development
