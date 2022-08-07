@@ -1,8 +1,11 @@
+# yamllint disable rule:line-length
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: petitstream-frontend-prod
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: 1
   selector:
@@ -55,6 +58,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: petitstream-backend-master-prod
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   replicas: 1
   selector:
