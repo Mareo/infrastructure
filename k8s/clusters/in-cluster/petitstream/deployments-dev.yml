@@ -4,13 +4,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: petitstream-frontend-dev
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: 1
   selector:
     matchLabels:
       component: petitstream-frontend-dev
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
   strategy:
     rollingUpdate:
       maxSurge: 50%
