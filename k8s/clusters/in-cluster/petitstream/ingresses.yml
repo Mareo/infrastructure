@@ -51,56 +51,56 @@ spec:
     - hosts:
         - dev.petitstream.com
       secretName: petitstream-dev-tls
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: petitstream-backend-dev
-  annotations:
-    cert-manager.io/cluster-issuer: default-issuer
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-spec:
-  ingressClassName: internal
-  rules:
-    - host: dev.petitstream.com
-      http:
-        paths:
-          - path: /api(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: petitstream-backend-dev
-                port:
-                  name: backend
-  tls:
-    - hosts:
-        - dev.petitstream.com
-      secretName: petitstream-dev-tls
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: petitstream-assets-dev
-  annotations:
-    cert-manager.io/cluster-issuer: default-issuer
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    nginx.ingress.kubernetes.io/rewrite-target: /petitstream-assets-dev/$2
-spec:
-  ingressClassName: internal
-  rules:
-    - host: dev.petitstream.com
-      http:
-        paths:
-          - path: /assets(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: petitstream-assets
-                port:
-                  number: 7443
-  tls:
-    - hosts:
-        - dev.petitstream.com
-      secretName: petitstream-dev-tls
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: petitstream-backend-dev
+#  annotations:
+#    #cert-manager.io/cluster-issuer: default-issuer
+#    nginx.ingress.kubernetes.io/rewrite-target: /$2
+#    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+#    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+#spec:
+#  ingressClassName: internal
+#  rules:
+#    - host: dev.petitstream.com
+#      http:
+#        paths:
+#          - path: /api(/|$)(.*)
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: petitstream-backend-dev
+#                port:
+#                  name: backend
+#  tls:
+#    - hosts:
+#        - dev.petitstream.com
+#      secretName: petitstream-dev-tls
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: petitstream-assets-dev
+#  annotations:
+#    #cert-manager.io/cluster-issuer: default-issuer
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#    nginx.ingress.kubernetes.io/rewrite-target: /petitstream-assets-dev/$2
+#spec:
+#  ingressClassName: internal
+#  rules:
+#    - host: dev.petitstream.com
+#      http:
+#        paths:
+#          - path: /assets(/|$)(.*)
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: petitstream-assets
+#                port:
+#                  number: 7443
+#  tls:
+#    - hosts:
+#        - dev.petitstream.com
+#      secretName: petitstream-dev-tls
