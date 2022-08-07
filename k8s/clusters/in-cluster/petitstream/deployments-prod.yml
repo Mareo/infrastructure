@@ -29,7 +29,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: NODE_ENV
-              value: development
+              value: production
             - name: PORT
               value: "3000"
             - name: LOG_DIR
@@ -81,7 +81,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: NODE_ENV
-              value: development
+              value: production
             - name: PORT
               value: "3000"
             - name: LOG_DIR
@@ -113,7 +113,7 @@ spec:
             - name: DATABASE_HOST
               value: in-cluster-main-cluster.postgres.svc.cluster.local
             - name: DATABASE_DB
-              value: petitstream_dev
+              value: petitstream
             - name: DATABASE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -201,7 +201,7 @@ spec:
             - name: DATABASE_HOST
               value: in-cluster-main-cluster.postgres.svc.cluster.local
             - name: DATABASE_DB
-              value: petitstream_dev
+              value: petitstream
             - name: DATABASE_USERNAME
               valueFrom:
                 secretKeyRef:
