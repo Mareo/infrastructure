@@ -6,8 +6,8 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: default-issuer
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: 3600
-    nginx.ingress.kubernetes.io/proxy-send-timeout: 3600
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
 spec:
   ingressClassName: public
   rules:
@@ -31,10 +31,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: petitstream-frontend-dev
+  namespace: authentik
   annotations:
     cert-manager.io/cluster-issuer: default-issuer
-    nginx.ingress.kubernetes.io/proxy-read-timeout: 3600
-    nginx.ingress.kubernetes.io/proxy-send-timeout: 3600
 spec:
   ingressClassName: public
   rules:
@@ -45,9 +44,9 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: petitstream-frontend-dev
+                name: authentik
                 port:
-                  name: frontend
+                  name: http
   tls:
     - hosts:
         - dev.petitstream.com
@@ -60,10 +59,10 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: default-issuer
     nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/proxy-read-timeout: 3600
-    nginx.ingress.kubernetes.io/proxy-send-timeout: 3600
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
 spec:
-  ingressClassName: public
+  ingressClassName: internal
   rules:
     - host: dev.petitstream.com
       http:
@@ -89,7 +88,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/rewrite-target: /petitstream-assets-dev/$2
 spec:
-  ingressClassName: public
+  ingressClassName: internal
   rules:
     - host: dev.petitstream.com
       http:
