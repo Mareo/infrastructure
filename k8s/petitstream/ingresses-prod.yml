@@ -15,14 +15,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: petitstream-frontend-prod
+                name: petitstream-frontend
                 port:
                   name: frontend
           - path: /get_next_stream.php
             pathType: Prefix
             backend:
               service:
-                name: petitstream-backend-prod
+                name: petitstream-backend
                 port:
                   name: backend
   tls:
@@ -51,7 +51,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: petitstream-backend-prod
+                name: petitstream-backend
                 port:
                   name: backend
   tls:
