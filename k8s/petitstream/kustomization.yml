@@ -4,9 +4,7 @@ kind: Kustomization
 namespace: petitstream
 
 resources:
-  - deployments-dev.yml
   - deployments-prod.yml
-  - ingresses-dev.yml
   - ingresses-prod.yml
   - namespace.yml
   - secrets.yml
