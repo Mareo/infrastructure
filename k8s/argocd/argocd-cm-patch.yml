@@ -6,7 +6,7 @@ metadata:
   name: argocd-cm
 data:
   url: "https://argocd.mareo.fr"
-  statusbadge.enabled: "true"
+  exec.enabled: "true"
   oidc.config: |
     name: authentik
     issuer: https://auth.mareo.fr/application/o/argocd/
