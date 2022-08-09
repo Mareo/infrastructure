@@ -12,6 +12,8 @@ spec:
   destinations:
     - namespace: 'petitstream'
       server: 'https://kubernetes.default.svc'
+    - namespace: 'petitstream-dev'
+      server: 'https://kubernetes.default.svc'
   clusterResourceWhitelist:
     - group: ''
       kind: Namespace
