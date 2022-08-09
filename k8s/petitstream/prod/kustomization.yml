@@ -4,11 +4,9 @@ kind: Kustomization
 namespace: petitstream
 
 resources:
-  - deployments.yml
-  - ingresses.yml
+  - ../base/
+
   - namespace.yml
-  - secrets.yml
-  - services.yml
 
 replicas:
   - name: petitstream-frontend
@@ -22,18 +20,23 @@ images:
   - name: petitstream/petitstream.com
     newTag: v0.1.1
 
+configMapGenerator:
+  - name: petitstream-config
+    literals:
+      - NODE_ENV=production
+      - ORIGIN=https://petitstream.com
+      - DATABASE_DB=petitstream
+      - DATABASE_HOST=in-cluster-main-cluster.postgres.svc.cluster.local
+
 patches:
-  - target:
-      kind: ExternalSecret
-    patch: |-
-      apiVersion: external-secrets.io/v1beta1
-      kind: ExternalSecret
-      metadata:
-        name: unused
-      spec:
-        target:
-          template:
-            metadata:
-              annotations:
-                argocd.argoproj.io/compare-options: IgnoreExtraneous
-                argocd.argoproj.io/sync-options: Prune=false
+  - path: patch-db-creds.yml
+    target:
+      kind: Deployment
+      name: petitstream-backend-master
+  - path: patch-db-creds.yml
+    target:
+      kind: Deployment
+      name: petitstream-backend-worker
+  - path: patch-ingresses.yml
+    target:
+      kind: Ingress
