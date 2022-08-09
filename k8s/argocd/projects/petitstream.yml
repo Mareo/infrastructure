@@ -21,7 +21,7 @@ spec:
     - name: dev
       description: Full access on development namespace
       policies:
-        - p, proj:petitstream:dev, applications, get, petitstream/petitstream-dev, allow
+        - p, proj:petitstream:dev, applications, get, petitstream/*, allow
         - p, proj:petitstream:dev, applications, sync, petitstream/petitstream-dev, allow
         - p, proj:petitstream:dev, applications, action/apps/Deployment/restart, petitstream/petitstream-dev, allow
         - p, proj:petitstream:dev, exec, create, petitstream/petitstream-dev, allow
