@@ -6,8 +6,8 @@ namespace: petitstream-dev
 resources:
   - ../base/
 
-  - deployments-dev.yml
-  - ingresses-dev.yml
+  - deployments.yml
+  - ingresses.yml
   - namespace.yml
 
 replicas:
