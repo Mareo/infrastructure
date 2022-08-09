@@ -24,5 +24,4 @@ spec:
       description: Ops access
       policies:
         - p, proj:petitstream:ops, applications, get, petitstream/*, allow
-        - p, proj:petitstream:ops, exec, create, */*, allow
-        - p, proj:petitstream:ops, deployments, create, */, allow
+        - p, proj:petitstream:ops, exec, create, petitstream/*, allow
