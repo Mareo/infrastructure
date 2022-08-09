@@ -1,0 +1,20 @@
+---
+apiversion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: petitstream
+
+resources:
+  - ../base/
+
+  - deployments.yml
+  - ingresses.yml
+  - namespace.yml
+
+replicas:
+  - name: petitstream-frontend
+    count: 1
+  - name: petitstream-backend-master
+    count: 1
+  - name: petitstream-backend-worker
+    count: 1
+
