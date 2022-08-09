@@ -27,5 +27,5 @@ patchesJson6902:
             - ""
           resources:
             - pods/exec
-          vers:
+          verbs:
             - create
