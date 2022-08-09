@@ -18,17 +18,22 @@ spec:
     - group: ''
       kind: Namespace
   roles:
-    - name: read-only
-      description: Read-only access
+    - name: dev
+      description: Full access on development namespace
       policies:
-        - p, proj:petitstream:read-only, applications, get, petitstream/*, allow
+        - p, proj:petitstream:dev, applications, get, petitstream/petitstream-dev, allow
+        - p, proj:petitstream:dev, applications, sync, petitstream/petitstream-dev, allow
+        - p, proj:petitstream:dev, applications, action/apps/Deployment/restart, petitstream/petitstream-dev, allow
+        - p, proj:petitstream:dev, exec, create, petitstream/petitstream-dev, allow
       groups:
         - argocd_petitstream
+        - argocd_petitstream_ops
     - name: ops
-      description: Ops access
+      description: Full access on production namespace
       policies:
-        - p, proj:petitstream:ops, applications, get, petitstream/*, allow
-        - p, proj:petitstream:ops, applications, action/apps/Deployment/restart, petitstream/*, allow
-        - p, proj:petitstream:ops, exec, create, petitstream/*, allow
+        - p, proj:petitstream:ops, applications, get, petitstream/petitstream, allow
+        - p, proj:petitstream:ops, applications, sync, petitstream/petitstream, allow
+        - p, proj:petitstream:ops, applications, action/apps/Deployment/restart, petitstream/petitstream, allow
+        - p, proj:petitstream:ops, exec, create, petitstream/petitstream, allow
       groups:
         - argocd_petitstream_ops
