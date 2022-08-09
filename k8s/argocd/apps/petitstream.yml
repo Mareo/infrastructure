@@ -15,4 +15,4 @@ spec:
     namespace: "petitstream"
   syncPolicy:
     automated:
-      prune: true
+      prune: false
