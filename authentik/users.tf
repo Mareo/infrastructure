@@ -40,6 +40,15 @@ locals {
         "argocd_petitstream_ops",
       ]
     }
+    "drummyjohn" = {
+      name  = "DrummyJohn"
+      email = "jonathan.monnet28@gmail.com"
+      groups = [
+        "argocd",
+        "argocd_petitstream",
+        "argocd_petitstream_ops",
+      ]
+    }
   }
 }
 
