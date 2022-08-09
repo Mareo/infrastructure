@@ -1,6 +1,8 @@
 locals {
   groups = [
     "argocd",
+    "argocd_petitstream",
+    "argocd_petitstream_ops",
     "argocd_admins",
     "gitlab",
     "gitlab_externals",
@@ -12,6 +14,7 @@ locals {
     "mail_service_accounts",
     "nextcloud",
     "nextcloud_admins",
+    "nextcloud_service_accounts",
     "vault",
     "vault_admins",
   ]

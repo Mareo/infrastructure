@@ -21,8 +21,8 @@ spec:
       policies:
         - p, proj:petitstream:read-only, applications, get, petitstream/*, allow
     - name: ops
-      description: Read-only access
+      description: Ops access
       policies:
-        - p, proj:petitstream:read-only, applications, get, petitstream/*, allow
-        - p, proj:petitstream:read-only, exec, create, */*, allow
-        - p, proj:petitstream:read-only, deployments, create, */, allow
+        - p, proj:petitstream:ops, applications, get, petitstream/*, allow
+        - p, proj:petitstream:ops, exec, create, */*, allow
+        - p, proj:petitstream:ops, deployments, create, */, allow

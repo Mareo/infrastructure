@@ -31,6 +31,15 @@ locals {
         "nextcloud",
       ]
     }
+    "deadeye" = {
+      name  = "DeadEye"
+      email = "eric.ly.perso@gmail.com"
+      groups = [
+        "argocd",
+        "argocd_petitstream",
+        "argocd_petitstream_ops",
+      ]
+    }
   }
 }
 
