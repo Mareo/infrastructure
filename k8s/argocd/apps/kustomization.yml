@@ -12,6 +12,7 @@ resources:
   - ingress-nginx-internal.yml
   - ingress-nginx-public.yml
   - nextcloud.yml
+  - petitstream-dev.yml
   - petitstream.yml
   - rbd-csi.yml
   - redis-operator.yml

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: petitstream-dev
+  labels:
+    app: petitstream-dev
+spec:
+  project: petitstream
+  source:
+    repoURL: https://gitlab.mareo.fr/iac/infrastructure.git
+    targetRevision: HEAD
+    path: "k8s/petitstream/dev/"
+  destination:
+    name: "in-cluster"
+    namespace: "petitstream-dev"
+  syncPolicy:
+    automated:
+      prune: true
