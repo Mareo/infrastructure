@@ -20,9 +20,13 @@ spec:
       description: Read-only access
       policies:
         - p, proj:petitstream:read-only, applications, get, petitstream/*, allow
+      groups:
+        - argocd_petitstream
     - name: ops
       description: Ops access
       policies:
         - p, proj:petitstream:ops, applications, get, petitstream/*, allow
         - p, proj:petitstream:ops, applications, action/apps/Deployment/restart, petitstream/*, allow
         - p, proj:petitstream:ops, exec, create, petitstream/*, allow
+      groups:
+        - argocd_petitstream_ops
