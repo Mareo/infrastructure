@@ -26,6 +26,7 @@ spec:
                   name: backend
   tls:
     - hosts:
+        - petitstream.com
         - dev.petitstream.com
       secretName: petitstream-dev-tls
 ---
