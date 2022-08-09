@@ -16,6 +16,10 @@ replicas:
   - name: petitstream-backend-worker
     count: 0
 
+images:
+  - name: petitstream/petitstream.com
+    newTag: latest
+
 configMapGenerator:
   - name: petitstream-config
     literals:

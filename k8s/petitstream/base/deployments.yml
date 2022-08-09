@@ -25,7 +25,7 @@ spec:
         - name: registry
       containers:
         - name: frontend
-          image: petitstream/petitstream.com:latest
+          image: petitstream/petitstream.com
           args:
             - frontend
           envFrom:
@@ -87,7 +87,7 @@ spec:
         - name: registry
       containers:
         - name: backend
-          image: petitstream/petitstream.com:latest
+          image: petitstream/petitstream.com
           args:
             - backend
           imagePullPolicy: Always
@@ -162,7 +162,7 @@ spec:
         - name: registry
       containers:
         - name: backend
-          image: petitstream/petitstream.com:latest
+          image: petitstream/petitstream.com
           args:
             - backend
           imagePullPolicy: Always
