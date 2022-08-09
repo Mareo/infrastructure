@@ -3,7 +3,7 @@ metadata:
   name: unused
   annotations:
     nginx.ingress.kubernetes.io/auth-url: |-
-        http://authentik.authentik.svc/outpost.goauthentik.io/auth/nginx
+        http://authentik.authentik.svc.cluster.local/outpost.goauthentik.io/auth/nginx
     nginx.ingress.kubernetes.io/auth-signin: |-
         https://dev.petitstream.com/outpost.goauthentik.io/start?rd=$escaped_request_uri
     nginx.ingress.kubernetes.io/auth-response-headers: |-
