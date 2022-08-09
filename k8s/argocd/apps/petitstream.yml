@@ -12,6 +12,7 @@ spec:
     path: "k8s/petitstream/"
   destination:
     name: "in-cluster"
+    namespace: "petitstream"
   syncPolicy:
     automated:
       prune: true
