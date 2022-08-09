@@ -8,6 +8,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: 1
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       component: petitstream-frontend
@@ -60,6 +61,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   replicas: 1
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       component: petitstream-backend
@@ -144,6 +146,7 @@ metadata:
   name: petitstream-backend-worker
 spec:
   replicas: 0
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       component: petitstream-backend
