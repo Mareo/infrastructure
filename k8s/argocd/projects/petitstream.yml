@@ -24,7 +24,7 @@ spec:
         - p, proj:petitstream:dev, applications, get, petitstream/*, allow
         - p, proj:petitstream:dev, applications, sync, petitstream/petitstream-dev, allow
         - p, proj:petitstream:dev, applications, action/apps/Deployment/restart, petitstream/petitstream-dev, allow
-        - p, proj:petitstream:dev, applications, action/apps/pod/delete, petitstream/petitstream-dev, allow
+        - p, proj:petitstream:dev, applications, action//Pod/delete, petitstream/petitstream-dev, allow
         - p, proj:petitstream:dev, exec, create, petitstream/petitstream-dev, allow
       groups:
         - argocd_petitstream_devs
