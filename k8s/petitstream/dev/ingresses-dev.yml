@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: petitstream-frontend-dev
+  name: petitstream-frontend
   annotations:
     cert-manager.io/cluster-issuer: default-issuer
 spec:
@@ -14,14 +14,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: petitstream-frontend-dev
+                name: petitstream-frontend
                 port:
                   name: frontend
           - path: /get_next_stream.php
             pathType: Prefix
             backend:
               service:
-                name: petitstream-backend-dev
+                name: petitstream-backend
                 port:
                   name: backend
   tls:
@@ -33,7 +33,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: petitstream-backend-dev
+  name: petitstream-backend
   annotations:
     cert-manager.io/cluster-issuer: default-issuer
     nginx.ingress.kubernetes.io/rewrite-target: /$2
@@ -49,7 +49,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: petitstream-backend-dev
+                name: petitstream-backend
                 port:
                   name: backend
   tls:

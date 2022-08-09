@@ -10,3 +10,11 @@ resources:
   - ingresses-dev.yml
   - namespace.yml
 
+replicas:
+  - name: petitstream-frontend
+    count: 1
+  - name: petitstream-backend-master
+    count: 1
+  - name: petitstream-backend-worker
+    count: 0
+
