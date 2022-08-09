@@ -10,7 +10,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      component: petitstream-frontend-dev
+      component: petitstream-frontend
   strategy:
     rollingUpdate:
       maxSurge: 50%
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        component: petitstream-frontend-dev
+        component: petitstream-frontend
     spec:
       imagePullSecrets:
         - name: registry
@@ -55,21 +55,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: petitstream-backend-master-dev
+  name: petitstream-backend-master
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
-      component: petitstream-backend-dev
+      component: petitstream-backend
       role: master
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        component: petitstream-backend-dev
+        component: petitstream-backend
         role: master
     spec:
       imagePullSecrets:
@@ -141,12 +141,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: petitstream-backend-worker-dev
+  name: petitstream-backend-worker
 spec:
   replicas: 0
   selector:
     matchLabels:
-      component: petitstream-backend-dev
+      component: petitstream-backend
       role: worker
   strategy:
     rollingUpdate:
@@ -155,7 +155,7 @@ spec:
   template:
     metadata:
       labels:
-        component: petitstream-backend-dev
+        component: petitstream-backend
         role: worker
     spec:
       imagePullSecrets:
