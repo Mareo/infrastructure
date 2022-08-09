@@ -6,7 +6,6 @@ resources:
   - ../base/
   - ../../apps/postgres-operator/
   - mail/
-  - petitstream/
   - postgres/
   - secrets/
 
