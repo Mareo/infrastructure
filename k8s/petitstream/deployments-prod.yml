@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: petitstream-frontend-prod
+  name: petitstream-frontend
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
