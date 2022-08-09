@@ -17,6 +17,7 @@ spec:
       http:
         paths:
           - path: /outpost.goauthentik.io
+            pathType: Prefix
             backend:
               service:
                 name: authentik-proxy
