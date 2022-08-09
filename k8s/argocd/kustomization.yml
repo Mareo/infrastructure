@@ -9,6 +9,7 @@ resources:
   - argocd-oidc.yml
 
   - apps
+  - projects
 
 patches:
   - path: argocd-cm-patch.yml

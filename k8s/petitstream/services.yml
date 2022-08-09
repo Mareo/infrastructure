@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: petitstream
+spec:
+  type: ExternalName
+  externalName: petitstream.vm.athena.mareo.fr
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petitstream-assets
+spec:
+  type: ExternalName
+  externalName: athena.mareo.fr
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petitstream-frontend-prod
+spec:
+  type: ClusterIP
+  selector:
+    component: petitstream-frontend-prod
+  ports:
+    - name: frontend
+      port: 3000
+      targetPort: frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petitstream-backend-prod
+spec:
+  type: ClusterIP
+  selector:
+    component: petitstream-backend-prod
+  ports:
+    - name: backend
+      port: 3000
+      targetPort: backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petitstream-frontend-dev
+spec:
+  type: ClusterIP
+  selector:
+    component: petitstream-frontend-dev
+  ports:
+    - name: frontend
+      port: 3000
+      targetPort: frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petitstream-backend-dev
+spec:
+  type: ClusterIP
+  selector:
+    component: petitstream-backend-dev
+  ports:
+    - name: backend
+      port: 3000
+      targetPort: backend

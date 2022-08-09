@@ -1,0 +1,22 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: petitstream
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: 'petitstream'
+      server: 'https://kubernetes.default.svc'
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+roles:
+  - name: read-only
+    description: Read-only access
+    policies:
+      - p, proj:petitstream:read-only, applications, get, my-project/*, allow

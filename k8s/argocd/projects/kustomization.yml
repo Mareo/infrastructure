@@ -1,0 +1,7 @@
+---
+kind: Kustomization
+namespace: argocd
+
+resources:
+  - default.yml
+  - petitstream.yml
