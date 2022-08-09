@@ -13,6 +13,6 @@ spec:
   destination:
     name: "in-cluster"
     namespace: "petitstream"
-  syncPolicy:
-    automated:
-      prune: false
+  #syncPolicy:
+    #automated:
+    #  prune: false
