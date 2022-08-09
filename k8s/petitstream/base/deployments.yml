@@ -90,7 +90,6 @@ spec:
           image: petitstream/petitstream.com
           args:
             - backend
-          imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: petitstream-config
@@ -165,7 +164,6 @@ spec:
           image: petitstream/petitstream.com
           args:
             - backend
-          imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: petitstream-config
