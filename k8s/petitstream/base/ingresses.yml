@@ -5,6 +5,8 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: default-issuer
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+  labels:
+    auth-request: "enabled"
 spec:
   ingressClassName: public
   rules:
@@ -40,6 +42,8 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+  labels:
+    auth-request: "enabled"
 spec:
   ingressClassName: public
   rules:

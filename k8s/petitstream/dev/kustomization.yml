@@ -7,6 +7,7 @@ resources:
   - ../base/
 
   - namespace.yml
+  - authentik-proxy.yml
 
 replicas:
   - name: petitstream-frontend
@@ -37,6 +38,10 @@ patches:
     target:
       kind: Deployment
       name: petitstream-backend-worker
-  - path: patch-ingresses.yml
+  - path: patch-ingresses-hosts.yml
     target:
       kind: Ingress
+  - path: patch-ingresses-auth-request.yml
+    target:
+      kind: Ingress
+      labelSelector: "auth-request=enabled"
