@@ -28,16 +28,14 @@ spec:
           image: petitstream/petitstream.com:latest
           args:
             - frontend
-          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: petitstream-config
           env:
-            - name: NODE_ENV
-              value: development
             - name: PORT
               value: "3000"
             - name: LOG_DIR
               value: ./
-            - name: ORIGIN
-              value: https://dev.petitstream.com
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
@@ -52,6 +50,17 @@ spec:
             - containerPort: 3000
               protocol: TCP
               name: frontend
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 5
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -82,15 +91,14 @@ spec:
           args:
             - backend
           imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: petitstream-config
           env:
-            - name: NODE_ENV
-              value: development
             - name: PORT
               value: "3000"
             - name: LOG_DIR
               value: ./
-            - name: ORIGIN
-              value: https://dev.petitstream.com
             - name: TWITCH_PRIMARY_STREAM_PICKER
               value: "true"
             - name: TWITCH_CLIENT_ID
@@ -113,26 +121,15 @@ spec:
                 secretKeyRef:
                   name: petitstream-object-storage
                   key: s3_secret_key
-            - name: DATABASE_HOST
-              value: in-cluster-main-cluster.postgres.svc.cluster.local
-            - name: DATABASE_DB
-              value: petitstream_dev
-            - name: DATABASE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: petitstream-dev.petitstream-dev.in-cluster-main-cluster.credentials
-                  key: username
-            - name: DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: petitstream-dev.petitstream-dev.in-cluster-main-cluster.credentials
-                  key: password
-            - name: DATABASE_URL
-              value: "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST)/$(DATABASE_DB)"
           ports:
             - containerPort: 3000
               protocol: TCP
               name: backend
+          readinessProbe:
+            httpGet:
+              path: /get_next_stream
+              port: 3000
+            periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /get_next_stream
@@ -169,15 +166,14 @@ spec:
           args:
             - backend
           imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: petitstream-config
           env:
-            - name: NODE_ENV
-              value: development
             - name: PORT
               value: "3000"
             - name: LOG_DIR
               value: ./
-            - name: ORIGIN
-              value: https://dev.petitstream.com
             - name: TWITCH_PRIMARY_STREAM_PICKER
               value: "false"
             - name: TWITCH_CLIENT_ID
@@ -200,26 +196,15 @@ spec:
                 secretKeyRef:
                   name: petitstream-object-storage
                   key: s3_secret_key
-            - name: DATABASE_HOST
-              value: in-cluster-main-cluster.postgres.svc.cluster.local
-            - name: DATABASE_DB
-              value: petitstream_dev
-            - name: DATABASE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: petitstream-dev.petitstream-dev.in-cluster-main-cluster.credentials
-                  key: username
-            - name: DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: petitstream-dev.petitstream-dev.in-cluster-main-cluster.credentials
-                  key: password
-            - name: DATABASE_URL
-              value: "postgresql://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_HOST)/$(DATABASE_DB)"
           ports:
             - containerPort: 3000
               protocol: TCP
               name: backend
+          readinessProbe:
+            httpGet:
+              path: /get_next_stream
+              port: 3000
+            periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /get_next_stream

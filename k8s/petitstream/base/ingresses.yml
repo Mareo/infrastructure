@@ -4,10 +4,11 @@ metadata:
   name: petitstream-frontend
   annotations:
     cert-manager.io/cluster-issuer: default-issuer
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
   ingressClassName: public
   rules:
-    - host: dev.petitstream.com
+    - host: petitstream.com
       http:
         paths:
           - path: /
@@ -27,8 +28,7 @@ spec:
   tls:
     - hosts:
         - petitstream.com
-        - dev.petitstream.com
-      secretName: petitstream-dev-tls
+      secretName: petitstream-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -39,10 +39,11 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
   ingressClassName: public
   rules:
-    - host: dev.petitstream.com
+    - host: petitstream.com
       http:
         paths:
           - path: /api(/|$)(.*)
@@ -55,5 +56,4 @@ spec:
   tls:
     - hosts:
         - petitstream.com
-        - dev.petitstream.com
-      secretName: petitstream-dev-tls
+      secretName: petitstream-tls

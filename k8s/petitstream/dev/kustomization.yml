@@ -6,8 +6,6 @@ namespace: petitstream-dev
 resources:
   - ../base/
 
-  - deployments.yml
-  - ingresses.yml
   - namespace.yml
 
 replicas:
@@ -18,3 +16,23 @@ replicas:
   - name: petitstream-backend-worker
     count: 0
 
+configMapGenerator:
+  - name: petitstream-config
+    literals:
+      - NODE_ENV=development
+      - ORIGIN=https://dev.petitstream.com
+      - DATABASE_DB=petitstream_dev
+      - DATABASE_HOST=in-cluster-main-cluster.postgres.svc.cluster.local
+
+patches:
+  - path: patch-db-creds.yml
+    target:
+      kind: Deployment
+      name: petitstream-backend-master
+  - path: patch-db-creds.yml
+    target:
+      kind: Deployment
+      name: petitstream-backend-worker
+  - path: patch-ingresses.yml
+    target:
+      kind: Ingress
