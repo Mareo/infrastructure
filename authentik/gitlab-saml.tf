@@ -44,9 +44,6 @@ resource "authentik_policy_binding" "gitlab-saml_group-filtering" {
     "gitlab_externals",
     "gitlab_auditors",
     "gitlab_admins",
-
-    "petitstream_devs",
-    "petitstream_ops",
   ] : idx => value }
   target = authentik_application.gitlab-saml.uuid
   group  = authentik_group.groups[each.value].id

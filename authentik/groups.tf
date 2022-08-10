@@ -6,6 +6,7 @@ locals {
     "gitlab_externals",
     "gitlab_auditors",
     "gitlab_admins",
+    "hedgedoc",
     "kubernetes",
     "kubernetes_admins",
     "mail",

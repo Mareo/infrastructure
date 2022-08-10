@@ -12,15 +12,16 @@ locals {
         ]
       }
       groups = [
-        "mail",
         "argocd_admins",
         "gitlab_admins",
+        "hedgedoc",
         "kubernetes_admins",
+        "mail",
         "nextcloud_admins",
-        "vault_admins",
-        "vaultwarden",
         "petitstream_devs",
         "petitstream_ops",
+        "vault_admins",
+        "vaultwarden",
       ]
       is_admin = true
     }
@@ -33,7 +34,9 @@ locals {
       }
       groups = [
         "gitlab",
+        "hedgedoc",
         "nextcloud",
+	"vaultwarden",
       ]
     }
     "deadeye" = {
@@ -41,6 +44,8 @@ locals {
       email = "eric.ly.perso@gmail.com"
       path  = "users/petitstream"
       groups = [
+        "gitlab",
+        "hedgedoc",
         "petitstream_devs",
         "petitstream_ops",
       ]
@@ -50,6 +55,8 @@ locals {
       email = "jonathan.monnet28@gmail.com"
       path  = "users/petitstream"
       groups = [
+        "gitlab",
+        "hedgedoc",
         "petitstream_devs",
         "petitstream_ops",
       ]
@@ -59,6 +66,8 @@ locals {
       email = "philippe.grad@gmail.com"
       path  = "users/petitstream"
       groups = [
+        "gitlab",
+        "hedgedoc",
         "petitstream_devs",
         "petitstream_ops",
       ]
@@ -68,6 +77,8 @@ locals {
       email = "streampetit@gmail.com"
       path  = "users/petitstream"
       groups = [
+        "gitlab",
+        "hedgedoc",
         "petitstream_devs",
       ]
     }
