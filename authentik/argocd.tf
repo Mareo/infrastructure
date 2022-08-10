@@ -49,9 +49,10 @@ resource "authentik_application" "argocd" {
 resource "authentik_policy_binding" "argocd_group-filtering" {
   for_each = { for idx, value in [
     "argocd",
-    "argocd_petitstream_devs",
-    "argocd_petitstream_ops",
     "argocd_admins",
+
+    "petitstream_devs",
+    "petitstream_ops",
   ] : idx => value }
   target = authentik_application.argocd.uuid
   group  = authentik_group.groups[each.value].id

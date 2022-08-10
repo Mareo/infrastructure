@@ -49,6 +49,9 @@ resource "authentik_policy_binding" "gitlab-oidc_group-filtering" {
     "gitlab",
     "gitlab_auditors",
     "gitlab_admins",
+
+    "petitstream_devs",
+    "petitstream_ops",
   ] : idx => value }
   target = authentik_application.gitlab-oidc.uuid
   group  = authentik_group.groups[each.value].id

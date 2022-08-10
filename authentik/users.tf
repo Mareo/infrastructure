@@ -19,6 +19,8 @@ locals {
         "nextcloud_admins",
         "vault_admins",
         "vaultwarden",
+        "petitstream_devs",
+        "petitstream_ops",
       ]
       is_admin = true
     }
@@ -39,9 +41,8 @@ locals {
       email = "eric.ly.perso@gmail.com"
       path  = "users/petitstream"
       groups = [
-        "argocd",
-        "argocd_petitstream_devs",
-        "argocd_petitstream_ops",
+        "petitstream_devs",
+        "petitstream_ops",
       ]
     }
     "drummyjohn" = {
@@ -49,9 +50,8 @@ locals {
       email = "jonathan.monnet28@gmail.com"
       path  = "users/petitstream"
       groups = [
-        "argocd",
-        "argocd_petitstream_devs",
-        "argocd_petitstream_ops",
+        "petitstream_devs",
+        "petitstream_ops",
       ]
     }
     "sharpii" = {
@@ -60,8 +60,8 @@ locals {
       path  = "users/petitstream"
       groups = [
         "argocd",
-        "argocd_petitstream_devs",
-        "argocd_petitstream_ops",
+        "petitstream_devs",
+        "petitstream_ops",
       ]
     }
   }
