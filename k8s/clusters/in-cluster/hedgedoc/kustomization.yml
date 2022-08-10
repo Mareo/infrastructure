@@ -5,6 +5,7 @@ namespace: hedgedoc
 resources:
   - ../../../apps/hedgedoc/
 
+  - namespace.yml
   - ingress.yml
   - secrets.yml
 
