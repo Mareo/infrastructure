@@ -19,10 +19,10 @@
 
 # Vault setup
     $ cd vault/
-    $ terraform apply
     $ poetry run ../scripts/vault-init.sh
     $ poetry run ../scripts/vault-unseal.sh
     $ poetry run ../scripts/vault-login-as-root.sh
+    $ terraform apply
 
 # Authentik setup
     $ cd authentik/

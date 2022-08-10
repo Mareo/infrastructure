@@ -1,11 +1,10 @@
 resource "random_password" "mail_postsrsd-secret" {
-  length           = 18
-  special          = false
+  length  = 18
+  special = false
 }
 
 resource "vault_generic_secret" "mail_postsrsd" {
-  path         = "k8s/mail/postsrsd"
-  disable_read = true
+  path = "k8s/mail/postsrsd"
   data_json = jsonencode({
     secret = base64encode(random_password.mail_postsrsd-secret.result)
   })
@@ -17,8 +16,7 @@ resource "tls_private_key" "mail_opendkim-athena" {
 }
 
 resource "vault_generic_secret" "mail_opendkim" {
-  path         = "k8s/mail/opendkim"
-  disable_read = true
+  path = "k8s/mail/opendkim"
   data_json = jsonencode({
     athena = tls_private_key.mail_opendkim-athena.private_key_pem
   })

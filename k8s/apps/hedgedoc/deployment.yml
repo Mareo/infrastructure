@@ -1,0 +1,81 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hedgedoc
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+  selector:
+    matchLabels:
+      app: hedgedoc
+  template:
+    metadata:
+      labels:
+        app: hedgedoc
+    spec:
+      containers:
+        - name: hedgedoc
+          image: quay.io/hedgedoc/hedgedoc
+          ports:
+            - name: http
+              containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: http
+            initialDelaySeconds: 120
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: http
+            initialDelaySeconds: 30
+          envFrom:
+            - configMapRef:
+                name: hedgedoc-env
+          env:
+            - name: CMD_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: hedgedoc.hedgedoc.in-cluster-main-cluster.credentials
+                  key: username
+            - name: CMD_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: hedgedoc.hedgedoc.in-cluster-main-cluster.credentials
+                  key: password
+            - name: CMD_DB_URL
+              value: postgres://$(CMD_DB_USERNAME):$(CMD_DB_PASSWORD)@$(CMD_DB_HOST):$(CMD_DB_PORT)/$(CMD_DB_DATABASE)?ssl=true  # yamllint disable-line rule:line-length
+            - name: CMD_SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: hedgedoc-session-secret
+                  key: SESSION_SECRET
+            - name: CMD_OAUTH2_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: hedgedoc-openid
+                  key: AUTHENTIK_OPENID_KEY
+            - name: CMD_OAUTH2_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: hedgedoc-openid
+                  key: AUTHENTIK_OPENID_SECRET
+            - name: CMD_S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: hedgedoc-object-storage
+                  key: S3_ACCESS_KEY
+            - name: CMD_S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: hedgedoc-object-storage
+                  key: S3_SECRET_KEY
+          resources:
+            requests:
+              cpu: 200m
+              memory: 400Mi
+              ephemeral-storage: 500Mi

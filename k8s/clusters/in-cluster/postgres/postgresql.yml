@@ -16,6 +16,7 @@ spec:
   users:
     authentik.authentik: []
     gitlab.gitlab: []
+    hedgedoc.hedgedoc: []
     nextcloud.nextcloud: []
     petitstream-dev.petitstream-dev: []
     petitstream.petitstream: []
@@ -25,9 +26,10 @@ spec:
   databases:
     authentik: authentik.authentik
     gitlab: gitlab.gitlab
+    hedgedoc: hedgedoc.hedgedoc
     nextcloud: nextcloud.nextcloud
-    petitstream_dev: petitstream-dev.petitstream-dev
     petitstream: petitstream.petitstream
+    petitstream_dev: petitstream-dev.petitstream-dev
     vaultwarden: vaultwarden.vaultwarden
 
   postgresql:

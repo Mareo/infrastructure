@@ -59,9 +59,16 @@ locals {
       email = "philippe.grad@gmail.com"
       path  = "users/petitstream"
       groups = [
-        "argocd",
         "petitstream_devs",
         "petitstream_ops",
+      ]
+    }
+    "superjp" = {
+      name  = "superjp"
+      email = "streampetit@gmail.com"
+      path  = "users/petitstream"
+      groups = [
+        "petitstream_devs",
       ]
     }
   }

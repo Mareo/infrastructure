@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hedgedoc
+  annotations:
+    cert-manager.io/cluster-issuer: default-issuer
+spec:
+  rules:
+    - host: hedgedoc.mareo.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hedgedoc
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - hedgedoc.mareo.fr
+      secretName: hedgedoc-tls

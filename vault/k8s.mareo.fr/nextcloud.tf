@@ -5,8 +5,7 @@ resource "random_password" "nextcloud_password" {
 }
 
 resource "vault_generic_secret" "nextcloud" {
-  path         = "k8s/nextcloud/initial-account-credentials"
-  disable_read = true
+  path = "k8s/nextcloud/initial-account-credentials"
   data_json = jsonencode({
     username = "admin"
     password = random_password.nextcloud_password.result
@@ -20,8 +19,7 @@ resource "random_password" "nextcloud_redis-password" {
 }
 
 resource "vault_generic_secret" "nextcloud_redis-password" {
-  path         = "k8s/nextcloud/redis"
-  disable_read = true
+  path = "k8s/nextcloud/redis"
   data_json = jsonencode({
     password = random_password.nextcloud_redis-password.result
   })

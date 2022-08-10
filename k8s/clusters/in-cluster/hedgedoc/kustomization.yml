@@ -1,0 +1,25 @@
+---
+kind: Kustomization
+namespace: hedgedoc
+
+resources:
+  - ../../../apps/hedgedoc/
+
+  - ../../../apps/hedgedoc/
+  - ingress.yml
+  - secrets.yml
+
+configMapGenerator:
+  - name: hedgedoc-env
+    behavior: merge
+    literals:
+      # Remove when https://github.com/brianc/node-postgres/issues/2375 is
+      # fixed
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+      - CMD_DOMAIN=hedgedoc.mareo.fr
+      - CMD_DB_HOST=in-cluster-main-cluster.postgres.svc.cluster.local
+      - CMD_DB_PORT=5432
+      - CMD_DB_DATABASE=hedgedoc
+      - CMD_ALLOW_ORIGIN=hedgedoc.mareo.fr
+      - CMD_S3_BUCKET=hedgedoc-data
+      - CMD_S3_ENDPOINT=https://athena.mareo.fr:7443

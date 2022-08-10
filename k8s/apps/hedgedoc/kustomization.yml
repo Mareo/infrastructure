@@ -1,0 +1,35 @@
+---
+kind: Kustomization
+
+commonLabels:
+  app: hedgedoc
+
+resources:
+  - deployment.yml
+  - service.yml
+
+configMapGenerator:
+  - name: hedgedoc-env
+    literals:
+      - CMD_DB_DIALECT=postgres
+      - CMD_IMAGE_UPLOAD_TYPE=s3
+      - CMD_PROTOCOL_USESSL=true
+      - CMD_ALLOW_ANONYMOUS=false
+      - CMD_ALLOW_ANONYMOUS_EDIT=true
+      - CMD_ALLOW_FREEURL=true
+      - CMD_ALLOW_FREEURL_AUTHENTICATION=true
+      - CMD_DEFAULT_PERMISSION=private
+      - CMD_EMAIL=false
+      - CMD_ALLOW_EMAIL_REGISTER=false
+      - CMD_OAUTH2_PROVIDERNAME=authentik
+      - "CMD_OAUTH2_TOKEN_URL=https://auth.mareo.fr/application/o/token/"
+      - "CMD_OAUTH2_AUTHORIZATION_URL=https://auth.mareo.fr/application/o/authorize/"
+      - "CMD_OAUTH2_USER_PROFILE_URL=https://auth.mareo.fr/application/o/userinfo/"
+      - "CMD_OAUTH2_SCOPE=openid email profile"
+      - CMD_OAUTH2_USER_PROFILE_USERNAME_ATTR=preferred_username
+      - CMD_OAUTH2_USER_PROFILE_DISPLAY_NAME_ATTR=name
+      - CMD_OAUTH2_USER_PROFILE_EMAIL_ATTR=email
+
+images:
+  - name: quay.io/hedgedoc/hedgedoc
+    newTag: 1.9.4

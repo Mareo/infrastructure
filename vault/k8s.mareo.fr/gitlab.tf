@@ -5,8 +5,7 @@ resource "random_password" "gitlab_initial-root-password" {
 }
 
 resource "vault_generic_secret" "gitlab_initial-root-password" {
-  path         = "k8s/gitlab/initial-root-password"
-  disable_read = true
+  path = "k8s/gitlab/initial-root-password"
   data_json = jsonencode({
     password = random_password.gitlab_initial-root-password.result
   })
@@ -19,8 +18,7 @@ resource "random_password" "gitlab_redis-password" {
 }
 
 resource "vault_generic_secret" "gitlab_redis-password" {
-  path         = "k8s/gitlab/redis"
-  disable_read = true
+  path = "k8s/gitlab/redis"
   data_json = jsonencode({
     password = random_password.gitlab_redis-password.result
   })

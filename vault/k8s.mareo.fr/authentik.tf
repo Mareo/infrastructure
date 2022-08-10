@@ -22,8 +22,7 @@ resource "local_sensitive_file" "authentik_bootstrap-token" {
 }
 
 resource "vault_generic_secret" "authentik" {
-  path         = "k8s/authentik/app"
-  disable_read = true
+  path = "k8s/authentik/app"
   data_json = jsonencode({
     secret_key         = random_password.authentik_secret-key.result
     bootstrap_password = random_password.authentik_bootstrap-password.result
@@ -32,13 +31,12 @@ resource "vault_generic_secret" "authentik" {
 }
 
 resource "random_password" "authentik_redis-password" {
-  length           = 32
-  special          = false
+  length  = 32
+  special = false
 }
 
 resource "vault_generic_secret" "authentik_redis-password" {
-  path         = "k8s/authentik/redis"
-  disable_read = true
+  path = "k8s/authentik/redis"
   data_json = jsonencode({
     password = random_password.authentik_redis-password.result
   })

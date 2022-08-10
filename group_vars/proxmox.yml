@@ -79,6 +79,11 @@ proxmox_ceph_rgw_users:
     buckets:
       - petitstream-dev
       - petitstream
+  - uid: petitsream
+    display_name: hedgedoc
+    max_buckets: 1
+    buckets:
+      - hedgedoc-data
 
 dhcp_subnets: "{{ dhcp_subnets_yaml|from_yaml }}"
 dhcp_interfaces: "{{ dhcp_interfaces_yaml|from_yaml|join(' ') }}"
