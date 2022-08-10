@@ -41,7 +41,7 @@ resource "authentik_application" "argocd" {
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_oauth2.argocd.id
   meta_icon          = "https://cncf-branding.netlify.app/img/projects/argo/icon/color/argo-icon-color.svg"
-  meta_launch_url    = "https://argocd.mareo.fr/auth/login"
+  meta_launch_url    = "https://argocd.mareo.fr/auth/login?return_url=https%3A%2F%2Fargocd.mareo.fr%2Fapplications"
   meta_publisher     = "Argo Project"
   policy_engine_mode = "any"
 }
@@ -49,7 +49,7 @@ resource "authentik_application" "argocd" {
 resource "authentik_policy_binding" "argocd_group-filtering" {
   for_each = { for idx, value in [
     "argocd",
-    "argocd_petitstream",
+    "argocd_petitstream_devs",
     "argocd_petitstream_ops",
     "argocd_admins",
   ] : idx => value }

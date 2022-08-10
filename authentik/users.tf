@@ -3,6 +3,7 @@ locals {
     "mareo" = {
       name  = "Marin Hannache"
       email = "mareo@mareo.fr"
+      path  = "users/family"
       attributes = {
         nextcloud_quota = "none"
         allowed_emails = [
@@ -17,12 +18,14 @@ locals {
         "kubernetes_admins",
         "nextcloud_admins",
         "vault_admins",
+        "vaultwarden",
       ]
       is_admin = true
     }
     "lea" = {
       name  = "Léa Assako"
       email = "assakolea@gmail.com"
+      path  = "users/family"
       attributes = {
         nextcloud_quota = "10G"
       }
@@ -34,18 +37,30 @@ locals {
     "deadeye" = {
       name  = "DeadEye"
       email = "eric.ly.perso@gmail.com"
+      path  = "users/petitstream"
       groups = [
         "argocd",
-        "argocd_petitstream",
+        "argocd_petitstream_devs",
         "argocd_petitstream_ops",
       ]
     }
     "drummyjohn" = {
       name  = "DrummyJohn"
       email = "jonathan.monnet28@gmail.com"
+      path  = "users/petitstream"
       groups = [
         "argocd",
-        "argocd_petitstream",
+        "argocd_petitstream_devs",
+        "argocd_petitstream_ops",
+      ]
+    }
+    "sharpii" = {
+      name  = "shARPII"
+      email = "philippe.grad@gmail.com"
+      path  = "users/petitstream"
+      groups = [
+        "argocd",
+        "argocd_petitstream_devs",
         "argocd_petitstream_ops",
       ]
     }
@@ -57,6 +72,7 @@ resource "authentik_user" "users" {
   username = each.key
   name     = each.value.name
   email    = each.value.email
+  path     = try(each.value.path, "users")
   groups = concat(
     [for g in try(each.value.groups, []) : authentik_group.groups[g].id],
     try(each.value.is_admin, false) ? [data.authentik_group.admins.id] : []
