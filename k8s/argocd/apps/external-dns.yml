@@ -31,6 +31,9 @@ spec:
         helm:
           releaseName: external-dns
           values: |
+            txtOwnerId: "{{name}}"
+            domainFilters:
+              - mareo.fr
             provider: rfc2136
             rfc2136:
               host: prometheus.mareo.fr
