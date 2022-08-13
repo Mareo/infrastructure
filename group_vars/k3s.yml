@@ -8,6 +8,7 @@ k3s_server:
   docker: false
   cluster-cidr: 172.20.0.0/16
   service-cidr: 172.21.0.0/16
+  node-external-ip: 65.108.17.229
   disable:
     - traefik
   kube-apiserver-arg:
