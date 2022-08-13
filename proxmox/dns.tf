@@ -1,19 +1,6 @@
 locals {
   dns_cnames = toset([
     "api.k8s.mareo.fr.",
-    "argocd.mareo.fr.",
-    "auth.mareo.fr.",
-    "hedgedoc.mareo.fr.",
-    "nextcloud.mareo.fr.",
-    "vault.mareo.fr.",
-    "vaultwarden.mareo.fr.",
-
-    # Gitlab
-    "gitlab.mareo.fr.",
-    "kas.mareo.fr.",
-    "minio.mareo.fr.",
-    "registry.mareo.fr.",
-    "smartcard.mareo.fr.",
   ])
 
   dns_a = {
