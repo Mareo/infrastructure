@@ -1,0 +1,40 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: external-dns
+  labels:
+    app: external-dns
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: "{{name}}-external-dns"
+      labels:
+        app: external-dns
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: external-dns
+      source:
+        repoURL: https://charts.bitnami.com/bitnami
+        chart: external-dns
+        targetRevision: 6.7.5
+        helm:
+          releaseName: external-dns
+          values: |
+            provider: rfc2136
+            rfc2136:
+              host: prometheus.mareo.fr
+              zone: mareo.fr
+              secretName: tsig-secret
+              tsigSecretAlg: hmac-sha256
+              tsigKeyname: athena.mareo.fr
