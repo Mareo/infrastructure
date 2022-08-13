@@ -35,6 +35,8 @@ spec:
             txtPrefix: externaldns-
             domainFilters:
               - mareo.fr
+            extraArgs:
+              source: node
             policy: sync
             provider: rfc2136
             rfc2136:
