@@ -24,3 +24,29 @@ resource "vault_generic_secret" "petitstream_object-storage" {
     s3_secret_key = try(yamldecode(file("../secrets/rgw_user_petitstream.yml")).secret_key, "FIXME")
   })
 }
+
+resource "random_password" "petitstream_redis-password" {
+  length           = 32
+  special          = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
+}
+
+resource "vault_generic_secret" "petitstream_redis-password" {
+  path = "k8s/petitstream/redis"
+  data_json = jsonencode({
+    password = random_password.petitstream_redis-password.result
+  })
+}
+
+resource "random_password" "petitstream-dev_redis-password" {
+  length           = 32
+  special          = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
+}
+
+resource "vault_generic_secret" "petitstream-dev_redis-password" {
+  path = "k8s/petitstream-dev/redis"
+  data_json = jsonencode({
+    password = random_password.petitstream_redis-password.result
+  })
+}
