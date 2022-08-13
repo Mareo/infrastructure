@@ -35,6 +35,7 @@ spec:
             txtPrefix: externaldns-
             domainFilters:
               - mareo.fr
+            policy: sync
             provider: rfc2136
             rfc2136:
               host: 5.9.138.122
