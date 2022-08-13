@@ -37,7 +37,7 @@ spec:
               - mareo.fr
             provider: rfc2136
             rfc2136:
-              host: prometheus.mareo.fr
+              host: 5.9.138.122
               zone: mareo.fr
               minTTL: 1h
               secretName: tsig-secret
