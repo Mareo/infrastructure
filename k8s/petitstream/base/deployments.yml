@@ -123,7 +123,7 @@ spec:
             - name: REDIS_HOST
               value: petitstream-redis
             - name: REDIS_PORT
-              value: 6379
+              value: "6379"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -206,7 +206,7 @@ spec:
             - name: REDIS_HOST
               value: petitstream-redis
             - name: REDIS_PORT
-              value: 6379
+              value: "6379"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
