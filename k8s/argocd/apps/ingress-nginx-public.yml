@@ -26,6 +26,7 @@ spec:
       values: |
         fullnameOverride: ingress-nginx-public
         controller:
+          electionID: "ingress-nginx-public-controller-leader"
           watchIngressWithoutClass: true
           ingressClass: "public"
           ingressClassResource:
