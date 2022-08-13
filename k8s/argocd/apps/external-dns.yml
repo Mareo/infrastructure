@@ -32,12 +32,14 @@ spec:
           releaseName: external-dns
           values: |
             txtOwnerId: "{{name}}"
+            txtPrefix: externaldns-
             domainFilters:
               - mareo.fr
             provider: rfc2136
             rfc2136:
               host: prometheus.mareo.fr
               zone: mareo.fr
+              minTTL: 1h
               secretName: tsig-secret
               tsigSecretAlg: hmac-sha256
               tsigKeyname: athena.mareo.fr
