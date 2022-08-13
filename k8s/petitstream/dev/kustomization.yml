@@ -38,6 +38,10 @@ patches:
     target:
       kind: Deployment
       name: petitstream-backend-worker
+  - path: patch-redis-secret.yml
+    target:
+      kind: ExternalSecret
+      name: petitstream-redis
   - path: patch-ingresses-hosts.yml
     target:
       kind: Ingress
