@@ -13,6 +13,7 @@ resource "authentik_application" "petitstream-dev" {
   protocol_provider  = authentik_provider_proxy.petitstream-dev.id
   meta_icon          = "https://petitstream.com/favicon.ico"
   meta_launch_url    = "https://dev.petitstream.com/"
+  meta_publisher     = "superjp"
   policy_engine_mode = "any"
 }
 

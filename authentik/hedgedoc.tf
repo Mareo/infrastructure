@@ -39,6 +39,7 @@ resource "authentik_application" "hedgedoc" {
   protocol_provider  = authentik_provider_oauth2.hedgedoc.id
   meta_icon          = "https://github.com/hedgedoc/hedgedoc-logo/raw/main/LOGOTYPE/PNG/HedgeDoc-Logo%201.png"
   meta_launch_url    = "https://hedgedoc.mareo.fr/"
+  meta_publisher     = "HedgeDoc Project"
   policy_engine_mode = "any"
 }
 
