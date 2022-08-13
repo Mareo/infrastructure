@@ -15,7 +15,7 @@ replicas:
   - name: petitstream-backend-master
     count: 1
   - name: petitstream-backend-worker
-    count: 0
+    count: 2
 
 images:
   - name: petitstream/petitstream.com
