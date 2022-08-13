@@ -5,6 +5,7 @@ metadata:
   name: hedgedoc
   annotations:
     cert-manager.io/cluster-issuer: default-issuer
+    external-dns.alpha.kubernetes.io/use-external-host-ip: "true"
 spec:
   rules:
     - host: hedgedoc.mareo.fr
