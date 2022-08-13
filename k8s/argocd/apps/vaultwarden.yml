@@ -38,6 +38,7 @@ spec:
                 enabled: true
                 annotations:
                    cert-manager.io/cluster-issuer: default-issuer
+                   external-dns.alpha.kubernetes.io/target: 65.108.17.229
                 ingressClassName: public
                 hosts:
                   - host: vaultwarden.mareo.fr
