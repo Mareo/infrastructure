@@ -32,6 +32,7 @@ spec:
             enabled: true
             default: false
             name: "internal"
+            controllerValue: "k8s.io/ingress-nginx-internal"
           config:
             enable-real-ip: "true"
             use-http2: "true"
