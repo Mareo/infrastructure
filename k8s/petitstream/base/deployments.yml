@@ -120,6 +120,15 @@ spec:
                 secretKeyRef:
                   name: petitstream-object-storage
                   key: s3_secret_key
+            - name: REDIS_HOST
+              value: petitstream-redis
+            - name: REDIS_PORT
+              value: 6379
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: petitstream-redis
+                  key: password
           ports:
             - containerPort: 3000
               protocol: TCP
@@ -194,6 +203,15 @@ spec:
                 secretKeyRef:
                   name: petitstream-object-storage
                   key: s3_secret_key
+            - name: REDIS_HOST
+              value: petitstream-redis
+            - name: REDIS_PORT
+              value: 6379
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: petitstream-redis
+                  key: password
           ports:
             - containerPort: 3000
               protocol: TCP
