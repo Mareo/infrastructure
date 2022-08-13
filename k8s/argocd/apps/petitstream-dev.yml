@@ -14,5 +14,7 @@ spec:
     name: "in-cluster"
     namespace: "petitstream-dev"
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
     automated:
       prune: true
