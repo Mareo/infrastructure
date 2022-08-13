@@ -6,7 +6,6 @@ namespace: petitstream-dev
 resources:
   - ../base/
 
-  - namespace.yml
   - authentik-proxy.yml
 
 replicas:
