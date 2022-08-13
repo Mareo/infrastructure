@@ -131,13 +131,11 @@ spec:
                     - email
               time_zone: Europe/Paris
               pages:
-                enabled: true
+                enabled: false
                 accessControl: true
                 host: pages.mareo.fr
-                externalHttp:
-                  - 65.108.17.229
-                externalHttps:
-                  - 65.108.17.229
+                externalHttp: []
+                externalHttps: []
               oauth:
                 gitlab-pages:
                   authScope: read_api
