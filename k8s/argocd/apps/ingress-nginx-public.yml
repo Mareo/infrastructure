@@ -41,8 +41,13 @@ spec:
             externalTrafficPolicy: Local
             enableHttp: true
             enableHttps: true
-            type: LoadBalancer
-            ports:
+            type: NodePort
+            #ports:
+            #  http: 30080
+            #  https: 30443
+            nodePorts:
+              tcp:
+                30022: 30022
               http: 30080
               https: 30443
           resources:
