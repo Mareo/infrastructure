@@ -18,7 +18,7 @@ replicas:
 
 images:
   - name: petitstream/petitstream.com
-    newTag: v0.1.1
+    newTag: v1.0.0
 
 configMapGenerator:
   - name: petitstream-config
