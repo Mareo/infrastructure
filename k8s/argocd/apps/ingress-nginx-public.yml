@@ -37,6 +37,8 @@ spec:
             use-http2: "true"
             server-tokens: "false"
           service:
+            annotations:
+              external-dns.alpha.kubernetes.io/endpoints-type: NodeExternalIP
             externalTrafficPolicy: Local
             enableHttp: true
             enableHttps: true
