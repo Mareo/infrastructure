@@ -35,8 +35,9 @@ spec:
             txtPrefix: externaldns-
             domainFilters:
               - mareo.fr
-            extraArgs:
-              source: node
+            #fqdnTemplates:
+              #- "{{.Name}}.mareo.fr"
+            publishHostIP: true
             policy: sync
             provider: rfc2136
             rfc2136:
