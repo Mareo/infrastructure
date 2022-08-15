@@ -10,10 +10,16 @@ resource "gitlab_group_membership" "iac_mareo" {
   access_level = "owner"
 }
 
+resource "gitlab_group_membership" "iac_renovate-bot" {
+  group_id     = gitlab_group.iac.id
+  user_id      = gitlab_user.renovate-bot.id
+  access_level = "maintainer"
+}
+
 resource "gitlab_project" "iac_infrastructure" {
   name             = "infrastructure"
   namespace_id     = gitlab_group.iac.id
-  visibility_level = "private"
+  visibility_level = "internal"
 
   import_url = "git://mareo.fr/infrastructure"
 
@@ -22,6 +28,7 @@ resource "gitlab_project" "iac_infrastructure" {
   pipelines_enabled = true
 
   default_branch = "main"
+  merge_method   = "ff"
 
   only_allow_merge_if_all_discussions_are_resolved = true
   auto_cancel_pending_pipelines                    = "enabled"

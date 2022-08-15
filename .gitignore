@@ -2,6 +2,8 @@
 /.cache
 /secrets/
 
+/roles/
+
 .terraform
 .direnv
 terraform.tfstate

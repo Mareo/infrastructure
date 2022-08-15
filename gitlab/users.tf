@@ -12,10 +12,10 @@ resource "gitlab_user" "mareo" {
   can_create_group  = true
   skip_confirmation = true
 
-  lifecycle {                  
+  lifecycle {
     ignore_changes = [name, password]
   }
-}                              
+}
 
 resource "gitlab_user_sshkey" "mareo" {
   user_id = gitlab_user.mareo.id
