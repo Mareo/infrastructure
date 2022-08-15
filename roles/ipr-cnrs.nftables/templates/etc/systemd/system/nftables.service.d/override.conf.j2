@@ -1,7 +1,0 @@
-# {{ ansible_managed }}
-
-[Service]
-{% if not nft__service_protect %}
-ProtectSystem=no
-ProtectHome=no
-{% endif %}

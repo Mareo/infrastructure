@@ -1,4 +1,0 @@
----
-# vars file for Alpine
-nft_pkg_list:
-  - nftables
