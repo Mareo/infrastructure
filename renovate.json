@@ -1,3 +1,8 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "argocd": {
+     "fileMatch": [
+        "^k8s/argocd/apps/.+\\.ya?ml$"
+    ]
+  }
 }
