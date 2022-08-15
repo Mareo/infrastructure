@@ -31,6 +31,8 @@ resource "gitlab_project" "iac_infrastructure" {
   merge_method   = "ff"
 
   only_allow_merge_if_all_discussions_are_resolved = true
+  remove_source_branch_after_merge                 = true
+  shared_runners_enabled                           = true
   auto_cancel_pending_pipelines                    = "enabled"
   auto_devops_enabled                              = false
 }

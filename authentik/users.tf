@@ -18,6 +18,7 @@ locals {
         "kubernetes_admins",
         "mail",
         "nextcloud_admins",
+        "petitstream_admins",
         "petitstream_devs",
         "petitstream_ops",
         "vault_admins",
@@ -79,6 +80,7 @@ locals {
       groups = [
         "gitlab",
         "hedgedoc",
+        "petitstream_admins",
         "petitstream_devs",
       ]
     }

@@ -11,6 +11,7 @@ resource "gitlab_project" "iac_petitstream" {
   merge_method   = "ff"
 
   only_allow_merge_if_all_discussions_are_resolved = true
+  shared_runners_enabled                           = true
   auto_cancel_pending_pipelines                    = "enabled"
   auto_devops_enabled                              = false
 }
@@ -38,4 +39,24 @@ resource "vault_generic_secret" "argocd_repo_petitstream_argocd" {
     username = gitlab_deploy_token.iac_petitstream_argocd.username
     password = gitlab_deploy_token.iac_petitstream_argocd.token
   })
+}
+
+data "vault_generic_secret" "k8s_petitstream_registry" {
+  path = "k8s/petitstream/registry"
+}
+
+resource "gitlab_project_variable" "iac_renovate_petitstream_registry_username" {
+  project   = gitlab_project.iac_renovate.id
+  key       = "PETITSTREAM_REGISTRY_USERNAME"
+  value     = data.vault_generic_secret.k8s_petitstream_registry.data["username"]
+  protected = false
+  masked    = true
+}
+
+resource "gitlab_project_variable" "iac_renovate_petitstream_registry_password" {
+  project   = gitlab_project.iac_renovate.id
+  key       = "PETITSTREAM_REGISTRY_PASSWORD"
+  value     = data.vault_generic_secret.k8s_petitstream_registry.data["password"]
+  protected = false
+  masked    = false
 }

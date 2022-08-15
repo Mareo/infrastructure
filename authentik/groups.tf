@@ -18,6 +18,7 @@ locals {
     "vault_admins",
     "vaultwarden",
 
+    "petitstream_admins",
     "petitstream_devs",
     "petitstream_ops",
   ]

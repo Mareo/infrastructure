@@ -38,6 +38,7 @@ resource "gitlab_project" "iac_renovate" {
   merge_method   = "ff"
 
   only_allow_merge_if_all_discussions_are_resolved = true
+  remove_source_branch_after_merge                 = true
   shared_runners_enabled                           = true
   auto_cancel_pending_pipelines                    = "enabled"
   auto_devops_enabled                              = false
@@ -47,7 +48,7 @@ resource "gitlab_project_variable" "iac_renovate_token" {
   project   = gitlab_project.iac_renovate.id
   key       = "RENOVATE_TOKEN"
   value     = gitlab_personal_access_token.renovate.token
-  protected = true
+  protected = false
   masked    = true
 }
 
@@ -56,4 +57,17 @@ resource "gitlab_pipeline_schedule" "iac_renovate" {
   description = "Renovate"
   ref         = gitlab_project.iac_renovate.default_branch
   cron        = "0 4 * * *"
+}
+
+resource "gitlab_pipeline_trigger" "iac_renovate" {
+  project     = gitlab_project.iac_renovate.path_with_namespace
+  description = "Renovate pipeline trigger"
+}
+
+resource "vault_generic_secret" "gitlab_renovate_pipeline-trigger" {
+  path = "gitlab/renovate/pipeline-trigger"
+  disable_read = true
+  data_json = jsonencode({
+    token = gitlab_pipeline_trigger.iac_renovate.token
+  })
 }
