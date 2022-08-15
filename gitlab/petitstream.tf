@@ -32,7 +32,7 @@ resource "gitlab_deploy_token" "iac_petitstream_argocd" {
 }
 
 resource "vault_generic_secret" "argocd_repo_petitstream_argocd" {
-  path = "k8s/argocd/repositories/petitstream"
+  path = "k8s/argocd/repositories/iac-petitstream"
   disable_read = true
   data_json = jsonencode({
     username = gitlab_deploy_token.iac_petitstream_argocd.username

@@ -1,8 +1,0 @@
-- op: replace
-  path: /spec/rules/0/host
-  value: petitstream.com
-- op: replace
-  path: /spec/tls/0/hosts
-  value:
-    - petitstream.com
-    - www.petitstream.com
