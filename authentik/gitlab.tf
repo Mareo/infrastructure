@@ -20,8 +20,7 @@ resource "authentik_token" "gitlab_mail" {
 }
 
 resource "vault_generic_secret" "gitlab_mail" {
-  path         = "k8s/gitlab/mail"
-  disable_read = true
+  path = "k8s/gitlab/mail"
   data_json = jsonencode({
     username = authentik_user.gitlab_mail.username
     password = authentik_token.gitlab_mail.key

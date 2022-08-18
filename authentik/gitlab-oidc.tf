@@ -9,8 +9,7 @@ resource "random_password" "gitlab-oidc_client-secret" {
 }
 
 resource "vault_generic_secret" "gitlab_oidc-authentik" {
-  path         = "k8s/gitlab/oidc-authentik"
-  disable_read = true
+  path = "k8s/gitlab/oidc-authentik"
   data_json = jsonencode({
     client_id     = random_string.gitlab-oidc_client-id.result
     client_secret = random_password.gitlab-oidc_client-secret.result

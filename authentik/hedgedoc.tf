@@ -9,7 +9,7 @@ resource "random_password" "hedgedoc_client-secret" {
 }
 
 resource "vault_generic_secret" "hedgedoc_authentik-openid" {
-  path         = "k8s/hedgedoc/authentik-openid"
+  path = "k8s/hedgedoc/authentik-openid"
   data_json = jsonencode({
     AUTHENTIK_OPENID_KEY    = random_string.hedgedoc_client-id.result
     AUTHENTIK_OPENID_SECRET = random_password.hedgedoc_client-secret.result

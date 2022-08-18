@@ -73,8 +73,7 @@ resource "authentik_token" "mail_postfix" {
 }
 
 resource "vault_generic_secret" "mail_dovecot" {
-  path         = "k8s/mail/dovecot"
-  disable_read = true
+  path = "k8s/mail/dovecot"
   data_json = jsonencode({
     DOVECOT_LDAP_DN = format(
       "cn=%s,ou=users,%s",
@@ -86,8 +85,7 @@ resource "vault_generic_secret" "mail_dovecot" {
 }
 
 resource "vault_generic_secret" "mail_postfix" {
-  path         = "k8s/mail/postfix"
-  disable_read = true
+  path = "k8s/mail/postfix"
   data_json = jsonencode({
     LDAP_BIND_DN = format(
       "cn=%s,ou=users,%s",

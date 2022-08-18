@@ -20,8 +20,7 @@ resource "authentik_token" "authentik_mail" {
 }
 
 resource "vault_generic_secret" "authentik_mail" {
-  path         = "k8s/authentik/mail"
-  disable_read = true
+  path = "k8s/authentik/mail"
   data_json = jsonencode({
     username = authentik_user.authentik_mail.username
     password = authentik_token.authentik_mail.key

@@ -4,8 +4,7 @@ resource "random_string" "argocd_client-id" {
 }
 
 resource "vault_generic_secret" "argocd_oidc-authentik" {
-  path         = "k8s/argocd/oidc-authentik"
-  disable_read = true
+  path = "k8s/argocd/oidc-authentik"
   data_json = jsonencode({
     client_id = random_string.argocd_client-id.result
   })

@@ -14,6 +14,9 @@ locals {
       groups = [
         "argocd_admins",
         "gitlab_admins",
+        "grafana",
+        "grafana_editors",
+        "grafana_admins",
         "hedgedoc",
         "kubernetes_admins",
         "mail",
@@ -37,7 +40,7 @@ locals {
         "gitlab",
         "hedgedoc",
         "nextcloud",
-	"vaultwarden",
+        "vaultwarden",
       ]
     }
     "deadeye" = {

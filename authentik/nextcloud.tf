@@ -20,8 +20,7 @@ resource "authentik_token" "nextcloud_mail" {
 }
 
 resource "vault_generic_secret" "nextcloud_mail" {
-  path         = "k8s/nextcloud/mail"
-  disable_read = true
+  path = "k8s/nextcloud/mail"
   data_json = jsonencode({
     username = authentik_user.nextcloud_mail.username
     password = authentik_token.nextcloud_mail.key

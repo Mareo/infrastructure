@@ -1,6 +1,5 @@
 resource "vault_generic_secret" "gitlab_saml-authentik" {
-  path         = "k8s/gitlab/saml-authentik"
-  disable_read = true
+  path = "k8s/gitlab/saml-authentik"
   data_json = jsonencode({
     idp_cert = data.authentik_certificate_key_pair.default.certificate_data
   })

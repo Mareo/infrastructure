@@ -5,7 +5,7 @@ resource "random_password" "kube-prometheus-stack_grafana_admin-password" {
 }
 
 resource "vault_generic_secret" "kube-prometheus-stack_grafana_admin-credentials" {
-  path = "k8s/gitlab/initial-root-password"
+  path = "k8s/kube-prometheus-stack/grafana/admin-credentials"
   data_json = jsonencode({
     username = "admin"
     password = random_password.kube-prometheus-stack_grafana_admin-password.result

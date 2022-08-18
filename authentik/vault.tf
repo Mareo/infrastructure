@@ -9,8 +9,7 @@ resource "random_password" "vault_client-secret" {
 }
 
 resource "vault_generic_secret" "vault_oidc-authentik" {
-  path         = "k8s/vault/oidc-authentik"
-  disable_read = true
+  path = "k8s/vault/oidc-authentik"
   data_json = jsonencode({
     client_id     = random_string.vault_client-id.result
     client_secret = random_password.vault_client-secret.result
