@@ -29,7 +29,7 @@ spec:
       source:
         repoURL: https://prometheus-community.github.io/helm-charts
         chart: prometheus-operator
-        targetRevision: 0
+        targetRevision: 39.8.0
         helm:
           values: |
             fullnameOverride: prometheus-operator
