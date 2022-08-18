@@ -1,0 +1,63 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: prometheus-operator
+  labels:
+    app: prometheus-operator
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-prometheus-operator"
+      labels:
+        app: prometheus-operator
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: prometheus-operator
+      source:
+        repoURL:
+        chart: prometheus-operator
+        targetRevision: 0
+        helm:
+          values: |
+            fullnameOverride: prometheus-operator
+            grafana:
+              defaultDashboardTimezone: Europe/Paris
+              ingress:
+                enabled: true
+                ingressClassName: public
+                annotations:
+                  cert-manager.io/cluster-issuer: default-issuer
+                hosts:
+                  - grafana.mareo.fr
+                tls:
+                  - secretName: grafana-tls
+                    hosts:
+                      - grafana.mareo.fr
+            alertmanager:
+              ingress:
+                enabled: true
+                ingressClassName: public
+                annotations:
+                  cert-manager.io/cluster-issuer: default-issuer
+                hosts:
+                  - alertmanager.mareo.fr
+                paths:
+                  - /
+                pathType: Prefix
+                tls:
+                  - secretName: alertmanager-tls
+                    hosts:
+                      - alertmanager.mareo.fr
