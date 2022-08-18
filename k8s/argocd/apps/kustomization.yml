@@ -12,10 +12,10 @@ resources:
   - gitlab.yml
   - ingress-nginx-internal.yml
   - ingress-nginx-public.yml
+  - kube-prometheus-stack.yml
   - nextcloud.yml
   - petitstream-dev.yml
   - petitstream.yml
-  - prometheus-operator.yml
   - rbd-csi.yml
   - redis-operator.yml
   - redis.yml

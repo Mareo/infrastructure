@@ -3,9 +3,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: prometheus-operator
+  name: kube-prometheus-stack
   labels:
-    app: prometheus-operator
+    app: kube-prometheus-stack
 spec:
   generators:
     - list:
@@ -13,9 +13,9 @@ spec:
           - name: in-cluster
   template:
     metadata:
-      name: "{{name}}-prometheus-operator"
+      name: "{{name}}-kube-prometheus-stack"
       labels:
-        app: prometheus-operator
+        app: kube-prometheus-stack
     spec:
       project: default
       syncPolicy:
@@ -25,14 +25,14 @@ spec:
           prune: true
       destination:
         name: "{{name}}"
-        namespace: prometheus-operator
+        namespace: kube-prometheus-stack
       source:
         repoURL: https://prometheus-community.github.io/helm-charts
-        chart: prometheus-operator
+        chart: kube-prometheus-stack
         targetRevision: 39.8.0
         helm:
           values: |
-            fullnameOverride: prometheus-operator
+            fullnameOverride: kube-prometheus-stack
             grafana:
               defaultDashboardTimezone: Europe/Paris
               ingress:
