@@ -34,6 +34,10 @@ spec:
           values: |
             fullnameOverride: kube-prometheus-stack
             grafana:
+              admin:
+                existingSecret: "grafana-admin-credentials"
+                userKey: username
+                passwordKey: password
               defaultDashboardTimezone: Europe/Paris
               ingress:
                 enabled: true
