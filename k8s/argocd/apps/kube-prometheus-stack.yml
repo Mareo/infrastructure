@@ -58,6 +58,8 @@ spec:
                   token_url: https://auth.mareo.fr/application/o/token/
                   api_url: https://auth.mareo.fr/application/o/userinfo/
                   use_pkce: true
+                  role_attribute_path: "contains(groups[*], 'grafana_admins') && 'Admin' || contains(groups[*], 'grafana_editors') && 'Editor' || 'Viewer'"
+                  groups_attribute_path: groups
               defaultDashboardTimezone: Europe/Paris
               ingress:
                 enabled: true
