@@ -47,6 +47,9 @@ spec:
               grafana.ini:
                 server:
                   root_url: https://grafana.mareo.fr
+                auth:
+                  oauth_skip_org_role_update_sync: true
+                  signout_redirect_url: https://auth.mareo.fr/if/session-end/grafana/
                 auth.generic_oauth:
                   enabled: true
                   allow_sign_up: true
