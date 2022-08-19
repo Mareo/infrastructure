@@ -18,6 +18,7 @@ locals {
     "nextcloud",
     "nextcloud_admins",
     "nextcloud_service_accounts",
+    "prometheus",
     "vault",
     "vault_admins",
     "vaultwarden",

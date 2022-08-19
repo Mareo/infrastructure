@@ -25,6 +25,7 @@ locals {
         "petitstream_admins",
         "petitstream_devs",
         "petitstream_ops",
+        "prometheus",
         "vault_admins",
         "vaultwarden",
       ]

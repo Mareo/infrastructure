@@ -31,3 +31,27 @@ spec:
     - hosts:
         - alertmanager.mareo.fr
       secretName: alertmanager-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prometheus-authentik
+  namespace: kube-prometheus-stack
+  annotations:
+    cert-manager.io/cluster-issuer: default-issuer
+spec:
+  rules:
+    - host: prom.mareo.fr
+      http:
+        paths:
+          - path: /outpost.goauthentik.io
+            pathType: Prefix
+            backend:
+              service:
+                name: authentik-proxy
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - prom.mareo.fr
+      secretName: prometheus-tls
