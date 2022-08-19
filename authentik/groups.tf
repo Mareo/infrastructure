@@ -1,5 +1,6 @@
 locals {
   groups = [
+    "alertmanager",
     "argocd",
     "argocd_admins",
     "gitlab",

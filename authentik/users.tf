@@ -12,6 +12,7 @@ locals {
         ]
       }
       groups = [
+        "alertmanager",
         "argocd_admins",
         "gitlab_admins",
         "grafana",
