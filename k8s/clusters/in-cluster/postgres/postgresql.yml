@@ -17,6 +17,7 @@ spec:
     authentik.authentik: []
     gitlab.gitlab: []
     hedgedoc.hedgedoc: []
+    kube-prometheus-stack.grafana: []
     nextcloud.nextcloud: []
     petitstream-dev.petitstream-dev: []
     petitstream.petitstream: []
@@ -26,6 +27,7 @@ spec:
   databases:
     authentik: authentik.authentik
     gitlab: gitlab.gitlab
+    gradata: kube-prometheus-stack.grafana
     hedgedoc: hedgedoc.hedgedoc
     nextcloud: nextcloud.nextcloud
     petitstream: petitstream.petitstream
