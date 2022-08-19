@@ -10,6 +10,7 @@ resources:
   - postgres/
   - secrets/
 
+  - kube-prometheus-stack-ingress.yml
   - storage-class.yml
 
 patches:
