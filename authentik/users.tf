@@ -49,6 +49,7 @@ locals {
       path  = "users/petitstream"
       groups = [
         "gitlab",
+        "grafana",
         "hedgedoc",
         "petitstream_devs",
         "petitstream_ops",
@@ -60,6 +61,7 @@ locals {
       path  = "users/petitstream"
       groups = [
         "gitlab",
+        "grafana",
         "hedgedoc",
         "petitstream_devs",
         "petitstream_ops",
@@ -71,6 +73,7 @@ locals {
       path  = "users/petitstream"
       groups = [
         "gitlab",
+        "grafana",
         "hedgedoc",
         "petitstream_devs",
         "petitstream_ops",
@@ -82,6 +85,7 @@ locals {
       path  = "users/petitstream"
       groups = [
         "gitlab",
+        "grafana",
         "hedgedoc",
         "petitstream_admins",
         "petitstream_devs",
