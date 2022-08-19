@@ -38,6 +38,10 @@ spec:
                 existingSecret: "grafana-admin-credentials"
                 userKey: username
                 passwordKey: password
+              smtp:
+                existingSecret: "grafana-mail"
+                userKey: username
+                passwordKey: password
               extraSecretMounts:
                 - name: db-secret-mount
                   secretName: kube-prometheus-stack.grafana.in-cluster-main-cluster.credentials
@@ -50,6 +54,10 @@ spec:
                   mountPath: /etc/secrets/auth_generic_oauth
                   readOnly: true
               grafana.ini:
+                smtp:
+                  enabled: true
+                  host: athena.mareo.fr:465
+                  from_address: no-reply@grafana.mareo.fr
                 database:
                   type: postgres
                   host: in-cluster-main-cluster.postgres.svc.cluster.local

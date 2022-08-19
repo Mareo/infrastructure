@@ -1,4 +1,3 @@
-
 resource "authentik_provider_ldap" "mail" {
   name         = "mail-ldap"
   base_dn      = "dc=mail,dc=mareo,dc=fr"

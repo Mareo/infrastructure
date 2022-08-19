@@ -53,3 +53,32 @@ resource "authentik_policy_binding" "grafana_group-filtering" {
   group  = authentik_group.groups[each.value].id
   order  = each.key
 }
+
+resource "authentik_user" "grafana_mail" {
+  username = "grafana-mail"
+  name     = "grafana-mail"
+  path     = "services"
+  groups   = [authentik_group.groups["mail"].id]
+  attributes = jsonencode({
+    "goauthentik.io/user/service-account" = true
+    allowed_emails = [
+      "grafana.mareo.fr",
+    ]
+  })
+}
+
+resource "authentik_token" "grafana_mail" {
+  identifier   = "grafana-mail"
+  user         = authentik_user.grafana_mail.id
+  intent       = "app_password"
+  expiring     = false
+  retrieve_key = true
+}
+
+resource "vault_generic_secret" "grafana_mail" {
+  path = "k8s/kube-prometheus-stack/grafana/mail"
+  data_json = jsonencode({
+    username = authentik_user.grafana_mail.username
+    password = authentik_token.grafana_mail.key
+  })
+}
