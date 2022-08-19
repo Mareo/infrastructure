@@ -119,6 +119,8 @@ spec:
                     hosts:
                       - alertmanager.mareo.fr
             prometheus:
+              prometheusSpec:
+                enableAdminAPI: true
               ingress:
                 enabled: true
                 ingressClassName: public
