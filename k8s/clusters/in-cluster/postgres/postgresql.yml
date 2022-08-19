@@ -27,7 +27,7 @@ spec:
   databases:
     authentik: authentik.authentik
     gitlab: gitlab.gitlab
-    gradata: kube-prometheus-stack.grafana
+    grafana: kube-prometheus-stack.grafana
     hedgedoc: hedgedoc.hedgedoc
     nextcloud: nextcloud.nextcloud
     petitstream: petitstream.petitstream
