@@ -39,16 +39,26 @@ spec:
                 userKey: username
                 passwordKey: password
               extraSecretMounts:
+                - name: db-secret-mount
+                  secretName: kube-prometheus-stack.grafana.in-cluster-main-cluster.credentials
+                  defaultMode: 0440
+                  mountPath: /etc/secrets/db
+                  readOnly: true
                 - name: auth-generic-oauth-secret-mount
                   secretName: grafana-oidc-authentik
                   defaultMode: 0440
                   mountPath: /etc/secrets/auth_generic_oauth
                   readOnly: true
               grafana.ini:
+                database:
+                  type: postgres
+                  host: in-cluster-main-cluster.postgres.svc.cluster.local
+                  name: grafana
+                  user: "$__file{/etc/secrets/db/username}"
+                  password: "$__file{/etc/secrets/db/password}"
                 server:
                   root_url: https://grafana.mareo.fr
                 auth:
-                  oauth_skip_org_role_update_sync: true
                   signout_redirect_url: https://auth.mareo.fr/if/session-end/grafana/
                 auth.generic_oauth:
                   enabled: true
