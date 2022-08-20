@@ -4,9 +4,11 @@ namespace: argocd
 
 resources:
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.4.10
+
   - applications.yml
-  - ingress.yml
+  - argocd-metrics.yml
   - argocd-oidc.yml
+  - ingress.yml
 
   - apps
   - projects
