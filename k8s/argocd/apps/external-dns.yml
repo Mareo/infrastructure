@@ -47,3 +47,6 @@ spec:
               secretName: tsig-secret
               tsigSecretAlg: hmac-sha256
               tsigKeyname: athena.mareo.fr
+            metrics:
+              serviceMonitor:
+                enabled: true
