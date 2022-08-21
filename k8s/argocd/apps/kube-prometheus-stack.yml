@@ -121,6 +121,10 @@ spec:
             prometheus:
               prometheusSpec:
                 enableAdminAPI: true
+                ruleSelectorNilUsesHelmValues: false
+                serviceMonitorSelectorNilUsesHelmValues: false
+                podMonitorSelectorNilUsesHelmValues: false
+                probeSelectorNilUsesHelmValues: false
               ingress:
                 enabled: true
                 ingressClassName: public

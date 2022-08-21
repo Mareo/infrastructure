@@ -5,14 +5,12 @@ metadata:
   name: argocd-metrics
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-  labels:
-    release: in-cluster-kube-prometheus-stack
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-metrics
   endpoints:
-  - port: metrics
+    - port: metrics
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -20,14 +18,12 @@ metadata:
   name: argocd-server-metrics
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-  labels:
-    release: in-cluster-kube-prometheus-stack
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-server-metrics
   endpoints:
-  - port: metrics
+    - port: metrics
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -35,14 +31,12 @@ metadata:
   name: argocd-repo-server-metrics
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-  labels:
-    release: in-cluster-kube-prometheus-stack
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-repo-server
   endpoints:
-  - port: metrics
+    - port: metrics
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -50,11 +44,9 @@ metadata:
   name: argocd-applicationset-controller-metrics
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-  labels:
-    release: in-cluster-kube-prometheus-stack
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-applicationset-controller
   endpoints:
-  - port: metrics
+    - port: metrics
