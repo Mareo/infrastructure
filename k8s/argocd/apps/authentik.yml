@@ -53,6 +53,7 @@ spec:
               postgresql:
                 host: in-cluster-main-cluster.postgres.svc.cluster.local
                 name: "authentik"
+                user: null
               redis:
                   host: authentik-redis.authentik.svc
               email:
