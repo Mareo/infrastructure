@@ -8,6 +8,7 @@ commonAnnotations:
 resources:
   - namespace.yml
   - github.com/zalando/postgres-operator/manifests?ref=v1.8.2
+  - podmonitor.yml
 
 patchesStrategicMerge:
   - patch-postgres-operator-cm.yml
