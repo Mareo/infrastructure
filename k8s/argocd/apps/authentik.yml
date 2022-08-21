@@ -32,6 +32,7 @@ spec:
         targetRevision: 2022.8.3
         helm:
           releaseName: authentik
+          fullnameOverride: authentik
           values: |
             ingress:
               enabled: true
