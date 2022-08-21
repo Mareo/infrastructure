@@ -34,6 +34,10 @@ spec:
             default: false
             name: "internal"
             controllerValue: "k8s.io/ingress-nginx-internal"
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
           config:
             enable-real-ip: "true"
             use-http2: "true"
