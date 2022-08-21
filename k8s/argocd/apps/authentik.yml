@@ -31,9 +31,7 @@ spec:
         chart: authentik
         targetRevision: 2022.8.3
         helm:
-          releaseName: authentik
           values: |
-            fullnameOverride: authentik
             ingress:
               enabled: true
               ingressClassName: public
