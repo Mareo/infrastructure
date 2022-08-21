@@ -7,6 +7,7 @@ metadata:
 data:
   url: "https://argocd.mareo.fr"
   exec.enabled: "true"
+  application.instanceLabelKey: applications.argoproj.io/app-name
   oidc.config: |
     name: authentik
     issuer: https://auth.mareo.fr/application/o/argocd/
