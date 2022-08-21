@@ -10,7 +10,7 @@ spec:
   volume:
     size: 10Gi
     storageClass: csi-rbd-sc-retain
-  numberOfInstances: 1
+  numberOfInstances: 2
 
   # users: name -> permissions (usually [])
   users:
