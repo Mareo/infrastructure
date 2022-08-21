@@ -7,7 +7,7 @@ resource "authentik_provider_proxy" "prometheus" {
 }
 
 resource "authentik_application" "prometheus" {
-  name               = "prometheus"
+  name               = "Prometheus"
   slug               = "prometheus"
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_proxy.prometheus.id

@@ -6,6 +6,9 @@ locals {
       path  = "users/family"
       attributes = {
         nextcloud_quota = "none"
+        settings = {
+          locale = "en"
+        }
         allowed_emails = [
           "@mareo.fr",
           "marin@hannache.fr",
