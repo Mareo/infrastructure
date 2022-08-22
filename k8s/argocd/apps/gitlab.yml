@@ -114,7 +114,7 @@ spec:
                     secret: gitlab-object-storage
                     key: connection
                 ldap:
-                  preventSignin: true
+                  preventSignin: false
                   servers:
                     main:
                       label: LDAP
