@@ -50,9 +50,9 @@ resource "authentik_outpost" "gitlab-ldap" {
   })
 }
 
-resource "authentik_user" "gitlab" {
-  username = "gitlab"
-  name     = "gitlab"
+resource "authentik_user" "gitlab-ldap" {
+  username = "gitlab-ldap"
+  name     = "gitlab-ldap"
   path     = "services"
   groups   = [authentik_group.groups["gitlab_service_accounts"].id]
   attributes = jsonencode({
@@ -62,18 +62,18 @@ resource "authentik_user" "gitlab" {
 
 resource "authentik_token" "gitlab_ldap" {
   identifier   = "gitlab-ldap"
-  user         = authentik_user.gitlab.id
+  user         = authentik_user.gitlab-ldap.id
   intent       = "app_password"
   expiring     = false
   retrieve_key = true
 }
 
-resource "vault_generic_secret" "gitlab_dovecot" {
+resource "vault_generic_secret" "gitlab_ldap" {
   path = "k8s/gitlab/ldap"
   data_json = jsonencode({
     bind_dn = format(
       "cn=%s,ou=users,%s",
-      authentik_user.gitlab.username,
+      authentik_user.gitlab-ldap.username,
       authentik_provider_ldap.gitlab-ldap.base_dn,
     )
     bind_password = authentik_token.gitlab_ldap.key
