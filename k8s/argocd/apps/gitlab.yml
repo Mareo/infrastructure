@@ -167,7 +167,7 @@ spec:
             gitlab:
               migrations:
                 annotations:
-                  helm.sh/hook: "pre-install"
+                  helm.sh/hook: "pre-install,pre-upgrade"
                   helm.sh/hook-delete-policy: "before-hook-creation"
               gitaly:
                 persistence:
