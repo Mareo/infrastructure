@@ -167,7 +167,7 @@ spec:
             gitlab:
               migrations:
                 annotations:
-                  argocd.argoproj.io/hook: Sync
+                  argocd.argoproj.io/hook: PreSync
                   argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
               gitaly:
                 persistence:
