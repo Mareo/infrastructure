@@ -5,7 +5,7 @@ collections:
   - name: community.general
     version: 4.8.0
   - name: community.hashi_vault
-    version: 2.4.0
+    version: 3.2.0
   - name: community.crypto
     version: 2.3.1
   - name: kubernetes.core
