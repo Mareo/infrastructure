@@ -128,7 +128,6 @@ spec:
                         secret: gitlab-ldap
                         key: bind_password
                       uid: cn
-                      user_filter: "(memberOf=cn=gitlab,ou=groups,dc=gitlab,dc=mareo,dc=fr)"
                       attributes:
                         email: mail
                         name: name
