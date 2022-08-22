@@ -15,8 +15,8 @@ resource "gitlab_user" "renovate-bot" {
 }
 
 resource "gitlab_personal_access_token" "renovate" {
-  user_id    = gitlab_user.renovate-bot.id
-  name       = "Renovate personal access token"
+  user_id = gitlab_user.renovate-bot.id
+  name    = "Renovate personal access token"
 
   scopes = [
     "read_user",
@@ -53,10 +53,11 @@ resource "gitlab_project_variable" "iac_renovate_token" {
 }
 
 resource "gitlab_pipeline_schedule" "iac_renovate" {
-  project   = gitlab_project.iac_renovate.id
-  description = "Renovate"
-  ref         = gitlab_project.iac_renovate.default_branch
-  cron        = "0 4 * * *"
+  project       = gitlab_project.iac_renovate.id
+  description   = "Renovate"
+  ref           = gitlab_project.iac_renovate.default_branch
+  cron          = "0 4 * * *"
+  cron_timezone = "Europe/Paris"
 }
 
 resource "gitlab_pipeline_trigger" "iac_renovate" {
@@ -65,7 +66,7 @@ resource "gitlab_pipeline_trigger" "iac_renovate" {
 }
 
 resource "vault_generic_secret" "gitlab_renovate_pipeline-trigger" {
-  path = "gitlab/renovate/pipeline-trigger"
+  path         = "gitlab/renovate/pipeline-trigger"
   disable_read = true
   data_json = jsonencode({
     token = gitlab_pipeline_trigger.iac_renovate.token
