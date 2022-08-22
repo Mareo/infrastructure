@@ -7,6 +7,7 @@ locals {
     "gitlab_externals",
     "gitlab_auditors",
     "gitlab_admins",
+    "gitlab_service_accounts",
     "grafana",
     "grafana_editors",
     "grafana_admins",
