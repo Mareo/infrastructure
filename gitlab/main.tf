@@ -17,7 +17,7 @@ terraform {
       version = "3.4.3"
     }
     authentik = {
-      source = "goauthentik/authentik"
+      source  = "goauthentik/authentik"
       version = "2023.3.0"
     }
   }
@@ -52,9 +52,9 @@ resource "gitlab_personal_access_token" "root_terraform" {
 
   lifecycle {
     ignore_changes = [
-      scopes
+      scopes,
     ]
-  } 
+  }
 }
 
 resource "local_sensitive_file" "gitlab-token" {

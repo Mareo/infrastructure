@@ -1,8 +1,22 @@
 ---
-
 exclude_paths:
   - .cache/
+  - authentik/
+  - gitlab/
+  - k8s/
+  - proxmox/
+  - roles/ansible-community.ansible-vault/
+  - roles/bertvv.dhcp
+  - roles/ipr-cnrs.nftables
+  - roles/xanmanning.k3s/
+  - scripts/
+  - secrets/
+  - vault/
 
 use_default_rules: true
 
 offline: false
+
+skip_list:
+  - yaml
+  - name[template]

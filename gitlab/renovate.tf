@@ -30,9 +30,9 @@ resource "gitlab_project" "iac_renovate" {
   namespace_id     = gitlab_group.iac.id
   visibility_level = "internal"
 
-  wiki_enabled      = false
-  packages_enabled  = false
-  pipelines_enabled = true
+  wiki_enabled        = false
+  packages_enabled    = false
+  builds_access_level = "enabled"
 
   default_branch = "main"
   merge_method   = "ff"

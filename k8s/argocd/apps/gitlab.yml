@@ -219,4 +219,3 @@ spec:
                 requests:
                   memory: 2G
                   cpu: 1
-

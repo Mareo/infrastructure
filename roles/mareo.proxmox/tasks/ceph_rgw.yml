@@ -1,54 +1,57 @@
 ---
-
 - name: Check whether radosgw user exists
-  command:
+  ansible.builtin.command:
     argv:
       - ceph
       - auth
       - get
       - client.rgw
   register: result
-  failed_when: False
-  changed_when: False
-  check_mode: no
+  failed_when: false
+  changed_when: false
+  check_mode: false
 
-- name: "Create radosgw user"
+- name: Create radosgw user
   when: result.rc != 0
-  command:
+  ansible.builtin.command:
     argv:
       - ceph
       - auth
       - get-or-create
       - client.rgw
       - osd
-      - "allow rwx"
+      - allow rwx
       - mon
-      - "allow rwx"
+      - allow rwx
       - -o
-      - "/etc/pve/priv/ceph.client.rgw.keyring"
+      - /etc/pve/priv/ceph.client.rgw.keyring
+  changed_when: true
 
-- name: "Add configuration for radosgw (host)"
+- name: Add configuration for radosgw (host)
   community.general.ini_file:
     path: /etc/pve/ceph.conf
     section: client.rgw
     option: host
     value: "{{ ansible_facts['hostname'] }}"
+    mode: "0640"
   notify:
-    - restart radosgw
+    - Restart radosgw
 
-- name: "Add configuration for radosgw (rgw frontends)"
+- name: Add configuration for radosgw (rgw frontends)
   community.general.ini_file:
     path: /etc/pve/ceph.conf
     section: client.rgw
     option: rgw frontends
     value: "beast port={{ proxmox_ceph_rgw_port }}{% if proxmox_ceph_rgw_sslport %} ssl_port={{ proxmox_ceph_rgw_sslport }} ssl_certificate=/etc/pve/local/pveproxy-ssl.pem ssl_private_key=/etc/pve/local/pveproxy-ssl.key{% endif %}"
+    mode: "0640"
   notify:
-    - restart radosgw
+    - Restart radosgw
 
-- name: "Enable radosgw service"
-  service:
+- name: Enable radosgw service
+  ansible.builtin.service:
     name: ceph-radosgw@rgw
-    enabled: yes
+    enabled: true
 
-- include_tasks: ceph_rgw_user.yml
+- name: Create rgw users
+  ansible.builtin.include_tasks: ceph_rgw_user.yml
   loop: "{{ proxmox_ceph_rgw_users }}"

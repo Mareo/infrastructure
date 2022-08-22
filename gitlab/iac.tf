@@ -17,16 +17,16 @@ resource "gitlab_group_membership" "iac_renovate-bot" {
 }
 
 resource "gitlab_project" "iac_infrastructure" {
-  name             = "infrastructure"
-  namespace_id     = gitlab_group.iac.id
+  name         = "infrastructure"
+  namespace_id = gitlab_group.iac.id
 
   visibility_level    = "public"
   builds_access_level = "private"
 
   import_url = "git://mareo.fr/infrastructure"
 
-  wiki_enabled      = false
-  packages_enabled  = true
+  wiki_enabled     = false
+  packages_enabled = true
 
   default_branch = "main"
   merge_method   = "ff"

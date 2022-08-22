@@ -12,7 +12,7 @@ data "authentik_group" "gitlab_externals" {
 
 data "authentik_user" "gitlab" {
   for_each = { for user in data.authentik_group.gitlab.users_obj : user.username => user }
-  pk = each.value.pk
+  pk       = each.value.pk
 }
 
 resource "random_password" "users" {

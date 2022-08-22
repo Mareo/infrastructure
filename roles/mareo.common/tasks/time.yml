@@ -1,12 +1,12 @@
+---
 - name: Ensure tzdata is available (Debian)
-  when:
-    - ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  apt:
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  ansible.builtin.apt:
     state: present
     name:
       - tzdata
 
-- name: "Set timezone to {{ default_timezone }}"
-  timezone:
+- name: Set timezone to {{ default_timezone }}
+  community.general.timezone:
     name: "{{ default_timezone }}"
-  notify: restart cron
+  notify: Restart cron

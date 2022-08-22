@@ -1,0 +1,31 @@
+# yamllint disable rule:line-length
+---
+stages:
+  - linting
+
+ansible-lint:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/ansible-lint:latest
+  artifacts:
+    when: always
+    reports:
+      junit: ansible-lint.xml
+  script:
+    - ansible-lint -v --show-relpath -f pep8 --nocolor | ansible-lint-junit -o ansible-lint.xml
+
+shellcheck:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/shellcheck:latest
+  script:
+    - |
+      find . -name .git -type d -prune -o -type f  -name \*.sh -print0 |
+      xargs -0 -P $(nproc) -r -n1 shellcheck
+    - |
+      find . -name .git -type d -prune -o -type f  -regex '.*/[^.]*$'   -print0 |
+      xargs -0 -P $(nproc) -r -n1 sh -c 'FILE="$0"; if head -n1 "$FILE" |grep -q "^#\\! \?/.\+\(ba|d|k\)\?sh" ; then shellcheck "$FILE" ; else /bin/true ; fi '
+
+yamllint:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/yamllint:latest
+  script:
+    - yamllint .

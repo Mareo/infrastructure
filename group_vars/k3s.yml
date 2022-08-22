@@ -1,5 +1,4 @@
 ---
-
 k3s_release_version: v1.23.6+k3s1
 
 k3s_server:
@@ -12,9 +11,9 @@ k3s_server:
   disable:
     - traefik
   kube-apiserver-arg:
-    - "oidc-issuer-url=https://auth.mareo.fr/application/o/kubernetes/"
-    - "oidc-client-id=kubernetes"
-    - "oidc-username-claim=sub"
+    - oidc-issuer-url=https://auth.mareo.fr/application/o/kubernetes/
+    - oidc-client-id=kubernetes
+    - oidc-username-claim=sub
     - "oidc-username-prefix=authentik:"
-    - "oidc-groups-claim=groups"
+    - oidc-groups-claim=groups
     - "oidc-groups-prefix=authentik:"

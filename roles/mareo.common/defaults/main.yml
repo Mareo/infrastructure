@@ -1,6 +1,7 @@
+---
 sshd_port: 22
 ssh_authorized_keys: []
-
+authorize_ssh_password: false
 default_packages:
   # System
   - molly-guard
@@ -49,7 +50,5 @@ default_packages:
   - util-linux
 
 group_packages: []
-
 host_packages: []
-
-default_timezone: "UTC"
+default_timezone: UTC

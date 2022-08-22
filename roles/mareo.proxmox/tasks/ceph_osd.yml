@@ -1,20 +1,20 @@
 ---
-
-- name: Check whether {{ item }} is in use
-  command:
+- name: "Check whether {{ item }} is in use"
+  ansible.builtin.command:
     argv:
       - pvdisplay
       - "{{ item }}"
   register: command_output
-  failed_when: False
-  changed_when: False
-  check_mode: no
+  failed_when: false
+  changed_when: false
+  check_mode: false
 
 - name: "Create OSDs {{ item }}"
   when: command_output.rc != 0
-  command:
+  ansible.builtin.command:
     argv:
       - pveceph
       - osd
       - create
       - "{{ item }}"
+  changed_when: true

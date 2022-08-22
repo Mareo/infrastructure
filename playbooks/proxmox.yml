@@ -1,17 +1,18 @@
 ---
-
-- hosts: proxmox
+- name: Install proxmox
+  hosts: proxmox
   roles:
     - mareo.proxmox
   tags:
     - proxmox
 
-- hosts: proxmox
+- name: Fetch rgw users secret files
+  hosts: proxmox
   tasks:
-    - name: Fetch rgw admin secret file
-      fetch:
-        src: "/etc/ceph/rgw_user_{{ item.uid }}.yml"
-        dest: "../secrets/rgw_user_{{ item.uid }}.yml"
+    - name: Fetch rgw user secret file for {{ item.uid }}
+      ansible.builtin.fetch:
+        src: /etc/ceph/rgw_user_{{ item.uid }}.yml
+        dest: ../secrets/rgw_user_{{ item.uid }}.yml
         fail_on_missing: true
         flat: true
       loop: "{{ proxmox_ceph_rgw_users }}"
@@ -19,13 +20,15 @@
     - secrets
     - proxmox
 
-- hosts: proxmox
+- name: Set up firewall
+  hosts: proxmox
   tasks:
     - name: Blacklist iptables modules
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /etc/modprobe.d/blacklist-xtables.conf
-        line: "install {{ item }} /bin/false"
+        line: install {{ item }} /bin/false
         create: true
+        mode: "0644"
       loop:
         - x_tables
         - iptable_nat
@@ -36,7 +39,8 @@
     - proxmox
     - nftables
 
-- hosts: proxmox
+- name: Set up DHCP
+  hosts: proxmox
   roles:
     - bertvv.dhcp
   tags:

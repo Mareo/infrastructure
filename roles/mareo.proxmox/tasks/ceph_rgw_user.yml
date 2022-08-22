@@ -1,51 +1,57 @@
 ---
-
 - name: Check whether radosgw user {{ item.uid }} exists
-  command:
+  ansible.builtin.command:
     argv:
       - radosgw-admin
       - user
       - info
-      - "--uid={{ item.uid }}"
+      - --uid={{ item.uid }}
   register: result
-  failed_when: False
-  changed_when: False
-  check_mode: no
+  failed_when: false
+  changed_when: false
+  check_mode: false
 
-- name: "Create radosgw user"
+- name: Create radosgw user {{ item.uid }}
   when: result.rc != 0
-  command:
+  ansible.builtin.command:
     argv:
       - radosgw-admin
       - user
       - create
-      - "--uid={{ item.uid }}"
-      - "--display-name={{ item.display_name }}"
-      - "--email={{ item.email|default('') }}"
-      - "--caps={{ item.caps|default('') }}"
-      - "--max-buckets={{ item.max_buckets|default(0) }}"
+      - --uid={{ item.uid }}
+      - --display-name={{ item.display_name }}
+      - --email={{ item.email | default('') }}
+      - --caps={{ item.caps | default('') }}
+      - --max-buckets={{ item.max_buckets | default(0) }}
   register: create_result
+  changed_when: true
 
-- set_fact:
+- name: Set rgw_user_info
+  ansible.builtin.set_fact:
     rgw_user_info: "{{ result.stdout | from_json }}"
   when: result.rc == 0
 
-- set_fact:
+- name: Set rgw_user_info
+  ansible.builtin.set_fact:
     rgw_user_info: "{{ create_result.stdout | from_json }}"
   when: result.rc != 0
 
-- name: "Save user {{ item.uid }} keys"
-  copy:
-    dest: "/etc/ceph/rgw_user_{{ item.uid }}.yml"
-    content: "{{ rgw_user_info['keys'][0] | to_nice_yaml }}"
+- name: Save user {{ item.uid }} keys
+  ansible.builtin.copy:
+    dest: /etc/ceph/rgw_user_{{ item.uid }}.yml
+    mode: "0600"
+    content: |
+      ---
+      {{ rgw_user_info['keys'][0] | to_nice_yaml }}
+  no_log: true
 
-- name: "Create buckets"
+- name: Create buckets
   amazon.aws.s3_bucket:
     aws_access_key: "{{ rgw_user_info['keys'][0]['access_key'] }}"
     aws_secret_key: "{{ rgw_user_info['keys'][0]['secret_key'] }}"
-    ceph: yes
+    ceph: true
     name: "{{ bucket }}"
-    s3_url: "http://localhost:{{ proxmox_ceph_rgw_port }}"
-  with_items: "{{ item.buckets|default([]) }}"
+    s3_url: http://localhost:{{ proxmox_ceph_rgw_port }}
+  with_items: "{{ item.buckets | default([]) }}"
   loop_control:
     loop_var: bucket

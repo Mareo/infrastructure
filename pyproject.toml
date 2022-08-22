@@ -13,7 +13,7 @@ ansible-lint = "^6.5.0"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^3.0.0"
-ansible-lint = "^6.2.1"
+ansible-lint = "^6.8.7"
 yamllint = "^1.26.3"
 
 [build-system]

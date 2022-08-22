@@ -10,12 +10,12 @@ resource "gitlab_group" "meta" {
   name             = "Meta"
   path             = "meta"
   visibility_level = "internal"
-  
+
   emails_disabled         = true
   mentions_disabled       = true
   project_creation_level  = "noone"
   subgroup_creation_level = "owner"
-  request_access_enabled  = false 
+  request_access_enabled  = false
 }
 
 resource "gitlab_group" "meta-children" {
@@ -29,17 +29,17 @@ resource "gitlab_group" "meta-children" {
   emails_disabled         = true
   project_creation_level  = "noone"
   subgroup_creation_level = "owner"
-  request_access_enabled  = false 
+  request_access_enabled  = false
 }
 
 resource "gitlab_group_membership" "iac_meta-children" {
-  for_each     = merge([
-    for group in data.authentik_groups.meta-children.groups: {
-      for user in group.users_obj:
-        "${group.name}_${user.username}" => { 
-          group_id = gitlab_group.meta-children[replace(group.name, "/^gitlab_/", "")].id
-          user_id  = gitlab_user.users[user.username].id
-        }
+  for_each = merge([
+    for group in data.authentik_groups.meta-children.groups : {
+      for user in group.users_obj :
+      "${group.name}_${user.username}" => {
+        group_id = gitlab_group.meta-children[replace(group.name, "/^gitlab_/", "")].id
+        user_id  = gitlab_user.users[user.username].id
+      }
     }
   ]...)
 

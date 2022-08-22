@@ -1,11 +1,10 @@
 ---
-
-- name: "Disable unwanted scripts in motd"
-  file:
-    path: "/etc/update-motd.d/{{ item }}"
+- name: Disable unwanted scripts in motd
+  ansible.builtin.file:
+    path: /etc/update-motd.d/{{ item }}
     state: file
     mode: a-x
   loop:
-    - "10-help-text"
-    - "50-motd-news"
+    - 10-help-text
+    - 50-motd-news
   failed_when: false

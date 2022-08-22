@@ -1,6 +1,6 @@
 ---
-
-- name: "Download {{ item.name }} image"
-  get_url:
+- name: Download {{ item.name }} image
+  ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ (proxmox_local_path, 'template', 'iso', item.name) | path_join }}"
+    mode: "0644"

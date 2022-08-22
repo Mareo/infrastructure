@@ -1,37 +1,50 @@
 # yamllint disable rule:line-length
 ---
-
-- hosts: k3s
+- name: Install k3s
+  hosts: k3s
   roles:
     - role: xanmanning.k3s
   tasks:
+    - name: Increase fs.inotify.max_user_watches
+      ansible.posix.sysctl.sysctl:
+        name: fs.inotify.max_user_watches
+        value: 100000
+        sysctl_set: true
+    - name: Increase fs.inotify.max_user_instances
+      ansible.posix.sysctl.sysctl:
+        name: fs.inotify.max_user_instances
+        value: 100000
+        sysctl_set: true
     - name: Create kubeconfig symlink
       when: k3s_control_node is defined and k3s_control_node
-      file:
+      ansible.builtin.file:
         src: /etc/rancher/k3s/k3s.yaml
         path: ~/.kube/config
         state: link
   tags:
     - k3s
 
-- hosts: k3s
+- name: Retrieve kubeconfig
+  hosts: k3s
   tasks:
     - name: Fetch kubeconfig file
       when: k3s_control_node is defined and k3s_control_node
-      slurp:
+      ansible.builtin.slurp:
         src: /etc/rancher/k3s/k3s.yaml
       register: k3s_yaml
     - name: Write kubeconfig file
       when: k3s_control_node is defined and k3s_control_node
-      copy:
+      ansible.builtin.copy:
         dest: ../secrets/kubeconfig
+        mode: 0600
         content: "{{ k3s_yaml.content | b64decode | replace('https://127.0.0.1', 'https://api.k8s.mareo.fr') }}"
       delegate_to: localhost
   tags:
     - k3s
     - secrets
 
-- hosts: k3s
+- name: Install argocd
+  hosts: k3s
   roles:
     - role: mareo.argocd
       when: k3s_control_node is defined and k3s_control_node

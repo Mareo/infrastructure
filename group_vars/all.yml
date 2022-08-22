@@ -1,18 +1,17 @@
 ---
-
 # yamllint disable rule:line-length
 ssh_authorized_keys:
   - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVxiogrQvZfJs23ajIV9ooc8hWGJyumLHM0t+E4Hv4m cardno:000611341889
   - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCk8ZFvOBmaBgEA6/sXcyvzCwXUBMCxBlmE2Q0PGRk9GTsC8f+2/3WF8PeV5WR/lt6srbmzVux33pqspTcbJdpO71eAwoywg0hVSlSzKj04UqdKjBf22I68wmGkHgF6bs3qQbI5h9cWge3p3WR9FGu1J6RNUisH1jnlek7SfVPp8AgtJ+vDeWSsQEhn7FKOLr+ShYMgzjVtVCPSFYWmvqWjtvwG5CS8OhBNJ1q2DTH5H06PY7xV/q6u3sdk/avy39co1hx4jQzvZmIIuiqT8J1Am2eBpHU9V66L8KSxxd6GTjATmibp2IxRdH6OviK8yzHtibGWhm4aXWLJLEYnMXMvgE6xqWQ3jErwt1zoMrPF9WVjPWQHMqD4gNAiRpOAo+6nLGa2jhfloM/Uk5a/1WeJXicAanQNs/mJCK2oqVNUmou8Nd5QRtpjA1GAdgVa9fRBo6hxpGxOFK7+2Z4Sa31ByApHBIoQpMfDcBKboBnTAr82SnrNbQhU8eoArX160UpVXq2YPNoh3GGmUELGqtPVxZBdq/mXJvSX2cfM7kQpvbtv/D2zYuaBwlQ/9RGU3aM4TS+QuU0oobpgediEbNVOfnh3sm0Co6Ddux+XqhLAxZfWfgINDHJxkeGKRuwSrFziuV9DaRss5A3vR1A5djNMetUQd+9ZIo28cxsafLxuTQ== cardno:8754528
 # yamllint enable rule:line-length
 
-default_timezone: "Europe/Paris"
+default_timezone: Europe/Paris
 
 nft_global_rules:
-  "050 allow ICMP":
+  050 allow ICMP:
     - ip protocol icmp accept
     - ip6 nexthdr icmpv6 accept
 
 nft_output_rules:
-  "000 policy":
+  000 policy:
     - type filter hook output priority 0; policy accept;

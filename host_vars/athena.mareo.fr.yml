@@ -1,6 +1,4 @@
 ---
-
-
 sshd_port: 2222
 
 proxmox_template_default_storage: rbd
@@ -27,45 +25,45 @@ dhcp_global_domain_search:
 nft_define_host:
   self:
     name: self
-    value: '65.108.17.229'
+    value: 65.108.17.229
   k3s:
     name: k3s
-    value: "192.168.0.1"
+    value: 192.168.0.1
 
 forwarded_ports:
   - dport: ssh
-    host: "$k3s"
+    host: $k3s
     port: 30022
   - dport: http
-    host: "$k3s"
+    host: $k3s
     port: 30080
   - dport: https
-    host: "$k3s"
+    host: $k3s
     port: 30443
   - dport: smtp
-    host: "$k3s"
+    host: $k3s
     port: 30025
   - dport: submissions
-    host: "$k3s"
+    host: $k3s
     port: 30465
   - dport: submission
-    host: "$k3s"
+    host: $k3s
     port: 30587
   - dport: 6443
-    host: "$k3s"
+    host: $k3s
 
   - dport: 34197
-    host: "$k3s"
+    host: $k3s
     protocol: udp
   - dport: 30100
-    host: "$k3s"
+    host: $k3s
 
 # yamllint disable rule:line-length
 nft_input_host_rules:
-  "050 accept ssh":
-    - "tcp dport {{ sshd_port }} accept"
-nft_forward_host_rules: "{{ nft_forward_host_rules_yaml|from_yaml }}"
-nft__nat_host_prerouting_rules: "{{ nft__nat_host_prerouting_rules_yaml|from_yaml }}"
+  050 accept ssh:
+    - tcp dport {{ sshd_port }} accept
+nft_forward_host_rules: "{{ nft_forward_host_rules_yaml | from_yaml }}"
+nft__nat_host_prerouting_rules: "{{ nft__nat_host_prerouting_rules_yaml | from_yaml }}"
 
 nft__custom_content: |
   #jinja2: lstrip_blocks: "True", trim_blocks: "True"
@@ -73,7 +71,7 @@ nft__custom_content: |
     chain output {
       # 000 policy
       type nat hook output priority 0;
-      {% for comment, rules in nft__nat_host_prerouting_rules_yaml|from_yaml|dictsort %}
+      {% for comment, rules in nft__nat_host_prerouting_rules_yaml | from_yaml | dictsort %}
       # {{ comment }}
       {% for rule in rules %}
       {{ rule }}
@@ -85,18 +83,18 @@ nft__custom_content: |
 nft_forward_host_rules_yaml: |
   "200 port forwarding":
   {% for fwd in forwarded_ports %}
-    - ip daddr {{ fwd.host }} {{ fwd.protocol|default('tcp') }} dport {{ fwd.port|default(fwd.dport) }} accept
+    - ip daddr {{ fwd.host }} {{ fwd.protocol | default('tcp') }} dport {{ fwd.port | default(fwd.dport) }} accept
   {% endfor %}
 
 nft__nat_host_prerouting_rules_yaml: |
   "200 port forwarding":
   {% for fwd in forwarded_ports %}
-    - ip daddr $self {{ fwd.protocol|default('tcp') }} dport {{ fwd.dport }} dnat to {{ fwd.host }}:{{ fwd.port|default(fwd.dport) }}
+    - ip daddr $self {{ fwd.protocol | default('tcp') }} dport {{ fwd.dport }} dnat to {{ fwd.host }}:{{ fwd.port | default(fwd.dport) }}
   {% endfor %}
 
 nft__nat_host_output_rules_yaml: |
   "200 port forwarding":
   {% for fwd in forwarded_ports %}
-    - ip daddr $self {{ fwd.protocol|default('tcp') }} oif lo dport {{ fwd.dport }} dnat to {{ fwd.host }}:{{ fwd.port|default(fwd.dport) }}
+    - ip daddr $self {{ fwd.protocol | default('tcp') }} oif lo dport {{ fwd.dport }} dnat to {{ fwd.host }}:{{ fwd.port | default(fwd.dport) }}
   {% endfor %}
 # yamllint enable rule:line-length

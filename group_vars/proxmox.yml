@@ -1,18 +1,17 @@
 ---
-
 nft_enabled: true
 nft_old_pkg_manage: false
 nft__forward_table_manage: true
 nft__nat_table_manage: true
 
 nft_input_group_rules:
-  "100 proxomx":
+  100 proxomx:
     - tcp dport 8006 accept  # web interface
     - tcp dport 5900-5999 accept  # VNC Web console
     - tcp dport 3128  # SPICE proxy
     - udp dport {5404,5405}  # corosync cluster traffic
     - tcp dport 60000-60050  # live migration
-  "101 ceph":
+  101 ceph:
     - ip daddr $ceph_addr ip saddr $rfc1918 tcp dport $ceph_ports accept
     - tcp dport {7480, 7443} accept  # rgw
     - tcp dport 8443 accept  # dashboard
@@ -20,23 +19,23 @@ nft_input_group_rules:
 nft_define:
   rfc1918:
     name: rfc1918
-    value: '{ 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'
+    value: "{ 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }"
   ceph_addr:
     name: ceph_addr
-    value: "{{ proxmox_ceph_address|ansible.utils.ipaddr('address') }}"
+    value: "{{ proxmox_ceph_address | ansible.utils.ipaddr('address') }}"
   ceph_ports:
     name: ceph_ports
-    value: '{ 3300, 6789, 6800-7300 }'
+    value: "{ 3300, 6789, 6800-7300 }"
 
 nft_forward_rules:
-  "100 internal vms":
+  100 internal vms:
     - ip saddr $rfc1918 accept
     - ip protocol icmp accept
 
 nft__nat_postrouting_rules:
-  "900 masquerade":
+  900 masquerade:
     - ip daddr != $rfc1918 ip saddr $rfc1918 masquerade
-  "910 hairpin":
+  910 hairpin:
     - ip daddr $rfc1918 ip saddr $rfc1918 masquerade
 
 proxmox_ceph_address: 172.31.0.254/24
@@ -74,24 +73,24 @@ proxmox_ceph_rgw_users:
     max_buckets: 1
     buckets:
       - postgresql
-  - uid: petitsream
+  - uid: petitstream
     display_name: petitstream
     max_buckets: 2
     buckets:
       - petitstream-dev
       - petitstream
-  - uid: petitsream
+  - uid: hedgedoc
     display_name: hedgedoc
     max_buckets: 1
     buckets:
       - hedgedoc-data
 
-dhcp_subnets: "{{ dhcp_subnets_yaml|from_yaml }}"
-dhcp_interfaces: "{{ dhcp_interfaces_yaml|from_yaml|join(' ') }}"
+dhcp_subnets: "{{ dhcp_subnets_yaml | from_yaml }}"
+dhcp_interfaces: "{{ dhcp_interfaces_yaml | from_yaml | join(' ') }}"
 
 dhcp_interfaces_yaml: |
   {% for br in proxmox_network_bridges %}
-  {% if br.addresses|ansible.utils.ipv4 %}
+  {% if br.addresses | ansible.utils.ipv4 %}
   - {{ br.name }}
   {% endif %}
   {% endfor %}
@@ -99,13 +98,13 @@ dhcp_interfaces_yaml: |
 # yamllint disable rule:line-length
 dhcp_subnets_yaml: |
   {% for br in proxmox_network_bridges %}
-  {% if br.addresses|ansible.utils.ipv4 %}
-  - ip: {{ br.addresses|ansible.utils.ipv4|first|ansible.utils.ipaddr('network') }}
+  {% if br.addresses | ansible.utils.ipv4 %}
+  - ip: {{ br.addresses | ansible.utils.ipv4 | first | ansible.utils.ipaddr('network') }}
     interface: {{ br.name }}
-    routers: {{ br.addresses|ansible.utils.ipv4|first|ansible.utils.ipaddr('address') }}
-    netmask: {{ br.addresses|ansible.utils.ipv4|first|ansible.utils.ipaddr('netmask') }}
-    range_begin: {{ br.addresses|ansible.utils.ipv4|first|ansible.utils.ipaddr('64')|ansible.utils.ipaddr('address') }}
-    range_end: {{ br.addresses|ansible.utils.ipv4|first|ansible.utils.ipaddr('-32')|ansible.utils.ipaddr('address') }}
+    routers: {{ br.addresses | ansible.utils.ipv4 | first | ansible.utils.ipaddr('address') }}
+    netmask: {{ br.addresses | ansible.utils.ipv4 | first | ansible.utils.ipaddr('netmask') }}
+    range_begin: {{ br.addresses | ansible.utils.ipv4 | first | ansible.utils.ipaddr('64') | ansible.utils.ipaddr('address') }}
+    range_end: {{ br.addresses | ansible.utils.ipv4 | first | ansible.utils.ipaddr('-32') | ansible.utils.ipaddr('address') }}
   {% endif %}
   {% endfor %}
 # yamllint enable rule:line-length

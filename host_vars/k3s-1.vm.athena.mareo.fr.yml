@@ -1,5 +1,4 @@
 ---
-
 k3s_control_node: true
 
 argocd_apps:

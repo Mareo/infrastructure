@@ -3,9 +3,9 @@ resource "gitlab_project" "iac_petitstream" {
   namespace_id     = gitlab_group.iac.id
   visibility_level = "internal"
 
-  wiki_enabled      = false
-  packages_enabled  = false
-  pipelines_enabled = true
+  wiki_enabled        = false
+  packages_enabled    = false
+  builds_access_level = "enabled"
 
   default_branch = "main"
   merge_method   = "ff"
@@ -17,9 +17,9 @@ resource "gitlab_project" "iac_petitstream" {
 }
 
 resource "gitlab_project_share_group" "petitstream" {
-  project_id     = gitlab_project.iac_petitstream.id
-  group_id       = gitlab_group.meta-children["petitstream"].id
-  group_access   = "developer"
+  project_id   = gitlab_project.iac_petitstream.id
+  group_id     = gitlab_group.meta-children["petitstream"].id
+  group_access = "developer"
 }
 
 resource "gitlab_project_hook" "petitstream_argocd" {

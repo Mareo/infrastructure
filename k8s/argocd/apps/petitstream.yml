@@ -1,3 +1,4 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -9,10 +10,10 @@ spec:
   source:
     repoURL: https://gitlab.mareo.fr/iac/petitstream.git
     targetRevision: HEAD
-    path: "prod"
+    path: prod
   destination:
-    name: "in-cluster"
-    namespace: "petitstream"
+    name: in-cluster
+    namespace: petitstream
   syncPolicy:
     automated:
       prune: false

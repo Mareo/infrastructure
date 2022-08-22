@@ -1,6 +1,6 @@
 ---
-
-- hosts: all
+- name: Run common role
+  hosts: all
   roles:
     - mareo.common
   tags:

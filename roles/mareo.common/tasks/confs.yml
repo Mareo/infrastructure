@@ -1,19 +1,10 @@
 ---
-
-- name: bashrc
-  copy:
-    src: bashrc
-    dest: /root/.bashrc
-    mode: 0600
-
-- name: vimrc
-  copy:
-    src: vimrc
-    dest: /root/.vimrc
-    mode: 0600
-
-- name: tmux.conf
-  copy:
-    src: tmux.conf
-    dest: /root/.tmux.conf
-    mode: 0600
+- name: "Copy configuration files"
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /root/.{{ item }}
+    mode: "0600"
+  loop:
+    - bashrc
+    - vimrc
+    - tmux.conf

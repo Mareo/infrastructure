@@ -1,11 +1,16 @@
 ---
-
-- hosts: all
+- name: Gather facts
+  hosts: all
   gather_facts: true
   tags:
-    - "always"
-    - "gather_facts"
+    - always
+    - gather_facts
 
-- import_playbook: common.yml
-- import_playbook: proxmox.yml
-- import_playbook: k3s.yml
+- name: Run common playbook
+  ansible.builtin.import_playbook: common.yml
+
+- name: Run proxmox playbook
+  ansible.builtin.import_playbook: proxmox.yml
+
+- name: Run k3s playbook
+  ansible.builtin.import_playbook: k3s.yml

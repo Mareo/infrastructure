@@ -1,20 +1,22 @@
 ---
-
-- import_tasks: network.yml
+- name: Include network tasks
+  ansible.builtin.import_tasks: network.yml
   tags:
     - network
 
-- import_tasks: ceph.yml
+- name: Include Ceph tasks
+  ansible.builtin.import_tasks: ceph.yml
   tags:
     - proxmox_ceph
 
-- import_tasks: images.yml
+- name: Include images tasks
+  ansible.builtin.import_tasks: images.yml
   tags:
     - proxmox_images
 
-- name: "Remove subscription warning"
-  replace:
+- name: Remove subscription warning
+  ansible.builtin.replace:
     path: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
-    before: 'No valid subscription'
-    regexp: 'Ext\.Msg\.show\(\{'
-    replace: "void({"
+    before: No valid subscription
+    regexp: Ext\.Msg\.show\(\{
+    replace: void({

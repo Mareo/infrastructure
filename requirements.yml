@@ -1,6 +1,5 @@
 # yamllint disable rule:line-length
 ---
-
 collections:
   - name: community.general
     version: 6.4.0

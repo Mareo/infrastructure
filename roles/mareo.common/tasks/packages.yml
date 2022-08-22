@@ -1,8 +1,7 @@
 ---
-
 - name: Install aptitude using apt (Debian)
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  apt:
+  ansible.builtin.package:
     name: aptitude
     state: latest  # noqa package-latest
     update_cache: true
@@ -10,22 +9,18 @@
 
 - name: Install default packages (Debian)
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  apt:
+  ansible.builtin.package:
     state: present
-    name: "{{ default_packages|default([]) }}"
+    name: "{{ default_packages | default([]) }}"
 
-- name: Install group specific packages (Debian)
-  when:
-    - ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-    - group_packages
-  apt:
+- name: Install group specific packages
+  when: group_packages
+  ansible.builtin.package:
     state: present
     name: "{{ group_packages }}"
 
-- name: Install host specific packages (Debian)
-  when:
-    - ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-    - host_packages
-  apt:
+- name: Install host specific packages
+  when: host_packages
+  ansible.builtin.package:
     state: present
     name: "{{ host_packages }}"

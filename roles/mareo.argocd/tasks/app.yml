@@ -1,7 +1,6 @@
 ---
-
-- name: "Check whether app {{ item.key }} is deployed"
-  command:
+- name: Check whether app {{ item.key }} is deployed
+  ansible.builtin.command:
     argv:
       - argocd
       - --port-forward-namespace
@@ -11,13 +10,15 @@
       - get
       - "{{ item.key }}"
   register: app_check
-  check_mode: no
+  check_mode: false
   changed_when: false
   failed_when: false
 
-- when: app_check.rc != 0
+- name: Add app
+  when: app_check.rc != 0
   block:
-    - set_fact:
+    - name: Construct command argv
+      ansible.builtin.set_fact:
         command_argv:
           - argocd
           - --port-forward-namespace
@@ -27,12 +28,13 @@
           - create
           - "{{ item.key }}"
         command_extra_argv: |
-          {% for arg in item.value|dict2items %}
-          - "--{{ arg.key|replace('_', '-') }}"
+          {% for arg in item.value | dict2items %}
+          - "--{{ arg.key | replace('_', '-') }}"
           {% if arg.value is string %}
           - "{{ arg.value }}"
           {% endif %}
           {% endfor %}
-    - name: "Add app {{ item.key }}"
-      command:
-         argv: "{{ command_argv + command_extra_argv|from_yaml }}"
+    - name: Add app {{ item.key }}
+      ansible.builtin.command:
+        argv: "{{ command_argv + command_extra_argv | from_yaml }}"
+      changed_when: true

@@ -1,10 +1,10 @@
 ---
-- name: reload networking
-  service:
+- name: Reload networking
+  ansible.builtin.service:
     name: networking
     state: reloaded
 
-- name: restart radosgw
-  service:
+- name: Restart radosgw
+  ansible.builtin.service:
     name: ceph-radosgw@rgw
     state: restarted
