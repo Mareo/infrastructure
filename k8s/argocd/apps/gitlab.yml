@@ -134,9 +134,9 @@ spec:
                         name: name
                         username: cn
                       group_base: "ou=groups,dc=gitlab,dc=mareo,dc=fr"
-                      admin_group: "cn=gitlab_admins,ou=groups,dc=gitlab,dc=mareo,dc=fr"
-                      external_group:
-                        - "cn=gitlab_externals,ou=groups,dc=gitlab,dc=mareo,dc=fr"
+                      admin_group: "gitlab_admins"
+                      external_groups:
+                        - "gitlab_externals"
                 omniauth:
                   enabled: true
                   blockAutoCreatedUsers: false
