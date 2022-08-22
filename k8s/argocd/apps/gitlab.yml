@@ -165,6 +165,9 @@ spec:
             gitlab-runner:
               install: true
             gitlab:
+              migrations:
+                annotations:
+                  argocd.argoproj.io/sync-options: Replace=true
               gitaly:
                 persistence:
                   enabled: true
