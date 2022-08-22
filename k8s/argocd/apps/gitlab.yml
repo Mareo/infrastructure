@@ -167,7 +167,8 @@ spec:
             gitlab:
               migrations:
                 annotations:
-                  argocd.argoproj.io/sync-options: Replace=true
+                  argocd.argoproj.io/hook: Sync
+                  argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
               gitaly:
                 persistence:
                   enabled: true
