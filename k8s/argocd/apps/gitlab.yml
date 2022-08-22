@@ -113,6 +113,30 @@ spec:
                   connection:
                     secret: gitlab-object-storage
                     key: connection
+                ldap:
+                  preventSignin: true
+                  servers:
+                    main:
+                      label: LDAP
+                      host: ak-outpost-gitlab-ldap.authentik.svc
+                      port: 389
+                      encryption: plain
+                      base: "ou=users,dc=gitlab,dc=mareo,dc=fr"
+                      active_directory: false
+                      bind_dn: cn=gitlab,ou=users,dc=gitlab,dc=mareo,dc=fr
+                      password:
+                        secret: gitlab-ldap
+                        key: bind_password
+                      uid: cn
+                      user_filter: "(memberOf=cn=gitlab,ou=groups,dc=gitlab,dc=mareo,dc=fr)"
+                      attributes:
+                        email: mail
+                        name: name
+                        username: cn
+                      group_base: "ou=groups,dc=gitlab,dc=mareo,dc=fr"
+                      admin_group: "cn=gitlab_admins,ou=groups,dc=gitlab,dc=mareo,dc=fr"
+                      external_group:
+                        - "cn=gitlab_externals,ou=groups,dc=gitlab,dc=mareo,dc=fr"
                 omniauth:
                   enabled: true
                   blockAutoCreatedUsers: false
@@ -121,6 +145,7 @@ spec:
                     - openid_connect
                   autoLinkLdapUser: true
                   autoLinkSamlUser: true
+                  autoLinkUser: true
                   providers:
                     - secret: gitlab-saml-group
                     - secret: gitlab-saml-authentik
