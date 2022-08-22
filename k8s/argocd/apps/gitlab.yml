@@ -165,10 +165,6 @@ spec:
             gitlab-runner:
               install: true
             gitlab:
-              migrations:
-                annotations:
-                  helm.sh/hook: "pre-install,pre-upgrade"
-                  helm.sh/hook-delete-policy: "before-hook-creation,hook-succeeded"
               gitaly:
                 persistence:
                   enabled: true
