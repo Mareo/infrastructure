@@ -50,9 +50,6 @@ spec:
             ports:
               http: 30080
               https: 30443
-              https-alt: 30843
-            targetPorts:
-              https-alt: https
           resources:
             requests:
               cpu: 100m
@@ -61,6 +58,7 @@ spec:
           replicaCount: 1
         tcp:
           30022: gitlab/gitlab-gitlab-shell:22
+          30843: ingress-nginx/ingress-nginx-public-controller:30443
         defaultBackend:
           enabled: true
           replicaCount: 1
