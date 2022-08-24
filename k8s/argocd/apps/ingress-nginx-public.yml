@@ -50,6 +50,9 @@ spec:
             ports:
               http: 30080
               https: 30443
+              https-alt: 30843
+            targetPorts:
+              https-alt: https
           resources:
             requests:
               cpu: 100m
