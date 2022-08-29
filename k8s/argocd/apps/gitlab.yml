@@ -186,3 +186,6 @@ spec:
               ingress:
                 tls:
                   secretName: gitlab-registry-tls
+            sidekiq:
+              minReplicas: 1
+              maxReplicas: 1
