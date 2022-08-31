@@ -157,6 +157,8 @@ spec:
                   host: athena.mareo.fr
                   secure: "ssl"
                   port: 465
+            livenessProbe:
+              enabled: false
             persistence:
               enabled: true
               storageClass: csi-cephfs-sc-retain
