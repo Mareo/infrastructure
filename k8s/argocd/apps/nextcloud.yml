@@ -33,8 +33,6 @@ spec:
         helm:
           releaseName: nextcloud
           values: |
-            image:
-              tag: 24.0.3-apache
             metrics:
               enabled: true
               https: true
