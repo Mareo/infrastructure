@@ -164,6 +164,12 @@ spec:
                   authScope: read_api
             gitlab-runner:
               install: true
+              runners:
+                config: |
+                  [[runners]]
+                  clone_url = "http://test.com/"
+                  [runners.kubernetes]
+                  image = "ubuntu:18.04"
             gitlab:
               gitaly:
                 persistence:
