@@ -1,9 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: clusters
+  name: argo-rollouts
   labels:
-    app: clusters
+    app: argo-rollouts
 spec:
   generators:
     - clusters: {}
