@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: argo-rollouts
+  name: argo-rollouts-examples
   labels:
-    app: argo-rollouts
+    app: argo-rollouts-examples
 spec:
   generators:
     - clusters: {}
   template:
     metadata:
-      name: "{{name}}-argo-rollouts"
+      name: "{{name}}-argo-rollouts-examples"
       labels:
-        app: argo-rollouts
+        app: argo-rollouts-examples
     spec:
       project: default
       syncPolicy:
@@ -19,9 +19,10 @@ spec:
           - CreateNamespace=true
         automated:
           prune: true
-      kustomize:
-        resources:
-          - https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+      source:
+        repoURL: https://github.com/argoproj/rollouts-demo/
+        targetRevision: HEAD
+        path: "examples/canary/"
       destination:
         name: "{{name}}"
-        namespace: argo-rollouts
+        namespace: argo-rollouts-examples

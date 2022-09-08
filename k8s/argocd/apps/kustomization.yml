@@ -4,6 +4,7 @@ namespace: argocd
 
 resources:
   - argo-rollouts.yml
+  - argo-rollouts-examples.yml
   - authentik.yml
   - cephfs-csi.yml
   - cert-manager.yml
