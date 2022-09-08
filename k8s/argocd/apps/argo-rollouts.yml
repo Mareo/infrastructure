@@ -9,7 +9,7 @@ spec:
     - clusters: {}
   template:
     metadata:
-      name: "{{name}}"
+      name: "{{name}}-argo-rollouts-examples"
       labels:
         app: argo-rollouts-examples
     spec:
