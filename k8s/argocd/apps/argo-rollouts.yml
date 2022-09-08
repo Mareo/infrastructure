@@ -14,12 +14,15 @@ spec:
         app: clusters
     spec:
       project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
       source:
         repoURL: https://github.com/argoproj/rollouts-demo/
         targetRevision: HEAD
-        path: "examples/canary"
+        path: "examples/canary/"
       destination:
         name: "{{name}}"
-      syncPolicy:
-        automated:
-          prune: true
+        namespace: argo-rollouts-canary
