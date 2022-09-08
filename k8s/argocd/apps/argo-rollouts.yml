@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: clusters
+  labels:
+    app: clusters
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: "{{name}}"
+      labels:
+        app: clusters
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/rollouts-demo/
+        targetRevision: HEAD
+        path: "examples/canary"
+      destination:
+        name: "{{name}}"
+      syncPolicy:
+        automated:
+          prune: true

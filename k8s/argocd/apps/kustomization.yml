@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: argocd
 
 resources:
+  - argo-rollouts.yml
   - authentik.yml
   - cephfs-csi.yml
   - cert-manager.yml
