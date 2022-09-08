@@ -1,9 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: argo-rollouts
+  name: argo-rollouts-examples
   labels:
-    app: argo-rollouts
+    app: argo-rollouts-examples
 spec:
   generators:
     - clusters: {}
@@ -11,7 +11,7 @@ spec:
     metadata:
       name: "{{name}}"
       labels:
-        app: clusters
+        app: argo-rollouts-examples
     spec:
       project: default
       syncPolicy:
@@ -25,4 +25,4 @@ spec:
         path: "examples/canary/"
       destination:
         name: "{{name}}"
-        namespace: argo-rollouts-canary
+        namespace: argo-rollouts-examples
