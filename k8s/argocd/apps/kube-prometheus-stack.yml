@@ -29,7 +29,7 @@ spec:
       source:
         repoURL: https://prometheus-community.github.io/helm-charts
         chart: kube-prometheus-stack
-        targetRevision: 39.13.3
+        targetRevision: 40.1.0
         helm:
           values: |
             fullnameOverride: kube-prometheus-stack
