@@ -14,7 +14,7 @@ terraform {
     }
     tls = {
       source = "hashicorp/tls"
-      version = "4.0.2"
+      version = "4.0.3"
     }
     dns = {
       source  = "hashicorp/dns"
