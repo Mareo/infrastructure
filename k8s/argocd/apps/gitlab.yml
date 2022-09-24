@@ -182,6 +182,10 @@ spec:
                 ingress:
                   tls:
                     secretName: gitlab-pages-tls
+              migrations:
+                annotations:
+                  "helm.sh/hook": "pre-install"
+                  "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
             registry:
               ingress:
                 tls:
