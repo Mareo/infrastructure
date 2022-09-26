@@ -11,7 +11,7 @@ ansible-core = ">=2.12.7,<2.13.0"
 
 [[package]]
 name = "ansible-compat"
-version = "2.2.0"
+version = "2.2.1"
 description = "Ansible compatibility goodies"
 category = "main"
 optional = false
@@ -43,14 +43,14 @@ resolvelib = ">=0.5.3,<0.6.0"
 
 [[package]]
 name = "ansible-lint"
-version = "6.6.0"
+version = "6.7.0"
 description = "Checks playbooks for practices and behavior that could potentially be improved"
 category = "main"
 optional = false
 python-versions = ">=3.8"
 
 [package.dependencies]
-ansible-compat = ">=2.2.0"
+ansible-compat = ">=2.2.1"
 ansible-core = ">=2.12.0"
 black = ">=22.1.0"
 enrich = ">=1.2.6"
@@ -436,7 +436,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "setuptools"
-version = "65.3.0"
+version = "65.4.0"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 category = "main"
 optional = false
@@ -515,7 +515,7 @@ testing = ["coverage (>=6.2)", "coverage-enable-subprocess (>=1)", "flaky (>=3.7
 
 [[package]]
 name = "wcmatch"
-version = "8.4"
+version = "8.4.1"
 description = "Wildcard/glob file name matcher."
 category = "main"
 optional = false
@@ -547,15 +547,15 @@ ansible = [
     {file = "ansible-5.10.0.tar.gz", hash = "sha256:c77f556a7c3d9948f86639c5742aa885be25a7cdbda3bfb41a8314b60a3341e8"},
 ]
 ansible-compat = [
-    {file = "ansible-compat-2.2.0.tar.gz", hash = "sha256:676db8ec0449d1f07038625b8ebb8ceef5f8ad3a1af3ee82d4ed66b9b04cb6fa"},
-    {file = "ansible_compat-2.2.0-py3-none-any.whl", hash = "sha256:ce69a67785ae96e8962794a47494339991a0ae242ab5dd14a76ee2137d09072e"},
+    {file = "ansible-compat-2.2.1.tar.gz", hash = "sha256:7a012753a0a02dab2f22b0e574e3e7b00399f660606154474ffe25621fa80d3b"},
+    {file = "ansible_compat-2.2.1-py3-none-any.whl", hash = "sha256:8857b317bf36a00dbb0b06640d19b68bb64f667bf2a5355189f3c5961f4b1c10"},
 ]
 ansible-core = [
     {file = "ansible-core-2.12.9.tar.gz", hash = "sha256:f3ed79d8c9ad4decca2bf43aae223a9c976caaa514bf1fff2bb8b809b1f157f6"},
 ]
 ansible-lint = [
-    {file = "ansible-lint-6.6.0.tar.gz", hash = "sha256:eb467d725d0839693ef5fe11abe18085f472c2da4837a8e2df724e04ede96af6"},
-    {file = "ansible_lint-6.6.0-py3-none-any.whl", hash = "sha256:56bf7974594e34b9327211d2febe623978850a1fab4330da94e2964ab52cfe42"},
+    {file = "ansible-lint-6.7.0.tar.gz", hash = "sha256:a111295152d2de812857cac6bb2c6b003315826d9cae1410a4f10e3eeb255b09"},
+    {file = "ansible_lint-6.7.0-py3-none-any.whl", hash = "sha256:62a579b50e6d40198cdfb7ba5c629e4f0e21d4719f844325b09b6789e9a91067"},
 ]
 attrs = [
     {file = "attrs-22.1.0-py2.py3-none-any.whl", hash = "sha256:86efa402f67bf2df34f51a335487cf46b1ec130d02b8d39fd248abfd30da551c"},
@@ -916,8 +916,8 @@ rich = [
     {file = "ruamel.yaml.clib-0.2.6.tar.gz", hash = "sha256:4ff604ce439abb20794f05613c374759ce10e3595d1867764dd1ae675b85acbd"},
 ]
 setuptools = [
-    {file = "setuptools-65.3.0-py3-none-any.whl", hash = "sha256:2e24e0bec025f035a2e72cdd1961119f557d78ad331bb00ff82efb2ab8da8e82"},
-    {file = "setuptools-65.3.0.tar.gz", hash = "sha256:7732871f4f7fa58fb6bdcaeadb0161b2bd046c85905dbaa066bdcbcc81953b57"},
+    {file = "setuptools-65.4.0-py3-none-any.whl", hash = "sha256:c2d2709550f15aab6c9110196ea312f468f41cd546bceb24127a1be6fdcaeeb1"},
+    {file = "setuptools-65.4.0.tar.gz", hash = "sha256:a8f6e213b4b0661f590ccf40de95d28a177cd747d098624ad3f69c40287297e9"},
 ]
 shyaml = [
     {file = "shyaml-0.6.2-py2.py3-none-any.whl", hash = "sha256:d4849f0a280dea2da6d952539bc6a867ddf9c7026b026eb3170185e638da73ef"},
@@ -944,8 +944,8 @@ virtualenv = [
     {file = "virtualenv-20.16.5.tar.gz", hash = "sha256:227ea1b9994fdc5ea31977ba3383ef296d7472ea85be9d6732e42a91c04e80da"},
 ]
 wcmatch = [
-    {file = "wcmatch-8.4-py3-none-any.whl", hash = "sha256:dc7351e5a7f8bbf4c6828d51ad20c1770113f5f3fd3dfe2a03cfde2a63f03f98"},
-    {file = "wcmatch-8.4.tar.gz", hash = "sha256:ba4fc5558f8946bf1ffc7034b05b814d825d694112499c86035e0e4d398b6a67"},
+    {file = "wcmatch-8.4.1-py3-none-any.whl", hash = "sha256:3476cd107aba7b25ba1d59406938a47dc7eec6cfd0ad09ff77193f21a964dee7"},
+    {file = "wcmatch-8.4.1.tar.gz", hash = "sha256:b1f042a899ea4c458b7321da1b5e3331e3e0ec781583434de1301946ceadb943"},
 ]
 yamllint = [
     {file = "yamllint-1.28.0.tar.gz", hash = "sha256:9e3d8ddd16d0583214c5fdffe806c9344086721f107435f68bad990e5a88826b"},
