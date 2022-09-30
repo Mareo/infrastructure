@@ -1,7 +1,7 @@
 resource "gitlab_project" "iac_petitstream" {
   name             = "petitstream"
   namespace_id     = gitlab_group.iac.id
-  visibility_level = "private"
+  visibility_level = "internal"
 
   wiki_enabled      = false
   packages_enabled  = false
