@@ -37,7 +37,7 @@ resource "authentik_application" "grafana" {
   slug               = "grafana"
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_oauth2.grafana.id
-  meta_icon          = "https://seeklogo.com/images/G/grafana-logo-15BA0AFA8A-seeklogo.com.png"
+  meta_icon          = "${local.icon-url}/grafana.png"
   meta_launch_url    = "https://grafana.mareo.fr"
   meta_publisher     = "Grafana Labs"
   policy_engine_mode = "any"

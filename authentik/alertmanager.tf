@@ -11,7 +11,7 @@ resource "authentik_application" "alertmanager" {
   slug               = "alertmanager"
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_proxy.alertmanager.id
-  meta_icon          = "https://devopy.io/wp-content/uploads/2019/02/bell_260.svg"
+  meta_icon          = "${local.icon-url}/alertmanager.png"
   meta_launch_url    = "https://alertmanager.mareo.fr"
   meta_publisher     = "Cloud Native Computing Foundation"
   policy_engine_mode = "any"

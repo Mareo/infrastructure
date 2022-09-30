@@ -27,7 +27,7 @@ resource "authentik_application" "kubernetes" {
   slug               = "kubernetes"
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_oauth2.kubernetes.id
-  meta_icon          = "https://cncf-branding.netlify.app/img/projects/kubernetes/icon/color/kubernetes-icon-color.svg/"
+  meta_icon          = "${local.icon-url}/kubernetes-dashboard.png"
   meta_launch_url    = "blank://blank"
   meta_publisher     = "Cloud Native Computing Foundation"
   policy_engine_mode = "any"

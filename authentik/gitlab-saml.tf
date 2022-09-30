@@ -31,7 +31,7 @@ resource "authentik_application" "gitlab-saml" {
   slug               = "gitlab-saml"
   group              = "Services"
   protocol_provider  = authentik_provider_saml.gitlab-saml.id
-  meta_icon          = "https://about.gitlab.com/images/press/press-kit-icon.svg"
+  meta_icon          = "${local.icon-url}/gitlab.png"
   meta_launch_url    = "https://gitlab.mareo.fr/"
   meta_publisher     = "GitLab Inc."
   policy_engine_mode = "any"

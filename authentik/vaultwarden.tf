@@ -2,7 +2,7 @@ resource "authentik_application" "vaultwarden" {
   name            = "Vaultwarden"
   slug            = "vaultwarden"
   group           = "Services"
-  meta_icon       = "https://canada1.discourse-cdn.com/free1/uploads/vaultwarden/original/1X/14dfd7ce2a819b0da57fbe95ed906ce7723c86d2.png"
+  meta_icon       = "${local.icon-url}/vaultwarden.png"
   meta_launch_url = "https://vaultwarden.mareo.fr/"
   meta_publisher  = "Daniel García"
 }

@@ -55,9 +55,9 @@ resource "authentik_application" "nextcloud-saml" {
   slug               = "nextcloud-saml"
   group              = "Services"
   protocol_provider  = authentik_provider_saml.nextcloud-saml.id
-  meta_icon          = "https://cdn.icon-icons.com/icons2/2699/PNG/512/nextcloud_logo_icon_168948.png"
+  meta_icon          = "${local.icon-url}/nextcloud.png"
   meta_launch_url    = "https://nextcloud.mareo.fr/"
-  meta_publisher     = "NextCloud GmbHJ."
+  meta_publisher     = "NextCloud GmbH."
   policy_engine_mode = "any"
 }
 

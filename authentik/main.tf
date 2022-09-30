@@ -31,3 +31,7 @@ provider "authentik" {
   url   = "https://auth.mareo.fr"
   token = trimspace(file("../secrets/authentik_token"))
 }
+
+locals {
+  icon-url = "https://raw.githubusercontent.com/walkxcode/Dashboard-Icons/main/png"
+}

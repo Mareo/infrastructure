@@ -11,7 +11,7 @@ resource "authentik_application" "prometheus" {
   slug               = "prometheus"
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_proxy.prometheus.id
-  meta_icon          = "https://cncf-branding.netlify.app/img/projects/prometheus/icon/color/prometheus-icon-color.svg"
+  meta_icon          = "${local.icon-url}/prometheus.png"
   meta_launch_url    = "https://prom.mareo.fr"
   meta_publisher     = "Cloud Native Computing Foundation"
   policy_engine_mode = "any"

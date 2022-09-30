@@ -10,7 +10,7 @@ resource "authentik_application" "mail" {
   slug              = "mail-ldap"
   protocol_provider = authentik_provider_ldap.mail.id
   group             = "Services"
-  meta_icon         = "https://upload.wikimedia.org/wikipedia/commons/e/ec/Circle-icons-mail.svg"
+  meta_icon          = "${local.icon-url}/poste.png"
 }
 
 resource "authentik_outpost" "mail-ldap" {

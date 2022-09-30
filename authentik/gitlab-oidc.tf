@@ -37,7 +37,7 @@ resource "authentik_application" "gitlab-oidc" {
   slug               = "gitlab-oidc"
   group              = "Services"
   protocol_provider  = authentik_provider_oauth2.gitlab-oidc.id
-  meta_icon          = "https://about.gitlab.com/images/press/press-kit-icon.svg"
+  meta_icon          = "${local.icon-url}/gitlab.png"
   meta_launch_url    = "blank://blank"
   meta_publisher     = "GitLab Inc."
   policy_engine_mode = "any"
