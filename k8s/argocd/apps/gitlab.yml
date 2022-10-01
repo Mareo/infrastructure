@@ -181,9 +181,9 @@ spec:
                         Insecure = false
                 cache:
                   secretName: gitlab-runner-cache-s3
-            gitlab-shell:
-              sshDaemon: gitlab-sshd
             gitlab:
+              gitlab-shell:
+                sshDaemon: gitlab-sshd
               gitaly:
                 persistence:
                   enabled: true
