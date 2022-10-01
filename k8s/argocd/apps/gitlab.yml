@@ -94,7 +94,7 @@ spec:
                   secret: "gitlab-mail"
                   key: "password"
               appConfig:
-                enableUsagePing: false
+                enableUsagePing: true
                 enableSeatLink: false
                 usernameChangingEnabled: false
                 lfs:
@@ -164,6 +164,23 @@ spec:
                   authScope: read_api
             gitlab-runner:
               install: true
+              runners:
+                config: |
+                  [[runners]]
+                    [runners.kubernetes]
+                    image = "ubuntu:18.04"
+                    poll_timeout = 300
+                    [runners.cache]
+                      Type = "s3"
+                      Path = "gitlab-runner"
+                      Shared = true
+                      [runners.cache.s3]
+                        ServerAddress = "athena.mareo.fr:7443"
+                        BucketName = "gitlab-runner-cache"
+                        BucketLocation = "ceph"
+                        Insecure = false
+                cache:
+                  secretName: gitlab-runner-cache-s3
             gitlab:
               gitaly:
                 persistence:
