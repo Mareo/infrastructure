@@ -212,3 +212,11 @@ spec:
             sidekiq:
               minReplicas: 1
               maxReplicas: 1
+              resources:
+                limits:
+                  memory: 5G
+                  cpu: 1
+                requests:
+                  memory: 2G
+                  cpu: 1
+
