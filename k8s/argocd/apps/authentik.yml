@@ -48,6 +48,8 @@ spec:
                     - auth.mareo.fr
                   secretName: "authentik-tls"
             authentik:
+              error_reporting:
+                enabled: false
               postgresql:
                 host: in-cluster-main-cluster.postgres.svc.cluster.local
                 name: "authentik"
