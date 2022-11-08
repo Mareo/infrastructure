@@ -20,6 +20,6 @@ roles:
   - name: xanmanning.k3s
     version: v3.3.0
   - name: ipr-cnrs.nftables
-    version: v2.0.1
+    version: v2.2.1
   - name: bertvv.dhcp
     version: v3.2.0
