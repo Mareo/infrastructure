@@ -6,7 +6,7 @@ authors = ["Marin Hannache <git@mareo.fr>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-ansible = "^6.0.0"
+ansible = "^7.0.0"
 netaddr = "^0.8.0"
 shyaml = "^0.6.2"
 ansible-lint = "^6.5.0"
