@@ -1,0 +1,61 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: factorio
+  labels:
+    app: factorio
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-factorio"
+      labels:
+        app: factorio
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: factorio
+      source:
+        repoURL: https://sqljames.github.io/factorio-server-charts/
+        chart: factorio-server-charts
+        targetRevision: 1.1.2
+        helm:
+          values: |
+            fullnameOverride: factorio
+            image:
+              tag: 1.1.74
+            service:
+              type: LoadBalancer
+            persistence:
+              enabled: true
+              storageClassName: csi-rbd-sc-retain
+            factorioServer:
+              save_name: "marais-salants"
+              generate_new_save: true
+            serverPassword:
+              passwordSecret: "factorio-server"
+            server_settings:
+              name: "Les marais salants"
+              description: "Private Factorio server"
+              max_players: 10
+              visibility:
+                public: false
+                lan: false
+              only_admins_can_pause_the_game: false
+            rcon:
+              external: true
+              type: LoadBalancer
+              passwordSecret: "factorio-rcon"
+            admin_list:
+              - "Mareoh"

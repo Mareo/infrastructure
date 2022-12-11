@@ -61,6 +61,10 @@ forwarded_ports:
     host: "$petitstream"
     port: 22
 
+  - dport: 31497
+    host: "$k3s"
+  - dport: 30100
+    host: "$k3s"
 
 # yamllint disable rule:line-length
 nft_input_host_rules:

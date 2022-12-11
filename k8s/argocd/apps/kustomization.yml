@@ -9,6 +9,7 @@ resources:
   - clusters.yml
   - external-dns.yml
   - external-secrets-operator.yml
+  - factorio.yml
   - gitlab.yml
   - ingress-nginx-internal.yml
   - ingress-nginx-public.yml
