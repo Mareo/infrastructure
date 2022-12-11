@@ -34,9 +34,10 @@ spec:
           values: |
             fullnameOverride: factorio
             image:
-              tag: 1.1.74
+              tag: 1.1.72
             service:
               type: LoadBalancer
+              port: 34197
               annotations:
                 external-dns.alpha.kubernetes.io/hostname: factorio.mareo.fr.
             persistence:

@@ -61,8 +61,9 @@ forwarded_ports:
     host: "$petitstream"
     port: 22
 
-  - dport: 31497
+  - dport: 34197
     host: "$k3s"
+    protocol: udp
   - dport: 30100
     host: "$k3s"
 
