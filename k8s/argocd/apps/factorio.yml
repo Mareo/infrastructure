@@ -37,6 +37,8 @@ spec:
               tag: 1.1.74
             service:
               type: LoadBalancer
+              annotations:
+                external-dns.alpha.kubernetes.io/hostname: factorio.mareo.fr.
             persistence:
               enabled: true
               storageClassName: csi-rbd-sc-retain
