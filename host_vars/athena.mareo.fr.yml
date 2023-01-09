@@ -31,9 +31,6 @@ nft_define_host:
   k3s:
     name: k3s
     value: "192.168.0.1"
-  petitstream:
-    name: petitstream
-    value: "192.168.0.10"
 
 forwarded_ports:
   - dport: ssh
@@ -57,10 +54,6 @@ forwarded_ports:
   - dport: 6443
     host: "$k3s"
 
-  - dport: 2210
-    host: "$petitstream"
-    port: 22
-
   - dport: 34197
     host: "$k3s"
     protocol: udp
@@ -74,6 +67,21 @@ nft_input_host_rules:
 nft_forward_host_rules: "{{ nft_forward_host_rules_yaml|from_yaml }}"
 nft__nat_host_prerouting_rules: "{{ nft__nat_host_prerouting_rules_yaml|from_yaml }}"
 
+nft__custom_content: |
+  #jinja2: lstrip_blocks: "True", trim_blocks: "True"
+  table ip nat {
+    chain output {
+      # 000 policy
+      type nat hook output priority 0;
+      {% for comment, rules in nft__nat_host_prerouting_rules_yaml|from_yaml|dictsort %}
+      # {{ comment }}
+      {% for rule in rules %}
+      {{ rule }}
+      {% endfor %}
+      {% endfor %}
+    }
+  }
+
 nft_forward_host_rules_yaml: |
   "200 port forwarding":
   {% for fwd in forwarded_ports %}
@@ -84,5 +92,11 @@ nft__nat_host_prerouting_rules_yaml: |
   "200 port forwarding":
   {% for fwd in forwarded_ports %}
     - ip daddr $self {{ fwd.protocol|default('tcp') }} dport {{ fwd.dport }} dnat to {{ fwd.host }}:{{ fwd.port|default(fwd.dport) }}
+  {% endfor %}
+
+nft__nat_host_output_rules_yaml: |
+  "200 port forwarding":
+  {% for fwd in forwarded_ports %}
+    - ip daddr $self {{ fwd.protocol|default('tcp') }} oif lo dport {{ fwd.dport }} dnat to {{ fwd.host }}:{{ fwd.port|default(fwd.dport) }}
   {% endfor %}
 # yamllint enable rule:line-length

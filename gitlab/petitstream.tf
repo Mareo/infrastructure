@@ -16,6 +16,12 @@ resource "gitlab_project" "iac_petitstream" {
   auto_devops_enabled                              = false
 }
 
+resource "gitlab_project_share_group" "petitstream" {
+  project_id     = gitlab_project.iac_petitstream.id
+  group_id       = gitlab_group.meta-children["petitstream"].id
+  group_access   = "developer"
+}
+
 resource "gitlab_project_hook" "petitstream_argocd" {
   project                   = gitlab_project.iac_petitstream.path_with_namespace
   url                       = "https://argocd.mareo.fr/api/webhook"

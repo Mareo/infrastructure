@@ -1,0 +1,8 @@
+---
+apiversion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ak-outpost-gitlab-ldap.yml
+  - ak-outpost-mail-ldap.yml
+  - ak-outpost-nextcloud-ldap.yml

@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ak-outpost-gitlab-ldap
+spec:
+  secretName: ak-outpost-gitlab-ldap-secret
+  dnsNames:
+  - example.com
+  - foo.example.com
+  issuerRef:
+    name: default-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io

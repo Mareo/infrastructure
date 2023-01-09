@@ -16,6 +16,10 @@ terraform {
       source  = "hashicorp/random"
       version = "3.4.3"
     }
+    authentik = {
+      source = "goauthentik/authentik"
+      version = "2022.10.0"
+    }
   }
 
   backend "s3" {
@@ -30,6 +34,11 @@ provider "vault" {
 provider "gitlab" {
   base_url = yamldecode(file("../config.yml")).gitlab_addr
   token    = trimspace(file("../secrets/gitlab_token"))
+}
+
+provider "authentik" {
+  url   = "https://auth.mareo.fr"
+  token = trimspace(file("../secrets/authentik_token"))
 }
 
 data "gitlab_user" "root" {

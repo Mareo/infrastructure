@@ -6,6 +6,9 @@ locals {
       path  = "users/family"
       attributes = {
         nextcloud_quota = "none"
+        gitlab = {
+          project_limit = 0
+        }
         settings = {
           locale = "en"
         }
@@ -16,7 +19,10 @@ locals {
       }
       groups = [
         "alertmanager",
+        "argocd",
         "argocd_admins",
+        "gitlab",
+        "gitlab_petitstream",
         "gitlab_admins",
         "grafana",
         "grafana_editors",
@@ -24,11 +30,14 @@ locals {
         "hedgedoc",
         "kubernetes_admins",
         "mail",
+        "nextcloud",
         "nextcloud_admins",
         "petitstream_admins",
         "petitstream_devs",
         "petitstream_ops",
         "prometheus",
+        "proxmox",
+        "vault",
         "vault_admins",
         "vaultwarden",
       ]
@@ -54,6 +63,7 @@ locals {
       path  = "users/petitstream"
       groups = [
         "gitlab",
+        "gitlab_petitstream",
         "grafana",
         "hedgedoc",
         "petitstream_devs",
@@ -65,7 +75,6 @@ locals {
       email = "jonathan.monnet28@gmail.com"
       path  = "users/petitstream"
       groups = [
-        "gitlab",
         "grafana",
         "hedgedoc",
         "petitstream_devs",
@@ -77,7 +86,6 @@ locals {
       email = "philippe.grad@gmail.com"
       path  = "users/petitstream"
       groups = [
-        "gitlab",
         "grafana",
         "hedgedoc",
         "petitstream_devs",
@@ -89,7 +97,6 @@ locals {
       email = "streampetit@gmail.com"
       path  = "users/petitstream"
       groups = [
-        "gitlab",
         "grafana",
         "hedgedoc",
         "petitstream_admins",

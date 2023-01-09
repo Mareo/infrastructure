@@ -53,7 +53,7 @@ proxmox_ceph_rgw_users:
       - terraform
   - uid: gitlab
     display_name: gitlab
-    max_buckets: 8
+    max_buckets: 9
     buckets:
       - gitlab-artifacts
       - gitlab-dependency-proxy
@@ -115,7 +115,3 @@ dhcp_hosts:
     hostname: k3s-1.vm.athena.mareo.fr
     mac: 0e:a6:7d:72:7e:01
     ip: 192.168.0.1
-  - name: petitstream.vm.athena.mareo.fr
-    hostname: petitstream.vm.athena.mareo.fr
-    mac: 0e:a6:7d:72:7e:10
-    ip: 192.168.0.10

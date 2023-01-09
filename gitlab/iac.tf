@@ -6,7 +6,7 @@ resource "gitlab_group" "iac" {
 
 resource "gitlab_group_membership" "iac_mareo" {
   group_id     = gitlab_group.iac.id
-  user_id      = gitlab_user.mareo.id
+  user_id      = gitlab_user.users["mareo"].id
   access_level = "owner"
 }
 
@@ -19,7 +19,7 @@ resource "gitlab_group_membership" "iac_renovate-bot" {
 resource "gitlab_project" "iac_infrastructure" {
   name             = "infrastructure"
   namespace_id     = gitlab_group.iac.id
-  visibility_level = "internal"
+  visibility_level = "public"
 
   import_url = "git://mareo.fr/infrastructure"
 
