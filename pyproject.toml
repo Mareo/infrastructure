@@ -12,7 +12,7 @@ shyaml = "^0.6.2"
 ansible-lint = "^6.5.0"
 
 [tool.poetry.dev-dependencies]
-pre-commit = "^2.19.0"
+pre-commit = "^3.0.0"
 ansible-lint = "^6.2.1"
 yamllint = "^1.26.3"
 
