@@ -5,7 +5,7 @@ locals {
       tags      = ["ansible", "k3s_masters"]
       cores     = 6
       memory    = 32 * 1024
-      disk_size = "64G"
+      disk_size = "128G"
     }
   ]
 }
