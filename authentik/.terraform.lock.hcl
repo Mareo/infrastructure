@@ -19,6 +19,20 @@ provider "registry.terraform.io/goauthentik/authentik" {
     "h1:fDo/ugEKjetM+yIr/iPYFfWsbuEvBFNvfASGwIip3wo=",
     "h1:pMeQr9NrR8yEVVnp73sw8eCDFub8VZuZiXqacBJNd9A=",
     "h1:sMFmgjRlxxTx/FZ6RY41Y9ZghplG+5nyvn0yGFlHsus=",
+    "zh:3e64e4a3fe76d4a197e63aeca14c3589f8b88703979be7d70759db0dc06a120a",
+    "zh:41fc1e33b48fac5d81e96c65927ba1152df3d2c49263b582e3d099ada6feec5d",
+    "zh:4709cbd8b8c9eb9da1d562e0033d059afdbefa2baa5b176d71d9d1093c822a54",
+    "zh:655a5289a7e41211683c22851ef487d1053459ec9856e247d784e265810633ac",
+    "zh:6e52ab3e3cf28f642c3f7acf753bcf758c11f829d113aeeefb9a183c7385aa3f",
+    "zh:6ea717b409f9748023f79fa8317788038d8de5f5f2d166f23c0d3048c49cbe32",
+    "zh:7869231c46a79aa89e96483504638c6ec9d292f2771a9ea5fb80bffce9f20dfd",
+    "zh:8064801c673b2701c2997782235ba29bfc08807af20464db9b371f1c85b06222",
+    "zh:82226b5e5a1ed2b2e0a0a4b0a33694bddc671063b5fe2c93aab925e588e64eb4",
+    "zh:90d5361e08362f8bafeed434c5c834bd59fb5d928a4f01c32bec85c7c56fb2f6",
+    "zh:b8aef6462de8d002156c2b7366f3296db8c6493b30862958e841592eb361ddca",
+    "zh:bb9c9d8a57d05842e061f342a36d88d289b0faacf1065db761dd13fc2f64bb20",
+    "zh:f74131b2d724a75da0025f7ae6e783bbda5ad987936303dc9b3a46302718e6f2",
+    "zh:fd1f33743a2215c0dda540e7d21aeb337d3ecc52ce0286496c8093f3977e8113",
   ]
 }
 
@@ -67,6 +81,18 @@ provider "registry.terraform.io/hashicorp/tls" {
     "h1:rKKMyIEBZwR+8j6Tx3PwqBrStuH+J+pxcbCR5XN8WAw=",
     "h1:zfM3dG7Vwu5WMGWKTZA2vMRJerafLyi3pI92/rwOt5M=",
     "h1:zuKFdcWuP98ajGTvCThCBncZnVCIcr2b0rRWXzFnZE8=",
+    "zh:23671ed83e1fcf79745534841e10291bbf34046b27d6e68a5d0aab77206f4a55",
+    "zh:45292421211ffd9e8e3eb3655677700e3c5047f71d8f7650d2ce30242335f848",
+    "zh:59fedb519f4433c0fdb1d58b27c210b27415fddd0cd73c5312530b4309c088be",
+    "zh:5a8eec2409a9ff7cd0758a9d818c74bcba92a240e6c5e54b99df68fff312bbd5",
+    "zh:5e6a4b39f3171f53292ab88058a59e64825f2b842760a4869e64dc1dc093d1fe",
+    "zh:810547d0bf9311d21c81cc306126d3547e7bd3f194fc295836acf164b9f8424e",
+    "zh:824a5f3617624243bed0259d7dd37d76017097dc3193dac669be342b90b2ab48",
+    "zh:9361ccc7048be5dcbc2fafe2d8216939765b3160bd52734f7a9fd917a39ecbd8",
+    "zh:aa02ea625aaf672e649296bce7580f62d724268189fe9ad7c1b36bb0fa12fa60",
+    "zh:c71b4cd40d6ec7815dfeefd57d88bc592c0c42f5e5858dcc88245d371b4b8b1e",
+    "zh:dabcd52f36b43d250a3d71ad7abfa07b5622c69068d989e60b79b2bb4f220316",
+    "zh:f569b65999264a9416862bca5cd2a6177d94ccb0424f3a4ef424428912b9cb3c",
   ]
 }
 
@@ -85,5 +111,17 @@ provider "registry.terraform.io/hashicorp/vault" {
     "h1:pCY+riky9ynxYwQufL05HAoVnf5FmhIlOnnuwgwyStA=",
     "h1:s2jpdMn0FWXU1435OHjBYLyY66O7uGKVUphFoB+c5ec=",
     "h1:sEgI7il6lkyXfKNOnvNAslDE7iMALa1aPMYs7x2cQos=",
+    "zh:0b5baf094a016fcf9afd6082339bea688e514c877ec045e58c8a44b9ea220c71",
+    "zh:4a8158499cea5928d9c32cb3e51b3846a954afca30442ec75cc07ea947d0d2a9",
+    "zh:639fb232009a8401af2ef08583c8d94708d6dd9a491501e5198f40c5cce38af2",
+    "zh:6d862eb03dc404193f7c1b7a50b4aa92c849680d611f6e5aa60b89cc239d64fc",
+    "zh:70288e1e1fd0ad9be264d07b2c69a6b5e910ecb568e9fdda5f40bc7691082958",
+    "zh:768f42b06322eae6aec44dddc354bb8a0b74f63d8a0f0535fdec7209ba5f7412",
+    "zh:78d5eefdd9e494defcb3c68d282b8f96630502cac21d1ea161f53cfe9bb483b3",
+    "zh:8dfdee127acd1f4fb8adbb0e2bb6116de560a201ab1c295c5ba19d4b73134cc4",
+    "zh:ac47d49a6220ab0427e2e1366f4ed4d798bd51fcf82d672dc79ef7e9f19d4f41",
+    "zh:b85512dfdc8dcff4209a2b22352a733dfb99783668c21afc2909db2af7139982",
+    "zh:be29511d26056665249fabe88cd9981d237efc9d2bb4d16dfc1998786317c06f",
+    "zh:cccd873b931a88a880af15fb3306df4cfb5d601082b8ab40c3b7cd84b82fefa5",
   ]
 }

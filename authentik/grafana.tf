@@ -61,8 +61,8 @@ resource "authentik_user" "grafana_mail" {
   groups   = [authentik_group.groups["mail"].id]
   attributes = jsonencode({
     "goauthentik.io/user/service-account" = true
-    allowed_emails = [
-      "grafana.mareo.fr",
+    allowedEmails = [
+      "@grafana.mareo.fr",
     ]
   })
 }

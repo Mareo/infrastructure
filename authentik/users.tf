@@ -12,7 +12,7 @@ locals {
         settings = {
           locale = "en"
         }
-        allowed_emails = [
+        allowedEmails = [
           "@mareo.fr",
           "marin@hannache.fr",
         ]
