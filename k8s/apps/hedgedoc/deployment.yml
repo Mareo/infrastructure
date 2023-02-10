@@ -91,4 +91,4 @@ spec:
               ephemeral-storage: 500Mi
             limits:
               memory: 600Mi
-              ephermeral-storage: 1Gi
+              ephemeral-storage: 1Gi
