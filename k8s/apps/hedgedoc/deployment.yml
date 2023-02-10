@@ -17,9 +17,19 @@ spec:
       labels:
         app: hedgedoc
     spec:
+      automountServiceAccountToken: false
       containers:
         - name: hedgedoc
           image: quay.io/hedgedoc/hedgedoc
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 10000
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - NET_RAW
+                - ALL
           ports:
             - name: http
               containerPort: 3000
@@ -79,3 +89,6 @@ spec:
               cpu: 200m
               memory: 400Mi
               ephemeral-storage: 500Mi
+            limits:
+              memory: 600Mi
+              ephermeral-storage: 1Gi
