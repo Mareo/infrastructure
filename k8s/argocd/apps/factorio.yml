@@ -43,9 +43,16 @@ spec:
             persistence:
               enabled: true
               storageClassName: csi-rbd-sc-retain
+            account:
+              accountSecret: "factorio-account"
             factorioServer:
               save_name: "marais-salants"
               generate_new_save: true
+              update_mods_on_start: true
+            mods:
+              enabled: true
+              portal:
+                - helmod
             serverPassword:
               passwordSecret: "factorio-server"
             server_settings:
@@ -56,6 +63,11 @@ spec:
                 public: false
                 lan: false
               only_admins_can_pause_the_game: false
+              require_user_verification: true
+              ignore_player_limit_for_returning_players: true
+            map_settings:
+              difficulty_settings:
+                research_queue_setting: after-victory
             rcon:
               external: true
               type: LoadBalancer
