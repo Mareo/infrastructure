@@ -52,6 +52,7 @@ spec:
             mods:
               enabled: true
               portal:
+                - BottleneckLite
                 - helmod
             serverPassword:
               passwordSecret: "factorio-server"
