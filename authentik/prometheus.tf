@@ -1,9 +1,9 @@
 resource "authentik_provider_proxy" "prometheus" {
-  name               = "prometheus"
-  authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
-  token_validity     = "days=1"
-  mode               = "forward_single"
-  external_host      = "https://prom.mareo.fr/"
+  name                  = "prometheus"
+  authorization_flow    = data.authentik_flow.default-provider-authorization-implicit-consent.id
+  access_token_validity = "days=1"
+  mode                  = "forward_single"
+  external_host         = "https://prom.mareo.fr/"
 }
 
 resource "authentik_application" "prometheus" {

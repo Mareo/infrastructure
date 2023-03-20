@@ -1,4 +1,5 @@
 resource "authentik_stage_prompt_field" "recovery-password" {
+  name        = "password_default-recovery-change-password"
   field_key   = "password"
   label       = "Password"
   type        = "password"
@@ -8,6 +9,7 @@ resource "authentik_stage_prompt_field" "recovery-password" {
 }
 
 resource "authentik_stage_prompt_field" "recovery-password-repeat" {
+  name        = "password_repeat_default-recovery-change-password"
   field_key   = "password_repeat"
   label       = "Password (repeat)"
   type        = "password"

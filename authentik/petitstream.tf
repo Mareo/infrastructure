@@ -1,9 +1,9 @@
 resource "authentik_provider_proxy" "petitstream-admin" {
-  name               = "petitstream-admin"
-  authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
-  token_validity     = "days=1"
-  mode               = "forward_single"
-  external_host      = "https://petitstream.com/"
+  name                  = "petitstream-admin"
+  authorization_flow    = data.authentik_flow.default-provider-authorization-implicit-consent.id
+  access_token_validity = "days=1"
+  mode                  = "forward_single"
+  external_host         = "https://petitstream.com/"
 }
 
 resource "authentik_application" "petitstream-admin" {
@@ -27,11 +27,11 @@ resource "authentik_policy_binding" "petitstream-admin_group-filtering" {
 }
 
 resource "authentik_provider_proxy" "petitstream-dev" {
-  name               = "petitstream-dev"
-  authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
-  token_validity     = "days=1"
-  mode               = "forward_single"
-  external_host      = "https://dev.petitstream.com"
+  name                  = "petitstream-dev"
+  authorization_flow    = data.authentik_flow.default-provider-authorization-implicit-consent.id
+  access_token_validity = "days=1"
+  mode                  = "forward_single"
+  external_host         = "https://dev.petitstream.com"
 }
 
 resource "authentik_application" "petitstream-dev" {

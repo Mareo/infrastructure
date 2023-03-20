@@ -7,7 +7,7 @@ locals {
       attributes = {
         nextcloud_quota = "none"
         gitlab = {
-          project_limit = 0
+          project_limit = 100
         }
         settings = {
           locale = "en"

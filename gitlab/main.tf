@@ -49,6 +49,12 @@ resource "gitlab_personal_access_token" "root_terraform" {
   user_id = data.gitlab_user.root.id
   name    = "terraform"
   scopes  = ["api"]
+
+  lifecycle {
+    ignore_changes = [
+      scopes
+    ]
+  } 
 }
 
 resource "local_sensitive_file" "gitlab-token" {

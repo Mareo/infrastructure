@@ -1,9 +1,9 @@
 resource "authentik_provider_proxy" "alertmanager" {
-  name               = "alertmanager"
-  authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
-  token_validity     = "days=1"
-  mode               = "forward_single"
-  external_host      = "https://alertmanager.mareo.fr/"
+  name                  = "alertmanager"
+  authorization_flow    = data.authentik_flow.default-provider-authorization-implicit-consent.id
+  access_token_validity = "days=1"
+  mode                  = "forward_single"
+  external_host         = "https://alertmanager.mareo.fr/"
 }
 
 resource "authentik_application" "alertmanager" {

@@ -11,11 +11,11 @@ resource "vault_generic_secret" "argocd_oidc-authentik" {
 }
 
 resource "authentik_provider_oauth2" "argocd" {
-  name               = "argocd"
-  authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
-  client_id          = random_string.argocd_client-id.result
-  client_type        = "public"
-  token_validity     = "days=1"
+  name                  = "argocd"
+  authorization_flow    = data.authentik_flow.default-provider-authorization-implicit-consent.id
+  client_id             = random_string.argocd_client-id.result
+  client_type           = "public"
+  access_token_validity = "days=1"
   redirect_uris = [
     "https://argocd.mareo.fr/auth/callback",
     "http://localhost:8085/auth/callback",

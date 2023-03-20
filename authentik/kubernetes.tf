@@ -1,9 +1,9 @@
 resource "authentik_provider_oauth2" "kubernetes" {
-  name               = "kubernetes"
-  authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
-  client_id          = "kubernetes"
-  client_type        = "public"
-  token_validity     = "days=1"
+  name                  = "kubernetes"
+  authorization_flow    = data.authentik_flow.default-provider-authorization-implicit-consent.id
+  client_id             = "kubernetes"
+  client_type           = "public"
+  access_token_validity = "days=1"
   redirect_uris = [
     "http://localhost:8000"
   ]
