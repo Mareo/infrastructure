@@ -4,5 +4,11 @@
      "fileMatch": [
         "^k8s/argocd/apps/.+\\.ya?ml$"
     ]
+  },
+  "packageRules": [
+  {
+    "matchPackagePrefixes": ["external-secrets", "external-dns", "cert-manager", "ingress-nginx", "authentik", "argoproj/argo-cd"],
+    "automerge": true,
+    "automergeStrategy": "fast-forward"
   }
 }
