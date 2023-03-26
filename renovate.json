@@ -12,11 +12,7 @@
         "automerge": true
       }, {
         "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-        "matchDatasources": ["terraform-module", "terraform-provider"],
-        "automerge": true
-      }, {
-        "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-        "matchManagers": ["ansible-galaxy", "poetry", "terraform", "terraform-version"],
+        "matchManagers": ["ansible-galaxy", "gitlabci", "gitlabci-include", "poetry", "pre-commit", "terraform", "terraform-version"],
         "automerge": true
       }
   ]
