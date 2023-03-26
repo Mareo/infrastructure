@@ -7,9 +7,9 @@
   },
   "packageRules": [
       {
-        "matchPackagePrefixes": ["external-secrets", "external-dns", "cert-manager", "ingress-nginx", "authentik", "argoproj/argo-cd"],
-        "automerge": true,
-        "automergeStrategy": "fast-forward"
+        "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+        "matchPackagePrefixes": ["external-secrets", "external-dns", "external-secrets", "cert-manager", "ingress-nginx", "authentik", "argoproj/argo-cd"],
+        "automerge": true
       }
   ]
 }

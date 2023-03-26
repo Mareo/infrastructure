@@ -29,7 +29,7 @@ resource "gitlab_project" "iac_infrastructure" {
   packages_enabled = true
 
   default_branch = "main"
-  merge_method   = "ff"
+  merge_method   = "merge"
 
   only_allow_merge_if_all_discussions_are_resolved = true
   remove_source_branch_after_merge                 = true
