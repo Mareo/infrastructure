@@ -46,7 +46,7 @@ resource "authentik_application" "gitlab-oidc" {
 resource "authentik_policy_binding" "gitlab-oidc_group-filtering" {
   for_each = { for idx, value in [
     "gitlab",
-    "gitlab_auditors",
+    "gitlab_externals",
     "gitlab_admins",
   ] : idx => value }
   target = authentik_application.gitlab-oidc.uuid
