@@ -2,23 +2,23 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/gitlabhq/gitlab" {
-  version     = "15.9.0"
-  constraints = "15.9.0"
+  version     = "15.10.0"
+  constraints = "15.10.0"
   hashes = [
-    "h1:/B0PnJr0QFibnmeZQjUic6fgiLU581AA3yAQdmix/1g=",
-    "h1:2lEOShSKd9QCjHou5vowr1CPSd4XSjVX87TeadWQE40=",
-    "h1:8V49Vu8XFb6qZ3zJe/+xQCSpTehdkq45umoHav4lUL4=",
-    "h1:8cc1L4C5wOETqXr4UwcMfAb/1OoTAPQZ28lycE0QjQc=",
-    "h1:H4M5zbRQNzLSqeFm2y5kzpbxKTrKXH9a2ihhR5kcUWA=",
-    "h1:JDAmWWMNt1+2dT64ZaXGcS4nzOMEr9OJCtX+FCEjg2M=",
-    "h1:X/GJHYNCUGhievByQM0PQMWAhhurdgdssifOruANFUM=",
-    "h1:b+D2FWz8OqfANO5Kw7AvHgsumM8jwYt6bVnH/8qOEMk=",
-    "h1:ce3cuvCy24GdXv2/F9YKCWr6y1XS5KHC5DwPXXKdZ/w=",
-    "h1:ebcAbmSnmz4eGBTeqJBYVM5aB1a/TWbzlWxsONsxXjc=",
-    "h1:h1achDxKJ+WOSGHC8AMYh2jv4/WIYcweJEY6QZYRFUs=",
-    "h1:kPOIvsuwzheJbj4CIQtuNL+Ne9FTNYHfKJ+2DIZc0a0=",
-    "h1:mpZdJE3bfkH1nUxyvsmivwgYG0ymP4JAv3EjFBoGTDI=",
-    "h1:pmNQhJtTohuECGETZtafaF2lDcqEaa/ZcBN1Vmp022g=",
+    "h1:CeMT+ozOEgqaTBbXrkTPn6n+ZorwFTQ6g9hBgKYveeo=",
+    "h1:Ix+p5p7ejOn/jrm138fBNPiqp6ecn6uiYeWbTZzG/qI=",
+    "h1:Kldnc98t3IogZPysIv9FeXRR8aioj+o2XxIM+rRT98w=",
+    "h1:V/WwFGwbsNvTlLDU52XtnTodGQRk2semgi04QpcrY7I=",
+    "h1:Wx8Bc7Ix2HzU9pfG35kSIlp8SuMqBfr52ya7MyOoTfA=",
+    "h1:ae4e7bJnKviW5FF0IN9mupvQaxM4nMCzdEZmEzMvm6I=",
+    "h1:bFbErRntZOud4ygc7lbdbSZz+dHfSbZpmGDzMOygrd0=",
+    "h1:fsFIsKRahQ+XBlThh+tH1N6BoiTXxVa7rjx0pSYjuWs=",
+    "h1:g6Aik39/8SOjCrW6Ook0M02OZXH612FBdugFd3ypU0Y=",
+    "h1:kYByWDLbKThRJQ3dilsKju9C1ymOk1JJo2yddlTPvLw=",
+    "h1:qz3X75KmvFA/3F9E4RFfyVtzI/NJn0ZiuUxzpOxhMXM=",
+    "h1:rRPvLgSeLXCqqLTHVmS9t4e6djRH3Caemv1aYZP3E2w=",
+    "h1:uucwwFyjdGRj7GE2+apH+e0PgoPKtx8EQSCcNjlQkk4=",
+    "h1:wINbROim/+yo+/XqRwXX3NdIN3EotKpEfGCwJX76uAY=",
   ]
 }
 
