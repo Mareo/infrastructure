@@ -38,7 +38,7 @@ resource "authentik_application" "gitlab-oidc" {
   group              = "Services"
   protocol_provider  = authentik_provider_oauth2.gitlab-oidc.id
   meta_icon          = "${local.icon-url}/gitlab.png"
-  meta_launch_url    = "blank://blank"
+  meta_launch_url    = "https://gitlab.mareo.fr/"
   meta_publisher     = "GitLab Inc."
   policy_engine_mode = "any"
 }
