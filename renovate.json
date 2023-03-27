@@ -5,6 +5,9 @@
         "^k8s/argocd/apps/.+\\.ya?ml$"
     ]
   },
+  "lockFileConfig": {
+      "automerge": "any"
+  },
   "packageRules": [
       {
         "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
