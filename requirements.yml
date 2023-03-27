@@ -10,7 +10,7 @@ collections:
   - name: kubernetes.core
     version: 2.4.0
   - name: amazon.aws
-    version: 5.3.0
+    version: 5.4.0
 
 roles:
   - name: ansible-community.ansible-vault
