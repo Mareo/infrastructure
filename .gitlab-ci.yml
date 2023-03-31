@@ -6,6 +6,9 @@ stages:
 ansible-lint:
   stage: linting
   image: registry.gitlab.com/pipeline-components/ansible-lint:latest
+  cache:
+    paths:
+      - .cache/
   artifacts:
     when: always
     reports:
