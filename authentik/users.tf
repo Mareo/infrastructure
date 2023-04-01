@@ -48,10 +48,23 @@ locals {
       email = "assakolea@gmail.com"
       path  = "users/family"
       attributes = {
-        nextcloud_quota = "10G"
+        nextcloud_quota = "100G"
       }
       groups = [
         "gitlab",
+        "hedgedoc",
+        "nextcloud",
+        "vaultwarden",
+      ]
+    }
+    "Barba" = {
+      name  = "Sébastien Mermet"
+      email = "seb.mermet@orange.fr"
+      path  = "users/friends"
+      attributes = {
+        nextcloud_quota = "100G"
+      }
+      groups = [
         "hedgedoc",
         "nextcloud",
         "vaultwarden",
