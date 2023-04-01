@@ -15,7 +15,7 @@ ansible-lint:
       junit: ansible-lint.xml
   variables:
     ANSIBLE_CONFIG: ansible.cfg
-    GALAXY_CACHE_DIR: .cache
+    XDG_CACHE_HOME: "$HOME/.cache"
   before_script:
     - mkdir -p .cache
   script:
