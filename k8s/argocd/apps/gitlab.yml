@@ -170,6 +170,7 @@ spec:
                     [runners.kubernetes]
                     image = "ubuntu:18.04"
                     poll_timeout = 300
+                    dns_policy = "default"
                     [runners.cache]
                       Type = "s3"
                       Path = "gitlab-runner"
