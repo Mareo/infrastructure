@@ -8,7 +8,7 @@ ansible-lint:
   image: registry.gitlab.com/pipeline-components/ansible-lint:latest
   cache:
     paths:
-      - .cache/
+      - $HOME/.cache/
   artifacts:
     when: always
     reports:
