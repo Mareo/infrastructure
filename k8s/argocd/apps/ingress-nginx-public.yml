@@ -57,7 +57,7 @@ spec:
           minAvailable: 1
           replicaCount: 1
         tcp:
-          30022: gitlab/gitlab-gitlab-shell:22
+          30022: gitlab/gitlab-gitlab-shell:22::PROXY
           30843: ingress-nginx/ingress-nginx-public-controller:30443
         defaultBackend:
           enabled: true
