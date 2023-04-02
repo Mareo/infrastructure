@@ -15,7 +15,7 @@ ansible-lint:
       junit: ansible-lint.xml
   variables:
     ANSIBLE_CONFIG: ansible.cfg
-    XDG_CACHE_HOME: .cache
+    XDG_CACHE_HOME: "$CI_PROJECT_DIR/.cache"
   script:
     - ansible-lint -v --show-relpath -f pep8 --nocolor | ansible-lint-junit -o ansible-lint.xml
 
