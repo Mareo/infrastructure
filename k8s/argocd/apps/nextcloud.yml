@@ -146,6 +146,8 @@ spec:
                     $CONFIG = array (
                       'default_language' => 'en',
                       'default_phone_region' => 'FR',
+                      'default_locale' => 'fr',
+                      'force_locale' => 'fr',
                     );
               mail:
                 enabled: true
