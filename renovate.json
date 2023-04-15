@@ -11,7 +11,7 @@
   "packageRules": [
       {
         "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-        "matchPackagePrefixes": ["external-secrets", "external-dns", "external-secrets", "cert-manager", "ingress-nginx", "authentik", "argoproj/argo-cd"],
+        "matchPackagePrefixes": ["external-secrets", "external-dns", "external-secrets", "cert-manager", "ingress-nginx", "authentik", "argoproj/argo-cd", "kube-prometheus-stack"],
         "automerge": true
       }, {
         "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
