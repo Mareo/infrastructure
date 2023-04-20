@@ -38,7 +38,7 @@ resource "gitlab_project" "iac_infrastructure" {
   auto_devops_enabled                              = false
 }
 
-resource "gitlab_project_hook" "iac_infrastructure" {
+resource "gitlab_project_hook" "iac_infrastructure_argocd" {
   project                   = gitlab_project.iac_infrastructure.path_with_namespace
   url                       = "https://argocd.mareo.fr/api/webhook"
   token                     = data.vault_generic_secret.argocd_webhook-token.data["webhook.gitlab.secret"]

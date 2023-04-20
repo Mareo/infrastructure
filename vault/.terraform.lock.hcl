@@ -16,6 +16,18 @@ provider "registry.terraform.io/hashicorp/dns" {
     "h1:hpAZ2xDQki+lJ/rmWrv+2R4U+h59rEq+tXWl9Z43IfI=",
     "h1:tX4xU/q6NsoohEvdr8i13i0YbEAszeZXKNsDFk6PY9Y=",
     "h1:yKT/uKgyiu+5KBw/lj0sNnYQeDwIcvslhoWZogaZqxQ=",
+    "zh:0ec86eb51683e8d8ef8c0982058a43dc6b84d75cc5cd7f1fd70d7fe260cb37cc",
+    "zh:19abc3f5568ebfe3488914535dcfa9e72c2a3f07ab2d95d98f06b35e3b6f873f",
+    "zh:3d0c95a8d6153f5c6757cdcbaa85eea9b673358ec220690703c78632e7f73837",
+    "zh:5262c6dd0aa4f66ae548361d9a31b260cb174194d8b746ae925bc3c6cb46e3fb",
+    "zh:550f10ca73f159f3eb0e605d8f31fcdacd0557c9083fec63a2a128be9e08983a",
+    "zh:787c652519d3b65cf399be732823ab4d420f32ebfdcd81d5f4f1b73cada0ed92",
+    "zh:78d5eefdd9e494defcb3c68d282b8f96630502cac21d1ea161f53cfe9bb483b3",
+    "zh:9989d4f739e3a01487f71398123a784fc158c17f96ab37502b39d18ad06f686d",
+    "zh:a93aba5c9f5d335fdf97e95b6d0ae2e06c6a206473a600c89cffac4929d0dcb8",
+    "zh:b2d8b5b8399efdf3088c2df5c32ea8dfc4db44bb331ef923b4cb1e128c2a1ea5",
+    "zh:f6c570d4c3731be7e17b1f03c537167339158d22b356678dd5ab72645a957598",
+    "zh:fc4f206e88062b91ddf0d4067df672e8464642486cf72f956c3915134feed213",
   ]
 }
 
