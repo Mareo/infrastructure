@@ -18,7 +18,7 @@ terraform {
     }
     dns = {
       source  = "hashicorp/dns"
-      version = "3.3.0"
+      version = "3.3.1"
     }
   }
 
