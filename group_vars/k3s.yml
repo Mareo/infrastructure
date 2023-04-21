@@ -1,5 +1,5 @@
 ---
-k3s_release_version: v1.23.6+k3s1
+k3s_release_version: v1.24.13+k3s1
 
 k3s_server:
   tls-san:
