@@ -209,6 +209,9 @@ spec:
                   "helm.sh/hook": "pre-install"
                   "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
               sidekiq:
+                deployment:
+                  strategy:
+                    type: Recreate
                 minReplicas: 1
                 maxReplicas: 1
                 resources:
