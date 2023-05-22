@@ -50,6 +50,8 @@ resource "gitlab_personal_access_token" "root_terraform" {
   name    = "terraform"
   scopes  = ["api"]
 
+  expires_at = "2050-01-01"
+
   lifecycle {
     ignore_changes = [
       scopes,

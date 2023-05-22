@@ -17,7 +17,7 @@ resource "gitlab_project" "iac_petitstream" {
 }
 
 resource "gitlab_project_share_group" "petitstream" {
-  project_id   = gitlab_project.iac_petitstream.id
+  project      = gitlab_project.iac_petitstream.id
   group_id     = gitlab_group.meta-children["petitstream"].id
   group_access = "developer"
 }

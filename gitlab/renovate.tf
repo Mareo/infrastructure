@@ -18,6 +18,8 @@ resource "gitlab_personal_access_token" "renovate" {
   user_id = gitlab_user.renovate-bot.id
   name    = "Renovate personal access token"
 
+  expires_at = "2050-01-01"
+
   scopes = [
     "read_user",
     "api",
@@ -56,7 +58,7 @@ resource "gitlab_pipeline_schedule" "iac_renovate" {
   project       = gitlab_project.iac_renovate.id
   description   = "Renovate"
   ref           = gitlab_project.iac_renovate.default_branch
-  cron          = "0 4 * * *"
+  cron          = "0 * * * *"
   cron_timezone = "Europe/Paris"
 }
 
