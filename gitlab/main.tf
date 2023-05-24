@@ -6,7 +6,7 @@ terraform {
     }
     gitlab = {
       source  = "gitlabhq/gitlab"
-      version = "16.0.2"
+      version = "16.0.3"
     }
     local = {
       source  = "hashicorp/local"
