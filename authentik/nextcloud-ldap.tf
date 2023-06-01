@@ -6,28 +6,6 @@ resource "authentik_provider_ldap" "nextcloud-ldap" {
   search_group = authentik_group.groups["nextcloud_service_accounts"].id
 }
 
-resource "authentik_application" "nextcloud-ldap" {
-  slug               = "nextcloud-ldap"
-  name               = "NextCloud (LDAP)"
-  group              = "Services"
-  protocol_provider  = authentik_provider_ldap.nextcloud-ldap.id
-  meta_icon          = "${local.icon-url}/nextcloud.png"
-  meta_launch_url    = "blank://blank"
-  meta_publisher     = "NextCloud GmbH"
-  policy_engine_mode = "any"
-}
-
-resource "authentik_policy_binding" "nextcloud-ldap_group-filtering" {
-  for_each = { for idx, value in [
-    "nextcloud",
-    "nextcloud_admins",
-    "nextcloud_service_accounts",
-  ] : idx => value }
-  target = authentik_application.nextcloud-ldap.uuid
-  group  = authentik_group.groups[each.value].id
-  order  = each.key
-}
-
 resource "authentik_outpost" "nextcloud-ldap" {
   name = "nextcloud-ldap"
   type = "ldap"

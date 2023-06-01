@@ -55,6 +55,7 @@ resource "authentik_application" "nextcloud-saml" {
   slug               = "nextcloud-saml"
   group              = "Services"
   protocol_provider  = authentik_provider_saml.nextcloud-saml.id
+  backchannel_providers = [authentik_provider_ldap.nextcloud-ldap.id]
   meta_icon          = "${local.icon-url}/nextcloud.png"
   meta_launch_url    = "https://nextcloud.mareo.fr/"
   meta_publisher     = "NextCloud GmbH"
@@ -65,6 +66,7 @@ resource "authentik_policy_binding" "nextcloud-saml_group-filtering" {
   for_each = { for idx, value in [
     "nextcloud",
     "nextcloud_admins",
+    "nextcloud_service_accounts",
   ] : idx => value }
   target = authentik_application.nextcloud-saml.uuid
   group  = authentik_group.groups[each.value].id
