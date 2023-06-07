@@ -11,7 +11,18 @@
   "packageRules": [
       {
         "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-        "matchPackagePrefixes": ["external-secrets", "external-dns", "external-secrets", "cert-manager", "ingress-nginx", "authentik", "argoproj/argo-cd", "kube-prometheus-stack", "zalando/postgres-operator"],
+        "matchPackagePrefixes": [
+            "argoproj/argo-cd",
+            "authentik",
+            "cert-manager",
+            "external-dns",
+            "external-secrets",
+            "external-secrets",
+            "gitlab",
+            "ingress-nginx",
+            "kube-prometheus-stack",
+            "zalando/postgres-operator"
+        ],
         "automerge": true
       }, {
         "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
