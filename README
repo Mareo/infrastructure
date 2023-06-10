@@ -28,6 +28,10 @@
     $ cd authentik/
     $ terraform apply
 
+# Discord setup
+    $ cd discord/
+    $ terraform init
+
 # GitLab setup
     $ poetry run scripts/gitlab-login-as-root.sh
     $ cd gitlab/

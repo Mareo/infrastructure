@@ -1,6 +1,6 @@
 ---
 
-argocd_version: v2.3.4
+argocd_version: v2.7.0
 argocd_bin_url: "https://github.com/argoproj/argo-cd/releases/download/{{ argocd_version }}/argocd-linux-amd64"
 argocd_bin_path: /usr/local/bin/argocd
 argocd_bin_checksum: sha1:af1dd6e99a91063b022152883c294866aa9a5f08

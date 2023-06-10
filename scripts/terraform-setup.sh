@@ -21,6 +21,6 @@ skip_region_validation      = true
 force_path_style            = true
 EOF
 
-for dir in proxmox vault authentik gitlab; do
-	terraform -chdir="${BASEDIR}/${dir}" init -backend-config="${BASEDIR}/secrets/terraform_config" -upgrade
+for dir in authentik discord gitlab proxmox vault; do
+	terraform -chdir="${BASEDIR}/${dir}" init -backend-config="${BASEDIR}/secrets/terraform_config" -upgrade -reconfigure
 done
