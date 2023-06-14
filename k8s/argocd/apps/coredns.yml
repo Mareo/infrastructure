@@ -43,11 +43,12 @@ spec:
             isClusterService: false
             serviceType: LoadBalancer
             servers:
-              - zones:
-                - zone: mareo.fr.
-                  use_tcp: true
-                - zone: hannache.fr.
-                  use_tcp: true
+              - port: 53
+                zones:
+                  - zone: mareo.fr.
+                    use_tcp: true
+                  - zone: hannache.fr.
+                    use_tcp: true
                 plugins:
                   - name: errors
                   - name: health
@@ -62,6 +63,3 @@ spec:
                   - name: secondary
                     configBlock: |-
                       transfer from 5.9.138.122
-
-
-
