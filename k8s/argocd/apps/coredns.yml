@@ -44,6 +44,7 @@ spec:
             serviceType: LoadBalancer
             servers:
               - port: 30053
+                nodePort: 30053
                 zones:
                   - zone: mareo.fr.
                     use_tcp: true
