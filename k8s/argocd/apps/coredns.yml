@@ -47,7 +47,9 @@ spec:
                 nodePort: 30053
                 zones:
                   - zone: mareo.fr
+                    use_tcp: true
                   - zone: hannache.fr
+                    use_tcp: true
                 plugins:
                   - name: errors
                   - name: health
