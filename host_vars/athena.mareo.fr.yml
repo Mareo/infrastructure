@@ -34,6 +34,13 @@ forwarded_ports:
   - dport: ssh
     host: $k3s
     port: 30022
+  - dport: domain
+    host: $k3s
+    port: 30053
+  - dport: domain
+    host: $k3s
+    port: 30053
+    protocol: udp
   - dport: http
     host: $k3s
     port: 30080
