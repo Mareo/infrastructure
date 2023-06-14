@@ -25,7 +25,7 @@ spec:
           prune: true
       destination:
         name: "{{name}}"
-        namespace: vault
+        namespace: coredns
       source:
         repoURL: https://coredns.github.io/helm
         chart: coredns
