@@ -41,6 +41,7 @@ spec:
             rbac:
               create: false
             isClusterService: false
+            serviceType: LoadBalancer
             servers:
               - zones:
                 - zone: mareo.fr.
