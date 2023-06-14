@@ -1,0 +1,66 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: coredns
+  labels:
+    app: coredns
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-coredns"
+      labels:
+        app: coredns
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: vault
+      source:
+        repoURL: https://coredns.github.io/helm
+        chart: coredns
+        targetRevision: 1.24.1
+        helm:
+          values: |
+            fullnameOverride: coredns
+            prometheus:
+              service:
+                enabled: true
+              monitor:
+                enabled: true
+            rbac:
+              create: false
+            isClusterService: false
+            servers:
+              - zones:
+                - zone: mareo.fr.
+                  use_tcp: true
+                - zone: hannache.fr.
+                  use_tcp: true
+                plugins:
+                  - name: errors
+                  - name: health
+                    configBlock: |-
+                      lameduck 5s
+                  - name: ready
+                  - name: prometheus
+                    paramethers: 0.0.0.0:9153
+                  - name: loop
+                  - name: reload
+                  - name: loadbalance
+                  - name: secondary
+                    configBlock: |-
+                      transfer from 5.9.138.122
+
+
+
