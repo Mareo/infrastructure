@@ -56,7 +56,7 @@ spec:
                       lameduck 5s
                   - name: ready
                   - name: prometheus
-                    paramethers: 0.0.0.0:9153
+                    parameters: 0.0.0.0:9153
                   - name: loop
                   - name: reload
                   - name: loadbalance
