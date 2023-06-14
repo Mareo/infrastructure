@@ -42,6 +42,8 @@ spec:
               create: false
             isClusterService: false
             serviceType: LoadBalancer
+            service:
+              externalTrafficPolicy: Local
             servers:
               - port: 53
                 nodePort: 30053
