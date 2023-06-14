@@ -43,6 +43,7 @@ spec:
             isClusterService: false
             serviceType: LoadBalancer
             servers:
+                port: 53
                 nodePort: 30053
                 zones:
                   - zone: mareo.fr
