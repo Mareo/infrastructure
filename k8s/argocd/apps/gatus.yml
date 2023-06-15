@@ -155,7 +155,7 @@ spec:
                     alerts:
                       - type: discord
                   - name: DNS - athena.mareo.fr
-                    group: Infratructure
+                    group: Infrastructure
                     interval: 30s
                     url: "athena.mareo.fr"
                     dns:
@@ -166,7 +166,7 @@ spec:
                     alerts:
                       - type: discord
                   - name: DNS - prometheus.mareo.fr
-                    group: Infratructure
+                    group: Infrastructure
                     interval: 30s
                     url: "prometheus.mareo.fr"
                     dns:
