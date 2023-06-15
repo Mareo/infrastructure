@@ -86,32 +86,44 @@ spec:
                     conditions:
                       - "[DNS_RCODE] == NOERROR"
                   # infrastructure
-                  - name: Alertmanager
-                    group: infrastructure
+                  - name: Argo CD
+                    group: Infrastructure
                     interval: 1m
-                    url: "https://grafana.mareo.fr/"
+                    url: "https://argocd.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
+                      - "[BODY] == pat(*<title>Argo CD</title>*)"
+                  - name: Alertmanager
+                    group: Infrastructure
+                    interval: 1m
+                    url: "https://alertmanager.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 700"
+                      - "[STATUS] == 200"
+                      - "[BODY] == pat(*<title>Alertmanager</title>*)"
                   - name: Authentik
-                    group: infrastructure
+                    group: Infrastructure
                     interval: 1m
                     url: "https://auth.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
+                      - "[BODY] == pat(*<title>authentik</title>*)"
                   - name: Grafana
-                    group: infrastructure
+                    group: Infrastructure
                     interval: 1m
                     url: "https://grafana.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
+                      - "[BODY] == pat(*<title>Grafana</title>*)"
                   - name: Hashicorp Vault
-                    group: infrastructure
+                    group: Infrastructure
                     interval: 1m
                     url: "https://vault.mareo.fr/v1/sys/seal-status"
                     conditions:
@@ -120,15 +132,16 @@ spec:
                       - "[STATUS] == 200"
                       - "[BODY].sealed == false"
                   - name: Prometheus
-                    group: infrastructure
+                    group: Infrastructure
                     interval: 1m
                     url: "https://prom.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
+                      - "[BODY] == pat(*<title>Prometheus Time Series Collection and Processing Server</title>*)"
                   - name: Proxmox
-                    group: infrastructure
+                    group: Infrastructure
                     interval: 1m
                     url: "https://athena.mareo.fr:8006/"
                     conditions:
@@ -161,9 +174,9 @@ spec:
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>PetitStream</title>*)"
-                  # mails
-                  - name: mareo.fr - MX
-                    group: infratructure
+                  # mail
+                  - name: mareo.fr
+                    group: Mail - MX records
                     interval: 30s
                     url: "8.8.8.8"
                     dns:
@@ -172,8 +185,8 @@ spec:
                     conditions:
                       - "[BODY] == prometheus.mareo.fr."
                       - "[DNS_RCODE] == NOERROR"
-                  - name: hannache.fr - MX
-                    group: infratructure
+                  - name: hannache.fr
+                    group: Mail - MX records
                     interval: 30s
                     url: "8.8.8.8"
                     dns:
@@ -183,7 +196,7 @@ spec:
                       - "[BODY] == prometheus.mareo.fr."
                       - "[DNS_RCODE] == NOERROR"
                   - name: prometheus.mareo.fr - imap
-                    group: mail
+                    group: Mail - IMAP
                     interval: 1m
                     url: "tcp://prometheus.mareo.fr:143"
                     client:
@@ -191,7 +204,7 @@ spec:
                     conditions:
                       - "[CONNECTED] == true"
                   - name: prometheus.mareo.fr - imaps
-                    group: mail
+                    group: Mail - IMAP
                     interval: 1m
                     url: "tls://prometheus.mareo.fr:993"
                     client:
@@ -199,8 +212,34 @@ spec:
                     conditions:
                       - "[CONNECTED] == true"
                       - "[CERTIFICATE_EXPIRATION] > 720h"
+                  - name: athena.mareo.fr - smtp
+                    group: Mail - SMTP
+                    interval: 1m
+                    url: "tcp://athena.mareo.fr:25"
+                    client:
+                      timeout: 5s
+                    conditions:
+                      - "[CONNECTED] == true"
+                  - name: athena.mareo.fr - submission
+                    group: Mail - SMTP
+                    interval: 1m
+                    url: "starttls://athena.mareo.fr:587"
+                    client:
+                      timeout: 5s
+                    conditions:
+                      - "[CONNECTED] == true"
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                  - name: athena.mareo.fr - submissions
+                    group: Mail - SMTP
+                    interval: 1m
+                    url: "tls://athena.mareo.fr:465"
+                    client:
+                      timeout: 5s
+                    conditions:
+                      - "[CONNECTED] == true"
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
                   - name: prometheus.mareo.fr - smtp
-                    group: mail
+                    group: Mail - SMTP
                     interval: 1m
                     url: "tcp://prometheus.mareo.fr:25"
                     client:
@@ -208,7 +247,7 @@ spec:
                     conditions:
                       - "[CONNECTED] == true"
                   - name: prometheus.mareo.fr - submission
-                    group: mail
+                    group: Mail - SMTP
                     interval: 1m
                     url: "starttls://prometheus.mareo.fr:587"
                     client:
@@ -217,7 +256,7 @@ spec:
                       - "[CONNECTED] == true"
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                   - name: prometheus.mareo.fr - submissions
-                    group: mail
+                    group: Mail - SMTP
                     interval: 1m
                     url: "tls://prometheus.mareo.fr:465"
                     client:
@@ -227,7 +266,7 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                   # services
                   - name: GitLab
-                    group: services
+                    group: Services
                     interval: 1m
                     url: "https://gitlab.mareo.fr/"
                     conditions:
@@ -235,7 +274,7 @@ spec:
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                   - name: HedgeDoc
-                    group: services
+                    group: Services
                     interval: 1m
                     url: "https://hedgedoc.mareo.fr/"
                     conditions:
@@ -244,7 +283,7 @@ spec:
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>HedgeDoc - Collaborative markdown notes</title>*)"
                   - name: Nextcloud
-                    group: services
+                    group: Services
                     interval: 1m
                     url: "https://nextcloud.mareo.fr/"
                     conditions:
@@ -252,7 +291,7 @@ spec:
                       - "[RESPONSE_TIME] < 1000"
                       - "[STATUS] == 200"
                   - name: Vaultwarden
-                    group: services
+                    group: Services
                     interval: 1m
                     url: "https://vaultwarden.mareo.fr/"
                     conditions:
