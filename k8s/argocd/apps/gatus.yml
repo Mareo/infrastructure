@@ -81,7 +81,7 @@ spec:
               endpoints:
                   # domains
                   - name: "hannache.fr"
-                    group: domains
+                    group: Domains
                     interval: 24h
                     url: "https://hannache.fr"
                     conditions:
@@ -89,7 +89,7 @@ spec:
                     alerts:
                       - type: discord
                   - name: "mareo.fr"
-                    group: domains
+                    group: Domains
                     interval: 24h
                     url: "https://mareo.fr"
                     conditions:
@@ -97,7 +97,7 @@ spec:
                     alerts:
                       - type: discord
                   - name: "phanes.net"
-                    group: domains
+                    group: Domains
                     interval: 24h
                     url: "https://phanes.net"
                     conditions:
