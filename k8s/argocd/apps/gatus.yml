@@ -49,15 +49,21 @@ spec:
             config:
               endpoints:
                   # domains
+                  - name: "domain - hannache.fr"
+                    group: domains
+                    url: "https://hannache.fr"
+                    interval: 24h
+                    conditions:
+                      - "[DOMAIN_EXPIRATION] > 720h"
                   - name: "domain - mareo.fr"
                     group: domains
                     url: "https://mareo.fr"
                     interval: 24h
                     conditions:
                       - "[DOMAIN_EXPIRATION] > 720h"
-                  - name: "domain - hannache.fr"
+                  - name: "domain - phanes.net"
                     group: domains
-                    url: "https://hannache.fr"
+                    url: "https://phanes.net"
                     interval: 24h
                     conditions:
                       - "[DOMAIN_EXPIRATION] > 720h"
@@ -112,6 +118,31 @@ spec:
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>athena - Proxmox Virtual Environment</title>*)"
+                  # petitstream
+                  - name: "Petitstream - domain"
+                    group: domains
+                    url: "https://petitstream.com"
+                    interval: 24h
+                    conditions:
+                      - "[DOMAIN_EXPIRATION] > 720h"
+                  - name: Petitstream - frontend
+                    group: petitstream
+                    interval: 1m
+                    url: "https://petitstream.com"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 200"
+                      - "[BODY] == pat(*<title>PetitStream</title>*)"
+                  - name: Petitstream - backend
+                    group: petitstream
+                    interval: 1m
+                    url: "https://petitstream.com/api/get_next_stream_a/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 200"
+                      - "len([BODY][0].id) > 0"
                   # services
                   - name: GitLab
                     group: services
@@ -136,12 +167,12 @@ spec:
                     url: "https://nextcloud.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
-                      - "[RESPONSE_TIME] < 500"
+                      - "[RESPONSE_TIME] < 1000"
                       - "[STATUS] == 200"
                   - name: Vaultwarden
                     group: services
                     interval: 1m
-                    url: "https://nextcloud.mareo.fr/"
+                    url: "https://vaultwarden.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
