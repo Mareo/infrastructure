@@ -47,6 +47,7 @@ spec:
             servers:
               - port: 53
                 nodePort: 30053
+                hostPort: 30053
                 zones:
                   - zone: mareo.fr
                     use_tcp: true
