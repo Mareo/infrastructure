@@ -27,12 +27,17 @@ spec:
         name: "{{name}}"
         namespace: gatus
       source:
-        repoURL: https://minicloudlabs.github.io/helm-charts
-        chart: gatus
-        targetRevision: 3.3.5
+        #repoURL: https://minicloudlabs.github.io/helm-charts
+        #chart: gatus
+        #targetRevision: 3.3.5
+        repoURL: https://gitlab.mareo.fr/iac/infrastructure.git
+        targetRevision: HEAD
+        path: "k8s/charts/gatus"
         helm:
           values: |
             fullnameOverride: gatus
+            deployment:
+              annotateConfigChecksum: false
             ingress:
               enabled: true
               ingressClassName: public
@@ -173,6 +178,15 @@ spec:
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>athena - Proxmox Virtual Environment</title>*)"
+                  - name: Rados REST Gateway
+                    group: Infrastructure
+                    interval: 1m
+                    url: "https://athena.mareo.fr:7443/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 200"
+                      - "[BODY] == pat(*</ListAllMyBucketsResult>*)"
                   # petitstream
                   - name: "Domain"
                     group: Petitstream
@@ -289,7 +303,19 @@ spec:
                       - "[CONNECTED] == true"
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                   # services
-                  - name: GitLab
+                  - name: Factorio
+                    group: Services
+                    interval: 1m
+                    url: "udp://factorio.mareo.fr:34197"
+                    conditions:
+                      - "[CONNECTED] == true"
+                  - name: GitLab - SSH
+                    group: Services
+                    interval: 1m
+                    url: "tcp://gitlab.mareo.fr:22/"
+                    conditions:
+                      - "[CONNECTED] == true"
+                  - name: GitLab - UI
                     group: Services
                     interval: 1m
                     url: "https://gitlab.mareo.fr/"
