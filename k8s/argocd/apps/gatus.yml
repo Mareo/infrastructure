@@ -92,7 +92,7 @@ spec:
                     url: "https://grafana.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
-                      - "[RESPONSE_TIME] < 500"
+                      - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                   - name: Authentik
                     group: infrastructure
@@ -170,8 +170,7 @@ spec:
                       query-name: "mareo.fr"
                       query-type: "MX"
                     conditions:
-                      - "[BODY] == test"
-                      - "[IP] == test"
+                      - "[BODY] == prometheus.mareo.fr."
                       - "[DNS_RCODE] == NOERROR"
                   - name: hannache.fr - MX
                     group: infratructure
@@ -181,13 +180,12 @@ spec:
                       query-name: "mareo.fr"
                       query-type: "MX"
                     conditions:
-                      - "[BODY] == test"
-                      - "[IP] == test"
+                      - "[BODY] == prometheus.mareo.fr."
                       - "[DNS_RCODE] == NOERROR"
                   - name: prometheus.mareo.fr - imap
                     group: mail
                     interval: 1m
-                    url: "tls://prometheus.mareo.fr:143"
+                    url: "tcp://prometheus.mareo.fr:143"
                     client:
                       timeout: 5s
                     conditions:
