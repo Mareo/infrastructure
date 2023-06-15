@@ -84,6 +84,24 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
+                  - name: DNS - athena.mareo.fr
+                    group: infratructure
+                    interval: 30s
+                    url: "athena.mareo.fr"
+                    dns:
+                      query-name: "mareo.fr"
+                      query-type: "A"
+                    conditions:
+                      - "[DNS_RCODE] == NOERROR"
+                  - name: DNS - prometheus.mareo.fr
+                    group: infratructure
+                    interval: 30s
+                    url: "prometheus.mareo.fr"
+                    dns:
+                      query-name: "mareo.fr"
+                      query-type: "A"
+                    conditions:
+                      - "[DNS_RCODE] == NOERROR"
                   - name: Grafana
                     group: infrastructure
                     interval: 1m
@@ -120,20 +138,11 @@ spec:
                       - "[BODY] == pat(*<title>athena - Proxmox Virtual Environment</title>*)"
                   # petitstream
                   - name: "Petitstream - domain"
-                    group: domains
+                    group: petitstream
                     url: "https://petitstream.com"
                     interval: 24h
                     conditions:
                       - "[DOMAIN_EXPIRATION] > 720h"
-                  - name: Petitstream - frontend
-                    group: petitstream
-                    interval: 1m
-                    url: "https://petitstream.com"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>PetitStream</title>*)"
                   - name: Petitstream - backend
                     group: petitstream
                     interval: 1m
@@ -143,6 +152,15 @@ spec:
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "len([BODY][0].id) > 0"
+                  - name: Petitstream - frontend
+                    group: petitstream
+                    interval: 1m
+                    url: "https://petitstream.com"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 200"
+                      - "[BODY] == pat(*<title>PetitStream</title>*)"
                   # services
                   - name: GitLab
                     group: services
