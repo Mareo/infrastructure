@@ -1,7 +1,0 @@
-env:
-  AAAA: BBB
-  CCCC:
-    valueFrom:
-      secretKeyRef:
-        name: test
-        key: test
