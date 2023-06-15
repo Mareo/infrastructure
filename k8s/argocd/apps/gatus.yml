@@ -103,7 +103,6 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>Alertmanager</title>*)"
                   - name: Authentik
                     group: Infrastructure
                     interval: 1m
@@ -139,7 +138,6 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>Prometheus Time Series Collection and Processing Server</title>*)"
                   - name: Proxmox
                     group: Infrastructure
                     interval: 1m
