@@ -1,0 +1,70 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: gatus
+  labels:
+    app: gatus
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-gatus"
+      labels:
+        app: gatus
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: gatus
+      source:
+        repoURL: https://minicloudlabs.github.io/helm-charts
+        chart: gatus
+        targetRevision: 3.3.5
+        helm:
+          values: |
+            fullnameOverride: gatus
+            ingress:
+              enabled: true
+              ingressClassName: public
+              annotations:
+                cert-manager.io/cluster-issuer: default-issuer
+              hosts:
+                - gatus.mareo.fr
+              tls:
+                - secretName: gatus-tls
+                  hosts:
+                    - gatus.mareo.fr
+            serviceMonitor:
+              enabled: true
+            config:
+              endpoints:
+                  - name: "domain - mareo.fr"
+                    group: domains
+                    url: "mareo.fr"
+                    interval: 24h
+                    conditions:
+                      - "[DOMAIN_EXPIRATION] > 720h"
+                  - name: "DNS - mareo.fr"
+                    group: domains
+                    url: "8.8.8.8"
+                    dns:
+                      query-name: "mareo.fr"
+                      query-type: "A"
+                    condiftions:
+                      - "[DNS_RCODE] == NOERROR"
+                  - name: "domain - hannache.fr"
+                    group: domains
+                    url: "hannache.fr"
+                    interval: 24h
+                    conditions:
+                      - "[DOMAIN_EXPIRATION] > 720h"
