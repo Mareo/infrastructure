@@ -116,7 +116,7 @@ spec:
                   - name: GitLab
                     group: services
                     interval: 1m
-                      url: "https://gitlab.mareo.fr/"
+                    url: "https://gitlab.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
@@ -133,7 +133,7 @@ spec:
                   - name: nextcloud
                     group: services
                     interval: 1m
-                      url: "https://nextcloud.mareo.fr/"
+                    url: "https://nextcloud.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
@@ -141,7 +141,7 @@ spec:
                   - name: Vaultwarden
                     group: services
                     interval: 1m
-                      url: "https://nextcloud.mareo.fr/"
+                    url: "https://nextcloud.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
