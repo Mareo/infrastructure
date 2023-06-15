@@ -46,7 +46,33 @@ spec:
                     - gatus.mareo.fr
             serviceMonitor:
               enabled: true
+            env:
+              - name: DISCORD_WEBHOOK
+                valueFrom:
+                  secretKeyRef:
+                    name: gatus-discord
+                    key: webhook
+              - name: POSTGRES_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: gatus.gatus.in-cluster-main-cluster.credentials
+                    key: username
+              - name: POSTGRES_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: gatus.gatus.in-cluster-main-cluster.credentials
+                    key: password
             config:
+              storage:
+                type: postgres
+                path: "postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@in-cluster-main-cluster.postgres.svc.cluster.local/gatus?sslmode=disable"
+              alerting: 
+              discord:
+                webhook-url: "${DISCORD_WEBHOOK}"
+                default-alert:
+                  enabled: true
+                  failure-threshold: 3
+                  send-on-resolved: true
               endpoints:
                   # domains
                   - name: "hannache.fr"

@@ -15,6 +15,7 @@ spec:
   # users: name -> permissions (usually [])
   users:
     authentik.authentik: []
+    gatus.gatus: []
     gitlab.gitlab: []
     hedgedoc.hedgedoc: []
     kube-prometheus-stack.grafana: []
@@ -26,6 +27,7 @@ spec:
   # databases: name -> owner
   databases:
     authentik: authentik.authentik
+    gatus: gatus.gatus
     gitlab: gitlab.gitlab
     grafana: kube-prometheus-stack.grafana
     hedgedoc: hedgedoc.hedgedoc
