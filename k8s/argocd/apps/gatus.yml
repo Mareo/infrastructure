@@ -70,7 +70,7 @@ spec:
             config:
               storage:
                 type: postgres
-                path: "postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@in-cluster-main-cluster.postgres.svc.cluster.local/gatus?sslmode=disable"
+                path: "postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@in-cluster-main-cluster.postgres.svc.cluster.local/gatus?sslmode=require"
               alerting:
                 discord:
                   webhook-url: "${DISCORD_WEBHOOK}"
