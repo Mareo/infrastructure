@@ -82,26 +82,43 @@ spec:
                   # domains
                   - name: "hannache.fr"
                     group: domains
-                    url: "https://hannache.fr"
                     interval: 24h
+                    url: "https://hannache.fr"
                     conditions:
                       - "[DOMAIN_EXPIRATION] > 720h"
                     alerts:
                       - type: discord
                   - name: "mareo.fr"
                     group: domains
-                    url: "https://mareo.fr"
                     interval: 24h
+                    url: "https://mareo.fr"
                     conditions:
                       - "[DOMAIN_EXPIRATION] > 720h"
                     alerts:
                       - type: discord
                   - name: "phanes.net"
                     group: domains
-                    url: "https://phanes.net"
                     interval: 24h
+                    url: "https://phanes.net"
                     conditions:
                       - "[DOMAIN_EXPIRATION] > 720h"
+                    alerts:
+                      - type: discord
+                  # SSH
+                  - name: athena.mareo.fr
+                    group: SSH
+                    interval: 1m
+                    url: "tcp://athena.mareo.fr:2222"
+                    conditions: 
+                      - "[CONNECTED] == true"
+                    alerts:
+                      - type: discord
+                  - name: prometheus.mareo.fr
+                    group: SSH
+                    interval: 1m
+                    url: "tcp://athena.mareo.fr:22"
+                    conditions: 
+                      - "[CONNECTED] == true"
                     alerts:
                       - type: discord
                   # infrastructure
@@ -366,7 +383,9 @@ spec:
                   - name: GitLab - SSH
                     group: Services
                     interval: 1m
-                    url: "tcp://gitlab.mareo.fr:22/"
+                    url: "tcp://gitlab.mareo.fr:22"
+                    client:
+                      timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
                     alerts:
