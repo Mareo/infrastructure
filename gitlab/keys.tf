@@ -1,7 +1,7 @@
 resource "gitlab_user_sshkey" "mareo_cardno-11341889" {
   user_id = gitlab_user.users["mareo"].id
   title   = "cardno:11341889"
-  key     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMVxiogrQvZfJs23ajIV9ooc8hWGJyumLHM0t+E4Hv4m"
+  key     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJNwnObkPiK+p6EraNrC0eIn98vaHnPLsTTMw4rKsQM7"
 }
 
 resource "gitlab_user_sshkey" "mareo_apollo" {
