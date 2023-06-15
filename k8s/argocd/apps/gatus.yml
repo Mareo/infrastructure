@@ -60,7 +60,7 @@ spec:
                     dns:
                       query-name: "mareo.fr"
                       query-type: "A"
-                    condiftions:
+                    conditions:
                       - "[DNS_RCODE] == NOERROR"
                   - name: "domain - hannache.fr"
                     group: domains
