@@ -109,7 +109,7 @@ spec:
                     group: SSH
                     interval: 1m
                     url: "tcp://athena.mareo.fr:2222"
-                    conditions: 
+                    conditions:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
@@ -117,7 +117,7 @@ spec:
                     group: SSH
                     interval: 1m
                     url: "tcp://athena.mareo.fr:22"
-                    conditions: 
+                    conditions:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
