@@ -62,7 +62,31 @@ spec:
                     conditions:
                       - "[DOMAIN_EXPIRATION] > 720h"
                   # infrastructure
-                  - name: vault
+                  - name: Authentik
+                    group: infrastructure
+                    interval: 1m
+                    url: "https://auth.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 302"
+                  - name: Alertmanager
+                    group: infrastructure
+                    interval: 1m
+                    url: "https://grafana.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 302"
+                  - name: Grafana
+                    group: infrastructure
+                    interval: 1m
+                    url: "https://grafana.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 302"
+                  - name: Hashicorp Vault
                     group: infrastructure
                     interval: 1m
                     url: "https://vault.mareo.fr/v1/sys/seal-status"
@@ -71,3 +95,54 @@ spec:
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY].sealed == false"
+                  - name: Prometheus
+                    group: infrastructure
+                    interval: 1m
+                    url: "https://prom.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 302"
+                  - name: Proxmox
+                    group: infrastructure
+                    interval: 1m
+                    url: "https://athena.mareo.fr:8006/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 200"
+                      - "[BODY] == pat(<title>athena - Proxmox Virtual Environment</title>)"
+                  # services
+                  - name: GitLab
+                    group: services
+                    interval: 1m
+                      url: "https://gitlab.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 302"
+                  - name: HedgeDoc
+                    group: services
+                    interval: 1m
+                    url: "https://hedgedoc.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 200"
+                      - "[BODY] == pat(<title>HedgeDoc - Collaborative markdown notes</title>)"
+                  - name: nextcloud
+                    group: services
+                    interval: 1m
+                      url: "https://nextcloud.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 302"
+                  - name: Vaultwarden
+                    group: services
+                    interval: 1m
+                      url: "https://nextcloud.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 200"
