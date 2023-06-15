@@ -41,7 +41,7 @@ spec:
             rbac:
               create: false
             isClusterService: false
-            serviceType: LoadBalancer
+            serviceType: NodePort
             service:
               externalTrafficPolicy: Local
             servers:
