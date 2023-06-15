@@ -1,0 +1,1 @@
+{{- include "common.objects.Service" . | nindent 0 }}

@@ -1,0 +1,3 @@
+{{- if .Values.ingress.enabled -}}
+  {{- include "common.objects.ingress" . | nindent 0 }}
+{{- end }}

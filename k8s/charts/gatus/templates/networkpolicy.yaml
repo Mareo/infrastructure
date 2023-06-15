@@ -1,0 +1,3 @@
+{{- if .Values.networkPolicy.enabled }}
+  {{- include "common.objects.NetworkPolicy" . | nindent 0 }}
+{{- end }}
