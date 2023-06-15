@@ -47,17 +47,17 @@ spec:
             serviceMonitor:
               enabled: true
             env:
-              - name: DISCORD_WEBHOOK
+              DISCORD_WEBHOOK:
                 valueFrom:
                   secretKeyRef:
                     name: gatus-discord
                     key: webhook
-              - name: POSTGRES_USERNAME
+              POSTGRES_USERNAME:
                 valueFrom:
                   secretKeyRef:
                     name: gatus.gatus.in-cluster-main-cluster.credentials
                     key: username
-              - name: POSTGRES_PASSWORD
+              POSTGRES_PASSWORD:
                 valueFrom:
                   secretKeyRef:
                     name: gatus.gatus.in-cluster-main-cluster.credentials
