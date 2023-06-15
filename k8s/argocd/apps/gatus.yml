@@ -247,7 +247,7 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
-                      - "len([BODY][0].id) > 0"
+                      - "has([BODY][0].id)"
                     alerts:
                       - type: discord
                   - name: Site - frontend
