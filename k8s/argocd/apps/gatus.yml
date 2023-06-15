@@ -98,24 +98,6 @@ spec:
                     interval: 24h
                     conditions:
                       - "[DOMAIN_EXPIRATION] > 720h"
-                  - name: DNS - athena.mareo.fr
-                    group: infratructure
-                    interval: 30s
-                    url: "athena.mareo.fr"
-                    dns:
-                      query-name: "mareo.fr"
-                      query-type: "A"
-                    conditions:
-                      - "[DNS_RCODE] == NOERROR"
-                  - name: DNS - prometheus.mareo.fr
-                    group: infratructure
-                    interval: 30s
-                    url: "prometheus.mareo.fr"
-                    dns:
-                      query-name: "mareo.fr"
-                      query-type: "A"
-                    conditions:
-                      - "[DNS_RCODE] == NOERROR"
                   # infrastructure
                   - name: Argo CD
                     group: Infrastructure
@@ -143,6 +125,24 @@ spec:
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>authentik</title>*)"
+                  - name: DNS - athena.mareo.fr
+                    group: Infratructure
+                    interval: 30s
+                    url: "athena.mareo.fr"
+                    dns:
+                      query-name: "mareo.fr"
+                      query-type: "A"
+                    conditions:
+                      - "[DNS_RCODE] == NOERROR"
+                  - name: DNS - prometheus.mareo.fr
+                    group: Infratructure
+                    interval: 30s
+                    url: "prometheus.mareo.fr"
+                    dns:
+                      query-name: "mareo.fr"
+                      query-type: "A"
+                    conditions:
+                      - "[DNS_RCODE] == NOERROR"
                   - name: Grafana
                     group: Infrastructure
                     interval: 1m
