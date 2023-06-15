@@ -11,6 +11,7 @@ resources:
   - external-dns.yml
   - external-secrets-operator.yml
   - factorio.yml
+  - gatus.yml
   - gitlab.yml
   - ingress-nginx-internal.yml
   - ingress-nginx-public.yml
