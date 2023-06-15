@@ -47,12 +47,6 @@ spec:
             serviceMonitor:
               enabled: true
             config:
-              http-default: &https-default
-                interval: 1m
-                conditions:
-                  - "[STATUS] == 200"
-                  - "[RESPONSE_TIME] < 500"
-                  - "[CERTIFICATE_EXPIRATION] > 720h"
               endpoints:
                   # domains
                   - name: "domain - mareo.fr"
@@ -69,8 +63,11 @@ spec:
                       - "[DOMAIN_EXPIRATION] > 720h"
                   # infrastructure
                   - name: vault
-                    <<: *https-default
                     group: infrastructure
+                    interval: 1m
                     url: "https://vault.mareo.fr/v1/sys/seal-status"
                     conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 200"
                       - "[BODY].sealed == false"
