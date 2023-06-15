@@ -111,7 +111,7 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
-                      - "[BODY] == pat(<title>athena - Proxmox Virtual Environment</title>)"
+                      - "[BODY] == pat(*<title>athena - Proxmox Virtual Environment</title>*)"
                   # services
                   - name: GitLab
                     group: services
@@ -129,7 +129,7 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
-                      - "[BODY] == pat(<title>HedgeDoc - Collaborative markdown notes</title>)"
+                      - "[BODY] == pat(*<title>HedgeDoc - Collaborative markdown notes</title>*)"
                   - name: nextcloud
                     group: services
                     interval: 1m
@@ -146,3 +146,4 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
+                      - "[BODY] == pat(*<title page-title>Bitwarden Web Vault</title>*)"
