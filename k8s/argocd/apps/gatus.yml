@@ -66,13 +66,13 @@ spec:
               storage:
                 type: postgres
                 path: "postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@in-cluster-main-cluster.postgres.svc.cluster.local/gatus?sslmode=disable"
-              alerting: 
-              discord:
-                webhook-url: "${DISCORD_WEBHOOK}"
-                default-alert:
-                  enabled: true
-                  failure-threshold: 3
-                  send-on-resolved: true
+              alerting:
+                discord:
+                  webhook-url: "${DISCORD_WEBHOOK}"
+                  default-alert:
+                    enabled: true
+                    failure-threshold: 3
+                    send-on-resolved: true
               endpoints:
                   # domains
                   - name: "hannache.fr"
