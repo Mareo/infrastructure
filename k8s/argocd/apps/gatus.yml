@@ -62,14 +62,6 @@ spec:
                     conditions:
                       - "[DOMAIN_EXPIRATION] > 720h"
                   # infrastructure
-                  - name: Authentik
-                    group: infrastructure
-                    interval: 1m
-                    url: "https://auth.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 302"
                   - name: Alertmanager
                     group: infrastructure
                     interval: 1m
@@ -77,7 +69,15 @@ spec:
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 302"
+                      - "[STATUS] == 200"
+                  - name: Authentik
+                    group: infrastructure
+                    interval: 1m
+                    url: "https://auth.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 200"
                   - name: Grafana
                     group: infrastructure
                     interval: 1m
@@ -85,7 +85,7 @@ spec:
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 302"
+                      - "[STATUS] == 200"
                   - name: Hashicorp Vault
                     group: infrastructure
                     interval: 1m
@@ -102,7 +102,7 @@ spec:
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 302"
+                      - "[STATUS] == 200"
                   - name: Proxmox
                     group: infrastructure
                     interval: 1m
@@ -120,7 +120,7 @@ spec:
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 302"
+                      - "[STATUS] == 200"
                   - name: HedgeDoc
                     group: services
                     interval: 1m
@@ -137,7 +137,7 @@ spec:
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
                       - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 302"
+                      - "[STATUS] == 200"
                   - name: Vaultwarden
                     group: services
                     interval: 1m
