@@ -71,7 +71,7 @@ spec:
               difficulty_settings:
                 research_queue_setting: after-victory
             rcon:
-              external: true
+              external: false
               type: LoadBalancer
               passwordSecret: "factorio-rcon"
             admin_list:
