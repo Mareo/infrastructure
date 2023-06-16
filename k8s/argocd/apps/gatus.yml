@@ -94,7 +94,7 @@ spec:
                   webhook-url: "${DISCORD_WEBHOOK}"
                   default-alert:
                     enabled: true
-                    failure-threshold: 3
+                    failure-threshold: 2
                     send-on-resolved: true
               endpoints:
                   # domains
@@ -414,7 +414,7 @@ spec:
                     url: "https://gitlab.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
-                      - "[RESPONSE_TIME] < 500"
+                      - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                     alerts:
                       - type: discord
