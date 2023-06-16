@@ -27,9 +27,12 @@ spec:
         name: "{{name}}"
         namespace: gitlab
       source:
-        repoURL: https://charts.gitlab.io/
-        chart: gitlab
-        targetRevision: 7.0.5
+        # repoURL: https://charts.gitlab.io/
+        # chart: gitlab
+        # targetRevision: 7.0.5
+        repoURL: https://gitlab.com/mareo/gitlab-chart.git
+        targetRevision: allow-name-in-omniauth-providers
+        path: /
         helm:
           releaseName: gitlab
           values: |
@@ -146,7 +149,8 @@ spec:
                   autoLinkSamlUser: true
                   autoLinkUser: true
                   providers:
-                    - secret: gitlab-saml-group
+                    #- secret: gitlab-saml-group
+                    - name: saml_group
                     - secret: gitlab-saml-authentik
                     - secret: gitlab-oidc-authentik
                   syncProfileAttributes:
