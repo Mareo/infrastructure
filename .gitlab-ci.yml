@@ -5,7 +5,7 @@ stages:
 
 ansible-lint:
   stage: linting
-  image: registry.gitlab.com/pipeline-components/ansible-lint:latest
+  image: registry.gitlab.com/pipeline-components/ansible-lint:0.54.2
   cache:
     paths:
       - .cache/
@@ -21,7 +21,7 @@ ansible-lint:
 
 shellcheck:
   stage: linting
-  image: registry.gitlab.com/pipeline-components/shellcheck:latest
+  image: registry.gitlab.com/pipeline-components/shellcheck:0.12.3
   script:
     - |
       find . -name .git -type d -prune -o -type f  -name \*.sh -print0 |
@@ -32,6 +32,12 @@ shellcheck:
 
 yamllint:
   stage: linting
-  image: registry.gitlab.com/pipeline-components/yamllint:latest
+  image: registry.gitlab.com/pipeline-components/yamllint:0.26.0
   script:
     - yamllint .
+
+terraform-fmt:
+  stage: linting
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/hashicorp/terraform:1.5.0
+  script:
+    - terraform fmt -check -recursive -diff
