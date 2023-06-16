@@ -4,7 +4,7 @@ resource "random_password" "factorio_rcon-password" {
 }
 
 resource "vault_generic_secret" "factorio-server" {
-  path = "k8s/factorio/server"
+  path         = "k8s/factorio/server"
   disable_read = true
   data_json = jsonencode({
     password = "FIXME"

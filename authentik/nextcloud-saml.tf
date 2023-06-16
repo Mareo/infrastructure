@@ -51,15 +51,15 @@ resource "authentik_provider_saml" "nextcloud-saml" {
 }
 
 resource "authentik_application" "nextcloud-saml" {
-  name               = "NextCloud (SAML)"
-  slug               = "nextcloud-saml"
-  group              = "Services"
-  protocol_provider  = authentik_provider_saml.nextcloud-saml.id
+  name                  = "NextCloud (SAML)"
+  slug                  = "nextcloud-saml"
+  group                 = "Services"
+  protocol_provider     = authentik_provider_saml.nextcloud-saml.id
   backchannel_providers = [authentik_provider_ldap.nextcloud-ldap.id]
-  meta_icon          = "${local.icon-url}/nextcloud.png"
-  meta_launch_url    = "https://nextcloud.mareo.fr/"
-  meta_publisher     = "NextCloud GmbH"
-  policy_engine_mode = "any"
+  meta_icon             = "${local.icon-url}/nextcloud.png"
+  meta_launch_url       = "https://nextcloud.mareo.fr/"
+  meta_publisher        = "NextCloud GmbH"
+  policy_engine_mode    = "any"
 }
 
 resource "authentik_policy_binding" "nextcloud-saml_group-filtering" {
