@@ -20,4 +20,3 @@ repos:
       - id: terraform-fmt
       - id: terraform-validate
       - id: shellcheck
-        exclude: config.sh
