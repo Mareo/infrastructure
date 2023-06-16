@@ -151,6 +151,9 @@ spec:
                   providers:
                     #- secret: gitlab-saml-group
                     - name: group_saml
+                    - name: kerberos
+                      label: "SPNEGO"
+                      icon: "https://www.fortinet.com/resources/cyberglossary/kerberos-authentication/_jcr_content/par/c05_container_copy_c/par/c28_image.img.jpg/1643741826059.jpg"
                     - secret: gitlab-saml-authentik
                     - secret: gitlab-oidc-authentik
                   syncProfileAttributes:
