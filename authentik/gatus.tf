@@ -22,14 +22,15 @@ resource "authentik_provider_oauth2" "gatus" {
   client_id          = random_string.gatus_client-id.result
   client_secret      = random_password.gatus_client-secret.result
   redirect_uris = [
-    "https://gatus.mareo.fr/auth/oauth2/callback"
+    "https://gatus.mareo.fr/authorization-code/callback"
   ]
   property_mappings = [
     data.authentik_scope_mapping.scope-openid.id,
     data.authentik_scope_mapping.scope-profile.id,
     data.authentik_scope_mapping.scope-email.id,
   ]
-  signing_key = data.authentik_certificate_key_pair.default.id
+  signing_key           = data.authentik_certificate_key_pair.default.id
+  access_token_validity = "days=1"
 }
 
 resource "authentik_application" "gatus" {
@@ -38,7 +39,7 @@ resource "authentik_application" "gatus" {
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_oauth2.gatus.id
   meta_icon          = "https://gatus.io/img/logo.svg"
-  meta_launch_url    = "https://gatus.mareo.fr/"
+  meta_launch_url    = "https://gatus.mareo.fr/oidc/login"
   meta_publisher     = "TwiN"
   policy_engine_mode = "any"
 }
