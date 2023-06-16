@@ -150,7 +150,7 @@ spec:
                   autoLinkUser: true
                   providers:
                     #- secret: gitlab-saml-group
-                    - name: saml_group
+                    - name: group_saml
                     - secret: gitlab-saml-authentik
                     - secret: gitlab-oidc-authentik
                   syncProfileAttributes:
