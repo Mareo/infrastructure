@@ -200,7 +200,7 @@ spec:
                     url: "https://grafana.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > 720h"
-                      - "[RESPONSE_TIME] < 500"
+                      - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>Grafana</title>*)"
                     alerts:
