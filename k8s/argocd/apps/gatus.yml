@@ -84,7 +84,8 @@ spec:
                   redirect-url: "https://gatus.mareo.fr/authorization-code/callback"
                   client-id: "${AUTHENTIK_OPENID_KEY}"
                   client-secret: "${AUTHENTIK_OPENID_SECRET}"
-                  scopes: openid
+                  scopes:
+                    - openid
               storage:
                 type: postgres
                 path: "postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@in-cluster-main-cluster.postgres.svc.cluster.local/gatus?sslmode=require"
