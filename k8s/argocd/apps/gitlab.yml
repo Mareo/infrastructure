@@ -32,6 +32,7 @@ spec:
         # targetRevision: 7.0.5
         repoURL: https://gitlab.com/mareo/gitlab-chart.git
         targetRevision: allow-name-in-omniauth-providers
+        path: ""
         helm:
           releaseName: gitlab
           values: |
