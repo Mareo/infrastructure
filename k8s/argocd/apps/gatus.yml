@@ -52,6 +52,16 @@ spec:
             serviceMonitor:
               enabled: true
             env:
+              AUTHENTIK_OPENID_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: gatus-authentik-openid
+                    key: AUTHENTIK_OPENID_KEY
+              AUTHENTIK_OPENID_SECRET:
+                valueFrom:
+                  secretKeyRef:
+                    name: gatus-authentik-openid
+                    key: AUTHENTIK_OPENID_SECRET
               DISCORD_WEBHOOK:
                 valueFrom:
                   secretKeyRef:
@@ -68,6 +78,13 @@ spec:
                     name: gatus.gatus.in-cluster-main-cluster.credentials
                     key: password
             config:
+              security:
+                oidc:
+                  issuer-url: https://auth.mareo.fr/application/o/gatus/
+                  redirect-url: "https://gatus.mareo.fr/authorization-code/callback"
+                  client-id: "${AUTHENTIK_OPENID_KEY}"
+                  client-secret: "${AUTHENTIK_OPENID_SECRET}"
+                  scopes: openid
               storage:
                 type: postgres
                 path: "postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@in-cluster-main-cluster.postgres.svc.cluster.local/gatus?sslmode=require"

@@ -21,6 +21,7 @@ locals {
         "alertmanager",
         "argocd",
         "argocd_admins",
+        "gatus",
         "gitlab",
         "gitlab_petitstream",
         "gitlab_admins",
