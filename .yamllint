@@ -4,3 +4,4 @@ extends: default
 ignore: |
   .cache
   roles/
+  k8s/charts/gatus
