@@ -86,6 +86,9 @@ spec:
                     enabled: true
                     failure-threshold: 2
                     send-on-resolved: true
+                  overrides:
+                    - group: "Petitstream"
+                      webhook-url: "${DISCORD_WEBHOOK_PETITSTREAM}"
               endpoints:
                   # domains
                   - name: "hannache.fr"
