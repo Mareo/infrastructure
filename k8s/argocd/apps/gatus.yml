@@ -270,8 +270,8 @@ spec:
                       - type: discord
                   - name: Site - frontend
                     group: Petitstream
-                    interval: 1m
                     interval: "${HTTP_CHECK_INTERVAL}"
+                    url: "https://petitstream.com"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
