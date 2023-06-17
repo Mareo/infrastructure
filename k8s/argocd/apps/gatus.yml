@@ -51,22 +51,12 @@ spec:
                     - gatus.mareo.fr
             serviceMonitor:
               enabled: true
+            envFrom:
+              - secretRef:
+                  name: gatus-discord
+              - secretRef:
+                  name: gatus-authentik-openid
             env:
-              AUTHENTIK_OPENID_KEY:
-                valueFrom:
-                  secretKeyRef:
-                    name: gatus-authentik-openid
-                    key: AUTHENTIK_OPENID_KEY
-              AUTHENTIK_OPENID_SECRET:
-                valueFrom:
-                  secretKeyRef:
-                    name: gatus-authentik-openid
-                    key: AUTHENTIK_OPENID_SECRET
-              DISCORD_WEBHOOK:
-                valueFrom:
-                  secretKeyRef:
-                    name: gatus-discord
-                    key: webhook
               POSTGRES_USERNAME:
                 valueFrom:
                   secretKeyRef:

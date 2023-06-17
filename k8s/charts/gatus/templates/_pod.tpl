@@ -50,6 +50,9 @@ containers:
       - secretRef:
           name: {{ include "common.names.fullname" . }}
       {{- end }}
+      {{- if .Values.envFrom }}
+      {{- toYaml .Values.envFrom | nindent 6 }}
+      {{- end }}
     {{- if .Values.readinessProbe.enabled }}
     readinessProbe:
       httpGet:

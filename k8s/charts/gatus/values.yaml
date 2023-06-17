@@ -98,6 +98,10 @@ env: {}
   #       name: gatus-secret
   #       key: secret
 
+envFrom: []
+  # - secretRef:
+  #     name: gatus-secret
+
 # Sidecar containers in the pod
 sidecarContainers: {}
   # webserver:
