@@ -145,7 +145,7 @@ spec:
                     interval: 1m
                     url: "https://argocd.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>Argo CD</title>*)"
@@ -156,7 +156,7 @@ spec:
                     interval: 1m
                     url: "https://alertmanager.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                     alerts:
@@ -166,7 +166,7 @@ spec:
                     interval: 1m
                     url: "https://auth.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>authentik</title>*)"
@@ -199,7 +199,7 @@ spec:
                     interval: 1m
                     url: "https://grafana.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>Grafana</title>*)"
@@ -210,7 +210,7 @@ spec:
                     interval: 1m
                     url: "https://vault.mareo.fr/v1/sys/seal-status"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY].sealed == false"
@@ -221,7 +221,7 @@ spec:
                     interval: 1m
                     url: "https://prom.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                     alerts:
@@ -231,7 +231,7 @@ spec:
                     interval: 1m
                     url: "https://athena.mareo.fr:8006/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>athena - Proxmox Virtual Environment</title>*)"
@@ -242,7 +242,7 @@ spec:
                     interval: 1m
                     url: "https://athena.mareo.fr:7443/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*</ListAllMyBucketsResult>*)"
@@ -262,7 +262,7 @@ spec:
                     interval: 1m
                     url: "https://petitstream.com/api/get_next_stream_a/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "has([BODY][0].id) == true"
@@ -273,7 +273,7 @@ spec:
                     interval: 1m
                     url: "https://petitstream.com"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>PetitStream</title>*)"
@@ -322,7 +322,7 @@ spec:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                     alerts:
                       - type: discord
                   - name: athena.mareo.fr - smtp
@@ -343,7 +343,7 @@ spec:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                     alerts:
                       - type: discord
                   - name: athena.mareo.fr - submissions
@@ -354,7 +354,7 @@ spec:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                     alerts:
                       - type: discord
                   - name: prometheus.mareo.fr - smtp
@@ -375,7 +375,7 @@ spec:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                     alerts:
                       - type: discord
                   - name: prometheus.mareo.fr - submissions
@@ -386,7 +386,7 @@ spec:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                     alerts:
                       - type: discord
                   # services
@@ -413,7 +413,7 @@ spec:
                     interval: 1m
                     url: "https://gitlab.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                     alerts:
@@ -423,7 +423,7 @@ spec:
                     interval: 1m
                     url: "https://hedgedoc.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>HedgeDoc - Collaborative markdown notes</title>*)"
@@ -434,7 +434,7 @@ spec:
                     interval: 1m
                     url: "https://nextcloud.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 1000"
                       - "[STATUS] == 200"
                     alerts:
@@ -444,7 +444,7 @@ spec:
                     interval: 1m
                     url: "https://vaultwarden.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 720h"
+                      - "[CERTIFICATE_EXPIRATION] > 480h"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title page-title>Bitwarden Web Vault</title>*)"
