@@ -67,6 +67,13 @@ spec:
                   secretKeyRef:
                     name: gatus.gatus.in-cluster-main-cluster.credentials
                     key: password
+              CERTIFICATE_EXPIRATION: 480h
+              DOMAIN_CHECK_INTERVAL: 24h
+              DOMAIN_EXPIRATION: 480h
+              DNS_CHECK_INTERVAL: 10s
+              HTTP_CHECK_INTERVAL: 15s
+              SMTP_CHECK_INTERVAL: 1m
+              SSH_CHECK_INTERVAL: 30s
             config:
               security:
                 oidc:
@@ -93,32 +100,32 @@ spec:
                   # domains
                   - name: "hannache.fr"
                     group: Domains
-                    interval: 24h
+                    interval: "${DOMAIN_CHECK_INTERVAL}"
                     url: "https://hannache.fr"
                     conditions:
-                      - "[DOMAIN_EXPIRATION] > 720h"
+                      - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
                     alerts:
                       - type: discord
                   - name: "mareo.fr"
                     group: Domains
-                    interval: 24h
+                    interval: "${DOMAIN_CHECK_INTERVAL}"
                     url: "https://mareo.fr"
                     conditions:
-                      - "[DOMAIN_EXPIRATION] > 720h"
+                      - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
                     alerts:
                       - type: discord
                   - name: "phanes.net"
                     group: Domains
-                    interval: 24h
+                    interval: "${DOMAIN_CHECK_INTERVAL}"
                     url: "https://phanes.net"
                     conditions:
-                      - "[DOMAIN_EXPIRATION] > 720h"
+                      - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
                     alerts:
                       - type: discord
                   # SSH
                   - name: athena.mareo.fr
                     group: SSH
-                    interval: 1m
+                    interval: "${SSH_CHECK_INTERVAL}"
                     url: "tcp://athena.mareo.fr:2222"
                     conditions:
                       - "[CONNECTED] == true"
@@ -126,7 +133,7 @@ spec:
                       - type: discord
                   - name: prometheus.mareo.fr
                     group: SSH
-                    interval: 1m
+                    interval: "${SSH_CHECK_INTERVAL}"
                     url: "tcp://athena.mareo.fr:22"
                     conditions:
                       - "[CONNECTED] == true"
@@ -135,10 +142,10 @@ spec:
                   # infrastructure
                   - name: Argo CD
                     group: Infrastructure
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://argocd.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>Argo CD</title>*)"
@@ -146,20 +153,20 @@ spec:
                       - type: discord
                   - name: Alertmanager
                     group: Infrastructure
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://alertmanager.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                     alerts:
                       - type: discord
                   - name: Authentik
                     group: Infrastructure
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://auth.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>authentik</title>*)"
@@ -167,7 +174,7 @@ spec:
                       - type: discord
                   - name: DNS - athena.mareo.fr
                     group: Infrastructure
-                    interval: 30s
+                    interval: "${DNS_CHECK_INTERVAL}"
                     url: "athena.mareo.fr"
                     dns:
                       query-name: "mareo.fr"
@@ -178,7 +185,7 @@ spec:
                       - type: discord
                   - name: DNS - prometheus.mareo.fr
                     group: Infrastructure
-                    interval: 30s
+                    interval: "${DNS_CHECK_INTERVAL}"
                     url: "prometheus.mareo.fr"
                     dns:
                       query-name: "mareo.fr"
@@ -189,10 +196,10 @@ spec:
                       - type: discord
                   - name: Grafana
                     group: Infrastructure
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://grafana.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>Grafana</title>*)"
@@ -200,10 +207,10 @@ spec:
                       - type: discord
                   - name: Hashicorp Vault
                     group: Infrastructure
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://vault.mareo.fr/v1/sys/seal-status"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY].sealed == false"
@@ -211,20 +218,20 @@ spec:
                       - type: discord
                   - name: Prometheus
                     group: Infrastructure
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://prom.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                     alerts:
                       - type: discord
                   - name: Proxmox
                     group: Infrastructure
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://athena.mareo.fr:8006/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>athena - Proxmox Virtual Environment</title>*)"
@@ -232,10 +239,10 @@ spec:
                       - type: discord
                   - name: Rados REST Gateway
                     group: Infrastructure
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://athena.mareo.fr:7443/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*</ListAllMyBucketsResult>*)"
@@ -252,10 +259,10 @@ spec:
                       - type: discord
                   - name: Site - backend
                     group: Petitstream
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://petitstream.com/api/get_next_stream_a/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "has([BODY][0].id) == true"
@@ -264,9 +271,9 @@ spec:
                   - name: Site - frontend
                     group: Petitstream
                     interval: 1m
-                    url: "https://petitstream.com"
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>PetitStream</title>*)"
@@ -287,7 +294,7 @@ spec:
                       - type: discord
                   - name: hannache.fr
                     group: Mail - MX records
-                    interval: 30s
+                    interval: "${DNS_CHECK_INTERVAL}"
                     url: "8.8.8.8"
                     dns:
                       query-name: "mareo.fr"
@@ -315,12 +322,12 @@ spec:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
                   - name: athena.mareo.fr - smtp
                     group: Mail - SMTP
-                    interval: 1m
+                    interval: "${SMTP_CHECK_INTERVAL}"
                     url: "tcp://athena.mareo.fr:25"
                     client:
                       timeout: 5s
@@ -330,29 +337,29 @@ spec:
                       - type: discord
                   - name: athena.mareo.fr - submission
                     group: Mail - SMTP
-                    interval: 1m
+                    interval: "${SMTP_CHECK_INTERVAL}"
                     url: "starttls://athena.mareo.fr:587"
                     client:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
                   - name: athena.mareo.fr - submissions
                     group: Mail - SMTP
-                    interval: 1m
+                    interval: "${SMTP_CHECK_INTERVAL}"
                     url: "tls://athena.mareo.fr:465"
                     client:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
                   - name: prometheus.mareo.fr - smtp
                     group: Mail - SMTP
-                    interval: 1m
+                    interval: "${SMTP_CHECK_INTERVAL}"
                     url: "tcp://prometheus.mareo.fr:25"
                     client:
                       timeout: 5s
@@ -362,24 +369,24 @@ spec:
                       - type: discord
                   - name: prometheus.mareo.fr - submission
                     group: Mail - SMTP
-                    interval: 1m
+                    interval: "${SMTP_CHECK_INTERVAL}"
                     url: "starttls://prometheus.mareo.fr:587"
                     client:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
                   - name: prometheus.mareo.fr - submissions
                     group: Mail - SMTP
-                    interval: 1m
+                    interval: "${SMTP_CHECK_INTERVAL}"
                     url: "tls://prometheus.mareo.fr:465"
                     client:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
                   # services
@@ -393,7 +400,7 @@ spec:
                       - type: discord
                   - name: GitLab - SSH
                     group: Services
-                    interval: 1m
+                    interval: "${SSH_CHECK_INTERVAL}"
                     url: "tcp://gitlab.mareo.fr:22"
                     client:
                       timeout: 5s
@@ -403,10 +410,10 @@ spec:
                       - type: discord
                   - name: GitLab - UI
                     group: Services
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://gitlab.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 700"
                       - "[STATUS] == 200"
                     alerts:
@@ -414,9 +421,9 @@ spec:
                   - name: HedgeDoc
                     group: Services
                     interval: 1m
-                    url: "https://hedgedoc.mareo.fr/"
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title>HedgeDoc - Collaborative markdown notes</title>*)"
@@ -424,20 +431,20 @@ spec:
                       - type: discord
                   - name: Nextcloud
                     group: Services
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://nextcloud.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 1000"
                       - "[STATUS] == 200"
                     alerts:
                       - type: discord
                   - name: Vaultwarden
                     group: Services
-                    interval: 1m
+                    interval: "${HTTP_CHECK_INTERVAL}"
                     url: "https://vaultwarden.mareo.fr/"
                     conditions:
-                      - "[CERTIFICATE_EXPIRATION] > 480h"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
                       - "[BODY] == pat(*<title page-title>Bitwarden Web Vault</title>*)"
