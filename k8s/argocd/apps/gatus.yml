@@ -252,7 +252,7 @@ spec:
                   - name: "Domain"
                     group: Petitstream
                     url: "https://petitstream.com"
-                    interval: 24h
+                    interval: "${DOMAIN_CHECK_INTERVAL}"
                     conditions:
                       - "[DOMAIN_EXPIRATION] > 720h"
                     alerts:
@@ -420,8 +420,8 @@ spec:
                       - type: discord
                   - name: HedgeDoc
                     group: Services
-                    interval: 1m
                     interval: "${HTTP_CHECK_INTERVAL}"
+                    url: "https://hedgedoc.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
