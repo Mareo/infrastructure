@@ -119,6 +119,20 @@ spec:
                   - secretName: alertmanager-tls
                     hosts:
                       - alertmanager.mareo.fr
+              alertmanagerSpec:
+                secrets:
+                  - alertmanager-discord
+              config:
+                route:
+                  - receiver: "discord"
+                    matchers:
+                      - alertname =~ "InfoInhibitor|Watchdog"
+                receivers:
+                  - name: "discord"
+                    slack_config:
+                      send_resolbed: true
+                      api_url_file: "/etc/alertmanager/secrets/alertmanager-discord/webhook"
+                      channel: "#alertmanager"
             prometheus:
               prometheusSpec:
                 enableAdminAPI: true
