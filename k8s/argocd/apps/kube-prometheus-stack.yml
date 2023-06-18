@@ -131,9 +131,9 @@ spec:
                 receivers:
                   - name: "discord"
                     slack_configs:
-                      send_resolved: true
-                      api_url_file: "/etc/alertmanager/secrets/alertmanager-discord/webhook"
-                      channel: "#alertmanager"
+                      - channel: "#alertmanager"
+                        send_resolved: true
+                        api_url_file: "/etc/alertmanager/secrets/alertmanager-discord/webhook"
             prometheus:
               prometheusSpec:
                 enableAdminAPI: true
