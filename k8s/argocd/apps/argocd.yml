@@ -11,8 +11,8 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-   #automated:
-   #  prune: true
+    automated:
+      prune: true
   destination:
     name: "in-cluster"
     namespace: argocd
