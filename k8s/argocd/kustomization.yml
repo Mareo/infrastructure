@@ -3,20 +3,11 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.7.5
-
   - applications.yml
-  - argocd-metrics.yml
   - argocd-oidc.yml
-  - ingress.yml
 
   - apps
   - projects
-
-patches:
-  - path: argocd-cm-patch.yml
-  - path: argocd-rbac-cm-patch.yml
-
 patchesJson6902:
   - target:
       kind: ClusterRole
