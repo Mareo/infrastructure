@@ -129,6 +129,7 @@ spec:
                       matchers:
                         - alertname =~ "InfoInhibitor|Watchdog"
                 receivers:
+                  - name: "null"
                   - name: "discord"
                     slack_configs:
                       - channel: "#alertmanager"
