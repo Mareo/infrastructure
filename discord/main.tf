@@ -27,6 +27,83 @@ provider "vault" {
   address = yamldecode(file("../config.yml")).vault_addr
 }
 
+locals {
+  server_icon_path = "icons/server.jpg"
+  admins = [
+    "198449809751932929",
+  ]
+  channels = {
+    "Infrastructure" = [
+      {
+        name = "alertmanager"
+        type = "text"
+        webhooks = [
+          {
+            vault_path  = "k8s/kube-prometheus-stack/alertmanager/discord"
+            url_attr    = "slack_url"
+            name        = "Alertmanager"
+            avatar_path = "icons/prometheus.png"
+          },
+        ]
+      },
+      {
+        name = "argo-cd"
+        type = "text"
+      },
+      {
+        name = "gatus"
+        type = "text"
+        webhooks = [
+          {
+            vault_path  = "k8s/gatus/discord"
+            vault_key   = "DISCORD_WEBHOOK"
+            name        = "Gatus"
+            avatar_path = "icons/gatus.png"
+          },
+        ]
+      },
+      {
+        name = "gitlab"
+        type = "text"
+        webhooks = [
+          {
+            vault_path  = "discord/webhooks"
+            vault_key   = "gitlab-iac"
+            name        = "GitLab"
+            avatar_path = "icons/gitlab.png"
+          },
+        ]
+      },
+    ]
+    "Petitstream" = [
+      {
+        name = "gatus",
+        type = "text"
+        webhooks = [
+          {
+            vault_path  = "k8s/gatus/discord"
+            vault_key   = "DISCORD_WEBHOOK_PETITSTREAM"
+            name        = "Gatus"
+            avatar_path = "icons/gatus.png"
+          },
+        ]
+      },
+      {
+        name = "gitlab",
+        type = "text"
+        webhooks = [
+          {
+            vault_path  = "discord/webhooks"
+            vault_key   = "gitlab-petitstream"
+            name        = "GitLab"
+            avatar_path = "icons/gitlab.png"
+          },
+        ]
+      },
+    ]
+  }
+}
+
 data "vault_kv_secret_v2" "terraform" {
   mount = "discord"
   name  = "terraform"
@@ -34,8 +111,4 @@ data "vault_kv_secret_v2" "terraform" {
 
 provider "discord" {
   token = data.vault_kv_secret_v2.terraform.data["token"]
-}
-
-locals {
-  server-id = "1098544224066080879"
 }

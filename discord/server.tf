@@ -5,13 +5,17 @@ resource "discord_text_channel" "system" {
   position                 = 0
 }
 
+data "discord_local_image" "server_icon" {
+  file = local.server_icon_path
+}
+
 resource "discord_server" "server" {
   name                          = "Mareo"
   verification_level            = 4 # VERY_HIGH
   explicit_content_filter       = 0 # DISABLED
   default_message_notifications = 0 # ALl_MESSAGES
   region                        = "eu-west"
-  #icon_data_uri                 = ""
+  icon_data_uri                 = data.discord_local_image.server_icon.data_uri
 }
 
 resource "discord_system_channel" "system" {
