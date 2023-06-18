@@ -124,10 +124,7 @@ spec:
                   - alertmanager-discord
               config:
                 route:
-                  routes:
-                    - receiver: "discord"
-                      matchers:
-                        - alertname =~ "InfoInhibitor|Watchdog"
+                  receiver: "discord"
                 receivers:
                   - name: "null"
                   - name: "discord"
