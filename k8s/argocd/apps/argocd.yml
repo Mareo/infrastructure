@@ -34,9 +34,9 @@ spec:
             admin.enabled: false
             oidc.config: |
               name: authentik
-               issuer: https://auth.mareo.fr/application/o/argocd/
-               clientID: $argocd-oidc-authentik:client_id
-               logoutURL: https://auth.mareo.fr/if/session-end/argocd/?id_token_hint={{token}}&post_logout_redirect_uri={{logoutRedirectURL}}
+              issuer: https://auth.mareo.fr/application/o/argocd/
+              clientID: $argocd-oidc-authentik:client_id
+              logoutURL: https://auth.mareo.fr/if/session-end/argocd/?id_token_hint={{token}}&post_logout_redirect_uri={{logoutRedirectURL}}
             kustomize.buildOptions: --enable-helm
             exec.enabled: "true"
           rbac:
