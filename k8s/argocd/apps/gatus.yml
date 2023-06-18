@@ -75,6 +75,7 @@ spec:
               SMTP_CHECK_INTERVAL: 1m
               SSH_CHECK_INTERVAL: 30s
             config:
+              metrics: true
               security:
                 oidc:
                   issuer-url: https://auth.mareo.fr/application/o/gatus/
