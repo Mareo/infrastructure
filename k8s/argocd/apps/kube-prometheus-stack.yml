@@ -130,8 +130,8 @@ spec:
                         - alertname =~ "InfoInhibitor|Watchdog"
                 receivers:
                   - name: "discord"
-                    slack_config:
-                      send_resolbed: true
+                    slack_configs:
+                      send_resolved: true
                       api_url_file: "/etc/alertmanager/secrets/alertmanager-discord/webhook"
                       channel: "#alertmanager"
             prometheus:
