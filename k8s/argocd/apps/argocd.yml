@@ -25,6 +25,8 @@ spec:
         - name: installCRDs
           value: "true"
       values: |
+        dex:
+          enabled: false
         configs:
           cm:
             url: "https://argocd.mareo.fr"
