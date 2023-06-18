@@ -4,6 +4,7 @@ namespace: argocd
 
 resources:
   - authentik.yml
+  - argocd.yml
   - cephfs-csi.yml
   - cert-manager.yml
   - clusters.yml
