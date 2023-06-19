@@ -111,7 +111,7 @@ spec:
                             "icon_url": "{{ .context.argocdUrl }}/assets/images/logo.png"
                           },
                           "title": ":white_check_mark: {{ .app.metadata.name }}",
-                          "desc": "Application `{{ .app.metadata.name }}` is now running new version of deployments manifests.",
+                          "description": "Application `{{ .app.metadata.name }}` is now running new version of deployments manifests.",
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 1621586,
                           "fields": [
@@ -229,7 +229,7 @@ spec:
                             "icon_url": "{{ .context.argocdUrl }}/assets/images/logo.png"
                           },
                           "title": ":repeat: {{ .app.metadata.name }}",
-                          "desc": "The sync operation of application `{{ .app.metadata.name }}` has started at {{ .app.status.operationState.startedAt }}",
+                          "description": "The sync operation of application `{{ .app.metadata.name }}` has started at {{ .app.status.operationState.startedAt }}",
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 896490,
                           "fields": [
