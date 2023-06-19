@@ -46,8 +46,8 @@ spec:
           secret:
             create: false
           notifiers:
-            service.webhook.discord_webhook: |
-              url: $discord-webhook-url
+            service.webhook.discord: |
+              url: $webhook
               headers:
               - name: Content-Type
                 value: application/json
@@ -72,7 +72,6 @@ spec:
               - description: Application is being synced
                 send:
                 - app-sync-running
-                - send-gitlab-timeline-trigger
                 when: app.status.operationState.phase in ['Running']
             trigger.on-sync-status-unknown: |
               - description: Application status is 'Unknown'
@@ -88,111 +87,120 @@ spec:
               - on-sync-status-unknown
           templates:
             template.app-deployed: |
-              email:
-                subject: New version of an application {{.app.metadata.name}} is up and running.
-              message: |
-                {{if eq .serviceType "slack"}}:white_check_mark:{{end}} Application {{.app.metadata.name}} is now running new version of deployments manifests.
-              slack:
-                attachments: |
-                  [{
-                    "title": "{{ .app.metadata.name}}",
-                    "title_link":"{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
-                    "color": "#18be52",
-                    "fields": [
+              webhook:
+                discord:
+                  method: POST
+                  body: |
                     {
-                      "title": "Sync Status",
-                      "value": "{{.app.status.sync.status}}",
-                      "short": true
-                    },
-                    {
-                      "title": "Repository",
-                      "value": "{{.app.spec.source.repoURL}}",
-                      "short": true
-                    },
-                    {
-                      "title": "Revision",
-                      "value": "{{.app.status.sync.revision}}",
-                      "short": true
-                    }
-                    {{range $index, $c := .app.status.conditions}}
-                    {{if not $index}},{{end}}
-                    {{if $index}},{{end}}
-                    {
-                      "title": "{{$c.type}}",
-                      "value": "{{$c.message}}",
-                      "short": true
-                    }
-                    {{end}}
-                    ]
-                  }]
+                      "embeds": [
+                        "author": {
+                          "name": "Argo CD",
+                          "url": "{{ .context.argocdUrl }}",
+                          "icon_url": "https://{{ .context.argocdUrl }}/assets/images/logo.png"
+                        },
+                        "title": ":white_check_mark: {{ .app.metadata.name }}",
+                        "desc": "Application `{{ .app.metadata.name }}` is now running new version of deployments manifests."
+                        "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
+                        "color": "1621586",
+                        "fields" [
+                          {
+                            "title": "Sync status",
+                            "value": "{{ .app.status.sync.status }}",
+                            "inline": false
+                          },
+                          {
+                            "title": "Repository",
+                            "value": "{{ .app.spec.source.repoURL }}",
+                            "inline": false
+                          },
+                          {
+                            "title": "Revision",
+                            "value": "{{ .app.status.sync.revision }}",
+                            "inline": false
+                          }
+                          {{ range $c := .app.status.conditions }}
+                          ,
+                          {
+                            "title": "{{ $c.type }}",
+                            "value": "{{ $c.message }}",
+                            "inline": false
+                          }
+                          {{ end }}
+                        ]
+                      ]
             template.app-health-degraded: |
-              email:
-                subject: Application {{.app.metadata.name}} has degraded.
               message: |
                 {{if eq .serviceType "slack"}}:exclamation:{{end}} Application {{.app.metadata.name}} has degraded.
                 Application details: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}.
-              slack:
-                attachments: |-
-                  [{
-                    "title": "{{ .app.metadata.name}}",
-                    "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
-                    "color": "#f4c030",
-                    "fields": [
-                    {
-                      "title": "Sync Status",
-                      "value": "{{.app.status.sync.status}}",
-                      "short": true
-                    },
-                    {
-                      "title": "Repository",
-                      "value": "{{.app.spec.source.repoURL}}",
-                      "short": true
-                    }
-                    {{range $index, $c := .app.status.conditions}}
-                    {{if not $index}},{{end}}
-                    {{if $index}},{{end}}
-                    {
-                      "title": "{{$c.type}}",
-                      "value": "{{$c.message}}",
-                      "short": true
-                    }
-                    {{end}}
-                    ]
-                  }]
+              webhook:
+                discord:
+                  method: POST
+                  body: |
+                    attachments: |-
+                      [{
+                        "title": "{{ .app.metadata.name}}",
+                        "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+                        "color": "#f4c030",
+                        "fields": [
+                        {
+                          "title": "Sync Status",
+                          "value": "{{.app.status.sync.status}}",
+                          "short": true
+                        },
+                        {
+                          "title": "Repository",
+                          "value": "{{.app.spec.source.repoURL}}",
+                          "short": true
+                        }
+                        {{range $index, $c := .app.status.conditions}}
+                        {{if not $index}},{{end}}
+                        {{if $index}},{{end}}
+                        {
+                          "title": "{{$c.type}}",
+                          "value": "{{$c.message}}",
+                          "short": true
+                        }
+                        {{end}}
+                        ]
+                      }]
             template.app-sync-failed: |
               email:
                 subject: Failed to sync application {{.app.metadata.name}}.
               message: |
                 {{if eq .serviceType "slack"}}:exclamation:{{end}}  The sync operation of application {{.app.metadata.name}} has failed at {{.app.status.operationState.finishedAt}} with the following error: {{.app.status.operationState.message}}
                 Sync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true .
-              slack:
-                attachments: |-
-                  [{
-                    "title": "{{ .app.metadata.name}}",
-                    "title_link":"{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
-                    "color": "#E96D76",
-                    "fields": [
+              webhook:
+                discord:
+                  method: POST
+                  body: |
                     {
-                      "title": "Sync Status",
-                      "value": "{{.app.status.sync.status}}",
-                      "short": true
-                    },
-                    {
-                      "title": "Repository",
-                      "value": "{{.app.spec.source.repoURL}}",
-                      "short": true
+                      "attachments": [{
+                        "title": "{{ .app.metadata.name}}",
+                        "title_link":"{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+                        "color": "#E96D76",
+                        "fields": [
+                        {
+                          "title": "Sync Status",
+                          "value": "{{.app.status.sync.status}}",
+                          "short": true
+                        },
+                        {
+                          "title": "Repository",
+                          "value": "{{.app.spec.source.repoURL}}",
+                          "short": true
+                        }
+                        {{range $index, $c := .app.status.conditions}}
+                        {{if not $index}},{{end}}
+                        {{if $index}},{{end}}
+                        {
+                          "title": "{{$c.type}}",
+                          "value": "{{$c.message}}",
+                          "short": true
+                        }
+                        {{end}}
+                        ]
+                      }]
                     }
-                    {{range $index, $c := .app.status.conditions}}
-                    {{if not $index}},{{end}}
-                    {{if $index}},{{end}}
-                    {
-                      "title": "{{$c.type}}",
-                      "value": "{{$c.message}}",
-                      "short": true
-                    }
-                    {{end}}
-                    ]
-                  }]
             template.app-sync-running: |
               email:
                 subject: Start syncing application {{.app.metadata.name}}.
