@@ -173,9 +173,6 @@ spec:
                           "description": "Application `{{ .app.metadata.name }}` is now running new version of deployments manifests.",
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 1621586,
-                          {{ if .app.summary.externalURLs }}
-                          "footer": "{{ .app.summary.externalURLs[0] }}"
-                          {{ end }}
                           "fields": [
                             {
                               "name": "Sync status",
@@ -207,6 +204,14 @@ spec:
                             {
                               "name": "{{ $c.type }}",
                               "value": "{{ $c.message }}",
+                              "inline": false
+                            }
+                            {{ end }}
+                            {{ if .app.summary.externalURLs }}
+                            ,
+                            {
+                              "name": "External URL",
+                              "value": "{{ .app.summary.externalURLs[0] }}",
                               "inline": false
                             }
                             {{ end }}
@@ -266,6 +271,14 @@ spec:
                               "inline": false
                             }
                             {{ end }}
+                            {{ if .app.summary.externalURLs }}
+                            ,
+                            {
+                              "name": "External URL",
+                              "value": "{{ .app.summary.externalURLs[0] }}",
+                              "inline": false
+                            }
+                            {{ end }}
                           ]
                         }
                       ]
@@ -319,6 +332,14 @@ spec:
                             {
                               "name": "{{ $c.type }}",
                               "value": "{{ $c.message }}",
+                              "inline": false
+                            }
+                            {{ end }}
+                            {{ if .app.summary.externalURLs }}
+                            ,
+                            {
+                              "name": "External URL",
+                              "value": "{{ .app.summary.externalURLs[0] }}",
                               "inline": false
                             }
                             {{ end }}
@@ -378,6 +399,14 @@ spec:
                               "inline": false
                             }
                             {{ end }}
+                            {{ if .app.summary.externalURLs }}
+                            ,
+                            {
+                              "name": "External URL",
+                              "value": "{{ .app.summary.externalURLs[0] }}",
+                              "inline": false
+                            }
+                            {{ end }}
                           ]
                         }
                       ]
@@ -434,6 +463,14 @@ spec:
                               "inline": false
                             }
                             {{ end }}
+                            {{ if .app.summary.externalURLs }}
+                            ,
+                            {
+                              "name": "External URL",
+                              "value": "{{ .app.summary.externalURLs[0] }}",
+                              "inline": false
+                            }
+                            {{ end }}
                           ]
                         }
                       ]
@@ -487,6 +524,14 @@ spec:
                             {
                               "name": "{{ $c.type }}",
                               "value": "{{ $c.message }}",
+                              "inline": false
+                            }
+                            {{ end }}
+                            {{ if .app.summary.externalURLs }}
+                            ,
+                            {
+                              "name": "External URL",
+                              "value": "{{ .app.summary.externalURLs[0] }}",
                               "inline": false
                             }
                             {{ end }}
