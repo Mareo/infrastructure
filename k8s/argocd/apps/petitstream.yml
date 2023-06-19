@@ -5,6 +5,8 @@ kind: Application
 metadata:
   name: petitstream
   annotations:
+    notifications.argoproj.io/subscribe.on-created.discord-petitstream: ""
+    notifications.argoproj.io/subscribe.on-deleted.discord-petitstream: ""
     notifications.argoproj.io/subscribe.on-deployed.discord-petitstream: ""
     notifications.argoproj.io/subscribe.on-health-degraded.discord-petitstream: ""
     notifications.argoproj.io/subscribe.on-sync-failed.discord-petitstream: ""

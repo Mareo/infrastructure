@@ -61,6 +61,8 @@ spec:
             - recipients:
                 - "discord:ignored"
               triggers:
+                - on-created
+                - on-deleted
                 - on-deployed
                 - on-health-degraded
                 - on-sync-failed
@@ -68,43 +70,95 @@ spec:
                 - on-sync-status-unknown
                 - on-sync-succeeded
           triggers:
+            trigger.on-created: |
+              - description: Application is created.
+                oncePer: app.metadata.name
+                send:
+                  - app-created
+                when: "true"
+            trigger.on-deleted: |
+              - description: Application is deleted.
+                oncePer: app.metadata.name
+                send:
+                  - app-deleted
+                when: app.metadata.deletionTimestamp != nil
             trigger.on-deployed: |
               - description: Application is synced and healthy. Triggered once per commit.
-                oncePer: app.status.sync.revision
+                oncePer: app.status.operationState.syncResult.revision
                 send:
-                - app-deployed
+                  - app-deployed
                 when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
             trigger.on-health-degraded: |
               - description: Application has degraded
                 send:
-                - app-health-degraded
+                  - app-health-degraded
                 when: app.status.health.status == 'Degraded'
             trigger.on-sync-failed: |
               - description: Application syncing has failed
                 send:
-                - app-sync-failed
+                  - app-sync-failed
                 when: app.status.operationState.phase in ['Error', 'Failed']
             trigger.on-sync-running: |
               - description: Application is being synced
                 send:
-                - app-sync-running
+                  - app-sync-running
                 when: app.status.operationState.phase in ['Running']
             trigger.on-sync-status-unknown: |
               - description: Application status is 'Unknown'
                 send:
-                - app-sync-status-unknown
+                  - app-sync-status-unknown
                 when: app.status.sync.status == 'Unknown'
             trigger.on-sync-succeeded: |
               - description: Application syncing has succeeded
                 send:
-                - app-sync-succeeded
+                  - app-sync-succeeded
                 when: app.status.operationState.phase in ['Succeeded']
-            defaultTriggers: |
-              - on-sync-status-unknown
           templates:
+            template.app-created: |
+              webhook:
+                discord: &discord-app-created
+                  method: POST
+                  body: |
+                    {
+                      "embeds": [
+                        {
+                          "author": {
+                            "name": "Argo CD",
+                            "url": "{{ .context.argocdUrl }}",
+                            "icon_url": "{{ .context.argocdUrl }}/assets/images/logo.png"
+                          },
+                          "title": ":green_circle: {{ .app.metadata.name }}",
+                          "description": "Application `{{ .app.metadata.name }}` has been created.",
+                          "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
+                          "color": 1621586
+                        }
+                      ]
+                    }
+                discord-petitstream: *discord-app-created
+            template.app-deleted: |
+              webhook:
+                discord: &discord-app-deleted
+                  method: POST
+                  body: |
+                    {
+                      "embeds": [
+                        {
+                          "author": {
+                            "name": "Argo CD",
+                            "url": "{{ .context.argocdUrl }}",
+                            "icon_url": "{{ .context.argocdUrl }}/assets/images/logo.png"
+                          },
+                          "title": ":red_circle: {{ .app.metadata.name }}",
+                          "description": "Application `{{ .app.metadata.name }}` has been deleted.",
+                          "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
+                          "color": 16039984
+                        }
+                      ]
+                    }
+                discord-petitstream: *discord-app-deleted
             template.app-deployed: |
               webhook:
-                discord:
+                discord: &discord-app-deployed
                   method: POST
                   body: |
                     {
@@ -154,9 +208,10 @@ spec:
                         }
                       ]
                     }
+                discord-petitstream: *discord-app-deployed
             template.app-health-degraded: |
               webhook:
-                discord:
+                discord: &discord-app-health-degraded
                   method: POST
                   body: |
                     {
@@ -206,9 +261,10 @@ spec:
                         }
                       ]
                     }
+                discord-petitstream: *discord-app-health-degraded
             template.app-sync-failed: |
               webhook:
-                discord:
+                discord: &discord-app-sync-failed
                   method: POST
                   body: |
                     {
@@ -258,9 +314,10 @@ spec:
                         }
                       ]
                     }
+                discord-petitstream: *discord-app-sync-failed
             template.app-sync-running: |
               webhook:
-                discord:
+                discord: &discord-app-sync-running
                   method: POST
                   body: |
                     {
@@ -310,9 +367,10 @@ spec:
                         }
                       ]
                     }
+                discord-petitstream: *discord-app-sync-running
             template.app-sync-status-unknown: |
               webhook:
-                discord:
+                discord: &discord-app-sync-status-unknown
                   method: POST
                   body: |
                     {
@@ -362,9 +420,10 @@ spec:
                         }
                       ]
                     }
+                discord-petitstream: *discord-app-sync-status-unknown
             template.app-sync-succeeded: |
               webhook:
-                discord:
+                discord: &discord-app-sync-succeeded
                   method: POST
                   body: |
                     {
@@ -414,6 +473,7 @@ spec:
                         }
                       ]
                     }
+                discord-petitstream: &discord-app-sync-succeeded
           metrics:
             enabled: true
             serviceMonitor:
