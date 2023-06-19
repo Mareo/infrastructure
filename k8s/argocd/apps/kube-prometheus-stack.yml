@@ -169,7 +169,7 @@ spec:
               endpoints: {{ toJson .endpoints }}
             kubeScheduler:
               enabled: true
-              endpoints: {{ toJson. endpoints }}
+              endpoints: {{ toJson .endpoints }}
             kubeProxy:
               enabled: true
               endpoints: {{ toJson .endpoints }}
