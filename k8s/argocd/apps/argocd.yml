@@ -116,24 +116,24 @@ spec:
                           "color": 1621586,
                           "fields": [
                             {
-                              "title": "Sync status",
+                              "name": "Sync status",
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
                             },
                             {
-                              "title": "Repository",
+                              "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
                               "inline": false
                             },
                             {
-                              "title": "Revision",
+                              "name": "Revision",
                               "value": "{{ .app.status.sync.revision }}",
                               "inline": false
                             }
                             {{ range $c := .app.status.conditions }}
                             ,
                             {
-                              "title": "{{ $c.type }}",
+                              "name": "{{ $c.type }}",
                               "value": "{{ $c.message }}",
                               "inline": false
                             }
@@ -194,12 +194,12 @@ spec:
                         "color": "#E96D76",
                         "fields": [
                         {
-                          "title": "Sync Status",
+                          "name": "Sync Status",
                           "value": "{{.app.status.sync.status}}",
                           "short": true
                         },
                         {
-                          "title": "Repository",
+                          "name": "Repository",
                           "value": "{{.app.spec.source.repoURL}}",
                           "short": true
                         }
@@ -207,7 +207,7 @@ spec:
                         {{if not $index}},{{end}}
                         {{if $index}},{{end}}
                         {
-                          "title": "{{$c.type}}",
+                          "name": "{{$c.type}}",
                           "value": "{{$c.message}}",
                           "short": true
                         }
@@ -234,24 +234,24 @@ spec:
                           "color": 896490,
                           "fields": [
                             {
-                              "title": "Sync status",
+                              "name": "Sync status",
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
                             },
                             {
-                              "title": "Repository",
+                              "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
                               "inline": false
                             },
                             {
-                              "title": "Revision",
+                              "name": "Revision",
                               "value": "{{ .app.status.sync.revision }}",
                               "inline": false
                             }
                             {{ range $c := .app.status.conditions }}
                             ,
                             {
-                              "title": "{{ $c.type }}",
+                              "name": "{{ $c.type }}",
                               "value": "{{ $c.message }}",
                               "inline": false
                             }
