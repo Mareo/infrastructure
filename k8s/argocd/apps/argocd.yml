@@ -178,8 +178,9 @@ spec:
                               "name": "Sync status",
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
-                            },
+                            }
                             {{ if .app.spec.source }}
+                            ,
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -233,8 +234,9 @@ spec:
                               "name": "Sync status",
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
-                            },
+                            }
                             {{ if .app.spec.source }}
+                            ,
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -288,8 +290,9 @@ spec:
                               "name": "Sync status",
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
-                            },
+                            }
                             {{ if .app.spec.source }}
+                            ,
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -343,8 +346,9 @@ spec:
                               "name": "Sync status",
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
-                            },
+                            }
                             {{ if .app.spec.source }}
+                            ,
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -398,8 +402,9 @@ spec:
                               "name": "Sync status",
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
-                            },
+                            }
                             {{ if .app.spec.source }}
+                            ,
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -453,8 +458,9 @@ spec:
                               "name": "Sync status",
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
-                            },
+                            }
                             {{ if .app.spec.source }}
+                            ,
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
