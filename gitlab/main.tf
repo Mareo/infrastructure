@@ -67,3 +67,7 @@ resource "local_sensitive_file" "gitlab-token" {
 data "vault_generic_secret" "argocd_webhook-token" {
   path = "k8s/argocd/webhooks"
 }
+
+data "vault_generic_secret" "webhooks" {
+  path = "discord/webhooks"
+}

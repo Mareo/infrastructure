@@ -39,10 +39,10 @@ locals {
         type = "text"
         webhooks = [
           {
-            vault_path  = "k8s/kube-prometheus-stack/alertmanager/discord"
-            url_attr    = "slack_url"
-            name        = "Alertmanager"
             avatar_path = "icons/prometheus.png"
+            name        = "Alertmanager"
+            url_attr    = "slack_url"
+            vault_path  = "k8s/kube-prometheus-stack/alertmanager/discord"
           },
         ]
       },
@@ -51,10 +51,10 @@ locals {
         type = "text"
         webhooks = [
           {
-            vault_path  = "k8s/argocd/notifications"
-            vault_key   = "webhook"
-            name        = "Argo CD"
             avatar_path = "icons/argo-cd.png"
+            name        = "Argo CD"
+            vault_key   = "webhook"
+            vault_path  = "k8s/argocd/notifications"
           },
         ]
       },
@@ -63,10 +63,10 @@ locals {
         type = "text"
         webhooks = [
           {
-            vault_path  = "k8s/gatus/discord"
-            vault_key   = "DISCORD_WEBHOOK"
-            name        = "Gatus"
             avatar_path = "icons/gatus.png"
+            name        = "Gatus"
+            vault_key   = "DISCORD_WEBHOOK"
+            vault_path  = "k8s/gatus/discord"
           },
         ]
       },
@@ -75,10 +75,11 @@ locals {
         type = "text"
         webhooks = [
           {
-            vault_path  = "discord/webhooks"
-            vault_key   = "gitlab-iac"
-            name        = "GitLab"
             avatar_path = "icons/gitlab.png"
+            name        = "GitLab"
+            url_attr    = "slack_url"
+            vault_key   = "gitlab-iac"
+            vault_path  = "discord/webhooks"
           },
         ]
       },
@@ -89,10 +90,10 @@ locals {
         type = "text"
         webhooks = [
           {
-            vault_path  = "k8s/argocd/notifications"
-            vault_key   = "webhook-petitstream"
-            name        = "Argo CD"
             avatar_path = "icons/argo-cd.png"
+            name        = "Argo CD"
+            vault_key   = "webhook-petitstream"
+            vault_path  = "k8s/argocd/notifications"
           },
         ]
       },
@@ -101,10 +102,10 @@ locals {
         type = "text"
         webhooks = [
           {
-            vault_path  = "k8s/gatus/discord"
-            vault_key   = "DISCORD_WEBHOOK_PETITSTREAM"
-            name        = "Gatus"
             avatar_path = "icons/gatus.png"
+            name        = "Gatus"
+            vault_key   = "DISCORD_WEBHOOK_PETITSTREAM"
+            vault_path  = "k8s/gatus/discord"
           },
         ]
       },
@@ -113,10 +114,11 @@ locals {
         type = "text"
         webhooks = [
           {
-            vault_path  = "discord/webhooks"
-            vault_key   = "gitlab-petitstream"
-            name        = "GitLab"
             avatar_path = "icons/gitlab.png"
+            name        = "GitLab"
+            url_attr    = "slack_url"
+            vault_key   = "gitlab-petitstream"
+            vault_path  = "discord/webhooks"
           },
         ]
       },

@@ -32,6 +32,19 @@ resource "gitlab_project_hook" "petitstream_argocd" {
   enable_ssl_verification   = true
 }
 
+resource "gitlab_integration_slack" "iac_petitstream_slack" {
+  project = gitlab_project.iac_petitstream.path_with_namespace
+  webhook = data.vault_generic_secret.webhooks.data["gitlab-petitstream"]
+
+  branches_to_be_notified      = "default_and_protected"
+  notify_only_broken_pipelines = true
+
+  push_events           = false
+  tag_push_events       = true
+  pipeline_events       = true
+  merge_requests_events = true
+}
+
 resource "gitlab_deploy_token" "iac_petitstream_argocd" {
   project = gitlab_project.iac_petitstream.path_with_namespace
   name    = "ArgoCD deploy token"
