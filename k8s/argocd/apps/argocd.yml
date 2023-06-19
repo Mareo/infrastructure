@@ -139,6 +139,7 @@ spec:
                           {{ end }}
                         ]
                       ]
+                    }
             template.app-health-degraded: |
               message: |
                 {{if eq .serviceType "slack"}}:exclamation:{{end}} Application {{.app.metadata.name}} has degraded.
