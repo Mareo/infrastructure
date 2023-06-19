@@ -45,6 +45,7 @@ spec:
         notifications:
           secret:
             create: false
+          argocdUrl: "https://argocd.mareo.fr"
           notifiers:
             service.webhook.discord: |
               url: $webhook
@@ -107,7 +108,7 @@ spec:
                           "author": {
                             "name": "Argo CD",
                             "url": "{{ .context.argocdUrl }}",
-                            "icon_url": "https://{{ .context.argocdUrl }}/assets/images/logo.png"
+                            "icon_url": "{{ .context.argocdUrl }}/assets/images/logo.png"
                           },
                           "title": ":white_check_mark: {{ .app.metadata.name }}",
                           "desc": "Application `{{ .app.metadata.name }}` is now running new version of deployments manifests.",
