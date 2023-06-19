@@ -58,10 +58,10 @@ spec:
               triggers:
                 - on-deployed
                #- on-health-degraded
-               #- on-sync-failed
+                - on-sync-failed
                 - on-sync-running
                #- on-sync-status-unknown
-               #- on-sync-succeeded
+                - on-sync-succeeded
           triggers:
             trigger.on-deployed: |
               - description: Application is synced and healthy. Triggered once per commit.
@@ -185,42 +185,56 @@ spec:
                         ]
                       }]
             template.app-sync-failed: |
-              email:
-                subject: Failed to sync application {{.app.metadata.name}}.
-              message: |
-                {{if eq .serviceType "slack"}}:exclamation:{{end}}  The sync operation of application {{.app.metadata.name}} has failed at {{.app.status.operationState.finishedAt}} with the following error: {{.app.status.operationState.message}}
-                Sync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true .
               webhook:
                 discord:
                   method: POST
                   body: |
                     {
-                      "attachments": [{
-                        "title": "{{ .app.metadata.name}}",
-                        "title_link":"{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
-                        "color": "#E96D76",
-                        "fields": [
+                      "embeds": [
                         {
-                          "name": "Sync Status",
-                          "value": "{{.app.status.sync.status}}",
-                          "short": true
-                        },
-                        {
-                          "name": "Repository",
-                          "value": "{{.app.spec.source.repoURL}}",
-                          "short": true
+                          "author": {
+                            "name": "Argo CD",
+                            "url": "{{ .context.argocdUrl }}",
+                            "icon_url": "{{ .context.argocdUrl }}/assets/images/logo.png"
+                          },
+                          "title": ":exclamation: {{ .app.metadata.name }}",
+                          "description": "The sync operation of application `{{ .app.metadata.name }}` has failed at {{ .app.status.operationState.finishedAt }} with the following error: {{ .app.status.operationState.message }}",
+                          "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
+                          "color": 15297910,
+                          "fields": [
+                            {
+                              "name": "Sync status",
+                              "value": "{{ .app.status.sync.status }}",
+                              "inline": false
+                            },
+                            {
+                              "name": "Repository",
+                              "value": "{{ .app.spec.source.repoURL }}",
+                              "inline": true
+                            },
+                            {{ if .app.spec.source.chart }}
+                            {
+                              "name": "Chart",
+                              "value": "{{ .app.spec.source.chart }}",
+                              "inline": true
+                            },
+                            {{ end }}
+                            {
+                              "name": "Revision",
+                              "value": "{{ .app.status.sync.revision }}",
+                              "inline": false
+                            }
+                            {{ range $c := .app.status.conditions }}
+                            ,
+                            {
+                              "name": "{{ $c.type }}",
+                              "value": "{{ $c.message }}",
+                              "inline": false
+                            }
+                            {{ end }}
+                          ]
                         }
-                        {{range $index, $c := .app.status.conditions}}
-                        {{if not $index}},{{end}}
-                        {{if $index}},{{end}}
-                        {
-                          "name": "{{$c.type}}",
-                          "value": "{{$c.message}}",
-                          "short": true
-                        }
-                        {{end}}
-                        ]
-                      }]
+                      ]
                     }
             template.app-sync-running: |
               webhook:
@@ -314,39 +328,57 @@ spec:
                     ]
                   }]
             template.app-sync-succeeded: |
-              email:
-                subject: Application {{.app.metadata.name}} has been successfully synced.
-              message: |
-                {{if eq .serviceType "slack"}}:white_check_mark:{{end}} Application {{.app.metadata.name}} has been successfully synced at {{.app.status.operationState.finishedAt}}.
-                Sync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true .
-              slack:
-                attachments: |-
-                  [{
-                    "title": "{{ .app.metadata.name}}",
-                    "title_link":"{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
-                    "color": "#18be52",
-                    "fields": [
+              webhook:
+                discord:
+                  method: POST
+                  body: |
                     {
-                      "title": "Sync Status",
-                      "value": "{{.app.status.sync.status}}",
-                      "short": true
-                    },
-                    {
-                      "title": "Repository",
-                      "value": "{{.app.spec.source.repoURL}}",
-                      "short": true
+                      "embeds": [
+                        {
+                          "author": {
+                            "name": "Argo CD",
+                            "url": "{{ .context.argocdUrl }}",
+                            "icon_url": "{{ .context.argocdUrl }}/assets/images/logo.png"
+                          },
+                          "title": ":white_check_mark: {{ .app.metadata.name }}",
+                          "description": "Application `{{ .app.metadata.name }}` has been successfully synced at {{ .app.status.operationState.finishedAt }}",
+                          "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
+                          "color": 1621586,
+                          "fields": [
+                            {
+                              "name": "Sync status",
+                              "value": "{{ .app.status.sync.status }}",
+                              "inline": false
+                            },
+                            {
+                              "name": "Repository",
+                              "value": "{{ .app.spec.source.repoURL }}",
+                              "inline": true
+                            },
+                            {{ if .app.spec.source.chart }}
+                            {
+                              "name": "Chart",
+                              "value": "{{ .app.spec.source.chart }}",
+                              "inline": true
+                            },
+                            {{ end }}
+                            {
+                              "name": "Revision",
+                              "value": "{{ .app.status.sync.revision }}",
+                              "inline": false
+                            }
+                            {{ range $c := .app.status.conditions }}
+                            ,
+                            {
+                              "name": "{{ $c.type }}",
+                              "value": "{{ $c.message }}",
+                              "inline": false
+                            }
+                            {{ end }}
+                          ]
+                        }
+                      ]
                     }
-                    {{range $index, $c := .app.status.conditions}}
-                    {{if not $index}},{{end}}
-                    {{if $index}},{{end}}
-                    {
-                      "title": "{{$c.type}}",
-                      "value": "{{$c.message}}",
-                      "short": true
-                    }
-                    {{end}}
-                    ]
-                  }]
           metrics:
             enabled: true
             serviceMonitor:
