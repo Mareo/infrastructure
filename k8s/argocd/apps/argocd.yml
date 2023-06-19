@@ -123,8 +123,15 @@ spec:
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
-                              "inline": false
+                              "inline": true
                             },
+                            {{ if .app.spec.source.chart }}
+                            {
+                              "name": "Chart",
+                              "value": "{{ .app.spec.source.chart }}",
+                              "inline": true
+                            },
+                            {{ end }}
                             {
                               "name": "Revision",
                               "value": "{{ .app.status.sync.revision }}",
@@ -241,8 +248,15 @@ spec:
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
-                              "inline": false
+                              "inline": true
                             },
+                            {{ if .app.spec.source.chart }}
+                            {
+                              "name": "Chart",
+                              "value": "{{ .app.spec.source.chart }}",
+                              "inline": true
+                            },
+                            {{ end }}
                             {
                               "name": "Revision",
                               "value": "{{ .app.status.sync.revision }}",
