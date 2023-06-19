@@ -55,10 +55,13 @@ resource "gitlab_integration_slack" "iac_infrastructure_slack" {
   branches_to_be_notified      = "default_and_protected"
   notify_only_broken_pipelines = true
 
-  push_events           = false
-  tag_push_events       = true
-  pipeline_events       = true
-  merge_requests_events = true
+  confidential_issues_events = true
+  issues_events              = true
+  merge_requests_events      = true
+  note_events                = true
+  pipeline_events            = true
+  push_events                = false
+  tag_push_events            = true
 }
 
 resource "gitlab_deploy_token" "iac_infrastructure_argocd" {
