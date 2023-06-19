@@ -51,7 +51,7 @@ spec:
               headers:
               - name: Content-Type
                 value: application/json
-          subscriptions: |
+          subscriptions:
             - recipients:
                 - "discord:ignored"
               triggers:
