@@ -13,9 +13,10 @@ spec:
           - name: in-cluster
             endpoints:
               - 192.168.0.1
+  goTemplate: true
   template:
     metadata:
-      name: "{{name}}-kube-prometheus-stack"
+      name: "{{.name}}-kube-prometheus-stack"
       labels:
         app: kube-prometheus-stack
     spec:
@@ -27,7 +28,7 @@ spec:
         automated:
           prune: true
       destination:
-        name: "{{name}}"
+        name: "{{.name}}"
         namespace: kube-prometheus-stack
       source:
         repoURL: https://prometheus-community.github.io/helm-charts
@@ -165,10 +166,10 @@ spec:
                       - prom.mareo.fr
             kubeControllerManager:
               enabled: true
-              endpoints: "{{ endpoints }}"
+              endpoints: {{ toJson .endpoints }}
             kubeScheduler:
               enabled: true
-              endpoints: "{{ endpoints }}"
+              endpoints: {{ toJson. endpoints }}
             kubeProxy:
               enabled: true
-              endpoints: "{{ endpoints }}"
+              endpoints: {{ toJson .endpoints }}
