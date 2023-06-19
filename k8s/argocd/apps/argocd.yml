@@ -52,16 +52,15 @@ spec:
               - name: Content-Type
                 value: application/json
           subscriptions: |
-            # subscription for on-sync-status-unknown trigger notifications
             - recipients:
-              - discord:ignored
+                - "discord:ignored"
               triggers:
-              - on-deployed
-              - on-health-degraded
-              - on-sync-failed
-              - on-sync-running
-              - on-sync-status-unknown
-              - on-sync-succeeded
+                - on-deployed
+                - on-health-degraded
+                - on-sync-failed
+                - on-sync-running
+                - on-sync-status-unknown
+                - on-sync-succeeded
           triggers:
             trigger.on-deployed: |
               - description: Application is synced and healthy. Triggered once per commit.
