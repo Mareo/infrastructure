@@ -110,7 +110,7 @@ spec:
                           "icon_url": "https://{{ .context.argocdUrl }}/assets/images/logo.png"
                         },
                         "title": ":white_check_mark: {{ .app.metadata.name }}",
-                        "desc": "Application `{{ .app.metadata.name }}` is now running new version of deployments manifests."
+                        "desc": "Application `{{ .app.metadata.name }}` is now running new version of deployments manifests.",
                         "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                         "color": "1621586",
                         "fields" [
