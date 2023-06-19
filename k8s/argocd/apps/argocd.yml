@@ -57,11 +57,11 @@ spec:
                 - "discord:ignored"
               triggers:
                 - on-deployed
-                - on-health-degraded
-                - on-sync-failed
-                - on-sync-running
-                - on-sync-status-unknown
-                - on-sync-succeeded
+               #- on-health-degraded
+               #- on-sync-failed
+               #- on-sync-running
+               #- on-sync-status-unknown
+               #- on-sync-succeeded
           triggers:
             trigger.on-deployed: |
               - description: Application is synced and healthy. Triggered once per commit.
