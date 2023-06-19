@@ -170,8 +170,8 @@ spec:
                           "description": "Application `{{ .app.metadata.name }}` is now running new version of deployments manifests.",
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 1621586,
-                          {{ if .app.status.operationState.operation.initiatedby.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedby.username }}",
+                          {{ if .app.status.operationState.operation.initiatedBy.username }}
+                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
                           {{ end }}
                           "fields": [
                             {
@@ -237,8 +237,8 @@ spec:
                           "description": "Application `{{.app.metadata.name}}` has degraded.",
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 16039984,
-                          {{ if .app.status.operationState.operation.initiatedby.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedby.username }}",
+                          {{ if .app.status.operationState.operation.initiatedBy.username }}
+                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
                           {{ end }}
                           "fields": [
                             {
@@ -304,8 +304,8 @@ spec:
                           "description": "The sync operation of application `{{ .app.metadata.name }}` has failed at {{ .app.status.operationState.finishedAt }} with the following error:\n```{{ .app.status.operationState.message }}```",
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 15297910,
-                          {{ if .app.status.operationState.operation.initiatedby.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedby.username }}",
+                          {{ if .app.status.operationState.operation.initiatedBy.username }}
+                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
                           {{ end }}
                           "fields": [
                             {
@@ -371,8 +371,8 @@ spec:
                           "description": "The sync operation of application `{{ .app.metadata.name }}` has started at {{ .app.status.operationState.startedAt }}",
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 896490,
-                          {{ if .app.status.operationState.operation.initiatedby.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedby.username }}",
+                          {{ if .app.status.operationState.operation.initiatedBy.username }}
+                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
                           {{ end }}
                           "fields": [
                             {
@@ -438,8 +438,8 @@ spec:
                           "description": "Application `{{.app.metadata.name}}` sync is 'Unknown'.",
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 13424349,
-                          {{ if .app.status.operationState.operation.initiatedby.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedby.username }}",
+                          {{ if .app.status.operationState.operation.initiatedBy.username }}
+                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
                           {{ end }}
                           "fields": [
                             {
@@ -505,8 +505,8 @@ spec:
                           "description": "Application `{{ .app.metadata.name }}` has been successfully synced at {{ .app.status.operationState.finishedAt }}",
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 1621586,
-                          {{ if .app.status.operationState.operation.initiatedby.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedby.username }}",
+                          {{ if .app.status.operationState.operation.initiatedBy.username }}
+                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
                           {{ end }}
                           "fields": [
                             {
