@@ -52,6 +52,11 @@ spec:
               headers:
               - name: Content-Type
                 value: application/json
+            service.webhook.discord-petitstream: |
+              url: $webhook-petitstream
+              headers:
+              - name: Content-Type
+                value: application/json
           subscriptions:
             - recipients:
                 - "discord:ignored"

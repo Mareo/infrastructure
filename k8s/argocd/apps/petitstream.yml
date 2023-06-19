@@ -1,16 +1,38 @@
+# yamllint disable rule:line-length
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: petitstream
+  annotations:
+    notifications.argoproj.io/subscribe.on-deployed.discord-petitstream: ""
+    notifications.argoproj.io/subscribe.on-health-degraded.discord-petitstream: ""
+    notifications.argoproj.io/subscribe.on-sync-failed.discord-petitstream: ""
+    notifications.argoproj.io/subscribe.on-sync-running.discord-petitstream: ""
+    notifications.argoproj.io/subscribe.on-sync-status-unknown.discord-petitstream: ""
+    notifications.argoproj.io/subscribe.on-sync-succeeded.discord-petitstream: ""
   labels:
     app: petitstream
 spec:
   project: petitstream
-  source:
-    repoURL: https://gitlab.mareo.fr/iac/petitstream.git
-    targetRevision: HEAD
-    path: prod
+  sources:
+    - repoURL: https://gitlab.mareo.fr/iac/petitstream.git
+      targetRevision: HEAD
+      path: prod
+    - repoURL: https://ot-container-kit.github.io/helm-charts/
+      chart: redis
+      targetRevision: 0.14.2
+      helm:
+        releaseName: "redis"
+        values: |
+          redisStandalone:
+            redisSecret:
+              secretName: "petitstream-redis"
+              secretKey: "password"
+          storageSpec:
+            volumeClaimTemplate:
+              spec:
+                storageClassName: csi-rbd-sc-delete
   destination:
     name: in-cluster
     namespace: petitstream

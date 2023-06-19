@@ -49,6 +49,14 @@ locals {
       {
         name = "argo-cd"
         type = "text"
+        webhooks = [
+          {
+            vault_path  = "k8s/argocd/notifications"
+            vault_key   = "webhook"
+            name        = "Argo CD"
+            avatar_path = "icons/argo-cd.png"
+          },
+        ]
       },
       {
         name = "gatus"
@@ -76,6 +84,18 @@ locals {
       },
     ]
     "Petitstream" = [
+      {
+        name = "argo-cd"
+        type = "text"
+        webhooks = [
+          {
+            vault_path  = "k8s/argocd/notifications"
+            vault_key   = "webhook-petitstream"
+            name        = "Argo CD"
+            avatar_path = "icons/argo-cd.png"
+          },
+        ]
+      },
       {
         name = "gatus",
         type = "text"

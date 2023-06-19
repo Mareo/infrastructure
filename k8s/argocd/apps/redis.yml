@@ -24,16 +24,6 @@ spec:
             namespace: authentik
             secretName: authentik-redis
             secretKey: password
-          - name: petitstream
-            cluster: in-cluster
-            namespace: petitstream
-            secretName: petitstream-redis
-            secretKey: password
-          - name: petitstream-dev
-            cluster: in-cluster
-            namespace: petitstream-dev
-            secretName: petitstream-redis
-            secretKey: password
   template:
     metadata:
       name: "{{cluster}}-{{name}}-redis"
