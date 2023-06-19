@@ -59,7 +59,7 @@ spec:
                 - on-deployed
                #- on-health-degraded
                #- on-sync-failed
-               #- on-sync-running
+                - on-sync-running
                #- on-sync-status-unknown
                #- on-sync-succeeded
           triggers:
@@ -216,39 +216,50 @@ spec:
                       }]
                     }
             template.app-sync-running: |
-              email:
-                subject: Start syncing application {{.app.metadata.name}}.
-              message: |
-                The sync operation of application {{.app.metadata.name}} has started at {{.app.status.operationState.startedAt}}.
-                Sync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true .
-              slack:
-                attachments: |-
-                  [{
-                    "title": "{{ .app.metadata.name}}",
-                    "title_link":"{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
-                    "color": "#0DADEA",
-                    "fields": [
+              webhook:
+                discord:
+                  method: POST
+                  body: |
                     {
-                      "title": "Sync Status",
-                      "value": "{{.app.status.sync.status}}",
-                      "short": true
-                    },
-                    {
-                      "title": "Repository",
-                      "value": "{{.app.spec.source.repoURL}}",
-                      "short": true
+                      "embeds": [
+                        {
+                          "author": {
+                            "name": "Argo CD",
+                            "url": "{{ .context.argocdUrl }}",
+                            "icon_url": "{{ .context.argocdUrl }}/assets/images/logo.png"
+                          },
+                          "title": ":repeat: {{ .app.metadata.name }}",
+                          "desc": "The sync operation of application `{{ .app.metadata.name }}` has started at {{ .app.status.operationState.startedAt }}",
+                          "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
+                          "color": 896490,
+                          "fields": [
+                            {
+                              "title": "Sync status",
+                              "value": "{{ .app.status.sync.status }}",
+                              "inline": false
+                            },
+                            {
+                              "title": "Repository",
+                              "value": "{{ .app.spec.source.repoURL }}",
+                              "inline": false
+                            },
+                            {
+                              "title": "Revision",
+                              "value": "{{ .app.status.sync.revision }}",
+                              "inline": false
+                            }
+                            {{ range $c := .app.status.conditions }}
+                            ,
+                            {
+                              "title": "{{ $c.type }}",
+                              "value": "{{ $c.message }}",
+                              "inline": false
+                            }
+                            {{ end }}
+                          ]
+                        }
+                      ]
                     }
-                    {{range $index, $c := .app.status.conditions}}
-                    {{if not $index}},{{end}}
-                    {{if $index}},{{end}}
-                    {
-                      "title": "{{$c.type}}",
-                      "value": "{{$c.message}}",
-                      "short": true
-                    }
-                    {{end}}
-                    ]
-                  }]
             template.app-sync-status-unknown: |
               email:
                 subject: Application {{.app.metadata.name}} sync status is 'Unknown'
