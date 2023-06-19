@@ -4,7 +4,7 @@ namespace: argocd
 
 resources:
   - applications.yml
-  - argocd-oidc.yml
+  - argocd-secrets.yml
 
   - apps
   - projects
