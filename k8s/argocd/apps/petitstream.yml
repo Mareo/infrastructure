@@ -15,6 +15,7 @@ metadata:
     notifications.argoproj.io/subscribe.on-sync-succeeded.discord-petitstream: ""
   labels:
     app: petitstream
+    notifications.argoproj.io/ignore-defaults: "true"
 spec:
   project: petitstream
   sources:
