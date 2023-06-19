@@ -171,7 +171,9 @@ spec:
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 1621586,
                           {{ if .app.status.operationState.operation.initiatedBy.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
+                          "footer": {
+                            "text": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}"
+                          },
                           {{ end }}
                           "fields": [
                             {
@@ -238,7 +240,9 @@ spec:
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 16039984,
                           {{ if .app.status.operationState.operation.initiatedBy.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
+                          "footer": {
+                            "text": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}"
+                          },
                           {{ end }}
                           "fields": [
                             {
@@ -305,7 +309,9 @@ spec:
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 15297910,
                           {{ if .app.status.operationState.operation.initiatedBy.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
+                          "footer": {
+                            "text": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}"
+                          },
                           {{ end }}
                           "fields": [
                             {
@@ -372,7 +378,9 @@ spec:
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 896490,
                           {{ if .app.status.operationState.operation.initiatedBy.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
+                          "footer": {
+                            "text": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}"
+                          },
                           {{ end }}
                           "fields": [
                             {
@@ -439,7 +447,9 @@ spec:
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 13424349,
                           {{ if .app.status.operationState.operation.initiatedBy.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
+                          "footer": {
+                            "text": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}"
+                          },
                           {{ end }}
                           "fields": [
                             {
@@ -506,7 +516,9 @@ spec:
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 1621586,
                           {{ if .app.status.operationState.operation.initiatedBy.username }}
-                          "footer": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}",
+                          "footer": {
+                            "text": "Operation initiated by {{ .app.status.operationState.operation.initiatedBy.username }}"
+                          },
                           {{ end }}
                           "fields": [
                             {
