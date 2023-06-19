@@ -62,7 +62,7 @@ spec:
                 - on-created
                 - on-deleted
                 - on-deployed
-                - on-deployed-multisources
+                - on-deployed-multisource
                 - on-health-degraded
                 - on-sync-failed
                 - on-sync-running
@@ -75,7 +75,7 @@ spec:
                 - on-created
                 - on-deleted
                 - on-deployed
-                - on-deployed-multisources
+                - on-deployed-multisource
                 - on-health-degraded
                 - on-sync-failed
                 - on-sync-running
