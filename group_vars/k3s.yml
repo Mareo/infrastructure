@@ -17,3 +17,9 @@ k3s_server:
     - "oidc-username-prefix=authentik:"
     - oidc-groups-claim=groups
     - "oidc-groups-prefix=authentik:"
+  kube-controller-manager-arg:
+    - "bind-address=0.0.0.0"
+  kube-proxy-arg:
+    - "metrics-bind-address=0.0.0.0"
+  kube-scheduler-arg:
+    - "bind-address=0.0.0.0"
