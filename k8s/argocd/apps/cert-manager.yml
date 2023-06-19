@@ -28,9 +28,6 @@ spec:
         chart: cert-manager
         targetRevision: v1.12.2
         helm:
-          parameters:
-            - name: installCRDs
-              value: "true"
           values: |
             installCRDs: true
             fullnameOverride: cert-manager
