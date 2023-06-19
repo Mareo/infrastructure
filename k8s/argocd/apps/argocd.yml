@@ -87,7 +87,7 @@ spec:
                 oncePer: app.status.operationState.syncResult.revision
                 send:
                   - app-deployed
-                when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
+                when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
             trigger.on-health-degraded: |
               - description: Application has degraded
                 send:
@@ -97,12 +97,12 @@ spec:
               - description: Application syncing has failed
                 send:
                   - app-sync-failed
-                when: app.status.operationState.phase in ['Error', 'Failed']
+                when: app.status.operationState != nil and app.status.operationState.phase in ['Error', 'Failed']
             trigger.on-sync-running: |
               - description: Application is being synced
                 send:
                   - app-sync-running
-                when: app.status.operationState.phase in ['Running']
+                when: app.status.operationState != nil and app.status.operationState.phase in ['Running']
             trigger.on-sync-status-unknown: |
               - description: Application status is 'Unknown'
                 send:
@@ -112,7 +112,7 @@ spec:
               - description: Application syncing has succeeded
                 send:
                   - app-sync-succeeded
-                when: app.status.operationState.phase in ['Succeeded']
+                when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded']
           templates:
             template.app-created: |
               webhook:
@@ -179,6 +179,7 @@ spec:
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
                             },
+                            {{ if .app.spec.source }}
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -196,6 +197,7 @@ spec:
                               "value": "{{ .app.status.sync.revision }}",
                               "inline": false
                             }
+                            {{ end }}
                             {{ range $c := .app.status.conditions }}
                             ,
                             {
@@ -232,6 +234,7 @@ spec:
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
                             },
+                            {{ if .app.spec.source }}
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -249,6 +252,7 @@ spec:
                               "value": "{{ .app.status.sync.revision }}",
                               "inline": false
                             }
+                            {{ end }}
                             {{ range $c := .app.status.conditions }}
                             ,
                             {
@@ -285,6 +289,7 @@ spec:
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
                             },
+                            {{ if .app.spec.source }}
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -302,6 +307,7 @@ spec:
                               "value": "{{ .app.status.sync.revision }}",
                               "inline": false
                             }
+                            {{ end }}
                             {{ range $c := .app.status.conditions }}
                             ,
                             {
@@ -338,6 +344,7 @@ spec:
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
                             },
+                            {{ if .app.spec.source }}
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -355,6 +362,7 @@ spec:
                               "value": "{{ .app.status.sync.revision }}",
                               "inline": false
                             }
+                            {{ end }}
                             {{ range $c := .app.status.conditions }}
                             ,
                             {
@@ -391,6 +399,7 @@ spec:
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
                             },
+                            {{ if .app.spec.source }}
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -408,6 +417,7 @@ spec:
                               "value": "{{ .app.status.sync.revision }}",
                               "inline": false
                             }
+                            {{ end }}
                             {{ range $c := .app.status.conditions }}
                             ,
                             {
@@ -444,6 +454,7 @@ spec:
                               "value": "{{ .app.status.sync.status }}",
                               "inline": false
                             },
+                            {{ if .app.spec.source }}
                             {
                               "name": "Repository",
                               "value": "{{ .app.spec.source.repoURL }}",
@@ -461,6 +472,7 @@ spec:
                               "value": "{{ .app.status.sync.revision }}",
                               "inline": false
                             }
+                            {{ end }}
                             {{ range $c := .app.status.conditions }}
                             ,
                             {
