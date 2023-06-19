@@ -57,6 +57,7 @@ spec:
           subscriptions:
             - recipients:
                 - "discord:ignored"
+              selector: notifications.argoproj.io/ignore-defaults!=true
               triggers:
                 - on-created
                 - on-deleted
