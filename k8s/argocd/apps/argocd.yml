@@ -113,7 +113,7 @@ spec:
                         "desc": "Application `{{ .app.metadata.name }}` is now running new version of deployments manifests.",
                         "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                         "color": "1621586",
-                        "fields" [
+                        "fields": [
                           {
                             "title": "Sync status",
                             "value": "{{ .app.status.sync.status }}",
