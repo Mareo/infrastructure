@@ -211,7 +211,7 @@ spec:
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ .app.summary.externalURLs[0] }}",
+                              "value": "{{ index .app.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
@@ -275,7 +275,7 @@ spec:
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ .app.summary.externalURLs[0] }}",
+                              "value": "{{ index .app.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
@@ -339,7 +339,7 @@ spec:
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ .app.summary.externalURLs[0] }}",
+                              "value": "{{ index .app.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
@@ -403,7 +403,7 @@ spec:
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ .app.summary.externalURLs[0] }}",
+                              "value": "{{ index .app.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
@@ -467,7 +467,7 @@ spec:
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ .app.summary.externalURLs[0] }}",
+                              "value": "{{ index .app.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
@@ -531,7 +531,7 @@ spec:
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ .app.summary.externalURLs[0] }}",
+                              "value": "{{ index .app.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
