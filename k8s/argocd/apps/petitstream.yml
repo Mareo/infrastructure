@@ -17,10 +17,24 @@ metadata:
     app: petitstream
 spec:
   project: petitstream
-  source:
-    repoURL: https://gitlab.mareo.fr/iac/petitstream.git
-    targetRevision: HEAD
-    path: prod
+  sources:
+    - repoURL: https://gitlab.mareo.fr/iac/petitstream.git
+      targetRevision: HEAD
+      path: "prod/"
+    - repoURL: https://ot-container-kit.github.io/helm-charts/
+      chart: redis
+      targetRevision: 0.14.2
+      helm:
+        releaseName: "redis"
+        values: |
+          redisStandalone:
+            redisSecret:
+              secretName: "petitstream-redis"
+              secretKey: "password"
+          storageSpec:
+            volumeClaimTemplate:
+              spec:
+                storageClassName: csi-rbd-sc-delete
   destination:
     name: in-cluster
     namespace: petitstream
