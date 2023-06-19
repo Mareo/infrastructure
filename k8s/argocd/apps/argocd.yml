@@ -207,11 +207,11 @@ spec:
                               "inline": false
                             }
                             {{ end }}
-                            {{ if .app.summary.externalURLs }}
+                            {{ if .app.status.summary.externalURLs }}
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ index .app.summary.externalURLs 0 }}",
+                              "value": "{{ index .app.status.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
@@ -271,11 +271,11 @@ spec:
                               "inline": false
                             }
                             {{ end }}
-                            {{ if .app.summary.externalURLs }}
+                            {{ if .app.status.summary.externalURLs }}
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ index .app.summary.externalURLs 0 }}",
+                              "value": "{{ index .app.status.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
@@ -335,11 +335,11 @@ spec:
                               "inline": false
                             }
                             {{ end }}
-                            {{ if .app.summary.externalURLs }}
+                            {{ if .app.status.summary.externalURLs }}
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ index .app.summary.externalURLs 0 }}",
+                              "value": "{{ index .app.status.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
@@ -399,11 +399,11 @@ spec:
                               "inline": false
                             }
                             {{ end }}
-                            {{ if .app.summary.externalURLs }}
+                            {{ if .app.status.summary.externalURLs }}
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ index .app.summary.externalURLs 0 }}",
+                              "value": "{{ index .app.status.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
@@ -463,11 +463,11 @@ spec:
                               "inline": false
                             }
                             {{ end }}
-                            {{ if .app.summary.externalURLs }}
+                            {{ if .app.status.summary.externalURLs }}
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ index .app.summary.externalURLs 0 }}",
+                              "value": "{{ index .app.status.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
@@ -527,11 +527,11 @@ spec:
                               "inline": false
                             }
                             {{ end }}
-                            {{ if .app.summary.externalURLs }}
+                            {{ if .app.status.summary.externalURLs }}
                             ,
                             {
                               "name": "External URL",
-                              "value": "{{ index .app.summary.externalURLs 0 }}",
+                              "value": "{{ index .app.status.summary.externalURLs 0 }}",
                               "inline": false
                             }
                             {{ end }}
