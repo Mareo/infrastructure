@@ -62,6 +62,20 @@ spec:
                 - on-created
                 - on-deleted
                 - on-deployed
+                - on-deployed-multisources
+                - on-health-degraded
+                - on-sync-failed
+                - on-sync-running
+                - on-sync-status-unknown
+                - on-sync-succeeded
+            - recipients:
+                - "discord-petitstream"
+              selector: notifications.argoproj.io/subscribe=petitstream
+              triggers:
+                - on-created
+                - on-deleted
+                - on-deployed
+                - on-deployed-multisources
                 - on-health-degraded
                 - on-sync-failed
                 - on-sync-running
@@ -85,7 +99,13 @@ spec:
                 oncePer: app.status.operationState.syncResult.revision
                 send:
                   - app-deployed
-                when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.operationState.syncResult != nil
+                when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.operationState.syncResult != nil and app.status.operationState.syncResult.revision != nil
+            trigger.on-deployed-multisource: |
+              - description: Application is synced and healthy. Triggered once per commit.
+                oncePer: app.status.operationState.syncResult.revisions
+                send:
+                  - app-deployed
+                when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.operationState.syncResult != nil and app.status.operationState.syncResult.revisions != nil
             trigger.on-health-degraded: |
               - description: Application has degraded
                 send:

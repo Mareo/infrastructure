@@ -4,18 +4,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: petitstream-dev
-  annotations:
-    notifications.argoproj.io/subscribe.on-created.discord-petitstream: ""
-    notifications.argoproj.io/subscribe.on-deleted.discord-petitstream: ""
-    notifications.argoproj.io/subscribe.on-deployed.discord-petitstream: ""
-    notifications.argoproj.io/subscribe.on-health-degraded.discord-petitstream: ""
-    notifications.argoproj.io/subscribe.on-sync-failed.discord-petitstream: ""
-    notifications.argoproj.io/subscribe.on-sync-running.discord-petitstream: ""
-    notifications.argoproj.io/subscribe.on-sync-status-unknown.discord-petitstream: ""
-    notifications.argoproj.io/subscribe.on-sync-succeeded.discord-petitstream: ""
   labels:
     app: petitstream-dev
     notifications.argoproj.io/ignore-defaults: "true"
+    notifications.argoproj.io/susbcribe: "petitstream"
 spec:
   project: petitstream
   sources:
