@@ -198,7 +198,7 @@ spec:
                             "icon_url": "{{ .context.argocdUrl }}/assets/images/logo.png"
                           },
                           "title": ":exclamation: {{ .app.metadata.name }}",
-                          "description": "The sync operation of application `{{ .app.metadata.name }}` has failed at {{ .app.status.operationState.finishedAt }} with the following error: {{ .app.status.operationState.message }}",
+                          "description": "The sync operation of application `{{ .app.metadata.name }}` has failed at {{ .app.status.operationState.finishedAt }} with the following error:\n```{{ .app.status.operationState.message }}```",
                           "url": "{{ .context.argocdUrl }}/applications/{{ .app.metadata.name }}",
                           "color": 15297910,
                           "fields": [
