@@ -38,4 +38,4 @@ spec:
     namespace: petitstream
   syncPolicy:
     automated:
-      prune: false
+      prune: true
