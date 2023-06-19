@@ -56,7 +56,7 @@ spec:
                 value: application/json
           subscriptions:
             - recipients:
-                - "discord:ignored"
+                - "discord"
               selector: notifications.argoproj.io/ignore-defaults!=true
               triggers:
                 - on-created
