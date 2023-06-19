@@ -96,16 +96,16 @@ spec:
                 when: app.metadata.deletionTimestamp != nil
             trigger.on-deployed: |
               - description: Application is synced and healthy. Triggered once per commit.
-                oncePer: app.status.operationState.syncResult.revision
+                oncePer: app.status.revision
                 send:
                   - app-deployed
-                when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.operationState.syncResult != nil and app.status.operationState.syncResult.revision != nil
+                when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.revision != nil
             trigger.on-deployed-multisource: |
               - description: Application is synced and healthy. Triggered once per commit.
-                oncePer: app.status.operationState.syncResult.revisions
+                oncePer: app.status.revisions
                 send:
                   - app-deployed
-                when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.operationState.syncResult != nil and app.status.operationState.syncResult.revisions != nil
+                when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.revisions != nil
             trigger.on-health-degraded: |
               - description: Application has degraded
                 send:
