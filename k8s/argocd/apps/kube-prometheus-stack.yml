@@ -11,6 +11,8 @@ spec:
     - list:
         elements:
           - name: in-cluster
+            endpoints:
+              - 192.168.0.1
   template:
     metadata:
       name: "{{name}}-kube-prometheus-stack"
@@ -161,3 +163,12 @@ spec:
                   - secretName: prometheus-tls
                     hosts:
                       - prom.mareo.fr
+            kubeControllerManager:
+              enabled: true
+              endpoints: "{{ endpoints }}"
+            kubeScheduler:
+              enabled: true
+              endpoints: "{{ endpoints }}"
+            kubeProxy:
+              enabled: true
+              endpoints: "{{ endpoints }}"
