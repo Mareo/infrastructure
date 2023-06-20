@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentik-proxy
+  namespace: gatus
+spec:
+  type: ExternalName
+  externalName: authentik.authentik.svc
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gatus-authentik
+  namespace: gatus
+  annotations:
+    cert-manager.io/cluster-issuer: default-issuer
+spec:
+  rules:
+    - host: gatus.mareo.fr
+      http:
+        paths:
+          - path: /outpost.goauthentik.io
+            pathType: Prefix
+            backend:
+              service:
+                name: authentik-proxy
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - gatus.mareo.fr
+      secretName: gatus-tls

@@ -6,11 +6,11 @@ resources:
   - ../base/
   - ../../apps/postgres-operator/
   - hedgedoc
+  - ingresses/
   - mail/
   - postgres/
   - secrets/
 
-  - kube-prometheus-stack-ingress.yml
   - storage-class.yml
 
 patches:
