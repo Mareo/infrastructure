@@ -3,4 +3,5 @@ apiversion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  - gatus-ingress.yml
   - kube-prometheus-stack-ingress.yml
