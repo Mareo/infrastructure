@@ -434,7 +434,7 @@ spec:
                     url: "https://nextcloud.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 1000"
+                      - "[RESPONSE_TIME] < 2500"
                       - "[STATUS] == 200"
                     alerts:
                       - type: discord
