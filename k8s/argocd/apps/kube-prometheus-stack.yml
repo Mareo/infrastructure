@@ -27,6 +27,7 @@ spec:
           - ServerSideApply=true
         automated:
           prune: true
+          selfHeal: true
       destination:
         name: "{{.name}}"
         namespace: kube-prometheus-stack
