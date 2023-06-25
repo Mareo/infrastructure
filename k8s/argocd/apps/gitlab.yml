@@ -93,6 +93,8 @@ spec:
                 password:
                   secret: "gitlab-mail"
                   key: "password"
+              registry:
+                bucket: gitlab-registry
               appConfig:
                 enableUsagePing: true
                 enableSeatLink: false
@@ -217,6 +219,9 @@ spec:
                   requests:
                     cpu: 500m
             registry:
+              storage:
+                secret: gitlab-registry-storage
+                key: storage
               ingress:
                 tls:
                   secretName: gitlab-registry-tls

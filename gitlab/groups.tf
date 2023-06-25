@@ -32,7 +32,7 @@ resource "gitlab_group" "meta-children" {
   request_access_enabled  = false
 }
 
-resource "gitlab_group_membership" "iac_meta-children" {
+resource "gitlab_group_membership" "meta-children" {
   for_each = merge([
     for group in data.authentik_groups.meta-children.groups : {
       for user in group.users_obj :
