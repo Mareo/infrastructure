@@ -60,17 +60,16 @@ provider "registry.terraform.io/hashicorp/vault" {
 }
 
 provider "registry.terraform.io/lucky3028/discord" {
-  version     = "1.4.0"
-  constraints = "1.4.0"
+  version     = "1.5.0"
+  constraints = "1.5.0"
   hashes = [
-    "h1:No0A6uMo7ck9qbM7C+xkESg6ur8WLwiqY9m55mxmhDs=",
-    "zh:05bcb09edf0bfcab75665ccb1cf93babde498e1fadfbfb2db5d8c7c0ddde3e9b",
-    "zh:15fdcfc8bedbf25f4473e965767218c058e30c52b62c264e4cc1be04eef4b01d",
-    "zh:52b9374f47a82d02db41f790ed9e16ffe885a7b83987db5cab51066b07ebb393",
-    "zh:a41a6db3418802b6f7528d9444bd8c66cae914c6bf0d5f7c8b32b1c39c0c7eab",
-    "zh:b50cb02ab7f3e599f5bb461f6b5c70dd819af9a09dccd2eeb6f05ca0492146e5",
-    "zh:b7d566c767b12968fdaea3dcc70104e8d9c16539ec3408807022a6629a994e28",
-    "zh:d3e9ad012a35032514c3d5717c3ee39452d699e99ae1259c3e0a32575984058e",
-    "zh:faf8c8cb874fc79269c00e79f92cca8dcda6c5d77a177ff9dcc5cb22e6b2620f",
+    "h1:7uVAj4YeRmFzAUCgQic5IjPx9swNWD5FS3us6HuI3A4=",
+    "h1:B5UzwlyuykdxP1crlyfEelwrgXqvVAwvC9wsesBs/00=",
+    "h1:Cs/VQfFVfXCZt0R4wPqOulACpX4ir2pCORXXMey68M0=",
+    "h1:DB5gClGrr9+SPwyATGSejEYLmintX1OZ43dBZWPqmac=",
+    "h1:WRShUImHmnmW4GjhqZR4KG51fdl5YIeyoeZgmQRqOjQ=",
+    "h1:XPQHOja759Perrcc+/WgyuRmov3vneKTMQCcS9MUffI=",
+    "h1:aT/lnjP/Rwld9Fxqfc+ajjb9Gj3cgqNwyE78BLNW/M0=",
+    "h1:l6KA3KpyQTbT8C1IJMMXgLlMquL7pCrcozIlxU0Jn9c=",
   ]
 }
