@@ -52,7 +52,7 @@ proxmox_ceph_rgw_users:
       - terraform
   - uid: gitlab
     display_name: gitlab
-    max_buckets: 9
+    max_buckets: 10
     buckets:
       - gitlab-artifacts
       - gitlab-dependency-proxy

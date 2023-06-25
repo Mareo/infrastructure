@@ -36,6 +36,17 @@
     rgw_user_info: "{{ create_result.stdout | from_json }}"
   when: result.rc != 0
 
+- name: Update radosgw user {{ item.uid }}
+  when: result.rc == 0 and rgw_user_info["max_buckets"] != item.get("max_buckets", 0)
+  ansible.builtin.command:
+    argv:
+      - radosgw-admin
+      - user
+      - modify
+      - --uid={{ item.uid }}
+      - --max-buckets={{ item.max_buckets | default(0) }}
+  changed_when: true
+
 - name: Save user {{ item.uid }} keys
   ansible.builtin.copy:
     dest: /etc/ceph/rgw_user_{{ item.uid }}.yml
