@@ -29,7 +29,7 @@ spec:
       source:
         repoURL: https://ceph.github.io/csi-charts
         chart: ceph-csi-cephfs
-        targetRevision: 3.8.0
+        targetRevision: 3.9.0
         helm:
           releaseName: cephfs-csi
           values: |
