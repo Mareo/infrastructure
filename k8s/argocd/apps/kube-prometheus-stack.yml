@@ -126,16 +126,24 @@ spec:
               alertmanagerSpec:
                 secrets:
                   - alertmanager-discord
+                  - alertmanager-gitlab
               config:
                 route:
-                  receiver: "discord"
+                  receiver: "discord_and_gitlab"
                 receivers:
                   - name: "null"
-                  - name: "discord"
+                  - name: "discord_and_gitlab"
                     slack_configs:
                       - channel: "#alertmanager"
                         send_resolved: true
                         api_url_file: "/etc/alertmanager/secrets/alertmanager-discord/webhook"
+                    webhook_configs:
+                      - http_config:
+                          authorization:
+                            type: Bearer
+                            credentials_file: /etc/alertmanager/secrets/alertmanager-gitlab/token
+                        send_resolved: true
+                        url: "https://gitlab.mareo.fr/iac/infrastructure/prometheus/alerts/notify.json"
             prometheus:
               prometheusSpec:
                 enableAdminAPI: true
