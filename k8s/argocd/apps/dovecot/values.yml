@@ -14,6 +14,7 @@ stats:
 
 managesieve:
   enabled: true
+  starttls: false
   service:
     type: LoadBalancer
     nodePort: 30419
