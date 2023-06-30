@@ -74,7 +74,7 @@ spec:
             - name: postfix-tls
               mountPath: /secrets/postfix
         - name: postsrsd
-          image: registry.cri.epita.fr/cri/docker/mail
+          image: registry.mareo.fr/services/docker/postfix:1.0.0
           args: ["postsrsd"]
           env:
             - name: POSTSRSD_SECRET_FILE
@@ -86,7 +86,7 @@ spec:
             - name: postsrsd-secret
               mountPath: /secrets/postsrsd
         - name: opendkim
-          image: registry.cri.epita.fr/cri/docker/mail
+          image: registry.mareo.fr/services/docker/postfix:1.0.0
           args: ["opendkim"]
           envFrom:
             - configMapRef:
