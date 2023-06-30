@@ -1,0 +1,6 @@
+---
+kind: Kustomization
+
+resources:
+  - certificate.yml
+  - dovecot-ldap-credentials.yml

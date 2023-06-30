@@ -1,0 +1,43 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dovecot
+  labels:
+    app: dovecot
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-dovecot"
+      labels:
+        app: dovecot
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: dovecot
+      sources:
+        - repoURL: https://gitlab.mareo.fr/iac/infrastructure.git
+          targetRevision: HEAD
+          ref: argocd
+        - repoURL: https://gitlab.mareo.fr/iac/infrastructure.git
+          targetRevision: HEAD
+          path: "k8s/argocd/apps/dovecot/extra/"
+        - repoURL: oci://registry.mareo.fr/services/charts/dovecot
+          chart: dovecot
+          targetRevision: 1.0.0
+          helm:
+            valueFiles:
+              - $argocd/k8s/argocd/apps/dovecot/values.yml
+            values: |
+              fullnameOverride: dovecot

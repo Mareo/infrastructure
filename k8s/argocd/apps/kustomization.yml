@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: argocd
 
 resources:
+  - dovecot/
+
   - authentik.yml
   - argocd.yml
   - cephfs-csi.yml

@@ -1,0 +1,68 @@
+# yamllint disable rule:line-length
+---
+tls:
+  enabled: true
+  secret:
+    name: dovecot-tls
+
+persistence:
+  enabled: true
+  storageClassName: "csi-rbd-sc-retain"
+
+stats:
+  enabled: true
+
+managesieve:
+  enabled: true
+  service:
+    type: NodePort
+    nodePort: 30419
+
+imap:
+  enabled: true
+  service:
+    type: NodePort
+    nodePort: 30143
+    tlsNodePort: 30993
+
+sasl:
+  enabled: true
+
+lmtp:
+  enabled: true
+
+plugins:
+  quota:
+    enabled: true
+    vsizes: true
+
+ldap:
+  enabled: true
+  uris: "ldap://ak-outpost-mail-ldap.authentik.svc"
+  base: "dc=mail,dc=mareo,dc=fr"
+  dn: "cn=mail-dovecot,ou=users,dc=mail,dc=mareo,dc=fr"
+  dnpass:
+    secret: dovecot-ldap-credentials
+    key: DOVECOT_LDAP_DNPASS
+  authBind: true
+  filter: "(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=%u))"
+  passAttrs:
+    - =user=%u
+    - dovecotAclGroups=userdb_acl_groups=%{ldap:dovecotAclGroups}
+    - dovecotQuotaStorage=userdb_quota_rule=*:storage=%{ldap:dovecotQuotaStorage}
+    - dovecotQuotaStorage=userdb_quota_rule2=*:messages=%{ldap:dovecotQuotaMessages}
+  userAttrs:
+    - =user=%u
+    - dovecotAclGroups=acl_groups=%{ldap:dovecotAclGroups}
+    - dovecotQuotaStorage=quota_rule=*:storage=%{ldap:dovecotQuotaStorage}
+    - dovecotQuotaStorage=quota_rule2=*:messages=%{ldap:dovecotQuotaMessages}
+  iterateFilter: "(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=*))"
+  iterateAttrs: "mailboxes=user"
+
+log:
+  auth:
+    debug: true
+  mail:
+    debug: true
+  ssl:
+    verbose: false

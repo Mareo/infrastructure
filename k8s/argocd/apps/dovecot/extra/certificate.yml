@@ -1,0 +1,16 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: dovecot-tls
+  namespace: dovecot
+spec:
+  dnsNames:
+    - athena.mareo.fr
+    - mail.mareo.fr
+    - imap.mareo.fr
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: default-issuer
+  secretName: dovecot-tls
