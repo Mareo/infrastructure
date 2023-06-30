@@ -57,9 +57,9 @@ configMapGenerator:
     behavior: merge
     files:
       - config/sender_login_user.ldap
-      - config/mailbox_alias_maps_aliases.ldap
-      - config/mailbox_alias_maps_rules.ldap
-      - config/mailbox_alias_maps_rules.pcre
+      - config/virtual_alias_maps.ldap
+      - config/virtual_alias_maps_rules.ldap
+      - config/virtual_alias_maps_rules.pcre
   - name: postsrsd-config
     behavior: merge
     literals:
