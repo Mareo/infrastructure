@@ -47,12 +47,18 @@ configMapGenerator:
       - "POSTFIX_SMTPD_RELAY_RESTRICTIONS=permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination"
       - "POSTFIX_SMTPD_SENDER_RESTRICTIONS=permit_mynetworks, reject_sender_login_mismatch"
       - "POSTFIX_SMTPD_SENDER_LOGIN_MAPS=ldap:/etc/postfix/sender_login_user.ldap"
+      - "POSTFIX_SMTPD_VIRTUAL_MAILBOX_DOMAINS=mareo.fr, hannache.fr"
+      - "POSTFIX_SMTPD_VIRTUAL_ALIAS_MAPS=unionmap:{pipemap:{ldap:/etc/postfix/virtual_alias_maps_rules.ldap,pcre:/etc/postfix/virtual_alias_maps_rules.pcre},ldap:/etc/postfix/virtual_alias_maps.ldap"
       - "POSTFIX_SMTPD_TLS_ASK_CCERT=yes"
       - "POSTFIX_MILTER_MACRO_DEFAULTS=dkimsign=yes"
+      - "POSTFIX_VIRTUAL_TRANSPORT=lmtp:inet:dovecot.dovecot.svc"
   - name: postfix-config-files
     behavior: merge
     files:
       - config/sender_login_user.ldap
+      - config/mailbox_alias_maps_aliases.ldap
+      - config/mailbox_alias_maps_rules.ldap
+      - config/mailbox_alias_maps_rules.pcre
   - name: postsrsd-config
     behavior: merge
     literals:
