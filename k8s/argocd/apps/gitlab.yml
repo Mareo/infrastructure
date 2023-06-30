@@ -115,7 +115,7 @@ spec:
                   connection:
                     secret: gitlab-object-storage
                     key: connection
-                incommingEmail:
+                incomingEmail:
                   enabled: true
                   address: "incoming+%{key}@gitlab.mareo.fr"
                   host: athena.mareo.fr
