@@ -50,7 +50,7 @@ configMapGenerator:
       - "POSTFIX_SMTPD_TLS_ASK_CCERT=yes"
       - "POSTFIX_MILTER_MACRO_DEFAULTS=dkimsign=yes"
       - "POSTFIX_VIRTUAL_TRANSPORT=lmtp:inet:dovecot-lmtp.dovecot.svc"
-      - "POSTFIX_VIRTUAL_MAILBOX_DOMAINS=mareo.fr, hannache.fr"
+      - "POSTFIX_VIRTUAL_MAILBOX_DOMAINS=mareo.fr, hannache.fr, gitlab.mareo.fr"
       - "POSTFIX_VIRTUAL_ALIAS_MAPS=unionmap:{pipemap:{ldap:/etc/postfix/virtual_alias_maps_rules.ldap,pcre:/etc/postfix/virtual_alias_maps_rules.pcre},ldap:/etc/postfix/virtual_alias_maps.ldap} ldap:/etc/postfix/virtual_alias_maps_mailboxes.ldap"
       - "POSTFIX_SMTPD_SASL_PATH=inet:dovecot-sasl.dovecot.svc:113"
   - name: postfix-config-files
