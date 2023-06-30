@@ -12,10 +12,20 @@ locals {
         settings = {
           locale = "en"
         }
+        mailboxRules = [
+          "@mareo.fr:mareo@mareo.fr",
+        ]
+        mailboxes = [
+          "mareo@mareo.fr",
+          "marin@hannache.fr",
+        ]
         allowedEmails = [
           "@mareo.fr",
           "marin@hannache.fr",
         ]
+        dovecotAclGroups     = "master"
+        dovecotQuotaStorage  = 0
+        dovecotQuotaMessages = 0
       }
       groups = [
         "alertmanager",

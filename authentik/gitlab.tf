@@ -8,6 +8,12 @@ resource "authentik_user" "gitlab_mail" {
     allowedEmails = [
       "@gitlab.mareo.fr",
     ]
+    mailboxes = [
+      "gitlab@gitlab.mareo.fr",
+    ]
+    mailAliases = [
+      "@gitlab.mareo.fr",
+    ]
   })
 }
 

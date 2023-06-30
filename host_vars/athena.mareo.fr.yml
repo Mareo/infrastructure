@@ -50,12 +50,18 @@ forwarded_ports:
   - dport: smtp
     host: $k3s
     port: 30025
+  - dport: sieve
+    host: $k3s
+    port: 30419
   - dport: submissions
     host: $k3s
     port: 30465
   - dport: submission
     host: $k3s
     port: 30587
+  - dport: imaps
+    host: $k3s
+    port: 30993
   - dport: 6443
     host: $k3s
 
