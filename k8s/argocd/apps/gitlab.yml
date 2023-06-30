@@ -117,7 +117,7 @@ spec:
                     key: connection
                 incommingEmail:
                   enabled: true
-                  address: "%{key}@gitlab.mareo.fr"
+                  address: "incoming+%{key}@gitlab.mareo.fr"
                   host: athena.mareo.fr
                   port: 993
                   ssl: true
