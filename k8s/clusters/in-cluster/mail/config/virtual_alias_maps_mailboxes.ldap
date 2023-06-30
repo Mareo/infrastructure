@@ -1,0 +1,3 @@
+query_filter               = (&(objectClass=user)(|(mailAliases=%s)(mailAliases=@%d)(mail=%s)))
+terminal_result_attribute  = mailboxes
+result_attribute           = mail
