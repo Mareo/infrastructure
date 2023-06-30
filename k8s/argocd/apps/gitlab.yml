@@ -115,6 +115,27 @@ spec:
                   connection:
                     secret: gitlab-object-storage
                     key: connection
+                incommingEmail:
+                  enabled: true
+                  address: "%{key}@gitlab.mareo.fr"
+                  host: athena.mareo.fr
+                  port: 993
+                  ssl: true
+                  user: "gitlab@gitlab.mareo.fr"
+                  password:
+                    secret: "gitlab-mail"
+                    key: "password"
+                  mailbox: inbox
+                serviceDeskEmail:
+                  enabled: true
+                  address: "contact+{key}@gitlab.mareo.fr"
+                  host: athena.mareo.fr
+                  port: 993
+                  ssl: true
+                  user: "gitlab@gitlab.mareo.fr"
+                  password:
+                    secret: "gitlab-mail"
+                    key: "password"
                 ldap:
                   preventSignin: false
                   servers:
