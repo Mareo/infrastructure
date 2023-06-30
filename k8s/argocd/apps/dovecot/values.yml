@@ -48,14 +48,7 @@ ldap:
     secret: dovecot-ldap-credentials
     key: DOVECOT_LDAP_DNPASS
   authBind: true
-  filter: >-
-    (
-      |(
-        &(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=%u)
-      )(
-        &(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(goauthentikio-user-service-account=true)(uid=%u)
-      )
-    )
+  filter: "(|(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=%u))(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(goauthentikio-user-service-account=true)(uid=%u)))"
   passAttrs:
     - "%{if;%s;eq;smtp;goauthentikio-user-service-account=domain=mail.mareo.fr;nologin=y}"
     - dovecotAclGroups=userdb_acl_groups=%{ldap:dovecotAclGroups}
