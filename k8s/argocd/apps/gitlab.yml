@@ -136,6 +136,7 @@ spec:
                   password:
                     secret: "gitlab-mail"
                     key: "password"
+                  mailbox: inbox
                 ldap:
                   preventSignin: false
                   servers:
