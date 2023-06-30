@@ -1,0 +1,3 @@
+query_filter  = (&(objectClass=user)(|(mailboxRules=%s:*)(mailboxRules=@%d:*)(mailboxes=%s)))
+result_format = %S:%s
+result_attribute = mailboxRules, mailboxes
