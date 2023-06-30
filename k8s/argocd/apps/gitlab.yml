@@ -128,7 +128,7 @@ spec:
                   mailbox: inbox
                 serviceDeskEmail:
                   enabled: true
-                  address: "contact+{key}@gitlab.mareo.fr"
+                  address: "contact+%{key}@gitlab.mareo.fr"
                   host: athena.mareo.fr
                   port: 993
                   ssl: true
