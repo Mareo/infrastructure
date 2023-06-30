@@ -50,12 +50,12 @@ ldap:
   authBind: true
   filter: "(|(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=%u))(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(goauthentikio-user-service-account=true)(uid=%u)))"
   passAttrs:
-    - "%{if;%s;eq;smtp;goauthentikio-user-service-account=domain=mail.mareo.fr;%{if;%u;eq;%n;nologin=y;=user=%u}}"
+    - goauthentikio-user-service-account=domain=mail.mareo.fr
     - dovecotAclGroups=userdb_acl_groups=%{ldap:dovecotAclGroups}
     - dovecotQuotaStorage=userdb_quota_rule=*:storage=%{ldap:dovecotQuotaStorage}
     - dovecotQuotaStorage=userdb_quota_rule2=*:messages=%{ldap:dovecotQuotaMessages}
   userAttrs:
-    - "%{if;%s;eq;smtp;goauthentikio-user-service-account=domain=mail.mareo.fr;=user=%u}"
+    - goauthentikio-user-service-account=domain=mail.mareo.fr
     - dovecotAclGroups=acl_groups=%{ldap:dovecotAclGroups}
     - dovecotQuotaStorage=quota_rule=*:storage=%{ldap:dovecotQuotaStorage}
     - dovecotQuotaStorage=quota_rule2=*:messages=%{ldap:dovecotQuotaMessages}
