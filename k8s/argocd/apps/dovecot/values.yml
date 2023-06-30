@@ -15,13 +15,15 @@ stats:
 managesieve:
   enabled: true
   service:
-    type: NodePort
+    type: LoadBalancer
     nodePort: 30419
 
 imap:
   enabled: true
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: imap.mareo.fr.
   service:
-    type: NodePort
+    type: LoadBalancer
     nodePort: 30143
     tlsNodePort: 30993
 
