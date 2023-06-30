@@ -17,7 +17,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: postfix
-          image: registry.mareo.fr/services/docker/dovecot:1.0.0
+          image: registry.mareo.fr/services/docker/postfix:1.0.0
           args: ["postfix"]
           resources:
             requests:
