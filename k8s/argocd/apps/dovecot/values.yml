@@ -20,9 +20,9 @@ managesieve:
 
 imap:
   enabled: true
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: imap.mareo.fr.
   service:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: imap.mareo.fr.
     type: LoadBalancer
     nodePort: 30143
     tlsNodePort: 30993
