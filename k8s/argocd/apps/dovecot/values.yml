@@ -48,7 +48,7 @@ ldap:
     secret: dovecot-ldap-credentials
     key: DOVECOT_LDAP_DNPASS
   authBind: true
-  filter: "(|(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=%u))(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%u)))"
+  filter: "(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=%u))"
   passAttrs:
     - dovecotAclGroups=userdb_acl_groups=%{ldap:dovecotAclGroups}
     - dovecotQuotaStorage=userdb_quota_rule=*:storage=%{ldap:dovecotQuotaStorage}
@@ -67,3 +67,32 @@ log:
     debug: true
   ssl:
     verbose: false
+
+extraVolumeMounts:
+  - name: config
+    mountPath: /etc/dovecot/args/extra_passdb.yaml
+    subPath: extra_passdb.yaml
+
+extraEnv:
+  - name: DOVECOT_EXTRA_PASSDB_DNPASS
+    valueFrom:
+      secretKeyRef:
+        name: "dovecot-ldap-credentials"
+        key: DOVECOT_LDAP_DNPASS
+
+configMap:
+  data:
+    extra_passdb.conf: |
+      passdb {
+        driver = ldap
+        args = /etc/dovecot/args/extra_passdb.conf
+        skip = authenticated
+        username_filter = !*@*
+      }
+    extra_passdb.yaml: |
+      uris: {{ quote .Values.ldap.uris }}
+      base: {{ quote .Values.ldap.base }}
+      dn: {{ quote .Values.ldap.dn }}
+      auth_bind: {{ ternary "yes" "no" .Values.ldap.authBind | quote }}
+      pass_filter: "(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%u))"
+      pass_attrs: "%{if;%s;ne;smtp;=nologin=y;=user=%{ldap:cn}}"

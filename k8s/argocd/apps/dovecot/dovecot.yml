@@ -35,7 +35,7 @@ spec:
           path: "k8s/argocd/apps/dovecot/extra/"
         - repoURL: registry.mareo.fr/services/charts/dovecot
           chart: dovecot
-          targetRevision: 0.0.0-3
+          targetRevision: 0.0.0-4
           helm:
             valueFiles:
               - $argocd/k8s/argocd/apps/dovecot/values.yml
