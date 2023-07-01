@@ -32,12 +32,12 @@ spec:
           ref: argocd
         - repoURL: https://gitlab.mareo.fr/iac/infrastructure.git
           targetRevision: HEAD
-          path: "k8s/argocd/apps/dovecot/extra/"
+          path: "k8s/argocd/apps/mail/extra/"
         - repoURL: registry.mareo.fr/services/charts/dovecot
           chart: dovecot
           targetRevision: 0.0.0-5
           helm:
             valueFiles:
-              - $argocd/k8s/argocd/apps/dovecot/values.yml
+              - $argocd/k8s/argocd/apps/mail/values/dovecot.yml
             values: |
               fullnameOverride: dovecot

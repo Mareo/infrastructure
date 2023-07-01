@@ -74,7 +74,7 @@ extraVolumeMounts:
     subPath: extra_passdb.yaml
 
 extraEnv:
-  - name: DOVECOT_EXTRA_PASSDB_DNPASS
+  - name: DOVECOT_EXT_EXTRA_PASSDB_DNPASS
     valueFrom:
       secretKeyRef:
         name: "dovecot-ldap-credentials"
@@ -85,11 +85,11 @@ configMap:
     extra_passdb.conf: |
       passdb {
         driver = ldap
-        args = /etc/dovecot/args/extra_passdb.conf
+        args = /etc/dovecot/args/ext_extra_passdb.conf
         skip = authenticated
         username_filter = !*@*
       }
-    extra_passdb.yaml: |
+    ext_extra_passdb.yaml: |
       uris: {{ quote .Values.ldap.uris }}
       base: {{ quote .Values.ldap.base }}
       dn: {{ quote .Values.ldap.dn }}

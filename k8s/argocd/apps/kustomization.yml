@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - dovecot/
+  - mail/
 
   - authentik.yml
   - argocd.yml
