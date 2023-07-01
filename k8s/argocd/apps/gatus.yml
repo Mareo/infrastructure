@@ -324,6 +324,27 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
+                  - name: athena.mareo.fr - imap (disabled)
+                    group: Mail - IMAP
+                    interval: 1m
+                    url: "tcp://athena.mareo.fr:143"
+                    client:
+                      timeout: 5s
+                    conditions:
+                      - "[CONNECTED] == false"
+                    alerts:
+                      - type: discord
+                  - name: athena.mareo.fr - imaps
+                    group: Mail - IMAP
+                    interval: 1m
+                    url: "tls://athena.mareo.fr:993"
+                    client:
+                      timeout: 5s
+                    conditions:
+                      - "[CONNECTED] == true"
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    alerts:
+                      - type: discord
                   - name: athena.mareo.fr - smtp
                     group: Mail - SMTP
                     interval: "${SMTP_CHECK_INTERVAL}"
