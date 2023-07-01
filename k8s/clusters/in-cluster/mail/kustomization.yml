@@ -40,7 +40,7 @@ configMapGenerator:
       - "POSTFIX_SMTPD_SASL_PATH=inet:dovecot-sasl.mail.svc:113"
       - "POSTFIX_COMPATIBILITY_LEVEL=3.6"
       - "POSTFIX_SMTPD_TLS_CAPATH=/etc/ssl/certs/"
-      - "POSTFIX_SMTPD_TLS_CAFILE=/etc/ssl/postfix/ca.pem"
+      - "POSTFIX_SMTPD_TLS_CAFILE=/etc/ssl/postfix/ca-certificates.pem"
       - "POSTFIX_SMTP_TLS_CAPATH=/etc/ssl/certs/"
       - "POSTFIX_SMTPD_TLS_RECEIVED_HEADER=yes"
   - name: postfix-config-files
