@@ -70,8 +70,8 @@ log:
 
 extraVolumeMounts:
   - name: config
-    mountPath: /etc/dovecot/args/extra_passdb.yaml
-    subPath: extra_passdb.yaml
+    mountPath: /etc/dovecot/args/ext_extra_passdb.yaml
+    subPath: ext_extra_passdb.yaml
 
 extraEnv:
   - name: DOVECOT_EXT_EXTRA_PASSDB_DNPASS
