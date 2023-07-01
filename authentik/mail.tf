@@ -71,20 +71,8 @@ resource "authentik_token" "mail_postfix" {
   retrieve_key = true
 }
 
-resource "vault_generic_secret" "mail_dovecot" {
-  path = "k8s/mail/dovecot"
-  data_json = jsonencode({
-    DOVECOT_LDAP_DN = format(
-      "cn=%s,ou=users,%s",
-      authentik_user.mail_dovecot.username,
-      authentik_provider_ldap.mail.base_dn,
-    )
-    DOVECOT_LDAP_DNPASS = authentik_token.mail_dovecot.key
-  })
-}
-
 resource "vault_generic_secret" "dovecot_ldap-credentials" {
-  path = "k8s/dovecot/ldap-credentials"
+  path = "k8s/mail/dovecot/ldap-credentials"
   data_json = jsonencode({
     DOVECOT_LDAP_DN = format(
       "cn=%s,ou=users,%s",
