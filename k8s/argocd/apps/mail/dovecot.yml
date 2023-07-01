@@ -25,7 +25,7 @@ spec:
           prune: true
       destination:
         name: "{{name}}"
-        namespace: dovecot
+        namespace: mail
       sources:
         - repoURL: https://gitlab.mareo.fr/iac/infrastructure.git
           targetRevision: HEAD

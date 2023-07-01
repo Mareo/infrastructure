@@ -11,22 +11,7 @@ resources:
   - secrets.yml
   - service.yml
 
-replicas:
-  - name: dovecot
-    count: 1
-
 configMapGenerator:
-  - name: dovecot-config
-    behavior: merge
-    literals:
-      - "DOVECOT_FEATURES=ldap sasl-tcp"
-      - "DOVECOT_LDAP_URIS=ldap://ak-outpost-mail-ldap.authentik.svc"
-      - "DOVECOT_LDAP_BASE=dc=mail,dc=mareo,dc=fr"
-      - "DOVECOT_LDAP_USER_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%n))"
-      - "DOVECOT_LDAP_PASS_FILTER=(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%n))"
-      - "DOVECOT_LDAP_PASS_ATTRS=cn=user,uidNumber=userdb_uid,gidNumber=userdb_gid"
-      - "DOVECOT_LDAP_ITERATE_FILTER=(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)"
-      - "DOVECOT_LDAP_ITERATE_ATTRS=cn=user"
   - name: opendkim-config
     behavior: merge
     literals:
@@ -49,10 +34,10 @@ configMapGenerator:
       - "POSTFIX_SMTPD_SENDER_LOGIN_MAPS=ldap:/etc/postfix/sender_login_user.ldap"
       - "POSTFIX_SMTPD_TLS_ASK_CCERT=yes"
       - "POSTFIX_MILTER_MACRO_DEFAULTS=dkimsign=yes"
-      - "POSTFIX_VIRTUAL_TRANSPORT=lmtp:inet:dovecot-lmtp.dovecot.svc"
+      - "POSTFIX_VIRTUAL_TRANSPORT=lmtp:inet:dovecot-lmtp.mail.svc"
       - "POSTFIX_VIRTUAL_MAILBOX_DOMAINS=mareo.fr, hannache.fr, gitlab.mareo.fr"
       - "POSTFIX_VIRTUAL_ALIAS_MAPS=unionmap:{pipemap:{ldap:/etc/postfix/virtual_alias_maps_rules.ldap,pcre:/etc/postfix/virtual_alias_maps_rules.pcre},ldap:/etc/postfix/virtual_alias_maps.ldap} ldap:/etc/postfix/virtual_alias_maps_mailboxes.ldap"
-      - "POSTFIX_SMTPD_SASL_PATH=inet:dovecot-sasl.dovecot.svc:113"
+      - "POSTFIX_SMTPD_SASL_PATH=inet:dovecot-sasl.mail.svc:113"
   - name: postfix-config-files
     behavior: merge
     files:
@@ -67,15 +52,6 @@ configMapGenerator:
       - "POSTSRSD_DOMAIN=mareo.fr"
 
 patches:
-  - target:
-      kind: Deployment
-      name: dovecot
-    patch: |-
-      - op: add
-        path: /spec/template/spec/containers/0/envFrom/-
-        value:
-          secretRef:
-            name: dovecot-secret
   - target:
       kind: StatefulSet
       name: postfix

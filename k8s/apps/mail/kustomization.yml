@@ -7,16 +7,12 @@ commonLabels:
 
 resources:
   - postfix.yml
-  - dovecot.yml
 
 configMapGenerator:
-  - name: dovecot-config
-    literals: []
   - name: opendkim-config
     literals: []
   - name: postfix-config
     literals:
-      - "POSTFIX_SMTPD_SASL_PATH=inet:dovecot:113"
       - "POSTFIX_INTERNAL_MAIL_FILTER_CLASSES=bounce"
   - name: postfix-config-files
     files: []
