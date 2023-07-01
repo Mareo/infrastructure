@@ -48,7 +48,7 @@ ldap:
     secret: dovecot-ldap-credentials
     key: DOVECOT_LDAP_DNPASS
   authBind: true
-  filter: "(|(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=%u))(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(uid=%u)))"
+  filter: "(|(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=%u))(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(cn=%u)))"
   passAttrs:
     - dovecotAclGroups=userdb_acl_groups=%{ldap:dovecotAclGroups}
     - dovecotQuotaStorage=userdb_quota_rule=*:storage=%{ldap:dovecotQuotaStorage}
