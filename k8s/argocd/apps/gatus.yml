@@ -287,7 +287,7 @@ spec:
                       query-name: "mareo.fr"
                       query-type: "MX"
                     conditions:
-                      - "[BODY] == prometheus.mareo.fr."
+                      - "[BODY] == athena.mareo.fr."
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
@@ -299,7 +299,7 @@ spec:
                       query-name: "mareo.fr"
                       query-type: "MX"
                     conditions:
-                      - "[BODY] == prometheus.mareo.fr."
+                      - "[BODY] == athena.mareo.fr."
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
