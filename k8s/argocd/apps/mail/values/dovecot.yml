@@ -46,6 +46,17 @@ plugins:
     imapSieve:
       enabled: true
       url: "sieve://athena.mareo.fr"
+    scripts:
+      default:
+        enabled: true
+        name: default
+      configMap:
+        data:
+          default.sieve: |
+            if address :all :is "to" "test@mareo.fr"
+            {
+                fileinto "test";
+            }
 
 ldap:
   enabled: true
