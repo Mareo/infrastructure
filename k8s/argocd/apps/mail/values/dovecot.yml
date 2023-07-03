@@ -12,9 +12,12 @@ persistence:
 stats:
   enabled: true
 
+podAnnotations:
+  backup.velero.io/backup-volumes: data
+
 managesieve:
   enabled: true
-  starttls: false
+  starttls: true
   service:
     type: LoadBalancer
     nodePort: 30419
@@ -38,6 +41,11 @@ plugins:
   quota:
     enabled: true
     vsizes: true
+  sieve:
+    submissionHost: "postfix.mail.svc"
+    imapSieve:
+      enabled: true
+      url: "sieve://athena.mareo.fr"
 
 ldap:
   enabled: true

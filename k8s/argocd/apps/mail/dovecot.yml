@@ -35,9 +35,11 @@ spec:
           path: "k8s/argocd/apps/mail/extra/"
         - repoURL: registry.mareo.fr/services/charts/dovecot
           chart: dovecot
-          targetRevision: 2.0.0
+          targetRevision: 0.0.0-10
           helm:
             valueFiles:
               - $argocd/k8s/argocd/apps/mail/values/dovecot.yml
             values: |
+              image:
+                tag: commit-13c5e8eacfd5bba668b6be4411cdf53801bae5db
               fullnameOverride: dovecot
