@@ -50,13 +50,13 @@ plugins:
       default:
         enabled: true
         name: default
-      configMap:
-        data:
-          default.sieve: |
-            if address :all :is "to" "test@mareo.fr"
-            {
-                fileinto "test";
-            }
+    configMap:
+      data:
+        default.sieve: |
+          if address :all :is "to" "test@mareo.fr"
+          {
+              fileinto "test";
+          }
 
 ldap:
   enabled: true
