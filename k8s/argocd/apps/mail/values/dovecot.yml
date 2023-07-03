@@ -53,9 +53,14 @@ plugins:
     configMap:
       data:
         default.sieve: |
-          if address :all :is "to" "test@mareo.fr"
+          require "subaddress";
+          require "fileinto";
+          require "mailbox";
+
+          #SCRIPTNAME: Script part 0
+          if address :all :is "to" "marin@hannache.fr"
           {
-              fileinto "test";
+            fileinto :create "test";
           }
 
 ldap:
