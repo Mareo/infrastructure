@@ -51,6 +51,8 @@ plugins:
         enabled: false
       after:
         enabled: true
+      before:
+        enabled: true
     configMap:
       data:
         after.sieve: |
