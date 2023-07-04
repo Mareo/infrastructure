@@ -41,5 +41,5 @@ spec:
               - $argocd/k8s/argocd/apps/mail/values/dovecot.yml
             values: |
               image:
-                tag: commit-afffd1d36be91133b9dfb1380f87a5e38d846ddb
+                tag: commit-c2b7e2459e3bc6d046833d3077070ab274e07358
               fullnameOverride: dovecot
