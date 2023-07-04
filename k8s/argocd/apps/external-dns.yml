@@ -14,9 +14,10 @@ spec:
             zone: mareo.fr
           - name: in-cluster
             zone: hannache.fr
+  goTemplate: true
   template:
     metadata:
-      name: "{{name}}-external-dns"
+      name: "{{.name}}-external-dns"
       labels:
         app: external-dns
     spec:
@@ -27,26 +28,26 @@ spec:
         automated:
           prune: true
       destination:
-        name: "{{name}}"
+        name: "{{.name}}"
         namespace: external-dns
       source:
         repoURL: https://charts.bitnami.com/bitnami
         chart: external-dns
         targetRevision: 6.20.4
         helm:
-          releaseName: "external-dns-{{zone}}"
+          releaseName: external-dns-{{ replace "." "-" .zone }}
           values: |
-            fullnameOverride: "external-dns-{{zone}}"
-            txtOwnerId: "{{name}}"
+            fullnameOverride: "external-dns-{{ .zone }}"
+            txtOwnerId: "{{ .name }}"
             txtPrefix: externaldns-
             domainFilters:
-              - {{domain}}
+              - {{ .zone }}
             publishHostIP: true
             policy: sync
             provider: rfc2136
             rfc2136:
               host: 5.9.138.122
-              zone: {{zone}}
+              zone: {{ .zone }}
               minTTL: 1h
               secretName: tsig-secret
               tsigSecretAlg: hmac-sha256
