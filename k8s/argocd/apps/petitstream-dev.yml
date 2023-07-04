@@ -16,7 +16,7 @@ spec:
       path: "dev/"
     - repoURL: https://ot-container-kit.github.io/helm-charts/
       chart: redis
-      targetRevision: 0.14.2
+      targetRevision: 0.15.2
       helm:
         releaseName: "redis"
         values: |
