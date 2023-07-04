@@ -9,10 +9,11 @@ metadata:
 spec:
   generators:
     - list:
-        - name: in-cluster
-          zone: mareo.fr
-        - name: in-cluster
-          zone: hannache.fr
+        elements:
+          - name: in-cluster
+            zone: mareo.fr
+          - name: in-cluster
+            zone: hannache.fr
   template:
     metadata:
       name: "{{name}}-external-dns"
