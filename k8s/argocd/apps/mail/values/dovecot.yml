@@ -53,6 +53,9 @@ plugins:
         enabled: true
       before:
         enabled: true
+        paths:
+          - "file:/sieve/before.sieve;bindir=/srv/mail/sieve"
+          - "file:/sieve/before2.sieve;bindir=/srv/mail/sieve"
     configMap:
       data:
         after.sieve: |
@@ -66,7 +69,13 @@ plugins:
           require "copy";
           require "mailbox";
 
-          fileint :copy :create "test";
+          fileinto :copy :create "test";
+        before2.sieve: |
+          require "fileinto";
+          require "copy";
+          require "mailbox";
+
+          fileinto :copy :create "test2";
 
 ldap:
   enabled: true
