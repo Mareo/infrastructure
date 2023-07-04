@@ -15,7 +15,7 @@ configMapGenerator:
   - name: opendkim-config
     behavior: merge
     literals:
-      - "OPENDKIM_DOMAIN=mareo.fr"
+      - "OPENDKIM_DOMAIN=csl:mareo.fr,hannache.fr"
       - "OPENDKIM_SELECTOR=athena"
       - "OPENDKIM_SUBDOMAINS=yes"
       - "OPENDKIM_KEYFILE=/secrets/opendkim/athena"
