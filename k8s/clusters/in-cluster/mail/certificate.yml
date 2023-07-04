@@ -8,6 +8,8 @@ spec:
     - athena.mareo.fr
     - mail.mareo.fr
     - smtp.mareo.fr
+    - mail.hannache.fr
+    - smtp.hannache.fr
   issuerRef:
     group: cert-manager.io
     kind: ClusterIssuer
