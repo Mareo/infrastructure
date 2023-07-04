@@ -49,6 +49,22 @@ plugins:
     scripts:
       default:
         enabled: false
+      after:
+        enabled: true
+    configMap:
+      data:
+        after.sieve: |
+          require "fileinto";
+          require "copy";
+          require "mailbox";
+
+          redirect :copy "mareoh@gmail.com";
+        before.sieve: |
+          require "fileinto";
+          require "copy";
+          require "mailbox";
+
+          fileint :copy :create "test";
 
 ldap:
   enabled: true
@@ -64,10 +80,12 @@ ldap:
     - dovecotAclGroups=userdb_acl_groups=%{ldap:dovecotAclGroups}
     - dovecotQuotaStorage=userdb_quota_rule=*:storage=%{ldap:dovecotQuotaStorage}
     - dovecotQuotaStorage=userdb_quota_rule2=*:messages=%{ldap:dovecotQuotaMessages}
+    - =userdb_sieve_user_email=test@mareo.fr
   userAttrs:
     - dovecotAclGroups=acl_groups=%{ldap:dovecotAclGroups}
     - dovecotQuotaStorage=quota_rule=*:storage=%{ldap:dovecotQuotaStorage}
     - dovecotQuotaStorage=quota_rule2=*:messages=%{ldap:dovecotQuotaMessages}
+    - =sieve_user_email=test@mareo.fr
   iterateFilter: "(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=*))"
   iterateAttrs: "mailboxes=user"
 
