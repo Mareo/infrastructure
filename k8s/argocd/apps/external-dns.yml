@@ -17,7 +17,7 @@ spec:
   goTemplate: true
   template:
     metadata:
-      name: external-dns-{{ .zone | replace "." "-" }}
+      name: '{{ .name }}-external-dns-{{ .zone | replace "." "-" }}'
       labels:
         app: external-dns
     spec:
