@@ -8,7 +8,11 @@ metadata:
     app: external-dns
 spec:
   generators:
-    - clusters: {}
+    - list:
+        - name: in-cluster
+          zone: mareo.fr
+        - name: in-cluster
+          zone: hannache.fr
   template:
     metadata:
       name: "{{name}}-external-dns"
@@ -29,19 +33,19 @@ spec:
         chart: external-dns
         targetRevision: 6.20.4
         helm:
-          releaseName: external-dns
+          releaseName: "external-dns-{{zone}}"
           values: |
+            fullnameOverride: "external-dns-{{zone}}"
             txtOwnerId: "{{name}}"
             txtPrefix: externaldns-
             domainFilters:
-              - mareo.fr
-              - hannache.fr
+              - {{domain}}
             publishHostIP: true
             policy: sync
             provider: rfc2136
             rfc2136:
               host: 5.9.138.122
-              zone: mareo.fr
+              zone: {{zone}}
               minTTL: 1h
               secretName: tsig-secret
               tsigSecretAlg: hmac-sha256
