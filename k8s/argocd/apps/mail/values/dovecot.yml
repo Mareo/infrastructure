@@ -46,36 +46,6 @@ plugins:
     imapSieve:
       enabled: true
       url: "sieve://athena.mareo.fr"
-    scripts:
-      default:
-        enabled: false
-      after:
-        enabled: true
-      before:
-        enabled: true
-        paths:
-          - "file:/sieve/before.sieve;bindir=/srv/mail/sieve"
-          - "file:/sieve/before2.sieve;bindir=/srv/mail/sieve"
-    configMap:
-      data:
-        after.sieve: |
-          require "fileinto";
-          require "copy";
-          require "mailbox";
-
-          redirect :copy "mareoh@gmail.com";
-        before.sieve: |
-          require "fileinto";
-          require "copy";
-          require "mailbox";
-
-          fileinto :copy :create "test";
-        before2.sieve: |
-          require "fileinto";
-          require "copy";
-          require "mailbox";
-
-          fileinto :copy :create "test2";
 
 ldap:
   enabled: true
