@@ -48,20 +48,7 @@ plugins:
       url: "sieve://athena.mareo.fr"
     scripts:
       default:
-        enabled: true
-        name: default
-    configMap:
-      data:
-        default.sieve: |
-          require "subaddress";
-          require "fileinto";
-          require "mailbox";
-
-          #SCRIPTNAME: Script part 0
-          if address :all :is "to" "marin@hannache.fr"
-          {
-            fileinto :create "test";
-          }
+        enabled: false
 
 ldap:
   enabled: true
