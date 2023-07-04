@@ -93,7 +93,7 @@ log:
   auth:
     debug: true
   mail:
-    debug: true
+    debug: false
   ssl:
     verbose: false
 
