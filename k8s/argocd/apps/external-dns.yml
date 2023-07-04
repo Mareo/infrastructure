@@ -35,9 +35,9 @@ spec:
         chart: external-dns
         targetRevision: 6.20.4
         helm:
-          releaseName: external-dns-{{ replace "." "-" .zone }}
+          releaseName: external-dns-{{ .zone | replace "." "-" }}
           values: |
-            fullnameOverride: "external-dns-{{ .zone }}"
+            fullnameOverride: external-dns-{{ .zone | replace "." "-" }}
             txtOwnerId: "{{ .name }}"
             txtPrefix: externaldns-
             domainFilters:
