@@ -40,6 +40,7 @@ patchesJson6902:
           selector:
             dnsZones:
               - "mareo.fr"
+              - "hannache.fr"
           dns01:
             rfc2136:
               nameserver: "prometheus.mareo.fr"
