@@ -14,6 +14,8 @@ resource "authentik_user" "gitlab_mail" {
     mailAliases = [
       "@gitlab.mareo.fr",
     ]
+    dovecotQuotaStorage  = "250M"
+    dovecotQuotaMessages = 100
   })
 }
 

@@ -1,7 +1,7 @@
 resource "authentik_provider_ldap" "mail" {
   name         = "mail-ldap"
   base_dn      = "dc=mail,dc=mareo,dc=fr"
-  bind_flow    = data.authentik_flow.default-authentication-flow.id
+  bind_flow    = authentik_flow.apppassword-authentication-flow.uuid
   search_group = authentik_group.groups["mail_service_accounts"].id
 }
 

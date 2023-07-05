@@ -24,8 +24,8 @@ locals {
           "marin@hannache.fr",
         ]
         dovecotAclGroups     = "master"
-        dovecotQuotaStorage  = 0
-        dovecotQuotaMessages = 0
+        dovecotQuotaStorage  = "10G"
+        dovecotQuotaMessages = 250000
       }
       groups = [
         "alertmanager",

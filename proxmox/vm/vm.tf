@@ -1,10 +1,11 @@
 resource "proxmox_vm_qemu" "vm" {
   name        = var.name
+  qemu_os     = "other"
   target_node = var.target_node
   onboot      = var.onboot
 
   pool = var.pool != "" ? var.pool : null
-  tags = join(",", var.tags)
+  tags = join(";", var.tags)
 
   cores   = var.cores
   vcpus   = var.cores

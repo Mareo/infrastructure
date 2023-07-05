@@ -8,6 +8,17 @@ locals {
     "pages.mareo.fr."   = "65.108.17.229"
     "*.pages.mareo.fr." = "65.108.17.229"
   }
+
+  dns_mx = {
+    "mareo.fr." = [{
+      preference = 10
+      exchange   = "athena.mareo.fr."
+    }]
+    "gitlab.mareo.fr." = [{
+      preference = 10
+      exchange   = "athena.mareo.fr."
+    }]
+  }
 }
 
 resource "dns_cname_record" "dns" {
@@ -26,4 +37,19 @@ resource "dns_a_record_set" "dns" {
   addresses = [
     each.value
   ]
+}
+
+resource "dns_mx_record_set" "dns" {
+  for_each = local.dns_mx
+
+  zone = "mareo.fr."
+  name = each.key != "mareo.fr." ? trimsuffix(each.key, ".mareo.fr.") : null
+
+  dynamic "mx" {
+    for_each = each.value
+    content {
+      preference = mx.value.preference
+      exchange   = mx.value.exchange
+    }
+  }
 }
