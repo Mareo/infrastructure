@@ -46,7 +46,7 @@ spec:
             policy: sync
             provider: rfc2136
             rfc2136:
-              host: 5.9.138.122
+              host: 164.132.225.201
               zone: {{ .zone }}
               minTTL: 1h
               secretName: tsig-secret

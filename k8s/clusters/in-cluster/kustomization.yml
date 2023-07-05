@@ -43,7 +43,7 @@ patchesJson6902:
               - "hannache.fr"
           dns01:
             rfc2136:
-              nameserver: "prometheus.mareo.fr"
+              nameserver: "mikros.mareo.fr"
               tsigKeyName: "athena.mareo.fr."
               tsigAlgorithm: HMACSHA256
               tsigSecretSecretRef:

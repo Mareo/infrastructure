@@ -182,6 +182,28 @@ spec:
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
+                  - name: DNS - athena.mareo.fr
+                    group: Infrastructure
+                    interval: "${DNS_CHECK_INTERVAL}"
+                    url: "athena.mareo.fr"
+                    dns:
+                      query-name: "mareo.fr"
+                      query-type: "A"
+                    conditions:
+                      - "[DNS_RCODE] == NOERROR"
+                    alerts:
+                      - type: discord
+                  - name: DNS - mikros.mareo.fr
+                    group: Infrastructure
+                    interval: "${DNS_CHECK_INTERVAL}"
+                    url: "mikros.mareo.fr"
+                    dns:
+                      query-name: "mareo.fr"
+                      query-type: "A"
+                    conditions:
+                      - "[DNS_RCODE] == NOERROR"
+                    alerts:
+                      - type: discord
                   - name: DNS - prometheus.mareo.fr
                     group: Infrastructure
                     interval: "${DNS_CHECK_INTERVAL}"
