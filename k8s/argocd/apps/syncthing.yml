@@ -42,7 +42,7 @@ spec:
                 externalTrafficPolicy: Cluster
             ingress:
               main:
-                enabled: true
+                enabled: false
                 annotations:
                   cert-manager.io/cluster-issuer: default-issuer
                   nginx.ingress.kubernetes.io/auth-url: |-
