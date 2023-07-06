@@ -48,6 +48,7 @@ locals {
         "petitstream_ops",
         "prometheus",
         "proxmox",
+        "syncthing",
         "vault",
         "vault_admins",
         "vaultwarden",
@@ -65,6 +66,7 @@ locals {
         "gitlab",
         "hedgedoc",
         "nextcloud",
+        "syncthing",
         "vaultwarden",
       ]
     }

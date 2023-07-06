@@ -23,8 +23,8 @@ provider "proxmox" {
 
 provider "dns" {
   update {
-    server        = "prometheus.mareo.fr"
-    key_name      = "mikros.mareo.fr."
+    server        = "mikros.mareo.fr"
+    key_name      = "athena.mareo.fr."
     key_algorithm = "hmac-sha256"
     key_secret    = trimspace(file("../secrets/dns_key"))
   }

@@ -23,6 +23,7 @@ locals {
     "nextcloud_service_accounts" = {}
     "prometheus"                 = {}
     "proxmox"                    = {}
+    "syncthing"                  = {}
     "vault"                      = {}
     "vault_admins"               = {}
     "vaultwarden"                = {}
