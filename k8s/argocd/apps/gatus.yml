@@ -204,10 +204,10 @@ spec:
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
-                  - name: DNS - prometheus.mareo.fr
+                  - name: DNS - sdns2.ovh.net.
                     group: Infrastructure
                     interval: "${DNS_CHECK_INTERVAL}"
-                    url: "prometheus.mareo.fr"
+                    url: "sdns2.ovh.net."
                     dns:
                       query-name: "mareo.fr"
                       query-type: "A"
