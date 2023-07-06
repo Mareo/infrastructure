@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - gatus-ingress.yml
   - kube-prometheus-stack-ingress.yml
+  - syncthing-ingress.yml
