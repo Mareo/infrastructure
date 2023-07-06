@@ -68,4 +68,4 @@ spec:
                 type: pvc
                 storageClass: csi-cephfs-sc-retain
                 accessMode: ReadWriteOnce
-                size: 750Mi
+                size: 500Gi
