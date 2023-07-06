@@ -426,7 +426,6 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
-                      - "[BODY] == pat(*Syncthing*)"
                   - name: Syncthing (data)
                     group: Services
                     interval: 1m
