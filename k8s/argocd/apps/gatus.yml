@@ -418,6 +418,31 @@ spec:
                       - "[STATUS] == 200"
                     alerts:
                       - type: discord
+                  - name: Syncthing
+                    group: Services
+                    interval: "${HTTP_CHECK_INTERVAL}"
+                    url: "https://syncthing.mareo.fr/"
+                    conditions:
+                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                      - "[RESPONSE_TIME] < 500"
+                      - "[STATUS] == 200"
+                      - "[BODY] == pat(*The Syncthing admin interface requires JavaScript.*)"
+                  - name: Syncthing (data)
+                    group: Services
+                    interval: 1m
+                    url: "tcp://syncthing.mareo.fr:22000"
+                    conditions:
+                      - "[CONNECTED] == true"
+                    alerts:
+                      - type: discord
+                  - name: Syncthing (discovery)
+                    group: Services
+                    interval: 1m
+                    url: "udp://syncthing.mareo.fr:21027"
+                    conditions:
+                      - "[CONNECTED] == true"
+                    alerts:
+                      - type: discord
                   - name: Vaultwarden
                     group: Services
                     interval: "${HTTP_CHECK_INTERVAL}"
