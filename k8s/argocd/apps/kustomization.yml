@@ -25,5 +25,6 @@ resources:
   - rbd-csi.yml
   - redis-operator.yml
   - redis.yml
+  - synchting.yml
   - vault.yml
   - vaultwarden.yml
