@@ -31,6 +31,13 @@ nft_define_host:
     value: 192.168.0.1
 
 forwarded_ports:
+  - dport: 22000 # syncthing
+    host: $k3s
+    port: 22000
+  - dport: 21027 # syncthing-discovery
+    host: $k3s
+    port: 21027
+    protocol: udp
   - dport: ssh
     host: $k3s
     port: 30022
