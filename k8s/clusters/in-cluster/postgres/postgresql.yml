@@ -12,6 +12,10 @@ spec:
     storageClass: csi-rbd-sc-retain
   numberOfInstances: 2
 
+  allowedSourceRanges:
+    - 172.20.0.0/16
+    - 172.21.0.0/16
+
   enableConnectionPooler: true
   enableMasterPoolerLoadBalancer: true
   connectionPooler:
