@@ -11,7 +11,12 @@ spec:
     size: 50Gi
     storageClass: csi-rbd-sc-retain
   numberOfInstances: 2
+
+  enableConnectionPooler: true
   enableMasterPoolerLoadBalancer: true
+  connectionPooler:
+    numberOfInstances: 2
+    mode: transaction
 
   # users: name -> permissions (usually [])
   users:
