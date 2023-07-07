@@ -20,3 +20,5 @@ data:
   delete_annotation_name_key: "delete-clustername"
 
   additional_pod_capabilities: "SYS_NICE"
+
+  db_hosted_zone: "mareo.fr"
