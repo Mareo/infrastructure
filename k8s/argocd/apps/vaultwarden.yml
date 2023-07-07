@@ -86,7 +86,7 @@ spec:
                     name: vaultwarden-mail
                     key: password
               - name: DATABASE_HOST
-                value: in-cluster-main-cluster.postgres.svc.cluster.local
+                value: in-cluster-main-cluster-pooler.postgres.svc.cluster.local
               - name: DATABASE_DB
                 value: vaultwarden
               - name: DATABASE_USERNAME

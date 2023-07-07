@@ -65,7 +65,7 @@ spec:
                   from_address: no-reply@grafana.mareo.fr
                 database:
                   type: postgres
-                  host: in-cluster-main-cluster.postgres.svc.cluster.local
+                  host: in-cluster-main-cluster-pooler.postgres.svc.cluster.local
                   name: grafana
                   user: "$__file{/etc/secrets/db/username}"
                   password: "$__file{/etc/secrets/db/password}"

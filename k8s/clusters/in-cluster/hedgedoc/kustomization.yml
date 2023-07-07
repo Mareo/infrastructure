@@ -17,7 +17,7 @@ configMapGenerator:
       # fixed
       - NODE_TLS_REJECT_UNAUTHORIZED=0
       - CMD_DOMAIN=hedgedoc.mareo.fr
-      - CMD_DB_HOST=in-cluster-main-cluster.postgres.svc.cluster.local
+      - CMD_DB_HOST=in-cluster-main-cluster-pooler.postgres.svc.cluster.local
       - CMD_DB_PORT=5432
       - CMD_DB_DATABASE=hedgedoc
       - CMD_ALLOW_ORIGIN=hedgedoc.mareo.fr

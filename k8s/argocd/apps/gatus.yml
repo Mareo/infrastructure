@@ -84,7 +84,7 @@ spec:
               metrics: true
               storage:
                 type: postgres
-                path: "postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@in-cluster-main-cluster.postgres.svc.cluster.local/gatus?sslmode=require"
+                path: "postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@in-cluster-main-cluster-pooler.postgres.svc.cluster.local/gatus?sslmode=require"
               alerting:
                 discord:
                   webhook-url: "${DISCORD_WEBHOOK}"

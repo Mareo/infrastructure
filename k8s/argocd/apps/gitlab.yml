@@ -70,7 +70,7 @@ spec:
                   secret: gitlab-redis
                   key: password
               psql:
-                host: in-cluster-main-cluster.postgres.svc.cluster.local
+                host: in-cluster-main-cluster-pooler.postgres.svc.cluster.local
                 database: gitlab
                 username: gitlab.gitlab
                 password:

@@ -51,7 +51,7 @@ spec:
               error_reporting:
                 enabled: false
               postgresql:
-                host: in-cluster-main-cluster.postgres.svc.cluster.local
+                host: in-cluster-main-cluster-pooler.postgres.svc.cluster.local
                 name: "authentik"
                 user: null
               redis:
