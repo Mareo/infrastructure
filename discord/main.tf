@@ -47,6 +47,18 @@ locals {
         ]
       },
       {
+        name = "authentik"
+        type = "text"
+        webhooks = [
+          {
+            avatar_path = "icons/authentik.png"
+            name        = "Authentik"
+            url_attr    = "slack_url"
+            vault_path  = "k8s/authentik/notifications"
+          },
+        ]
+      },
+      {
         name = "argo-cd"
         type = "text"
         webhooks = [

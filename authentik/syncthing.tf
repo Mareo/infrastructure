@@ -11,9 +11,9 @@ resource "authentik_application" "syncthing" {
   slug               = "syncthing"
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_proxy.syncthing.id
-  meta_icon          = "https://syncthing.io/img/logo.svg"
+  meta_icon          = "https://upload.wikimedia.org/wikipedia/commons/8/83/SyncthingAugustLogo.png"
   meta_launch_url    = "https://syncthing.mareo.fr/"
-  meta_publisher     = "TwiN"
+  meta_publisher     = "Jakob Borg et al."
   policy_engine_mode = "any"
 }
 
