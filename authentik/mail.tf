@@ -26,6 +26,8 @@ resource "authentik_outpost" "mail-ldap" {
     log_level              = "info"
     object_naming_template = "ak-outpost-%(name)s"
 
+    container_image = "ghcr.io/goauthentik/ldap:2023.5.5"
+
     authentik_host          = "https://auth.mareo.fr/"
     authentik_host_browser  = "https://auth.mareo.fr/"
     authentik_host_insecure = false

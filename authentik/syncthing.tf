@@ -7,9 +7,9 @@ resource "authentik_provider_proxy" "syncthing" {
 }
 
 resource "authentik_application" "syncthing" {
-  name               = "syncthing"
+  name               = "Syncthing"
   slug               = "syncthing"
-  group              = "Infrastructure"
+  group              = "Services"
   protocol_provider  = authentik_provider_proxy.syncthing.id
   meta_icon          = "https://upload.wikimedia.org/wikipedia/commons/8/83/SyncthingAugustLogo.png"
   meta_launch_url    = "https://syncthing.mareo.fr/"

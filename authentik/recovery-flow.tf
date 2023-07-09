@@ -48,7 +48,6 @@ resource "authentik_stage_email" "default-recovery-email" {
   activate_user_on_success = true
 }
 
-
 resource "authentik_stage_prompt" "default-recovery-change-password" {
   name = "default-recovery-change-password"
   fields = [
@@ -68,26 +67,32 @@ resource "authentik_flow_stage_binding" "default-recovery-identification" {
   order  = 10
 }
 
+resource "authentik_flow_stage_binding" "default-recovery-authentication-mfa-validation" {
+  target = authentik_flow.default-recovery-flow.uuid
+  stage  = data.authentik_stage.default-authentication-mfa-validation.id
+  order  = 20
+}
+
 resource "authentik_flow_stage_binding" "default-recovery-email" {
   target = authentik_flow.default-recovery-flow.uuid
   stage  = authentik_stage_email.default-recovery-email.id
-  order  = 20
+  order  = 30
 }
 
 resource "authentik_flow_stage_binding" "default-recovery-change-password" {
   target = authentik_flow.default-recovery-flow.uuid
   stage  = authentik_stage_prompt.default-recovery-change-password.id
-  order  = 30
+  order  = 40
 }
 
 resource "authentik_flow_stage_binding" "default-recovery-user-write" {
   target = authentik_flow.default-recovery-flow.uuid
   stage  = authentik_stage_user_write.default-recovery-user-write.id
-  order  = 40
+  order  = 50
 }
 
 resource "authentik_flow_stage_binding" "default-recovery-user-login" {
   target = authentik_flow.default-recovery-flow.uuid
   stage  = authentik_stage_user_login.default-recovery-user-login.id
-  order  = 50
+  order  = 60
 }

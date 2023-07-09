@@ -5,10 +5,6 @@ resource "authentik_flow" "apppassword-authentication-flow" {
   designation = "authentication"
 }
 
-data "authentik_stage" "default-authentication-login" {
-  name = "default-authentication-login"
-}
-
 resource "authentik_stage_password" "authentication-apppassword" {
   name     = "AppPassword"
   backends = ["authentik.core.auth.TokenBackend"]
@@ -16,7 +12,7 @@ resource "authentik_stage_password" "authentication-apppassword" {
 
 resource "authentik_stage_identification" "identification-authentication-apppassword" {
   name           = "identification-authentication-apppassword"
-  user_fields    = ["username"]
+  user_fields    = ["username", "email"]
   sources        = [data.authentik_source.inbuilt.uuid]
   password_stage = authentik_stage_password.authentication-apppassword.id
 }
@@ -28,9 +24,7 @@ resource "authentik_flow_stage_binding" "apppassword-authentication-flow_identif
 }
 
 resource "authentik_flow_stage_binding" "apppassword-authentication-flow_default-authentication-login_1" {
-  target               = authentik_flow.apppassword-authentication-flow.uuid
-  stage                = data.authentik_stage.default-authentication-login.id
-  order                = 20
-  evaluate_on_plan     = false
-  re_evaluate_policies = true
+  target = authentik_flow.apppassword-authentication-flow.uuid
+  stage  = data.authentik_stage.default-authentication-login.id
+  order  = 20
 }
