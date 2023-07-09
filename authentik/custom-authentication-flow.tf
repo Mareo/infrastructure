@@ -12,7 +12,7 @@ resource "authentik_stage_identification" "passwordless-identification-authentic
   sources           = [data.authentik_source.inbuilt.uuid]
   password_stage    = data.authentik_stage.default-authentication-password.id
   passwordless_flow = authentik_flow.passwordless-authentication-flow.uuid
-  recovery_flow     = authentik_flow.default-recovery-flow.uuid
+  recovery_flow     = authentik_flow.recovery-flow.uuid
 }
 
 resource "authentik_flow_stage_binding" "custom-authentication-flow_passwordless-identification" {

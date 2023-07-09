@@ -1,5 +1,5 @@
 resource "authentik_stage_prompt_field" "recovery-password" {
-  name        = "password_default-recovery-change-password"
+  name        = "password_recovery-change-password"
   field_key   = "password"
   label       = "Password"
   type        = "password"
@@ -9,7 +9,7 @@ resource "authentik_stage_prompt_field" "recovery-password" {
 }
 
 resource "authentik_stage_prompt_field" "recovery-password-repeat" {
-  name        = "password_repeat_default-recovery-change-password"
+  name        = "password_repeat_recovery-change-password"
   field_key   = "password_repeat"
   label       = "Password (repeat)"
   type        = "password"
@@ -18,29 +18,18 @@ resource "authentik_stage_prompt_field" "recovery-password-repeat" {
   order       = 1
 }
 
-resource "authentik_flow" "default-recovery-flow" {
+resource "authentik_flow" "recovery-flow" {
   name               = "Default recovery flow"
   title              = "Reset your password"
-  slug               = "default-recovery-flow"
+  slug               = "recovery-flow"
   designation        = "recovery"
   policy_engine_mode = "any"
   layout             = "stacked"
   background         = "/static/dist/assets/images/flow_background.jpg"
 }
 
-resource "authentik_stage_identification" "default-recovery-identification" {
-  name                      = "default-recovery-identification"
-  user_fields               = ["email", "username"]
-  case_insensitive_matching = true
-  sources                   = [data.authentik_source.inbuilt.uuid]
-}
-
-resource "authentik_stage_user_write" "default-recovery-user-write" {
-  name = "default-recovery-user-write"
-}
-
-resource "authentik_stage_email" "default-recovery-email" {
-  name                     = "default-recovery-email"
+resource "authentik_stage_email" "recovery-email" {
+  name                     = "recovery-email"
   use_global_settings      = true
   timeout                  = 30
   subject                  = "authentik"
@@ -48,51 +37,46 @@ resource "authentik_stage_email" "default-recovery-email" {
   activate_user_on_success = true
 }
 
-resource "authentik_stage_prompt" "default-recovery-change-password" {
-  name = "default-recovery-change-password"
+resource "authentik_stage_prompt" "recovery-change-password" {
+  name = "recovery-change-password"
   fields = [
     authentik_stage_prompt_field.recovery-password.id,
     authentik_stage_prompt_field.recovery-password-repeat.id,
   ]
 }
 
-resource "authentik_stage_user_login" "default-recovery-user-login" {
-  name             = "default-recovery-user-login"
-  session_duration = "seconds=0"
-}
-
-resource "authentik_flow_stage_binding" "default-recovery-identification" {
-  target = authentik_flow.default-recovery-flow.uuid
-  stage  = authentik_stage_identification.default-recovery-identification.id
+resource "authentik_flow_stage_binding" "recovery-identification" {
+  target = authentik_flow.recovery-flow.uuid
+  stage  = data.authentik_stage.default-authentication-identification.id
   order  = 10
 }
 
-resource "authentik_flow_stage_binding" "default-recovery-authentication-mfa-validation" {
-  target = authentik_flow.default-recovery-flow.uuid
+resource "authentik_flow_stage_binding" "recovery-authentication-mfa-validation" {
+  target = authentik_flow.recovery-flow.uuid
   stage  = data.authentik_stage.default-authentication-mfa-validation.id
   order  = 20
 }
 
-resource "authentik_flow_stage_binding" "default-recovery-email" {
-  target = authentik_flow.default-recovery-flow.uuid
-  stage  = authentik_stage_email.default-recovery-email.id
+resource "authentik_flow_stage_binding" "recovery-email" {
+  target = authentik_flow.recovery-flow.uuid
+  stage  = authentik_stage_email.recovery-email.id
   order  = 30
 }
 
-resource "authentik_flow_stage_binding" "default-recovery-change-password" {
-  target = authentik_flow.default-recovery-flow.uuid
-  stage  = authentik_stage_prompt.default-recovery-change-password.id
+resource "authentik_flow_stage_binding" "recovery-change-password" {
+  target = authentik_flow.recovery-flow.uuid
+  stage  = authentik_stage_prompt.recovery-change-password.id
   order  = 40
 }
 
-resource "authentik_flow_stage_binding" "default-recovery-user-write" {
-  target = authentik_flow.default-recovery-flow.uuid
-  stage  = authentik_stage_user_write.default-recovery-user-write.id
+resource "authentik_flow_stage_binding" "recovery-user-write" {
+  target = authentik_flow.recovery-flow.uuid
+  stage  = data.authentik_stage.default-user-settings-write.id
   order  = 50
 }
 
-resource "authentik_flow_stage_binding" "default-recovery-user-login" {
-  target = authentik_flow.default-recovery-flow.uuid
-  stage  = authentik_stage_user_login.default-recovery-user-login.id
+resource "authentik_flow_stage_binding" "recovery-user-login" {
+  target = authentik_flow.recovery-flow.uuid
+  stage  = data.authentik_stage.default-authentication-login.id
   order  = 60
 }
