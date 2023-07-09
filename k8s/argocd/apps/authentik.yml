@@ -48,7 +48,7 @@ spec:
                     - auth.mareo.fr
                   secretName: "authentik-tls"
             authentik:
-              log_level: true
+              log_level: debug
               error_reporting:
                 enabled: false
               postgresql:
