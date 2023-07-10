@@ -1,33 +1,17 @@
 {
-  inputs = {
-    poetry2nix = {
-      url = "github:nix-community/poetry2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    futils.url = "github:numtide/flake-utils";
-  };
+  inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  outputs = { self, nixpkgs, poetry2nix, futils } @ inputs:
-    let
-      inherit (nixpkgs) lib;
-      inherit (lib) recursiveUpdate;
-      inherit (futils.lib) eachDefaultSystem defaultSystems;
-
-      nixpkgsFor = lib.genAttrs defaultSystems (system: import nixpkgs {
-        inherit system;
-        overlays = [ poetry2nix.overlay ];
-      });
-    in
-    (eachDefaultSystem (system:
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = nixpkgsFor.${system};
+        pkgs = import nixpkgs {
+          inherit system;
+        };
       in
       {
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            (pkgs.poetry2nix.mkPoetryEnv {
-              projectDir = self;
-            })
             git
             jq
             kubectl
@@ -37,8 +21,8 @@
             shellcheck
             terraform
             vault
+            yq
           ];
         };
-      }
-    ));
+    });
 }
