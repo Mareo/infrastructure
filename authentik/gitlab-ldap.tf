@@ -3,6 +3,7 @@ resource "authentik_provider_ldap" "gitlab-ldap" {
   base_dn      = "dc=gitlab,dc=mareo,dc=fr"
   bind_flow    = data.authentik_flow.default-authentication-flow.id
   search_group = authentik_group.groups["gitlab_service_accounts"].id
+  mfa_support  = false
 }
 
 resource "authentik_application" "gitlab-ldap" {
@@ -40,8 +41,6 @@ resource "authentik_outpost" "gitlab-ldap" {
   config = jsonencode({
     log_level              = "info"
     object_naming_template = "ak-outpost-%(name)s"
-
-    container_image = "ghcr.io/goauthentik/ldap:2023.6.1"
 
     authentik_host          = "https://auth.mareo.fr/"
     authentik_host_browser  = "https://auth.mareo.fr/"

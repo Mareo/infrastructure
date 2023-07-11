@@ -1,9 +1,31 @@
-
 resource "authentik_provider_ldap" "nextcloud-ldap" {
   name         = "nextcloud-ldap"
   base_dn      = "dc=nextcloud,dc=mareo,dc=fr"
   bind_flow    = data.authentik_flow.default-authentication-flow.id
   search_group = authentik_group.groups["nextcloud_service_accounts"].id
+  mfa_support  = false
+}
+
+resource "authentik_application" "nextcloud-ldap" {
+  slug               = "nextcloud-ldap"
+  name               = "NextCloud (LDAP)"
+  group              = "Services"
+  protocol_provider  = authentik_provider_ldap.nextcloud-ldap.id
+  meta_icon          = "${local.icon-url}/nextcloud.png"
+  meta_launch_url    = "blank://blank"
+  meta_publisher     = "NextCloud GmbH"
+  policy_engine_mode = "any"
+}
+
+resource "authentik_policy_binding" "nextcloud-ldap_group-filtering" {
+  for_each = { for idx, value in [
+    "nextcloud",
+    "nextcloud_admins",
+    "nextcloud_service_accounts",
+  ] : idx => value }
+  target = authentik_application.nextcloud-ldap.uuid
+  group  = authentik_group.groups[each.value].id
+  order  = each.key
 }
 
 resource "authentik_outpost" "nextcloud-ldap" {
@@ -18,8 +40,6 @@ resource "authentik_outpost" "nextcloud-ldap" {
   config = jsonencode({
     log_level              = "info"
     object_naming_template = "ak-outpost-%(name)s"
-
-    container_image = "ghcr.io/goauthentik/ldap:2023.5.5"
 
     authentik_host          = "https://auth.mareo.fr/"
     authentik_host_browser  = "https://auth.mareo.fr/"

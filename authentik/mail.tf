@@ -3,6 +3,7 @@ resource "authentik_provider_ldap" "mail" {
   base_dn      = "dc=mail,dc=mareo,dc=fr"
   bind_flow    = authentik_flow.apppassword-authentication-flow.uuid
   search_group = authentik_group.groups["mail_service_accounts"].id
+  mfa_support  = false
 }
 
 resource "authentik_application" "mail" {
@@ -25,8 +26,6 @@ resource "authentik_outpost" "mail-ldap" {
   config = jsonencode({
     log_level              = "info"
     object_naming_template = "ak-outpost-%(name)s"
-
-    container_image = "ghcr.io/goauthentik/ldap:2023.6.1"
 
     authentik_host          = "https://auth.mareo.fr/"
     authentik_host_browser  = "https://auth.mareo.fr/"
