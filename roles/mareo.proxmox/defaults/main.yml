@@ -13,7 +13,7 @@ proxmox_default_images:
 
 proxmox_ceph_enabled: false
 proxmox_ceph_address: 172.31.0.1/24
-proxmox_ceph_network: "{{ proxmox_ceph_address | ansible.utils.ipaddr('network') }}"
+proxmox_ceph_network: "{{ proxmox_ceph_address | ansible.utils.ipaddr('network/prefix') }}"
 proxmox_ceph_cluster_network: "{{ proxmox_ceph_network }}"
 proxmox_ceph_replicas: 3
 proxmox_ceph_osds: []

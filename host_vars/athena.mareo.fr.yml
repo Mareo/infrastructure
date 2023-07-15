@@ -22,6 +22,12 @@ dhcp_global_domain_search:
   - vm.athena.mareo.fr
   - mareo.fr
 
+dhcp_hosts:
+  - name: k3s-1.vm.athena.mareo.fr
+    hostname: k3s-1.vm.athena.mareo.fr
+    mac: 0e:a6:7d:72:7e:01
+    ip: 192.168.0.1
+
 nft_define_host:
   self:
     name: self

@@ -8,8 +8,8 @@
   when: proxmox_ceph_enabled
   block:
     - name: Install Ceph packages
-      ansible.builtin.command:
-        cmd: pveceph install
+      ansible.builtin.shell:
+        cmd: yes | pveceph install --repository no-subscription
         creates: /usr/bin/ceph
 
     - name: Init Proxmox Ceph cluster

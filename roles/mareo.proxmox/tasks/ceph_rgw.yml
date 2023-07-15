@@ -1,4 +1,8 @@
 ---
+- name: Install radosgw
+  ansible.builtin.apt:
+    name: radosgw
+
 - name: Check whether radosgw user exists
   ansible.builtin.command:
     argv:
