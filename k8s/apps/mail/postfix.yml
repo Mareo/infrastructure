@@ -73,6 +73,16 @@ spec:
               subPath: usr/
             - name: postfix-tls
               mountPath: /secrets/postfix
+        - name: postgrey
+          image: registry.mareo.fr/services/docker/postfix:1.0.1
+          args: ["postgrey"]
+          envFrom:
+            - configMapRef:
+                name: postgrey-config
+          volumeMounts:
+            - name: postfix-spool
+              mountPath: /var/spool/postfix/postgrey
+              subPath: postgrey
         - name: postsrsd
           image: registry.mareo.fr/services/docker/postfix:1.0.1
           args: ["postsrsd"]

@@ -16,9 +16,11 @@ configMapGenerator:
       - "POSTFIX_INTERNAL_MAIL_FILTER_CLASSES=bounce"
   - name: postfix-config-files
     files: []
+  - name: postgrey-config
+    literals: []
   - name: postsrsd-config
     literals: []
 
 images:
-  - name: registry.cri.epita.fr/cri/docker/mail
-    newTag: 7d7a9441080e3be7e33428c8909a64d9c76a4ff7
+  - name: registry.mareo.fr/services/docker/postfix
+    newTag: branch-improve-antispam
