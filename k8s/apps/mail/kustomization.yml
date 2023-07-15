@@ -11,6 +11,8 @@ resources:
 configMapGenerator:
   - name: opendkim-config
     literals: []
+  - name: opendmarc-config
+    literals: []
   - name: postfix-config
     literals:
       - "POSTFIX_INTERNAL_MAIL_FILTER_CLASSES=bounce"
@@ -23,4 +25,4 @@ configMapGenerator:
 
 images:
   - name: registry.mareo.fr/services/docker/postfix
-    newTag: commit-d6eef93a8e6c550c2d4455bdcc386d0ca38b8d1f
+    newTag: commit-aaedaf00b152429b5e00c5edc93ff07c2b23c16e
