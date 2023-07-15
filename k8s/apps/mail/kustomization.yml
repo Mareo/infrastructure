@@ -23,4 +23,4 @@ configMapGenerator:
 
 images:
   - name: registry.mareo.fr/services/docker/postfix
-    newTag: branch-improve-antispam
+    newTag: commit-d6eef93a8e6c550c2d4455bdcc386d0ca38b8d1f
