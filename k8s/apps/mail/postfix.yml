@@ -107,6 +107,16 @@ spec:
             - name: postfix-spool
               mountPath: /var/spool/postfix/opendkim
               subPath: opendkim
+        - name: opendmarc
+          image: registry.mareo.fr/services/docker/postfix:1.0.1
+          args: ["opendmarc"]
+          envFrom:
+            - configMapRef:
+                name: opendmarc-config
+          volumeMounts:
+            - name: postfix-spool
+              mountPath: /var/spool/postfix/opendmarc
+              subPath: opendmarc
       volumes:
         - name: postfix-config-files
           projected:
