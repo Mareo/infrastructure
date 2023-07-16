@@ -36,34 +36,37 @@ resource "vault_generic_secret" "mail_opendkim" {
   })
 }
 
-resource "dns_txt_record_set" "mail_dkim-root" {
-  for_each = local.zones
+resource "dns_txt_record_set" "mail_dmarc" {
+  for_each = toset(keys(local.zones))
 
   zone = each.key
-  name = "athena._domainkey"
-  txt = [
-    format(
-      "v=DKIM1; k=rsa; p=%s",
-      replace(
-        replace(
-          tls_private_key.mail_opendkim-athena.public_key_pem,
-          "/--*.*--*/",
-          ""
-        ),
-        "\n",
-        "",
-      )
-    )
-  ]
+  name = "_dmarc"
+  txt  = ["v=DMARC1; p=reject; ruf=mailto:dmarc@mareo.fr; aspf=s; adkim=s; fo=1"]
 }
 
-resource "dns_txt_record_set" "mail_dkim-subdomains" {
-  for_each = { for i, o in flatten([for zone, domains in local.zones :
-    [for domain in domains : { zone = zone, domain = domain }]
-  ]) : i => o }
+resource "dns_txt_record_set" "mail_dkim-adsp" {
+  for_each = { for o in flatten([for zone, domains in local.zones :
+    concat(
+      [for domain in domains : { zone = zone, suffix = ".${domain}" }],
+      [{ zone = zone, suffix = "" }]
+    )
+  ]) : "${o.suffix}.${o.zone}" => o }
 
   zone = each.value.zone
-  name = "athena._domainkey.${each.value.domain}"
+  name = "_adsp._domainkey${each.value.suffix}"
+  txt  = ["dkim=all"]
+}
+
+resource "dns_txt_record_set" "mail_dkim-key" {
+  for_each = { for o in flatten([for zone, domains in local.zones :
+    concat(
+      [for domain in domains : { zone = zone, suffix = ".${domain}" }],
+      [{ zone = zone, suffix = "" }]
+    )
+  ]) : "${o.suffix}.${o.zone}" => o }
+
+  zone = each.value.zone
+  name = "athena._domainkey${each.value.suffix}"
   txt = [
     format(
       "v=DKIM1; k=rsa; p=%s",

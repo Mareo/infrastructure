@@ -53,3 +53,10 @@ resource "dns_mx_record_set" "dns" {
     }
   }
 }
+
+resource "dns_txt_record_set" "spf" {
+  for_each = local.dns_mx
+
+  zone = "mareo.fr."
+  txt  = ["v=spf1 include:athena.mareo.fr -all"]
+}

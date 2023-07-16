@@ -31,6 +31,6 @@ provider "dns" {
 }
 
 locals {
-  dhcp_hosts_path = "../group_vars/proxmox.yml"
+  dhcp_hosts_path = "../host_vars/athena.mareo.fr.yml"
   sshkeys_path    = "../group_vars/all.yml"
 }
