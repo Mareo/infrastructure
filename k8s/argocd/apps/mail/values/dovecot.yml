@@ -61,12 +61,12 @@ ldap:
     - dovecotAclGroups=userdb_acl_groups=%{ldap:dovecotAclGroups}
     - dovecotQuotaStorage=userdb_quota_rule=*:storage=%{ldap:dovecotQuotaStorage}
     - dovecotQuotaStorage=userdb_quota_rule2=*:messages=%{ldap:dovecotQuotaMessages}
-    - =userdb_sieve_user_email=test@mareo.fr
+    - mail=userdb_sieve_user_email=%{ldap:mail}
   userAttrs:
     - dovecotAclGroups=acl_groups=%{ldap:dovecotAclGroups}
     - dovecotQuotaStorage=quota_rule=*:storage=%{ldap:dovecotQuotaStorage}
     - dovecotQuotaStorage=quota_rule2=*:messages=%{ldap:dovecotQuotaMessages}
-    - =sieve_user_email=test@mareo.fr
+    - mail=sieve_user_email=%{ldap:mail}
   iterateFilter: "(&(memberOf=cn=mail,ou=groups,dc=mail,dc=mareo,dc=fr)(mailboxes=*))"
   iterateAttrs: "mailboxes=user"
 
