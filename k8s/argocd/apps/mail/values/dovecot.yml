@@ -84,6 +84,8 @@ extraVolumeMounts:
     subPath: ext_extra_passdb.yaml
 
 extraEnv:
+  - name: DOVECOT_LDAP_PASSDB_USERNAME_FILTER
+    value: "*@*"
   - name: DOVECOT_EXT_EXTRA_PASSDB_DNPASS
     valueFrom:
       secretKeyRef:
