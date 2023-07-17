@@ -8,3 +8,8 @@
   ansible.builtin.service:
     name: ceph-radosgw@rgw
     state: restarted
+
+- name: Run dist-upgrade
+  ansible.builtin.apt:
+    upgrade: dist
+    update_cache: yes

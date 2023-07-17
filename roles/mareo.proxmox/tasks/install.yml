@@ -10,13 +10,8 @@
   ansible.builtin.apt_repository:
     repo: deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
     state: present
+  notify: run dist-upgrade
   register: add_repository
-
-- name: Run dist-upgrade
-  when: add_repository.changed
-  ansible.builtin.apt:
-    upgrade: dist
-    update_cache: yes
 
 - name: Install proxmox-ve
   ansible.builtin.apt:
