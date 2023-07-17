@@ -16,6 +16,7 @@ configMapGenerator:
   - name: postfix-config
     literals:
       - "POSTFIX_INTERNAL_MAIL_FILTER_CLASSES=bounce"
+      - "POSTFIX_ALIAS_MAPS=hash:/etc/aliases"
   - name: postfix-config-files
     files: []
   - name: postgrey-config
