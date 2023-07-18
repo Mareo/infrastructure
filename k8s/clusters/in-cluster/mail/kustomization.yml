@@ -31,14 +31,14 @@ configMapGenerator:
       - "POSTFIX_MYNETWORKS=127.0.0.0/8, [::1/128], 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"
       - "POSTFIX_SMTPD_CLIENT_RESTRICTIONS=permit_mynetworks, permit_sasl_authenticated, reject_unknown_reverse_client_hostname"
       - "POSTFIX_SMTPD_RELAY_RESTRICTIONS=permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination"
-      - "POSTFIX_SMTPD_RECIPIENT_RESTRICTIONS=permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination, check_policy_service unix:private/policyd-spf, permit_dnswl_client list.dnswl.org, check_policy_service inet:127.0.0.1:10023"
+      - "POSTFIX_SMTPD_RECIPIENT_RESTRICTIONS=permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination, check_policy_service unix:private/policyd-spf, permit_dnswl_client list.dnswl.org, check_recipient_access hash:/etc/postfix/recipient_access.hash, check_policy_service inet:127.0.0.1:10023"
       - "POSTFIX_SMTPD_SENDER_RESTRICTIONS=permit_mynetworks, reject_sender_login_mismatch"
       - "POSTFIX_SMTPD_SENDER_LOGIN_MAPS=ldap:/etc/postfix/sender_login_user.ldap"
       - "POSTFIX_SMTPD_TLS_ASK_CCERT=yes"
       - "POSTFIX_MILTER_MACRO_DEFAULTS=dkimsign=yes"
       - "POSTFIX_VIRTUAL_TRANSPORT=lmtp:inet:dovecot-lmtp.mail.svc"
       - "POSTFIX_VIRTUAL_MAILBOX_DOMAINS=mareo.fr, hannache.fr, gitlab.mareo.fr"
-      - "POSTFIX_VIRTUAL_ALIAS_MAPS=unionmap:{pipemap:{ldap:/etc/postfix/virtual_alias_maps_rules.ldap,pcre:/etc/postfix/virtual_alias_maps_rules.pcre},ldap:/etc/postfix/virtual_alias_maps.ldap} ldap:/etc/postfix/virtual_alias_maps_mailboxes.ldap"
+      - "POSTFIX_VIRTUAL_ALIAS_MAPS=hash:/etc/postfix/virtual_alias_maps.hash unionmap:{pipemap:{ldap:/etc/postfix/virtual_alias_maps_rules.ldap,pcre:/etc/postfix/virtual_alias_maps_rules.pcre},ldap:/etc/postfix/virtual_alias_maps.ldap} ldap:/etc/postfix/virtual_alias_maps_mailboxes.ldap"
       - "POSTFIX_SMTPD_SASL_PATH=inet:dovecot-sasl.mail.svc:113"
       - "POSTFIX_SMTPD_TLS_CAPATH=/etc/ssl/certs/"
       - "POSTFIX_SMTPD_TLS_CAFILE=/etc/ssl/certs/ca-certificates.crt"
@@ -47,7 +47,9 @@ configMapGenerator:
   - name: postfix-config-files
     behavior: merge
     files:
+      - config/recipient_access.hash
       - config/sender_login_user.ldap
+      - config/virtual_alias_maps.hash
       - config/virtual_alias_maps.ldap
       - config/virtual_alias_maps_mailboxes.ldap
       - config/virtual_alias_maps_rules.ldap
