@@ -26,4 +26,4 @@ configMapGenerator:
 
 images:
   - name: registry.mareo.fr/services/docker/postfix
-    newTag: commit-68fad30d5c0f7518cb77716666597e54a5aae4d5
+    newTag: commit-e4fa2331342876305494a6cf025675ee2f1c9e30
