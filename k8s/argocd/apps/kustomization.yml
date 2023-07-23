@@ -26,5 +26,5 @@ resources:
   - redis-operator.yml
   - redis.yml
   - syncthing.yml
-  - vault.yml
+ #- vault.yml
   - vaultwarden.yml
