@@ -6,7 +6,7 @@ collections:
   - name: community.hashi_vault
     version: 5.0.0
   - name: community.crypto
-    version: 2.14.1
+    version: 2.15.0
   - name: kubernetes.core
     version: 2.4.0
   - name: amazon.aws
