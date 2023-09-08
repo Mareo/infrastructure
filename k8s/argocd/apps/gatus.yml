@@ -193,17 +193,6 @@ spec:
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
-                  - name: DNS - sdns2.ovh.net.
-                    group: Infrastructure
-                    interval: "${DNS_CHECK_INTERVAL}"
-                    url: "sdns2.ovh.net."
-                    dns:
-                      query-name: "mareo.fr"
-                      query-type: "A"
-                    conditions:
-                      - "[DNS_RCODE] == NOERROR"
-                    alerts:
-                      - type: discord
                   - name: Grafana
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
