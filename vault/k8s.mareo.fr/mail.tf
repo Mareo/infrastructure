@@ -1,11 +1,11 @@
 locals {
   zones = {
     "mareo.fr." = [
-      "athena",
       "auth",
       "gitlab",
       "grafana",
       "nextcloud",
+      "ouranos",
       "vaultwarden",
     ]
     "hannache.fr." = []
@@ -24,7 +24,20 @@ resource "vault_generic_secret" "mail_postsrsd" {
   })
 }
 
-resource "tls_private_key" "mail_opendkim-athena" {
+resource "dns_txt_record_set" "spf" {
+  for_each = { for o in flatten([for zone, domains in local.zones :
+    concat(
+      [for domain in domains : { zone = zone, name = domain, id = "${domain}.${zone}" }],
+      [{ zone = zone, name = null, id = zone }]
+    )
+  ]) : o.id => o }
+
+  zone = each.value.zone
+  name = each.value.name
+  txt  = ["v=spf1 mx a:ouranos.mareo.fr -all"]
+}
+
+resource "tls_private_key" "mail_opendkim-ouranos" {
   algorithm = "RSA"
   rsa_bits  = 2048
 }
@@ -32,7 +45,7 @@ resource "tls_private_key" "mail_opendkim-athena" {
 resource "vault_generic_secret" "mail_opendkim" {
   path = "k8s/mail/opendkim"
   data_json = jsonencode({
-    athena = tls_private_key.mail_opendkim-athena.private_key_pem
+    ouranos = tls_private_key.mail_opendkim-ouranos.private_key_pem
   })
 }
 
@@ -66,13 +79,13 @@ resource "dns_txt_record_set" "mail_dkim-key" {
   ]) : "${o.suffix}.${o.zone}" => o }
 
   zone = each.value.zone
-  name = "athena._domainkey${each.value.suffix}"
+  name = "ouranos._domainkey${each.value.suffix}"
   txt = [
     format(
       "v=DKIM1; k=rsa; p=%s",
       replace(
         replace(
-          tls_private_key.mail_opendkim-athena.public_key_pem,
+          tls_private_key.mail_opendkim-ouranos.public_key_pem,
           "/--*.*--*/",
           ""
         ),

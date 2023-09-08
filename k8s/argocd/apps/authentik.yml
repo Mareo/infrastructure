@@ -58,7 +58,7 @@ spec:
               redis:
                   host: authentik-redis.authentik.svc
               email:
-                host: athena.mareo.fr
+                host: smtp.mareo.fr
                 port: 465
                 use_ssl: true
                 from: no-reply@auth.mareo.fr

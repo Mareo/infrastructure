@@ -6,8 +6,8 @@ proxmox_template_default_storage: rbd
 proxmox_ceph_enabled: true
 proxmox_ceph_replicas: 2
 proxmox_ceph_osds:
-  - /dev/sda4
-  - /dev/sdb4
+  - /dev/nvme0n1p3
+  - /dev/nvme1n1p3
 proxmox_ceph_pools:
   - name: rbd
     add_to_storages: 1
@@ -19,19 +19,19 @@ dhcp_global_domain_name_servers:
   - 8.8.8.8
 
 dhcp_global_domain_search:
-  - vm.athena.mareo.fr
+  - vm.ouranos.mareo.fr
   - mareo.fr
 
 dhcp_hosts:
-  - name: k3s-1.vm.athena.mareo.fr
-    hostname: k3s-1.vm.athena.mareo.fr
+  - name: k3s-1.vm.ouranos.mareo.fr
+    hostname: k3s-1.vm.ouranos.mareo.fr
     mac: 0e:a6:7d:72:7e:01
     ip: 192.168.0.1
 
 nft_define_host:
   self:
     name: self
-    value: 65.108.17.229
+    value: 148.251.4.90
   k3s:
     name: k3s
     value: 192.168.0.1

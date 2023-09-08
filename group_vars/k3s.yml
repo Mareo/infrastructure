@@ -1,13 +1,14 @@
 ---
-k3s_release_version: v1.25.9+k3s1
+k3s_release_version: v1.27.3+k3s1
+
+k3s_install_hard_links: true
 
 k3s_server:
   tls-san:
     - api.k8s.mareo.fr
   docker: false
-  cluster-cidr: 172.20.0.0/16
-  service-cidr: 172.21.0.0/16
-  node-external-ip: 65.108.17.229
+  cluster-cidr: 172.20.0.0/16,fd41:2251:e4a5::/56
+  service-cidr: 172.21.0.0/16,fd41:2251:e4a6::/112
   disable:
     - traefik
   kube-apiserver-arg:

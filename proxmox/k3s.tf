@@ -1,9 +1,9 @@
 locals {
   k3s_vms = [
     {
-      name      = "k3s-1.vm.athena.mareo.fr"
+      name      = "k3s-1.vm.ouranos.mareo.fr"
       tags      = ["ansible", "k3s_masters"]
-      cores     = 6
+      cores     = 16
       memory    = 32 * 1024
       disk_size = "128G"
     }
@@ -17,10 +17,10 @@ module "k3s" {
 
   name        = each.value.name
   dns_zone    = "mareo.fr"
-  target_node = "athena"
+  target_node = "ouranos"
   onboot      = true
 
-  pool = "athena"
+  pool = "ouranos"
   tags = each.value.tags
 
   cores  = each.value.cores

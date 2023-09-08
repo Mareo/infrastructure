@@ -2,5 +2,5 @@
 domain_suffix: mareo.fr
 vault_addr: https://vault.mareo.fr
 gitlab_addr: https://gitlab.mareo.fr
-s3_endpoint_url: https://athena.mareo.fr:7443
+s3_endpoint_url: https://ouranos.mareo.fr:7443
 terraform_bucket: terraform

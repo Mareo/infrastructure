@@ -1,18 +1,27 @@
 ---
 
-argocd_version: v2.7.0
+argo_repo_url: "https://argoproj.github.io/argo-helm"
+
+helm_version: 3.12.2
+helm_bin_url: "https://get.helm.sh/helm-v{{ helm_version }}-linux-amd64.tar.gz"
+helm_bin_dir: /usr/local/bin
+helm_bin_checksum: sha256:2b6efaa009891d3703869f4be80ab86faa33fa83d9d5ff2f6492a8aebe97b219
+
+argocd_version: v2.7.7
+argocd_chart_version: 5.38.1
+argocd_namespace: argocd
 argocd_bin_url: "https://github.com/argoproj/argo-cd/releases/download/{{ argocd_version }}/argocd-linux-amd64"
 argocd_bin_path: /usr/local/bin/argocd
-argocd_bin_checksum: sha1:af1dd6e99a91063b022152883c294866aa9a5f08
+argocd_bin_checksum: sha1:1b329edb53682069b7469b63086a82a576e8c190
 
 argocd_manifests_url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 argocd_manifests_path: /etc/manifests/argocd-install.yml
 
 argocd_apps:
-  guestbook:
-    repo: https://github.com/argoproj/argocd-example-apps.git
-    path: guestbook
-    dest_server: in-cluster
-    dest_namespace: default
-    sync_policy: automated
-    auto_prune: true
+  #guestbook:
+  #  repo: https://github.com/argoproj/argocd-example-apps.git
+  #  path: guestbook
+  #  dest_server: in-cluster
+  #  dest_namespace: default
+  #  sync_policy: automated
+  #  auto_prune: true

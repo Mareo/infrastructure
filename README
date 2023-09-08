@@ -1,11 +1,61 @@
 # Operator setup
 
     $ poetry install
+    $ poetry run ansible-galaxy install -r requirements.yml
     $ poetry run ansible-playbook playbooks/main.yml -t secrets  # skip on first install
 
 # Hypervisor setup
 
     $ poetry run ansible-playbook -l proxmox playbooks/main.yml
+
+## ACME configuration
+
+* Visit https://ouranos.mareo.fr:8006
+* Go to Datacenter -> ACME
+* Create a new account
+* Add a new challenge plugin:
+    Plugin Id:       mikros
+    DNS API:         nsupdate (RFC 2136)
+    NSUPDATE_KEY:    /etc/nsupdate.key
+    NSUPDATE_SERVER: mikros.mareo.fr
+    NSUPDATE_ZONE:   mareo.fr
+* Go to ouranos -> System -> Certificates
+* Add a new certificate:
+    Challenge type: DNS
+    Plugin:         mikros
+    Domain:         ouranos.mareo.fr
+* Click "Order certificate now"
+
+## CephFS setup
+
+* Visit https://ouranos.mareo.fr:8006
+
+* Go to ouranos -> Ceph -> CephFS
+* Create a new metadata server
+    Host:     ouranos
+    Extra ID: None
+* Create a new CephFS:
+    Name:             cephfs
+    Placement Groups: 64
+    Add as Storage:   yes
+
+## Terraform Token
+
+* Visit https://ouranos.mareo.fr:8006
+* Go to Datacenter -> Permissions -> API Tokens
+* Create a new token:
+    User:                 root@pam
+    Token ID:             terraform
+    Expire:               never
+    Privilege separation: no
+* Put the token in `secrets/proxmox_token`
+
+## Pool
+
+* Visit https://ouranos.mareo.fr:8006
+* Go to Datacenter -> Permissions -> Pools
+* Create a new pool:
+    Name: ouranos
 
 # Terraform setup
 

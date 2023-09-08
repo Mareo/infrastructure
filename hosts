@@ -1,13 +1,13 @@
 mikros.mareo.fr
 
 [proxmox]
-athena.mareo.fr
+ouranos.mareo.fr
 
 [proxmox_vm]
-k3s-1.vm.athena.mareo.fr
+k3s-1.vm.ouranos.mareo.fr
 
 [dhcp:children]
 proxmox
 
 [k3s]
-k3s-1.vm.athena.mareo.fr
+k3s-1.vm.ouranos.mareo.fr

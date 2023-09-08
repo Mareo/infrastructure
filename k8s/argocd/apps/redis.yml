@@ -54,3 +54,6 @@ spec:
               volumeClaimTemplate:
                 spec:
                   storageClassName: csi-rbd-sc-delete
+                  resources:
+                    requests:
+                      storage: 10G

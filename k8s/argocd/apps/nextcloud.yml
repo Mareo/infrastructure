@@ -152,7 +152,7 @@ spec:
                 fromAddress: no-reply
                 domain: nextcloud.mareo.fr
                 smtp:
-                  host: athena.mareo.fr
+                  host: smtp.mareo.fr
                   secure: "ssl"
                   port: 465
             livenessProbe:

@@ -85,7 +85,7 @@ spec:
               smtp:
                 enabled: true
                 domain: gitlab.mareo.fr
-                address: athena.mareo.fr
+                address: smtp.mareo.fr
                 port: 465
                 tls: true
                 authentication: "plain"
@@ -118,7 +118,7 @@ spec:
                 incomingEmail:
                   enabled: true
                   address: "incoming+%{key}@gitlab.mareo.fr"
-                  host: athena.mareo.fr
+                  host: imap.mareo.fr
                   port: 993
                   ssl: true
                   user: "gitlab@gitlab.mareo.fr"
@@ -129,7 +129,7 @@ spec:
                 serviceDeskEmail:
                   enabled: true
                   address: "contact+%{key}@gitlab.mareo.fr"
-                  host: athena.mareo.fr
+                  host: imap.mareo.fr
                   port: 993
                   ssl: true
                   user: "gitlab@gitlab.mareo.fr"
@@ -200,7 +200,7 @@ spec:
                       Path = "gitlab-runner"
                       Shared = true
                       [runners.cache.s3]
-                        ServerAddress = "athena.mareo.fr:7443"
+                        ServerAddress = "ouranos.mareo.fr:7443"
                         BucketName = "gitlab-runner-cache"
                         BucketLocation = "ceph"
                         Insecure = false
@@ -233,8 +233,6 @@ spec:
                   "helm.sh/hook": "pre-install"
                   "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
               sidekiq:
-                minReplicas: 1
-                maxReplicas: 1
                 resources:
                   limits:
                     memory: 5G

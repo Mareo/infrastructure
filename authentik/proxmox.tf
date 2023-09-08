@@ -14,7 +14,7 @@ resource "authentik_provider_oauth2" "proxmox" {
   client_id          = random_string.proxmox_client-id.result
   client_secret      = random_password.proxmox_client-secret.result
   redirect_uris = [
-    "https://athena.mareo.fr:8006",
+    "https://ouranos.mareo.fr:8006",
   ]
   property_mappings = [
     data.authentik_scope_mapping.scope-openid.id,
@@ -30,7 +30,7 @@ resource "authentik_application" "proxmox" {
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_oauth2.proxmox.id
   meta_icon          = "${local.icon-url}/proxmox.png"
-  meta_launch_url    = "https://athena.mareo.fr:8006"
+  meta_launch_url    = "https://ouranos.mareo.fr:8006"
   meta_publisher     = "Proxmox Server Solutions GmbH"
   policy_engine_mode = "any"
 }

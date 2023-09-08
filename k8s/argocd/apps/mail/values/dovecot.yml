@@ -45,7 +45,7 @@ plugins:
     submissionHost: "postfix.mail.svc"
     imapSieve:
       enabled: true
-      url: "sieve://athena.mareo.fr"
+      url: "sieve://imap.mareo.fr"
 
 ldap:
   enabled: true

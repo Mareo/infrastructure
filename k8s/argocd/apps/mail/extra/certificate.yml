@@ -5,7 +5,7 @@ metadata:
   name: dovecot-tls
 spec:
   dnsNames:
-    - athena.mareo.fr
+    - ouranos.mareo.fr
     - mail.mareo.fr
     - imap.mareo.fr
     - imap.hannache.fr
