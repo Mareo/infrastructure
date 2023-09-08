@@ -53,6 +53,7 @@ resource "authentik_outpost" "nextcloud-ldap" {
 resource "authentik_user" "nextcloud-ldap" {
   username = "nextcloud-ldap"
   name     = "nextcloud-ldap"
+  type     = "service_account"
   path     = "services"
   groups   = [authentik_group.groups["nextcloud_service_accounts"].id]
   attributes = jsonencode({

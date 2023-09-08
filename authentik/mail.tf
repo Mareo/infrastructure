@@ -41,6 +41,7 @@ resource "authentik_outpost" "mail-ldap" {
 resource "authentik_user" "mail_dovecot" {
   username = "mail-dovecot"
   name     = "mail-dovecot"
+  type     = "service_account"
   path     = "services"
   groups   = [authentik_group.groups["mail_service_accounts"].id]
   attributes = jsonencode({
@@ -51,6 +52,7 @@ resource "authentik_user" "mail_dovecot" {
 resource "authentik_user" "mail_postfix" {
   username = "mail-postfix"
   name     = "mail-postfix"
+  type     = "service_account"
   path     = "services"
   groups   = [authentik_group.groups["mail_service_accounts"].id]
   attributes = jsonencode({

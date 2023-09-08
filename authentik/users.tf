@@ -137,6 +137,7 @@ resource "authentik_user" "users" {
   username = each.key
   name     = each.value.name
   email    = each.value.email
+  type     = "internal"
   path     = try(each.value.path, "users")
   groups = concat(
     [for g in try(each.value.groups, []) : authentik_group.groups[g].id],

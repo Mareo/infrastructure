@@ -1,6 +1,7 @@
 resource "authentik_user" "gitlab_mail" {
   username = "gitlab-mail"
   name     = "gitlab-mail"
+  type     = "service_account"
   path     = "services"
   groups   = [authentik_group.groups["mail"].id]
   attributes = jsonencode({

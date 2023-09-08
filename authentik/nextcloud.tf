@@ -1,6 +1,7 @@
 resource "authentik_user" "nextcloud_mail" {
   username = "nextcloud-mail"
   name     = "nextcloud-mail"
+  type     = "service_account"
   path     = "services"
   groups   = [authentik_group.groups["mail"].id]
   attributes = jsonencode({

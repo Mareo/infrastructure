@@ -1,6 +1,7 @@
 resource "authentik_user" "authentik_mail" {
   username = "authentik-mail"
   name     = "authentik-mail"
+  type     = "service_account"
   path     = "services"
   groups   = [authentik_group.groups["mail"].id]
   attributes = jsonencode({

@@ -19,6 +19,7 @@ resource "authentik_policy_binding" "vaultwarden_group-filtering" {
 resource "authentik_user" "vaultwarden_mail" {
   username = "vaultwarden-mail"
   name     = "vaultwarden-mail"
+  type     = "service_account"
   path     = "services"
   groups   = [authentik_group.groups["mail"].id]
   attributes = jsonencode({

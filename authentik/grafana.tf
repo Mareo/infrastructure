@@ -57,6 +57,7 @@ resource "authentik_policy_binding" "grafana_group-filtering" {
 resource "authentik_user" "grafana_mail" {
   username = "grafana-mail"
   name     = "grafana-mail"
+  type     = "service_account"
   path     = "services"
   groups   = [authentik_group.groups["mail"].id]
   attributes = jsonencode({

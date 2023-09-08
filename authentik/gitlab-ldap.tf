@@ -54,6 +54,7 @@ resource "authentik_outpost" "gitlab-ldap" {
 resource "authentik_user" "gitlab-ldap" {
   username = "gitlab-ldap"
   name     = "gitlab-ldap"
+  type     = "service_account"
   path     = "services"
   groups   = [authentik_group.groups["gitlab_service_accounts"].id]
   attributes = jsonencode({
