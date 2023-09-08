@@ -394,7 +394,7 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>HedgeDoc - Collaborative markdown notes</title>*)"
+                      - "[BODY] == pat(*<title>HedgeDoc - *</title>*)"
                     alerts:
                       - type: discord
                   - name: Nextcloud
