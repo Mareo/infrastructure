@@ -6,6 +6,7 @@ locals {
     "gatus"                      = {}
     "gitlab"                     = {}
     "gitlab_petitstream"         = { gitlab = { add_to_meta = true } }
+    "gitlab_theseus"             = { gitlab = { add_to_meta = true } }
     "gitlab_externals"           = {}
     "gitlab_auditors"            = {}
     "gitlab_admins"              = {}
@@ -26,11 +27,15 @@ locals {
     "syncthing"                  = {}
     "vault"                      = {}
     "vault_admins"               = {}
+    "vault_theseus"              = {}
     "vaultwarden"                = {}
 
     "petitstream_admins" = {}
     "petitstream_devs"   = {}
     "petitstream_ops"    = {}
+
+    "theseus"     = {}
+    "theseus_ops" = {}
   }
 }
 

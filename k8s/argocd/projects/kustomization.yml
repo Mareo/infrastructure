@@ -4,3 +4,4 @@ namespace: argocd
 
 resources:
   - petitstream.yml
+  - theseus.yml

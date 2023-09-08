@@ -45,5 +45,5 @@ resource "gitlab_group_membership" "meta-children" {
 
   group_id     = each.value.group_id
   user_id      = each.value.user_id
-  access_level = "guest"
+  access_level = "developer"
 }

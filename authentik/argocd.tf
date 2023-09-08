@@ -52,6 +52,8 @@ resource "authentik_policy_binding" "argocd_group-filtering" {
 
     "petitstream_devs",
     "petitstream_ops",
+
+    "theseus_ops",
   ] : idx => value }
   target = authentik_application.argocd.uuid
   group  = authentik_group.groups[each.value].id

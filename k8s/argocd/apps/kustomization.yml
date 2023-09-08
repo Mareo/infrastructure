@@ -4,6 +4,7 @@ namespace: argocd
 
 resources:
   - mail/
+  - theseus/
 
   - authentik.yml
   - argocd.yml

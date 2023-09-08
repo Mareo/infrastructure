@@ -1,0 +1,28 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: theseus
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: 'theseus-*'
+      server: 'https://kubernetes.default.svc'
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  roles:
+    - name: ops
+      description: Full access on theseus namespace
+      policies:
+        - p, proj:theseus:ops, applications, get, theseus/*, allow
+        - p, proj:theseus:ops, applications, sync, theseus/*, allow
+        - p, proj:theseus:ops, applications, action/apps/Deployment/restart, theseus/*, allow
+        - p, proj:theseus:ops, exec, create, theseus/*, allow
+      groups:
+        - theseus_ops

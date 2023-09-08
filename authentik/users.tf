@@ -33,8 +33,9 @@ locals {
         "argocd_admins",
         "gatus",
         "gitlab",
-        "gitlab_petitstream",
         "gitlab_admins",
+        "gitlab_petitstream",
+        "gitlab_theseus",
         "grafana",
         "grafana_editors",
         "grafana_admins",
@@ -49,8 +50,11 @@ locals {
         "prometheus",
         "proxmox",
         "syncthing",
+        "theseus",
+        "theseus_ops",
         "vault",
         "vault_admins",
+        "vault_theseus",
         "vaultwarden",
       ]
       is_admin = true
@@ -80,6 +84,26 @@ locals {
       groups = [
         "hedgedoc",
         "nextcloud",
+        "vaultwarden",
+      ]
+    }
+    "chewie" = {
+      name  = "Kévin Sztern"
+      email = "contact@kevinsztern.fr"
+      path  = "users/friends"
+      attributes = {
+        nextcloud_quota = "10G"
+      }
+      groups = [
+        "argocd",
+        "gitlab",
+        "gitlab_theseus",
+        "hedgedoc",
+        "nextcloud",
+        "theseus",
+        "theseus_ops",
+        "vault",
+        "vault_theseus",
         "vaultwarden",
       ]
     }

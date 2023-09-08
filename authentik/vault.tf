@@ -49,10 +49,20 @@ data "vault_identity_group" "admins" {
   group_name = "admins"
 }
 
+data "vault_identity_group" "theseus" {
+  group_name = "theseus"
+}
+
 resource "vault_identity_group_alias" "vault_admins" {
   name           = "vault_admins"
   mount_accessor = vault_jwt_auth_backend.authentik.accessor
   canonical_id   = data.vault_identity_group.admins.id
+}
+
+resource "vault_identity_group_alias" "vault_theseus" {
+  name           = "vault_theseus"
+  mount_accessor = vault_jwt_auth_backend.authentik.accessor
+  canonical_id   = data.vault_identity_group.theseus.id
 }
 
 resource "authentik_provider_oauth2" "vault" {

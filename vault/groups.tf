@@ -7,3 +7,13 @@ resource "vault_identity_group" "admins" {
     version = "1"
   }
 }
+
+resource "vault_identity_group" "theseus" {
+  name     = "theseus"
+  type     = "external"
+  policies = ["theseus"]
+
+  metadata = {
+    version = "1"
+  }
+}
