@@ -66,6 +66,7 @@ spec:
               AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: false
               AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: false
               AUTHENTIK_OUTPOSTS__DISCOVER: false
+              AUTHENTIK_POSTGRESQL__USE_PGBOUNCER: true
             envValueFrom:
               AUTHENTIK_SECRET_KEY:
                 secretKeyRef:
