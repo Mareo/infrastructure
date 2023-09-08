@@ -64,11 +64,6 @@ proxmox_ceph_rgw_users:
       - gitlab-runner-cache
       - gitlab-terraform-state
       - gitlab-uploads
-  - uid: nextcloud
-    display_name: nextcloud
-    max_buckets: 1
-    buckets:
-      - nextcloud
   - uid: postgresql
     display_name: postgresql
     max_buckets: 1

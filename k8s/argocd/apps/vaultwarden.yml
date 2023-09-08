@@ -68,7 +68,7 @@ spec:
               - name: HELO_NAME
                 value: vaultwarden.mareo.fr
               - name: SMTP_HOST
-                value: athena.mareo.fr
+                value: smtp.mareo.fr
               - name: SMTP_PORT
                 value: 465
               - name: SMTP_FROM

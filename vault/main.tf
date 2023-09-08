@@ -34,7 +34,7 @@ provider "vault" {
 provider "dns" {
   update {
     server        = "mikros.mareo.fr"
-    key_name      = "athena.mareo.fr."
+    key_name      = "ouranos.mareo.fr."
     key_algorithm = "hmac-sha256"
     key_secret    = trimspace(file("../secrets/dns_key"))
   }

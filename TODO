@@ -1,0 +1,15 @@
+# mikros.mareo.fr
+
+  * Deploy bind9 with ansible
+  * Generate nsupdate keys
+  * Add MX, DKIM and SPF record for hannache.fr"
+
+# ouranos.mareo.fr
+
+  * Add `/root/.ansible/** r` to dhcpd apparmor configuration
+  * Create ceph-csi-rbd user:
+      $ ceph auth get-or-create client.ceph-csi-rbd mon 'profile rbd' osd 'profile rbd pool=kubernetes' mgr 'profile rbd pool=kubernetes'
+
+# k3s-1.vm.ouranos.mareo.fr
+
+  * Wait for /etc/rancher/k3s/k3s.yml to appear

@@ -122,18 +122,18 @@ spec:
                     alerts:
                       - type: discord
                   # SSH
-                  - name: athena.mareo.fr
+                  - name: ouranos.mareo.fr
                     group: SSH
                     interval: "${SSH_CHECK_INTERVAL}"
-                    url: "tcp://athena.mareo.fr:2222"
+                    url: "tcp://ouranos.mareo.fr:2222"
                     conditions:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
-                  - name: prometheus.mareo.fr
+                  - name: mikros.mareo.fr
                     group: SSH
                     interval: "${SSH_CHECK_INTERVAL}"
-                    url: "tcp://athena.mareo.fr:22"
+                    url: "tcp://mikros.mareo.fr:22"
                     conditions:
                       - "[CONNECTED] == true"
                     alerts:
@@ -171,21 +171,10 @@ spec:
                       - "[BODY] == pat(*<title>authentik</title>*)"
                     alerts:
                       - type: discord
-                  - name: DNS - athena.mareo.fr
+                  - name: DNS - ouranos.mareo.fr
                     group: Infrastructure
                     interval: "${DNS_CHECK_INTERVAL}"
-                    url: "athena.mareo.fr"
-                    dns:
-                      query-name: "mareo.fr"
-                      query-type: "A"
-                    conditions:
-                      - "[DNS_RCODE] == NOERROR"
-                    alerts:
-                      - type: discord
-                  - name: DNS - athena.mareo.fr
-                    group: Infrastructure
-                    interval: "${DNS_CHECK_INTERVAL}"
-                    url: "athena.mareo.fr"
+                    url: "ouranos.mareo.fr"
                     dns:
                       query-name: "mareo.fr"
                       query-type: "A"
@@ -250,18 +239,18 @@ spec:
                   - name: Proxmox
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://athena.mareo.fr:8006/"
+                    url: "https://ouranos.mareo.fr:8006/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
                       - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>athena - Proxmox Virtual Environment</title>*)"
+                      - "[BODY] == pat(*<title>ouranos - Proxmox Virtual Environment</title>*)"
                     alerts:
                       - type: discord
                   - name: Rados REST Gateway
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://athena.mareo.fr:7443/"
+                    url: "https://ouranos.mareo.fr:7443/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
@@ -309,7 +298,7 @@ spec:
                       query-name: "mareo.fr"
                       query-type: "MX"
                     conditions:
-                      - "[BODY] == athena.mareo.fr."
+                      - "[BODY] == ouranos.mareo.fr."
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
@@ -321,14 +310,14 @@ spec:
                       query-name: "mareo.fr"
                       query-type: "MX"
                     conditions:
-                      - "[BODY] == athena.mareo.fr."
+                      - "[BODY] == ouranos.mareo.fr."
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
-                  - name: athena.mareo.fr - imaps
+                  - name: imap.mareo.fr - imaps
                     group: Mail - IMAP
                     interval: 1m
-                    url: "tls://athena.mareo.fr:993"
+                    url: "tls://imap.mareo.fr:993"
                     client:
                       timeout: 5s
                     conditions:
@@ -336,20 +325,20 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
-                  - name: athena.mareo.fr - smtp
+                  - name: smtp.mareo.fr - smtp
                     group: Mail - SMTP
                     interval: "${SMTP_CHECK_INTERVAL}"
-                    url: "tcp://athena.mareo.fr:25"
+                    url: "tcp://smtp.mareo.fr:25"
                     client:
                       timeout: 5s
                     conditions:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
-                  - name: athena.mareo.fr - submission
+                  - name: smtp.mareo.fr - submission
                     group: Mail - SMTP
                     interval: "${SMTP_CHECK_INTERVAL}"
-                    url: "starttls://athena.mareo.fr:587"
+                    url: "starttls://smtp.mareo.fr:587"
                     client:
                       timeout: 5s
                     conditions:
@@ -357,10 +346,10 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
-                  - name: athena.mareo.fr - submissions
+                  - name: smtp.mareo.fr - submissions
                     group: Mail - SMTP
                     interval: "${SMTP_CHECK_INTERVAL}"
-                    url: "tls://athena.mareo.fr:465"
+                    url: "tls://smtp.mareo.fr:465"
                     client:
                       timeout: 5s
                     conditions:

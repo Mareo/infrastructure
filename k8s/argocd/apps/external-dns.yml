@@ -33,12 +33,12 @@ spec:
       source:
         repoURL: https://charts.bitnami.com/bitnami
         chart: external-dns
-        targetRevision: 6.24.3
+        targetRevision: 6.20.4
         helm:
           releaseName: external-dns-{{ .zone | replace "." "-" }}
           values: |
             fullnameOverride: external-dns-{{ .zone | replace "." "-" }}
-            txtOwnerId: "{{ .name }}"
+            txtOwnerId: "ouranos"
             txtPrefix: externaldns-
             domainFilters:
               - {{ .zone }}
@@ -51,7 +51,7 @@ spec:
               minTTL: 1h
               secretName: tsig-secret
               tsigSecretAlg: hmac-sha256
-              tsigKeyname: athena.mareo.fr
+              tsigKeyname: ouranos.mareo.fr
             metrics:
               serviceMonitor:
                 enabled: true

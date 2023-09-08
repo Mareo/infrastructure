@@ -4,7 +4,7 @@
     argv:
       - argocd
       - --port-forward-namespace
-      - argocd
+      - "{{ argocd_namespace }}"
       - --port-forward
       - app
       - get
@@ -22,7 +22,7 @@
         command_argv:
           - argocd
           - --port-forward-namespace
-          - argocd
+          - "{{ argocd_namespace }}"
           - --port-forward
           - app
           - create

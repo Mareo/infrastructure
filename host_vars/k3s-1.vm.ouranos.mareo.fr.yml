@@ -1,0 +1,15 @@
+---
+k3s_control_node: true
+
+k3s_server:
+  node-external-ip: 148.251.4.90,2a01:4f8:201:5481::2
+  node-ip: 192.168.0.1,fd41:2251:e4a4::1
+
+argocd_apps:
+  applications:
+    repo: https://github.com/Mareo/infrastructure.git
+    path: k8s/argocd
+    sync_policy: automated
+    dest_name: in-cluster
+    revision: replace-athena-with-ouranos
+    auto_prune: true

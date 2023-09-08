@@ -4,7 +4,7 @@
   block:
     - name: Get proxmox local storage path from config
       ansible.builtin.shell:
-        cmd: "set -o pipefail && grep -oPz '(?s)dir: {{ proxmox_storage_local }}\\n\\s*path\\s*\\K\\S*' /etc/pve/storage.cfg | tr -cd '[:print:]'"
+        cmd: "grep -oPz '(?s)dir: {{ proxmox_storage_local }}\\n\\s*path\\s*\\K\\S*' /etc/pve/storage.cfg | tr -cd '[:print:]'"  # noqa: risky-shell-pipe
       register: command_output
       check_mode: false
       changed_when: false

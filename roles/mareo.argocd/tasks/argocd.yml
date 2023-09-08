@@ -1,0 +1,97 @@
+- name: Download ArgoCD binary
+  ansible.builtin.get_url:
+    url: "{{ argocd_bin_url }}"
+    dest: "{{ argocd_bin_path }}"
+    mode: "0755"
+    checksum: "{{ argocd_bin_checksum }}"
+
+- name: Add argocd chart repository
+  kubernetes.core.helm_repository:
+    name: "argo"
+    repo_url: "{{ argo_repo_url }}"
+
+- name: Check wether argocd namespace exists
+  ansible.builtin.command:
+    argv:
+      - kubectl
+      - get
+      - ns
+      - "{{ argocd_namespace }}"
+  register: result
+  check_mode: false
+  failed_when: false
+  changed_when: false
+
+- name: Deploy argocd chart
+  when: result.rc != 0
+  kubernetes.core.helm:
+    chart_ref: argo/argo-cd
+    chart_version: "{{ argocd_chart_version }}"
+    create_namespace: true
+    release_name: argocd
+    release_namespace: "{{ argocd_namespace }}"
+    release_values: "{{ lookup('template', 'values.yaml.j2') | from_yaml }}"
+
+- name: Wait for ArgoCD to be ready
+  ansible.builtin.command:
+    argv:
+      - kubectl
+      - wait
+      - -n
+      - "{{ argocd_namespace }}"
+      - --for=condition=available
+      - --timeout=0
+      - --all
+      - deploy
+  register: result
+  until: result.rc == 0
+  retries: 40
+  delay: 10
+  check_mode: false
+  changed_when: false
+
+- name: Check connection to ArgoCD
+  ansible.builtin.command:
+    argv:
+      - argocd
+      - --port-forward-namespace
+      - "{{ argocd_namespace }}"
+      - --port-forward
+      - app
+      - list
+  register: auth_check
+  check_mode: false
+  changed_when: false
+  failed_when: false
+
+- name: Get initial admin password and login to ArgoCD
+  when: auth_check.rc != 0
+  block:
+    - name: Get initial admin password
+      ansible.builtin.command:
+        argv:
+          - kubectl
+          - -n
+          - "{{ argocd_namespace }}"
+          - get
+          - secret
+          - argocd-initial-admin-secret
+          - -o
+          - jsonpath='{.data.password}'
+      register: admin_password
+      check_mode: false
+      changed_when: false
+    - name: Login to ArgoCD
+      ansible.builtin.command:
+        argv:
+          - argocd
+          - --port-forward-namespace
+          - "{{ argocd_namespace }}"
+          - --port-forward
+          - login
+          - --username
+          - admin
+          - --password
+          - "{{ admin_password.stdout | b64decode }}"
+      check_mode: false
+      changed_when: true

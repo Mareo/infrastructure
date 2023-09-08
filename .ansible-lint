@@ -2,6 +2,7 @@
 exclude_paths:
   - .cache/
   - authentik/
+  - discord
   - gitlab/
   - k8s/
   - proxmox/

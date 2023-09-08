@@ -5,18 +5,22 @@ locals {
 
   dns_a = {
     # Gitlab
-    "pages.mareo.fr."   = "65.108.17.229"
-    "*.pages.mareo.fr." = "65.108.17.229"
+    "pages.mareo.fr."   = "148.251.4.90"
+    "*.pages.mareo.fr." = "148.251.4.90"
   }
 
   dns_mx = {
     "mareo.fr." = [{
       preference = 10
-      exchange   = "athena.mareo.fr."
+      exchange   = "ouranos.mareo.fr."
     }]
     "gitlab.mareo.fr." = [{
       preference = 10
-      exchange   = "athena.mareo.fr."
+      exchange   = "ouranos.mareo.fr."
+    }]
+    "ouranos.mareo.fr." = [{
+      preference = 10
+      exchange   = "ouranos.mareo.fr."
     }]
   }
 }
@@ -26,7 +30,7 @@ resource "dns_cname_record" "dns" {
 
   zone  = "mareo.fr."
   name  = trimsuffix(each.key, ".mareo.fr.")
-  cname = "athena.mareo.fr."
+  cname = "ouranos.mareo.fr."
 }
 
 resource "dns_a_record_set" "dns" {
@@ -52,11 +56,4 @@ resource "dns_mx_record_set" "dns" {
       exchange   = mx.value.exchange
     }
   }
-}
-
-resource "dns_txt_record_set" "spf" {
-  for_each = local.dns_mx
-
-  zone = "mareo.fr."
-  txt  = ["v=spf1 include:athena.mareo.fr -all"]
 }

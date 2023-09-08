@@ -15,17 +15,17 @@ configMapGenerator:
   - name: opendkim-config
     behavior: merge
     literals:
-      - "OPENDKIM_DOMAIN=csl:hannache.fr,mareo.fr,athena.mareo.fr,auth.mareo.fr,gitlab.mareo.fr,grafana.mareo.fr,nextcloud.mareo.fr,vaultwarden.mareo.fr"
-      - "OPENDKIM_SELECTOR=athena"
+      - "OPENDKIM_DOMAIN=csl:hannache.fr,mareo.fr,ouranos.mareo.fr,auth.mareo.fr,gitlab.mareo.fr,grafana.mareo.fr,nextcloud.mareo.fr,vaultwarden.mareo.fr"
+      - "OPENDKIM_SELECTOR=ouranos"
       - "OPENDKIM_SUBDOMAINS=no"
-      - "OPENDKIM_KEYFILE=/secrets/opendkim/athena"
+      - "OPENDKIM_KEYFILE=/secrets/opendkim/ouranos"
       - "OPENDKIM_MACROLIST=csl:{dkimsign}=yes,dkimsign=yes"
   - name: postfix-config
     behavior: merge
     literals:
       - "LDAP_SERVER_HOST=ldap://ak-outpost-mail-ldap.authentik.svc"
       - "LDAP_SEARCH_BASE=dc=mail,dc=mareo,dc=fr"
-      - "POSTFIX_MYHOSTNAME=athena.mareo.fr"
+      - "POSTFIX_MYHOSTNAME=ouranos.mareo.fr"
       - "POSTFIX_MYDOMAIN=mareo.fr"
       - "POSTFIX_MYDESTINATION=$myhostname"
       - "POSTFIX_MYNETWORKS=127.0.0.0/8, [::1/128]"
@@ -60,7 +60,7 @@ configMapGenerator:
   - name: postgrey-config
     behavior: merge
     literals:
-      - "POSTGREY_HOSTNAME=athena.mareo.fr"
+      - "POSTGREY_HOSTNAME=ouranos.mareo.fr"
   - name: postsrsd-config
     behavior: merge
     literals:

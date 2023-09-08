@@ -1,11 +1,11 @@
 ---
-apiversion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
   - ../base/
   - ../../apps/postgres-operator/
- #- hedgedoc
+  - hedgedoc
   - ingresses/
   - mail/
   - postgres/
@@ -14,9 +14,7 @@ resources:
   - storage-class.yml
 
 patches:
-  - target:
-      kind: ExternalSecret
-    patch: |-
+  - patch: |-
       apiVersion: external-secrets.io/v1beta1
       kind: ExternalSecret
       metadata:
@@ -28,12 +26,18 @@ patches:
               annotations:
                 argocd.argoproj.io/compare-options: IgnoreExtraneous
                 argocd.argoproj.io/sync-options: Prune=false
-
-patchesJson6902:
-  - target:
-      kind: ClusterIssuer
-      name: default-issuer
-    patch: |-
+    target:
+      kind: ExternalSecret
+  - patch: |-
+      - op: add
+        path: /spec/acme/solvers/-
+        value:
+          selector:
+            dnsNames:
+              - "vault.mareo.fr"
+          http01:
+            ingress:
+              ingressClassName: public
       - op: add
         path: /spec/acme/solvers/-
         value:
@@ -44,8 +48,11 @@ patchesJson6902:
           dns01:
             rfc2136:
               nameserver: "mikros.mareo.fr"
-              tsigKeyName: "athena.mareo.fr."
+              tsigKeyName: "ouranos.mareo.fr."
               tsigAlgorithm: HMACSHA256
               tsigSecretSecretRef:
                 name: tsig-secret
                 key: mareo.fr
+    target:
+      kind: ClusterIssuer
+      name: default-issuer

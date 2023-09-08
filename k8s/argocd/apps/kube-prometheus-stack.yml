@@ -61,7 +61,7 @@ spec:
               grafana.ini:
                 smtp:
                   enabled: true
-                  host: athena.mareo.fr:465
+                  host: smtp.mareo.fr:465
                   from_address: no-reply@grafana.mareo.fr
                 database:
                   type: postgres
