@@ -18,6 +18,10 @@ locals {
       preference = 10
       exchange   = "ouranos.mareo.fr."
     }]
+    "moodle.mareo.fr." = [{
+      preference = 10
+      exchange   = "ouranos.mareo.fr."
+    }]
     "ouranos.mareo.fr." = [{
       preference = 10
       exchange   = "ouranos.mareo.fr."

@@ -15,7 +15,7 @@ configMapGenerator:
   - name: opendkim-config
     behavior: merge
     literals:
-      - "OPENDKIM_DOMAIN=csl:hannache.fr,mareo.fr,ouranos.mareo.fr,auth.mareo.fr,gitlab.mareo.fr,grafana.mareo.fr,nextcloud.mareo.fr,vaultwarden.mareo.fr"
+      - "OPENDKIM_DOMAIN=csl:hannache.fr,mareo.fr,ouranos.mareo.fr,auth.mareo.fr,gitlab.mareo.fr,grafana.mareo.fr,moodle.mareo.fr,nextcloud.mareo.fr,vaultwarden.mareo.fr"
       - "OPENDKIM_SELECTOR=ouranos"
       - "OPENDKIM_SUBDOMAINS=no"
       - "OPENDKIM_KEYFILE=/secrets/opendkim/ouranos"

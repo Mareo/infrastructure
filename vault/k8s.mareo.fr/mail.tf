@@ -4,6 +4,7 @@ locals {
       "auth",
       "gitlab",
       "grafana",
+      "moodle",
       "nextcloud",
       "ouranos",
       "vaultwarden",
