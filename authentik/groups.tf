@@ -34,8 +34,10 @@ locals {
     "petitstream_devs"   = {}
     "petitstream_ops"    = {}
 
-    "theseus"     = {}
-    "theseus_ops" = {}
+    "theseus"       = {}
+    "theseus_ops"   = {}
+    "moodle"        = {}
+    "moodle_admins" = {}
   }
 }
 

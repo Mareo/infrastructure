@@ -1,7 +1,7 @@
 resource "vault_identity_group" "admins" {
   name     = "admins"
   type     = "external"
-  policies = ["admin"]
+  policies = [vault_policy.admin.name]
 
   metadata = {
     version = "1"
@@ -11,7 +11,7 @@ resource "vault_identity_group" "admins" {
 resource "vault_identity_group" "theseus" {
   name     = "theseus"
   type     = "external"
-  policies = ["theseus"]
+  policies = [vault_policy.theseus_admin.name]
 
   metadata = {
     version = "1"
