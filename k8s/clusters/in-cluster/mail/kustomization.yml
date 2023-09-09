@@ -39,7 +39,7 @@ configMapGenerator:
       - "POSTFIX_SMTP_TLS_SECURITY_LEVEL=dane"
       - "POSTFIX_MILTER_MACRO_DEFAULTS=dkimsign=yes"
       - "POSTFIX_VIRTUAL_TRANSPORT=lmtp:inet:dovecot-lmtp.mail.svc"
-      - "POSTFIX_VIRTUAL_MAILBOX_DOMAINS=mareo.fr, hannache.fr, gitlab.mareo.fr"
+      - "POSTFIX_VIRTUAL_MAILBOX_DOMAINS=mareo.fr, hannache.fr, gitlab.mareo.fr, moodle.mareo.fr"
       - "POSTFIX_VIRTUAL_ALIAS_MAPS=hash:/etc/postfix/virtual_alias_maps.hash unionmap:{pipemap:{ldap:/etc/postfix/virtual_alias_maps_rules.ldap,pcre:/etc/postfix/virtual_alias_maps_rules.pcre},ldap:/etc/postfix/virtual_alias_maps.ldap} ldap:/etc/postfix/virtual_alias_maps_mailboxes.ldap"
       - "POSTFIX_SMTPD_SASL_PATH=inet:dovecot-sasl.mail.svc:113"
       - "POSTFIX_SMTPD_TLS_CAPATH=/etc/ssl/certs/"
