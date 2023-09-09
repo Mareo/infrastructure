@@ -1,0 +1,30 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: theseus-moodle
+  labels:
+    app: moodle
+spec:
+  project: theseus
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: "in-cluster"
+    namespace: theseus-moodle
+  sources:
+    - repoURL: https://gitlab.mareo.fr/theseus/infrastructure.git
+      targetRevision: add-moodle
+      ref: theseusInfra
+    - repoURL: https://gitlab.mareo.fr/theseus/infrastructure.git
+      targetRevision: add-moodle
+      path: "k8s/moodle/chart"
+      helm:
+        valueFiles:
+          - $theseusInfra/k8s/moodle/values.yml
+        values: |
+          fullnameOverride: moodle

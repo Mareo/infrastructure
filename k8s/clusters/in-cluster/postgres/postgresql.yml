@@ -32,6 +32,7 @@ spec:
     nextcloud.nextcloud: []
     petitstream-dev.petitstream-dev: []
     petitstream.petitstream: []
+    theseus-moodle.theseus-moodle: []
     vaultwarden.vaultwarden: []
 
   # databases: name -> owner
@@ -44,6 +45,7 @@ spec:
     nextcloud: nextcloud.nextcloud
     petitstream: petitstream.petitstream
     petitstream_dev: petitstream-dev.petitstream-dev
+    theseus_moodle: theseus-moodle.theseus-moodle
     vaultwarden: vaultwarden.vaultwarden
 
   postgresql:

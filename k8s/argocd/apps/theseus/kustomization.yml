@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
   - openedx.yml
+  - moodle.yml
