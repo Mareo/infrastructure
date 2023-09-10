@@ -18,10 +18,10 @@ spec:
     namespace: theseus-moodle
   sources:
     - repoURL: https://gitlab.mareo.fr/theseus/infrastructure.git
-      targetRevision: add-moodle
+      targetRevision: HEAD
       ref: theseusInfra
     - repoURL: https://gitlab.mareo.fr/theseus/infrastructure.git
-      targetRevision: add-moodle
+      targetRevision: HEAD
       path: "k8s/moodle/chart"
       helm:
         valueFiles:

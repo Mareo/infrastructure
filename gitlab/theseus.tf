@@ -75,3 +75,23 @@ resource "vault_generic_secret" "argocd_repo_theseus-infrastructure" {
     password = gitlab_deploy_token.theseus_infrastructure_argocd.token
   })
 }
+
+data "vault_generic_secret" "theseus-webhooks" {
+  path = "theseus/discord/webhooks"
+}
+
+resource "gitlab_integration_slack" "theseus_infrastructure_slack" {
+  project = gitlab_project.theseus_infrastructure.path_with_namespace
+  webhook = data.vault_generic_secret.theseus-webhooks.data["gitlab"]
+
+  branches_to_be_notified      = "default_and_protected"
+  notify_only_broken_pipelines = true
+
+  confidential_issues_events = true
+  issues_events              = true
+  merge_requests_events      = true
+  note_events                = true
+  pipeline_events            = true
+  push_events                = false
+  tag_push_events            = true
+}
