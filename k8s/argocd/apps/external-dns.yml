@@ -14,6 +14,8 @@ spec:
             zone: mareo.fr
           - name: in-cluster
             zone: hannache.fr
+          - name: in-cluster
+            zone: theseusformation.com
   goTemplate: true
   template:
     metadata:

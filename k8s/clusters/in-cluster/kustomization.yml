@@ -45,6 +45,7 @@ patches:
             dnsZones:
               - "mareo.fr"
               - "hannache.fr"
+              - "theseusformations.com"
           dns01:
             rfc2136:
               nameserver: "mikros.mareo.fr"
