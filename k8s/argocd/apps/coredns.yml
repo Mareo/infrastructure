@@ -54,6 +54,9 @@ spec:
                   - zone: hannache.fr
                     use_tcp: true
                     scheme: dns://
+                  - zone: theseusformation.com
+                    use_tcp: true
+                    scheme: dns://
                 plugins:
                   - name: errors
                   - name: health
