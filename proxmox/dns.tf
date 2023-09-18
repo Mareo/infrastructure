@@ -9,23 +9,37 @@ locals {
     "*.pages.mareo.fr." = "148.251.4.90"
   }
 
+  zones = ["mareo.fr", "theseusformation.fr"]
+
   dns_mx = {
-    "mareo.fr." = [{
-      preference = 10
-      exchange   = "ouranos.mareo.fr."
-    }]
-    "gitlab.mareo.fr." = [{
-      preference = 10
-      exchange   = "ouranos.mareo.fr."
-    }]
-    "moodle.mareo.fr." = [{
-      preference = 10
-      exchange   = "ouranos.mareo.fr."
-    }]
-    "ouranos.mareo.fr." = [{
-      preference = 10
-      exchange   = "ouranos.mareo.fr."
-    }]
+    "mareo.fr." = {
+      zone = "mareo.fr."
+      records = [{
+        preference = 10
+        exchange   = "ouranos.mareo.fr."
+      }]
+    }
+    "gitlab.mareo.fr." = {
+      zone = "mareo.fr."
+      records = [{
+        preference = 10
+        exchange   = "ouranos.mareo.fr."
+      }]
+    }
+    "ouranos.mareo.fr." = {
+      zone = "mareo.fr."
+      records = [{
+        preference = 10
+        exchange   = "ouranos.mareo.fr."
+      }]
+    }
+    "theseusformation.fr." = {
+      zone = "theseusformation.fr."
+      records = [{
+        preference = 10
+        exchange   = "ouranos.mareo.fr."
+      }]
+    }
   }
 }
 
@@ -50,11 +64,11 @@ resource "dns_a_record_set" "dns" {
 resource "dns_mx_record_set" "dns" {
   for_each = local.dns_mx
 
-  zone = "mareo.fr."
-  name = each.key != "mareo.fr." ? trimsuffix(each.key, ".mareo.fr.") : null
+  zone = each.value.zone
+  name = each.key != each.value.zone ? trimsuffix(each.key, ".${each.value.zone}") : null
 
   dynamic "mx" {
-    for_each = each.value
+    for_each = each.value.records
     content {
       preference = mx.value.preference
       exchange   = mx.value.exchange

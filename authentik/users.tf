@@ -18,12 +18,14 @@ locals {
         mailboxes = [
           "mareo@mareo.fr",
           "marin@hannache.fr",
+          "marin@theseusformation.fr",
         ]
         allowedEmails = [
           "@mareo.fr",
+          "@theseusformation.fr",
           "marin@hannache.fr",
         ]
-        dovecotAclGroups     = "master"
+        dovecotAclGroups     = "master,theseus"
         dovecotQuotaStorage  = "10G"
         dovecotQuotaMessages = 250000
       }
@@ -43,6 +45,7 @@ locals {
         "kubernetes_admins",
         "mail",
         "moodle",
+        "moodle_managers",
         "moodle_admins",
         "nextcloud",
         "nextcloud_admins",
@@ -76,6 +79,31 @@ locals {
         "vaultwarden",
       ]
     }
+    "kamre" = {
+      name  = "Kamre Hannache"
+      email = "kamre@hannache.fr"
+      path  = "users/family"
+      attributes = {
+        nextcloud_quota = "50G"
+        settings = {
+          locale = "fr_FR"
+        }
+        mailboxes = [
+          "kamre@hannache.fr",
+        ]
+        allowedEmails = [
+          "kamre@hannache.fr",
+        ]
+        dovecotQuotaStorage  = "10G"
+        dovecotQuotaMessages = 250000
+      }
+      groups = [
+        "hedgedoc",
+        "mail",
+        "nextcloud",
+        "vaultwarden",
+      ]
+    }
     "Barba" = {
       name  = "Sébastien Mermet"
       email = "seb.mermet@orange.fr"
@@ -94,7 +122,16 @@ locals {
       email = "contact@kevinsztern.fr"
       path  = "users/friends"
       attributes = {
-        nextcloud_quota = "10G"
+        nextcloud_quota = "50G"
+        mailboxes = [
+          "kevin@theseusformation.fr",
+        ]
+        allowedEmails = [
+          "@theseusformation.fr",
+        ]
+        dovecotAclGroups     = "theseus"
+        dovecotQuotaStorage  = "10G"
+        dovecotQuotaMessages = 250000
       }
       groups = [
         "argocd",
@@ -102,6 +139,8 @@ locals {
         "gitlab_theseus",
         "hedgedoc",
         "moodle",
+        "moodle_teachers",
+        "moodle_managers",
         "moodle_admins",
         "nextcloud",
         "theseus",

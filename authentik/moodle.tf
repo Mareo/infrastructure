@@ -4,20 +4,17 @@ resource "authentik_user" "moodle_mail" {
   type     = "service_account"
   path     = "services"
   groups   = [authentik_group.groups["mail"].id]
-  email    = "moodle@moodle.mareo.fr"
+  email    = "courses@theseusformation.fr"
   attributes = jsonencode({
     "goauthentik.io/user/service-account" = true
     allowedEmails = [
-      "@moodle.mareo.fr",
+      "courses@theseusformation.fr",
     ]
     mailboxes = [
-      "moodle@moodle.mareo.fr",
+      "courses@theseusformation.fr",
     ]
-    mailAliases = [
-      "@moodle.mareo.fr",
-    ]
-    dovecotQuotaStorage  = "250M"
-    dovecotQuotaMessages = 100
+    dovecotQuotaStorage  = "1G"
+    dovecotQuotaMessages = 1000
   })
 }
 
