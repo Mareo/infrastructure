@@ -138,6 +138,7 @@ locals {
         "gitlab",
         "gitlab_theseus",
         "hedgedoc",
+        "mail",
         "moodle",
         "moodle_teachers",
         "moodle_managers",

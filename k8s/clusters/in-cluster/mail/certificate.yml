@@ -10,6 +10,8 @@ spec:
     - smtp.mareo.fr
     - mail.hannache.fr
     - smtp.hannache.fr
+    - mail.theseusformation.fr
+    - smtp.theseusformation.fr
   issuerRef:
     group: cert-manager.io
     kind: ClusterIssuer
