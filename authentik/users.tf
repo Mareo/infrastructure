@@ -25,7 +25,7 @@ locals {
           "@theseusformation.fr",
           "marin@hannache.fr",
         ]
-        dovecotAclGroups     = "master,theseus"
+        dovecotAclGroups     = "mareo,theseus"
         dovecotQuotaStorage  = "10G"
         dovecotQuotaMessages = 250000
       }
