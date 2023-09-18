@@ -97,8 +97,8 @@ configMap:
     globals.acl: |
       * owner lrwstipekxa
       * group-override=master lrwstipekxa
-      Shared/mareo.fr group-override=mareo lrwstipekxa
-      Shared/*.mareo.fr group-override=mareo lrwstipekxa
+      Shared/mareo.fr/* group-override=mareo lrwstipekxa
+      Shared/*.mareo.fr/* group-override=mareo lrwstipekxa
       Shared/theseusformation.fr/root@theseusformation.fr group-override=theseus lrwstipekxa
       Shared/theseusformation.fr/contact@theseusformation.fr group-override=theseus lrwstipekxa
     extra_passdb.conf: |
