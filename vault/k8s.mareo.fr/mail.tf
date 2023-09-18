@@ -4,12 +4,12 @@ locals {
       "auth",
       "gitlab",
       "grafana",
-      "moodle",
       "nextcloud",
       "ouranos",
       "vaultwarden",
     ]
-    "hannache.fr." = []
+    "hannache.fr."         = []
+    "theseusformation.fr." = []
   }
 }
 
