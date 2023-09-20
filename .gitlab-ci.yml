@@ -32,7 +32,7 @@ shellcheck:
 
 yamllint:
   stage: linting
-  image: registry.gitlab.com/pipeline-components/yamllint:0.28.0
+  image: registry.gitlab.com/pipeline-components/yamllint:0.28.1
   script:
     - yamllint .
 
