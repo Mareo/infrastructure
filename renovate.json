@@ -12,7 +12,7 @@
       {
         "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
         "matchPackagePrefixes": [
-            "argoproj/argo-cd",
+            "argo-cd",
             "authentik",
             "cert-manager",
             "external-dns",
