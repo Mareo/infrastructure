@@ -28,6 +28,7 @@ spec:
         controller:
           electionID: "ingress-nginx-internal-controller-leader"
           watchIngressWithoutClass: false
+          allowSnippetAnnotations: true
           ingressClass: "internal"
           ingressClassResource:
             enabled: true
