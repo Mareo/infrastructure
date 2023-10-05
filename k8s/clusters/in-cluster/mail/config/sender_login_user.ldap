@@ -1,2 +1,2 @@
-query_filter      = (&(objectClass=user)(|(mail=%s)(allowedEmails=%s)(allowedEmails=@%d)(allowedEmails=all)(mailAliases=%s)(mailAliases=@%d)))
+query_filter      = (&(objectClass=user)(|(allowedEmails=%s)(allowedEmails=@%d)(allowedEmails=all)(mailAliases=%s)(mailAliases=@%d)))
 result_attribute  = cn, mail, mailboxes
