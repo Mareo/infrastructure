@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentik-proxy
+  namespace: paperless-ngx
+spec:
+  type: ExternalName
+  externalName: authentik.authentik.svc
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paperless-ngx-authentik
+  namespace: paperless-ngx
+  annotations:
+    cert-manager.io/cluster-issuer: default-issuer
+spec:
+  rules:
+    - host: documents.mareo.fr
+      http:
+        paths:
+          - path: /outpost.goauthentik.io
+            pathType: Prefix
+            backend:
+              service:
+                name: authentik-proxy
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - documents.mareo.fr
+      secretName: paperless-ngx-tls

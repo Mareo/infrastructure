@@ -2,6 +2,7 @@ locals {
   zones = {
     "mareo.fr." = [
       "auth",
+      "documents",
       "gitlab",
       "grafana",
       "nextcloud",

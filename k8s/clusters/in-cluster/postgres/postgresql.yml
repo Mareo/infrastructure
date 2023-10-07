@@ -30,6 +30,7 @@ spec:
     hedgedoc.hedgedoc: []
     kube-prometheus-stack.grafana: []
     nextcloud.nextcloud: []
+    paperless-ngx.paperless-ngx: []
     petitstream-dev.petitstream-dev: []
     petitstream.petitstream: []
     theseus-moodle.theseus-moodle: []
@@ -43,6 +44,7 @@ spec:
     grafana: kube-prometheus-stack.grafana
     hedgedoc: hedgedoc.hedgedoc
     nextcloud: nextcloud.nextcloud
+    paperless_ngx: paperless-ngx.paperless-ngx
     petitstream: petitstream.petitstream
     petitstream_dev: petitstream-dev.petitstream-dev
     theseus_moodle: theseus-moodle.theseus-moodle

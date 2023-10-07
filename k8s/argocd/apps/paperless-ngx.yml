@@ -1,0 +1,142 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: paperless-ngx
+  labels:
+    app: paperless-ngx
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-paperless-ngx"
+      labels:
+        app: paperless-ngx
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: paperless-ngx
+      sources:
+        - repoURL: https://ot-container-kit.github.io/helm-charts/
+          chart: redis
+          targetRevision: 0.15.3
+          helm:
+            releaseName: "redis"
+            values: |
+              redisStandalone:
+                redisSecret:
+                  secretName: "paperless-ngx-redis"
+                  secretKey: "password"
+              storageSpec:
+                volumeClaimTemplate:
+                  spec:
+                    storageClassName: csi-rbd-sc-delete
+        - repoURL: https://k8s-home-lab.github.io/helm-charts/
+          chart: paperless
+          targetRevision: 10.0.0
+          helm:
+            releaseName: paperless-ngx
+            values: |
+              env:
+                - name: COMPOSE_PROJECT_NAME
+                  value: paperless
+                - name: PAPERLESS_OCR_LANGUAGE
+                  value: fra
+                - name: PAPERLESS_REDIS_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: paperless-ngx-redis
+                      key: password
+                - name: PAPERLESS_REDIS
+                  value: "redis://:$(PAPERLESS_REDIS_PASSWORD)@redis.paperless-ngx.svc"
+                - name: PAPERLESS_TIME_ZONE
+                  value: Europe/Paris
+                - name: PAPERLESS_SECRET_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: paperless-ngx-secrets
+                      key: PAPERLESS_SECRET_KEY
+                - name: PAPERLESS_ADMIN_MAIL
+                  value: root@mareo.fr
+                - name: PAPERLESS_ADMIN_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: paperless-ngx-admin-credentials
+                      key: username
+                - name: PAPERLESS_ADMIN_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: paperless-ngx-admin-credentials
+                      key: password
+                - name: PAPERLESS_DBENGINE
+                  value: postgres
+                - name: PAPERLESS_DBHOST
+                  value: in-cluster-main-cluster-pooler.postgres.svc.cluster.local
+                - name: PAPERLESS_DBNAME
+                  value: paperless_ngx
+                - name: PAPERLESS_DBUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: paperless-ngx.paperless-ngx.in-cluster-main-cluster.credentials
+                      key: username
+                - name: PAPERLESS_DBPASS
+                  valueFrom:
+                    secretKeyRef:
+                      name: paperless-ngx.paperless-ngx.in-cluster-main-cluster.credentials
+                      key: password
+                - name: PAPERLESS_PROXY_SSL_HEADER
+                  value: '["HTTP_X_FORWARDED_PROTO", "https"]'
+                - name: PAPERLESS_USE_X_FORWARD_HOST
+                  value: True
+                - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
+                  value: True
+                - name: PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME
+                  value: HTTP_X_AUTHENTIK_USERNAME
+                - name: PAPERLESS_LOGOUT_REDIRECT_URL
+                  value: https://auth.mareo.fr/if/flow/default-invalidation-flow/
+              ingress:
+                main:
+                  enabled: true
+                  annotations:
+                    cert-manager.io/cluster-issuer: default-issuer
+                    nginx.ingress.kubernetes.io/auth-url: |-
+                        http://authentik.authentik.svc.cluster.local/outpost.goauthentik.io/auth/nginx
+                    nginx.ingress.kubernetes.io/auth-signin: |-
+                        https://documents.mareo.fr/outpost.goauthentik.io/start?rd=$escaped_request_uri
+                    nginx.ingress.kubernetes.io/auth-response-headers: |-
+                        Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
+                    nginx.ingress.kubernetes.io/auth-snippet: |-
+                        proxy_set_header X-Forwarded-Host $http_host;
+                  ingressClassName: public
+                  hosts:
+                    - host: documents.mareo.fr
+                      paths:
+                        - path: /
+                          pathType: Prefix
+                          service:
+                            port: 8000
+                  tls:
+                    - secretName: paperless-ngx-tls
+                      hosts:
+                        - documents.mareo.fr
+              persistence:
+                data:
+                  enabled: true
+                  type: pvc
+                  size: 50G
+                  storageClass: csi-rbd-sc-retain
+                media:
+                  enabled: true
+                  type: pvc
+                  size: 50G
+                  storageClass: csi-rbd-sc-retain

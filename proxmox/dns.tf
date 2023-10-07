@@ -19,6 +19,13 @@ locals {
         exchange   = "ouranos.mareo.fr."
       }]
     }
+    "documents.mareo.fr." = {
+      zone = "mareo.fr."
+      records = [{
+        preference = 10
+        exchange   = "ouranos.mareo.fr."
+      }]
+    }
     "gitlab.mareo.fr." = {
       zone = "mareo.fr."
       records = [{

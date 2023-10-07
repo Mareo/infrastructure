@@ -49,6 +49,7 @@ locals {
         "moodle_admins",
         "nextcloud",
         "nextcloud_admins",
+        "paperless",
         "petitstream_admins",
         "petitstream_devs",
         "petitstream_ops",

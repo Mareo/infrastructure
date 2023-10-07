@@ -21,6 +21,7 @@ resources:
   - ingress-nginx-public.yml
   - kube-prometheus-stack.yml
   - nextcloud.yml
+  - paperless-ngx.yml
   - petitstream-dev.yml
   - petitstream.yml
   - rbd-csi.yml
