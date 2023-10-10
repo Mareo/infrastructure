@@ -101,6 +101,7 @@ configMap:
       Shared/*.mareo.fr group=mareo lrwstipekxa
       Shared/theseusformation.fr/root@theseusformation.fr group=theseus lrwstipekxa
       Shared/theseusformation.fr/contact@theseusformation.fr group=theseus lrwstipekxa
+      Shared/theseusformation.fr/veille@theseusformation.fr group=theseus lrwstipekxa
     extra_passdb.conf: |
       passdb {
         driver = ldap

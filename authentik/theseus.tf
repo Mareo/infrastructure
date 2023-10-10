@@ -10,6 +10,7 @@ resource "authentik_user" "theseus-mail" {
     mailboxes = [
       "root@theseusformation.fr",
       "contact@theseusformation.fr",
+      "veille@theseusformation.fr",
     ]
     dovecotQuotaStorage  = "10G"
     dovecotQuotaMessages = 100000
