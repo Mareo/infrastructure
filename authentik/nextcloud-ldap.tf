@@ -1,7 +1,7 @@
 resource "authentik_provider_ldap" "nextcloud-ldap" {
   name         = "nextcloud-ldap"
   base_dn      = "dc=nextcloud,dc=mareo,dc=fr"
-  bind_flow    = data.authentik_flow.default-authentication-flow.id
+  bind_flow    = authentik_flow.apppassword-authentication-flow.uuid
   search_group = authentik_group.groups["nextcloud_service_accounts"].id
   mfa_support  = false
 }
