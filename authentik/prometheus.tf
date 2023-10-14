@@ -3,7 +3,7 @@ resource "authentik_provider_proxy" "prometheus" {
   authorization_flow    = data.authentik_flow.default-provider-authorization-implicit-consent.id
   access_token_validity = "days=1"
   mode                  = "forward_single"
-  external_host         = "https://prom.mareo.fr/"
+  external_host         = "https://prometheus.mareo.fr/"
 }
 
 resource "authentik_application" "prometheus" {
@@ -12,7 +12,7 @@ resource "authentik_application" "prometheus" {
   group              = "Infrastructure"
   protocol_provider  = authentik_provider_proxy.prometheus.id
   meta_icon          = "${local.icon-url}/prometheus.png"
-  meta_launch_url    = "https://prom.mareo.fr"
+  meta_launch_url    = "https://prometheus.mareo.fr"
   meta_publisher     = "Cloud Native Computing Foundation"
   policy_engine_mode = "any"
 }

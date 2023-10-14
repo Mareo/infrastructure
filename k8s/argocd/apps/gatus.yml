@@ -218,7 +218,7 @@ spec:
                   - name: Prometheus
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://prom.mareo.fr/"
+                    url: "https://prometheus.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"

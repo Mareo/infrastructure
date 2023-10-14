@@ -41,7 +41,7 @@ metadata:
     cert-manager.io/cluster-issuer: default-issuer
 spec:
   rules:
-    - host: prom.mareo.fr
+    - host: prometheus.mareo.fr
       http:
         paths:
           - path: /outpost.goauthentik.io
@@ -53,5 +53,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - prom.mareo.fr
+        - prometheus.mareo.fr
       secretName: prometheus-tls
