@@ -76,6 +76,7 @@ locals {
         "gitlab",
         "hedgedoc",
         "nextcloud",
+        "paperless",
         "syncthing",
         "vaultwarden",
       ]
