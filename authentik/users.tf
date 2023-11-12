@@ -94,7 +94,13 @@ locals {
           "kamre@hannache.fr",
         ]
         allowedEmails = [
+          "kam@hannache.fr",
           "kamre@hannache.fr",
+          "karl@hannache.fr",
+        ]
+        mailAliases = [
+          "kam@hannache.fr",
+          "karl@hannache.fr",
         ]
         dovecotQuotaStorage  = "10G"
         dovecotQuotaMessages = 250000
