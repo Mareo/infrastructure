@@ -9,7 +9,7 @@ locals {
     "*.pages.mareo.fr." = "148.251.4.90"
   }
 
-  zones = ["mareo.fr", "theseusformation.fr"]
+  zones = ["mareo.fr", "theseus.fr", "theseusformation.fr"]
 
   dns_mx = {
     "mareo.fr." = {
@@ -35,6 +35,13 @@ locals {
     }
     "ouranos.mareo.fr." = {
       zone = "mareo.fr."
+      records = [{
+        preference = 10
+        exchange   = "ouranos.mareo.fr."
+      }]
+    }
+    "theseus.fr." = {
+      zone = "theseus.fr."
       records = [{
         preference = 10
         exchange   = "ouranos.mareo.fr."
