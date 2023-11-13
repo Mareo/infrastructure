@@ -26,7 +26,7 @@ imap:
   enabled: true
   service:
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: imap.mareo.fr., mail.mareo.fr., imap.hannache.fr, mail.hannache.fr, mail.theseusformation.fr, imap.theseusformation.fr
+      external-dns.alpha.kubernetes.io/hostname: imap.mareo.fr, mail.mareo.fr, imap.hannache.fr, mail.hannache.fr, mail.theseus.fr, imap.theseus.fr, mail.theseusformation.fr, imap.theseusformation.fr
     type: LoadBalancer
     nodePort: 30143
     tlsNodePort: 30993
@@ -99,6 +99,9 @@ configMap:
       * group-override=master lrwstipekxa
       Shared/mareo.fr group=mareo lrwstipekxa
       Shared/*.mareo.fr group=mareo lrwstipekxa
+      Shared/formation.fr/root@formation.fr group=theseus lrwstipekxa
+      Shared/formation.fr/contact@formation.fr group=theseus lrwstipekxa
+      Shared/formation.fr/veille@formation.fr group=theseus lrwstipekxa
       Shared/theseusformation.fr/root@theseusformation.fr group=theseus lrwstipekxa
       Shared/theseusformation.fr/contact@theseusformation.fr group=theseus lrwstipekxa
       Shared/theseusformation.fr/veille@theseusformation.fr group=theseus lrwstipekxa

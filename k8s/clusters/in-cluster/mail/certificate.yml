@@ -10,6 +10,8 @@ spec:
     - smtp.mareo.fr
     - mail.hannache.fr
     - smtp.hannache.fr
+    - mail.theseus.fr
+    - smtp.theseus.fr
     - mail.theseusformation.fr
     - smtp.theseusformation.fr
   issuerRef:

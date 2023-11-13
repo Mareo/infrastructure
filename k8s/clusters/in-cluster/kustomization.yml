@@ -45,6 +45,7 @@ patches:
             dnsZones:
               - "mareo.fr"
               - "hannache.fr"
+              - "theseus.fr"
               - "theseusformations.fr"
               - "theseusformations.com"
           dns01:
