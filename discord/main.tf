@@ -10,7 +10,7 @@ terraform {
     }
     random = {
       source  = "hashicorp/random"
-      version = "3.5.1"
+      version = "3.6.0"
     }
     discord = {
       source  = "Lucky3028/discord"
