@@ -109,6 +109,7 @@ spec:
                   enabled: true
                   annotations:
                     cert-manager.io/cluster-issuer: default-issuer
+                    nginx.ingress.kubernetes.io/proxy-body-size: 50M
                     nginx.ingress.kubernetes.io/auth-url: |-
                         http://authentik.authentik.svc.cluster.local/outpost.goauthentik.io/auth/nginx
                     nginx.ingress.kubernetes.io/auth-signin: |-
