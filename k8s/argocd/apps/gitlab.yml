@@ -29,7 +29,7 @@ spec:
       source:
         repoURL: https://charts.gitlab.io/
         chart: gitlab
-        targetRevision: 7.8.0
+        targetRevision: 7.8.1
         helm:
           releaseName: gitlab
           values: |
