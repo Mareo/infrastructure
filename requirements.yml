@@ -2,7 +2,7 @@
 ---
 collections:
   - name: community.general
-    version: 8.2.0
+    version: 8.3.0
   - name: community.hashi_vault
     version: 6.1.0
   - name: community.crypto
