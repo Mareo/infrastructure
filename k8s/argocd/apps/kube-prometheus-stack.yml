@@ -88,7 +88,7 @@ spec:
                   login_attribute_path: preferred_username
                   groups_attribute_path: groups
                   allowed_groups: "grafana"
-                  role_attribute_path: "contains([*], 'grafana_admins') && 'GrafanaAdmin' || contains(groups[*], 'grafana_editors') && 'Editor' || 'Viewer'"
+                  role_attribute_path: "contains(groups[*], 'grafana_admins') && 'GrafanaAdmin' || contains(groups[*], 'grafana_editors') && 'Editor' || 'Viewer'"
                   role_attribute_strict: true
                   allow_assign_grafana_admin: true
               defaultDashboardTimezone: Europe/Paris
