@@ -625,11 +625,10 @@ spec:
             enabled: true
             serviceMonitor:
               enabled: true
-          webhook:
-            ingress:
-              enabled: true
-              annotations:
-                cert-manager.io/cluster-issuer: default-issuer
-              ingressClassName: public
-              hostname: argocd.mareo.fr
-              tls: true
+          ingress:
+            enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: default-issuer
+            ingressClassName: public
+            hostname: argocd.mareo.fr
+            tls: true
