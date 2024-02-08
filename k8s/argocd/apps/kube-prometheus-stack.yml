@@ -86,8 +86,11 @@ spec:
                   api_url: https://auth.mareo.fr/application/o/userinfo/
                   use_pkce: true
                   login_attribute_path: preferred_username
-                  role_attribute_path: "contains(groups[*], 'grafana_admins') && 'Admin' || contains(groups[*], 'grafana_editors') && 'Editor' || 'Viewer'"
                   groups_attribute_path: groups
+                  allowed_groups: "grafana"
+                  role_attribute_path: "contains([*], 'grafana_admins') && 'GrafanaAdmin' || contains(groups[*], 'grafana_editors') && 'Editor' || 'Viewer'"
+                  role_attribute_strict: true
+                  allow_assign_grafana_admin: true
               defaultDashboardTimezone: Europe/Paris
               ingress:
                 enabled: true
