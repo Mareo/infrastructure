@@ -19,7 +19,7 @@ spec:
   source:
     repoURL: https://argoproj.github.io/argo-helm
     chart: argo-cd
-    targetRevision: 5.55.0
+    targetRevision: 6.0.3
     helm:
       values: |
         dex:
@@ -608,14 +608,9 @@ spec:
               nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
               nginx.ingress.kubernetes.io/ssl-passthrough: "true"
               nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-            hosts:
-              - argocd.mareo.fr
-            https: true
             ingressClassName: public
-            tls:
-              - hosts:
-                  - argocd.mareo.fr
-                secretName: argocd-server-tls
+            hostname: argocd.mareo.fr
+            tls: true
           metrics:
             enabled: true
             serviceMonitor:
@@ -635,10 +630,6 @@ spec:
               enabled: true
               annotations:
                 cert-manager.io/cluster-issuer: default-issuer
-              hosts:
-                - argocd-appset.mareo.fr
               ingressClassName: public
-              tls:
-                - hosts:
-                    - argocd-appset.mareo.fr
-                  secretName: argocd-appset-tls
+              hostname: argocd.mareo.fr
+              tls: true
