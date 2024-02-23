@@ -18,12 +18,14 @@ locals {
         mailboxes = [
           "mareo@mareo.fr",
           "marin@hannache.fr",
+          "marin@theseus.fr",
           "marin@theseusformation.fr",
         ]
         allowedEmails = [
           "@mareo.fr",
-          "@theseusformation.fr",
           "marin@hannache.fr",
+          "@theseus.fr",
+          "@theseusformation.fr",
         ]
         dovecotAclGroups     = "mareo,theseus"
         dovecotQuotaStorage  = "10G"
@@ -129,9 +131,11 @@ locals {
       attributes = {
         nextcloud_quota = "50G"
         mailboxes = [
+          "kevin@theseus.fr",
           "kevin@theseusformation.fr",
         ]
         allowedEmails = [
+          "@theseus.fr",
           "@theseusformation.fr",
         ]
         dovecotAclGroups     = "theseus"
