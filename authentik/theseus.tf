@@ -7,10 +7,15 @@ resource "authentik_user" "theseus-mail" {
   email    = "courses@theseusformation.fr"
   attributes = jsonencode({
     "goauthentik.io/user/service-account" = true
+    mailboxRules = [
+      "root@theseusformation.fr:root@theseus.fr",
+      "contact@theseusformation.fr:contact@theseus.fr",
+      "veille@theseusformation.fr:veille@theseus.fr",
+    ]
     mailboxes = [
-      "root@theseusformation.fr",
-      "contact@theseusformation.fr",
-      "veille@theseusformation.fr",
+      "root@theseus.fr",
+      "contact@theseus.fr",
+      "veille@theseus.fr",
     ]
     dovecotQuotaStorage  = "10G"
     dovecotQuotaMessages = 100000
