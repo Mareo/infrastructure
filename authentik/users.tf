@@ -14,6 +14,7 @@ locals {
         }
         mailboxRules = [
           "@mareo.fr:mareo@mareo.fr",
+          "marin@theseusformation.fr:marin@theseus.fr",
         ]
         mailboxes = [
           "mareo@mareo.fr",
@@ -130,6 +131,9 @@ locals {
       path  = "users/friends"
       attributes = {
         nextcloud_quota = "50G"
+        mailboxRules = [
+          "kevin@theseusformation.fr:kevin@theseus.fr",
+        ]
         mailboxes = [
           "kevin@theseus.fr",
           "kevin@theseusformation.fr",
