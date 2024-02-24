@@ -1,0 +1,70 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-workflows
+  labels:
+    app: argo-workflows
+spec:
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: "in-cluster"
+    namespace: argo-workflows
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    chart: argo-workflows
+    targetRevision: 0.40.8
+    helm:
+      values: |
+        controller:
+          resourceRateLimit:
+            limit: 100
+            burst: 20
+
+        metricsConfig:
+          enabled: true
+        telemetryConfig:
+          enabled: true
+        serviceMonitor:
+          enabled: true
+
+        server:
+          enabled: true
+          clusterWorkflowTemplates:
+            enabled: false
+          authModes:
+            - sso
+            - client
+          sso:
+            enabled: true
+            issuer: "https://auth.mareo.fr/application/o/argo-workflows/"
+            clientId:
+              name: argo-workflows-server-sso
+              key: client_id
+            clientSecret:
+              name: argo-worklows-server-sso
+              key: client_secret
+            redirectUrl: "https://workflows.mareo.fr.fr/oauth2/callback"
+            scopes:
+              - openid
+              - profile
+              - email
+            rbac:
+              enabled: false
+          ingress:
+            enabled: true
+            ingressClassName: public
+            annotations:
+              cert-manager.io/cluster-issuer: default-issuer
+            hosts:
+              - workflows.mareo.fr
+            tls:
+              - secretName: argo-workflows-server-tls
+                hosts:
+                  - workflows.mareo.fr

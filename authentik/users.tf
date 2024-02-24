@@ -36,6 +36,8 @@ locals {
         "alertmanager",
         "argocd",
         "argocd_admins",
+        "argowf",
+        "argowf_admins",
         "gatus",
         "gitlab",
         "gitlab_admins",

@@ -6,7 +6,8 @@ resources:
   - mail/
 
   - authentik.yml
-  - argocd.yml
+  - argo-cd.yml
+  - argo-workflows.yml
   - cephfs-csi.yml
   - cert-manager.yml
   - clusters.yml
