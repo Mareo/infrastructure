@@ -25,6 +25,7 @@ spec:
   # users: name -> permissions (usually [])
   users:
     authentik.authentik: []
+    argo-workflows.argo-workflows: []
     gatus.gatus: []
     gitlab.gitlab: []
     hedgedoc.hedgedoc: []
@@ -38,6 +39,7 @@ spec:
   # databases: name -> owner
   databases:
     authentik: authentik.authentik
+    argo_workflows: argo-workflows.argo-workflows
     gatus: gatus.gatus
     gitlab: gitlab.gitlab
     grafana: kube-prometheus-stack.grafana

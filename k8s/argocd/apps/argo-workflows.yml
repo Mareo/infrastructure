@@ -26,6 +26,21 @@ spec:
           resourceRateLimit:
             limit: 100
             burst: 20
+          persistence:
+            archive: true
+            postgresql:
+              host: in-cluster-main-cluster-pooler.postgres.svc.cluster.local
+              port: 5432
+              database: argo_workflows
+              tableName: argo_workflows
+              userNameSecret:
+                name: argo-workflows.argo-workflows.in-cluster-main-cluster.credentials
+                key: username
+              passwordSecret:
+                name: argo-workflows.argo-workflows.in-cluster-main-cluster.credentials
+                key: password
+              ssl: true
+              sslMode: require
 
         metricsConfig:
           enabled: true
