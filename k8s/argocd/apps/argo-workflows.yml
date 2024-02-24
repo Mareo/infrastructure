@@ -48,7 +48,7 @@ spec:
               name: argo-workflows-server-sso
               key: client_id
             clientSecret:
-              name: argo-worklows-server-sso
+              name: argo-workflows-server-sso
               key: client_secret
             redirectUrl: "https://workflows.mareo.fr.fr/oauth2/callback"
             scopes:
