@@ -50,6 +50,11 @@ proxmox_ceph_rgw_users:
     max_buckets: 1
     buckets:
       - terraform
+  - uid: argo-workflows
+    display_name: argo-workflows
+    max_buckets: 1
+    buckets:
+      - argo-workflows
   - uid: gitlab
     display_name: gitlab
     max_buckets: 10
@@ -64,22 +69,22 @@ proxmox_ceph_rgw_users:
       - gitlab-runner-cache
       - gitlab-terraform-state
       - gitlab-uploads
-  - uid: postgresql
-    display_name: postgresql
+  - uid: hedgedoc
+    display_name: hedgedoc
     max_buckets: 1
     buckets:
-      - postgresql
+      - hedgedoc-data
   - uid: petitstream
     display_name: petitstream
     max_buckets: 2
     buckets:
       - petitstream-dev
       - petitstream
-  - uid: hedgedoc
-    display_name: hedgedoc
+  - uid: postgresql
+    display_name: postgresql
     max_buckets: 1
     buckets:
-      - hedgedoc-data
+      - postgresql
 
 dhcp_subnets: "{{ dhcp_subnets_yaml | from_yaml }}"
 dhcp_interfaces: "{{ dhcp_interfaces_yaml | from_yaml | join(' ') }}"

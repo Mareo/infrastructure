@@ -22,6 +22,17 @@ spec:
     targetRevision: 0.40.11
     helm:
       values: |
+        artifactRepository:
+          archiveLogs: true
+          s3:
+            accessKeySecret:
+              name: argo-workflows-object-storage
+              key: s3_access_key
+            secretKeySecret:
+              name: argo-workflows-object-storage
+              key: s3_secret_key
+            bucket: argo-workflows
+            endpoint: "ouranos.mareo.fr:7443"
         controller:
           resourceRateLimit:
             limit: 100
