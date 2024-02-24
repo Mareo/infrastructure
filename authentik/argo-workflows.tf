@@ -23,8 +23,7 @@ resource "authentik_provider_oauth2" "argo-workflows" {
   client_type           = "public"
   access_token_validity = "days=1"
   redirect_uris = [
-    "https://argo-workflows.mareo.fr/auth/callback",
-    "http://localhost:8085/auth/callback",
+    "https://workflows.mareo.fr/oauth2/callback",
   ]
   property_mappings = [
     data.authentik_scope_mapping.scope-openid.id,

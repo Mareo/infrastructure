@@ -50,7 +50,7 @@ spec:
             clientSecret:
               name: argo-workflows-server-sso
               key: client_secret
-            redirectUrl: "https://workflows.mareo.fr.fr/oauth2/callback"
+            redirectUrl: "https://workflows.mareo.fr/oauth2/callback"
             scopes:
               - openid
               - profile
