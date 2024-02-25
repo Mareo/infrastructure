@@ -35,43 +35,54 @@ spec:
           values: |
             global:
               env:
-                AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: false
-                AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: false
-                AUTHENTIK_OUTPOSTS__DISCOVER: false
-                AUTHENTIK_POSTGRESQL__USE_PGBOUNCER: true
-              envValueFrom:
-                AUTHENTIK_SECRET_KEY:
-                  secretKeyRef:
-                    name: authentik-app
-                    key: secret_key
-                AK_ADMIN_PASS:
-                  secretKeyRef:
-                    name: authentik-app
-                    key: bootstrap_password
-                AK_ADMIN_TOKEN:
-                  secretKeyRef:
-                    name: authentik-app
-                    key: bootstrap_token
-                AUTHENTIK_EMAIL__PASSWORD:
-                  secretKeyRef:
-                    name: authentik-mail
-                    key: password
-                AUTHENTIK_EMAIL__USERNAME:
-                  secretKeyRef:
-                    name: authentik-mail
-                    key: username
-                AUTHENTIK_POSTGRESQL__USER:
-                  secretKeyRef:
-                    name: authentik.authentik.in-cluster-main-cluster.credentials
-                    key: username
-                AUTHENTIK_POSTGRESQL__PASSWORD:
-                  secretKeyRef:
-                    name: authentik.authentik.in-cluster-main-cluster.credentials
-                    key: password
-                AUTHENTIK_REDIS__PASSWORD:
-                  secretKeyRef:
-                    name: authentik-redis
-                    key: password
+                - name: AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL
+                  value: false
+                - name: AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME
+                  value: false
+                - name: AUTHENTIK_OUTPOSTS__DISCOVER
+                  value: false
+                - name: AUTHENTIK_POSTGRESQL__USE_PGBOUNCER
+                  value: true
+                - name: AUTHENTIK_SECRET_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: authentik-app
+                      key: secret_key
+                - name: AK_ADMIN_PASS
+                  valueFrom:
+                    secretKeyRef:
+                      name: authentik-app
+                      key: bootstrap_password
+                - name: AK_ADMIN_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: authentik-app
+                      key: bootstrap_token
+                - name: AUTHENTIK_EMAIL__PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: authentik-mail
+                      key: password
+                - name: AUTHENTIK_EMAIL__USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: authentik-mail
+                      key: username
+                - name: AUTHENTIK_POSTGRESQL__USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: authentik.authentik.in-cluster-main-cluster.credentials
+                      key: username
+                - name: AUTHENTIK_POSTGRESQL__PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: authentik.authentik.in-cluster-main-cluster.credentials
+                      key: password
+                - name: AUTHENTIK_REDIS__PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: authentik-redis
+                      key: password
             server:
               ingress:
                 enabled: true
