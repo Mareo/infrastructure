@@ -84,6 +84,9 @@ spec:
                       name: authentik-redis
                       key: password
             server:
+              metrics:
+                serviceMonitor:
+                  enabled: true
               ingress:
                 enabled: true
                 ingressClassName: public
@@ -111,7 +114,5 @@ spec:
                 use_ssl: true
                 from: no-reply@auth.mareo.fr
             prometheus:
-              serviceMonitor:
-                create: true
               rules:
-                create: true
+                enabled: true
