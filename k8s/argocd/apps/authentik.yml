@@ -29,24 +29,61 @@ spec:
       source:
         repoURL: https://charts.goauthentik.io/
         chart: authentik
-        targetRevision: 2023.10.7
+        targetRevision: 2024.2.1
         helm:
           releaseName: authentik
           values: |
-            ingress:
-              enabled: true
-              ingressClassName: public
-              annotations:
-                cert-manager.io/cluster-issuer: default-issuer
-              hosts:
-                - host: auth.mareo.fr
-                  paths:
-                    - path: "/"
-                      pathType: Prefix
-              tls:
-                - hosts:
-                    - auth.mareo.fr
-                  secretName: "authentik-tls"
+            global:
+              env:
+                AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: false
+                AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: false
+                AUTHENTIK_OUTPOSTS__DISCOVER: false
+                AUTHENTIK_POSTGRESQL__USE_PGBOUNCER: true
+              envValueFrom:
+                AUTHENTIK_SECRET_KEY:
+                  secretKeyRef:
+                    name: authentik-app
+                    key: secret_key
+                AK_ADMIN_PASS:
+                  secretKeyRef:
+                    name: authentik-app
+                    key: bootstrap_password
+                AK_ADMIN_TOKEN:
+                  secretKeyRef:
+                    name: authentik-app
+                    key: bootstrap_token
+                AUTHENTIK_EMAIL__PASSWORD:
+                  secretKeyRef:
+                    name: authentik-mail
+                    key: password
+                AUTHENTIK_EMAIL__USERNAME:
+                  secretKeyRef:
+                    name: authentik-mail
+                    key: username
+                AUTHENTIK_POSTGRESQL__USER:
+                  secretKeyRef:
+                    name: authentik.authentik.in-cluster-main-cluster.credentials
+                    key: username
+                AUTHENTIK_POSTGRESQL__PASSWORD:
+                  secretKeyRef:
+                    name: authentik.authentik.in-cluster-main-cluster.credentials
+                    key: password
+                AUTHENTIK_REDIS__PASSWORD:
+                  secretKeyRef:
+                    name: authentik-redis
+                    key: password
+            server:
+              ingress:
+                enabled: true
+                ingressClassName: public
+                annotations:
+                  cert-manager.io/cluster-issuer: default-issuer
+                hosts:
+                  - auth.mareo.fr
+                tls:
+                  - hosts:
+                      - auth.mareo.fr
+                    secretName: "authentik-tls"
             authentik:
               log_level: debug
               error_reporting:
@@ -62,44 +99,6 @@ spec:
                 port: 465
                 use_ssl: true
                 from: no-reply@auth.mareo.fr
-            env:
-              AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: false
-              AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: false
-              AUTHENTIK_OUTPOSTS__DISCOVER: false
-              AUTHENTIK_POSTGRESQL__USE_PGBOUNCER: true
-            envValueFrom:
-              AUTHENTIK_SECRET_KEY:
-                secretKeyRef:
-                  name: authentik-app
-                  key: secret_key
-              AK_ADMIN_PASS:
-                secretKeyRef:
-                  name: authentik-app
-                  key: bootstrap_password
-              AK_ADMIN_TOKEN:
-                secretKeyRef:
-                  name: authentik-app
-                  key: bootstrap_token
-              AUTHENTIK_EMAIL__PASSWORD:
-                secretKeyRef:
-                  name: authentik-mail
-                  key: password
-              AUTHENTIK_EMAIL__USERNAME:
-                secretKeyRef:
-                  name: authentik-mail
-                  key: username
-              AUTHENTIK_POSTGRESQL__USER:
-                secretKeyRef:
-                  name: authentik.authentik.in-cluster-main-cluster.credentials
-                  key: username
-              AUTHENTIK_POSTGRESQL__PASSWORD:
-                secretKeyRef:
-                  name: authentik.authentik.in-cluster-main-cluster.credentials
-                  key: password
-              AUTHENTIK_REDIS__PASSWORD:
-                secretKeyRef:
-                  name: authentik-redis
-                  key: password
             prometheus:
               serviceMonitor:
                 create: true
