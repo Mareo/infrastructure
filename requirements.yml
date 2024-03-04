@@ -8,7 +8,7 @@ collections:
   - name: community.crypto
     version: 2.18.0
   - name: kubernetes.core
-    version: 3.0.0
+    version: 3.0.1
   - name: amazon.aws
     version: 7.3.0
 
