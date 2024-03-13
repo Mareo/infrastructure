@@ -66,6 +66,8 @@ spec:
               user: grafana-oncall.grafana-oncall
               existingSecret: grafana-oncall.grafana-oncall.in-cluster-main-cluster.credentials
               passwordKey: password
+              options: >-
+                sslmode=require
 
             grafana:
               enabled: false
