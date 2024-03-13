@@ -17,6 +17,7 @@ resources:
   - factorio.yml
   - gatus.yml
   - gitlab.yml
+  - grafana-oncall.yml
   - ingress-nginx-internal.yml
   - ingress-nginx-public.yml
   - kube-prometheus-stack.yml

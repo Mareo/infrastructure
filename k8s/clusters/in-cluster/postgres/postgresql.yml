@@ -30,6 +30,7 @@ spec:
     gitlab.gitlab: []
     hedgedoc.hedgedoc: []
     kube-prometheus-stack.grafana: []
+    grafana-oncall.grafana-oncall: []
     nextcloud.nextcloud: []
     paperless-ngx.paperless-ngx: []
     petitstream-dev.petitstream-dev: []
@@ -43,6 +44,7 @@ spec:
     gatus: gatus.gatus
     gitlab: gitlab.gitlab
     grafana: kube-prometheus-stack.grafana
+    grafana-oncall: grafana-oncall.grafana-oncall
     hedgedoc: hedgedoc.hedgedoc
     nextcloud: nextcloud.nextcloud
     paperless_ngx: paperless-ngx.paperless-ngx

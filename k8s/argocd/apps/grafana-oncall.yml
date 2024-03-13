@@ -1,0 +1,75 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: grafana-oncall
+  labels:
+    app: grafana-oncall
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+            endpoints:
+              - 192.168.0.1
+  goTemplate: true
+  template:
+    metadata:
+      name: "{{.name}}-grafana-oncall"
+      labels:
+        app: grafana-oncall
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+        automated:
+          prune: true
+          selfHeal: true
+      destination:
+        name: "{{.name}}"
+        namespace: grafana-oncall
+      source:
+        repoURL: https://grafana.github.io/helm-charts
+        chart: oncall
+        targetRevision: 1.3.112
+        helm:
+          values: |
+            fullnameOverride: grafana-oncall
+            base_url: oncall.mareo.fr
+            ingress:
+              className: public
+              annotations:
+                cert-manager.io/cluster-issuer: "default-issuer"
+            ingress-nginx:
+              enabled: false
+            cert-manager:
+              enabled: false
+            rabbitmq:
+              enabled: true
+            redis:
+              enabled: true
+
+            mariadb:
+              enabled: false
+            postgresql:
+              enabled: false
+            database:
+              type: postgresql
+            externalPostgresql:
+              host: in-cluster-main-cluster-pooler.postgres.svc.cluster.local
+              port: 5432
+              db_name: grafana_oncall
+              user: grafana-oncall.grafana-oncall
+              existingSecret: grafana-oncall.grafana-oncall.in-cluster-main-cluster.credentials
+              passwordKey: password
+
+            grafana:
+              enabled: false
+            externalGrafana:
+              url: "https://grafana.mareo.fr/"
+
+            prometheus:
+              enabled: false
