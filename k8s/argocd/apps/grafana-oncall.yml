@@ -62,7 +62,7 @@ spec:
             database:
               type: postgresql
             externalPostgresql:
-              host: in-cluster-main-cluster-pooler.postgres.svc.cluster.local
+              host: in-cluster-main-cluster.postgres.svc.cluster.local
               port: 5432
               db_name: grafana_oncall
               user: grafana-oncall.grafana-oncall
