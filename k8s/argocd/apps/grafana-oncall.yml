@@ -43,14 +43,16 @@ spec:
               className: public
               annotations:
                 kubernetes.io/ingress.class: null
+                cert-manager.io/issuer: null
                 cert-manager.io/cluster-issuer: "default-issuer"
             ingress-nginx:
               enabled: false
             cert-manager:
               enabled: false
-            rabbitmq:
-              enabled: true
             redis:
+              enabled: true
+
+            rabbitmq:
               enabled: true
 
             mariadb:
