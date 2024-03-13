@@ -27,7 +27,7 @@ spec:
           - ServerSideApply=true
         automated:
           prune: true
-          selfHeal: true
+          selfHeal: false
       destination:
         name: "{{.name}}"
         namespace: grafana-oncall
