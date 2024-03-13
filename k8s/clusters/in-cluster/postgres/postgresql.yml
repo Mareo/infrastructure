@@ -43,7 +43,7 @@ spec:
     argo_workflows: argo-workflows.argo-workflows
     gatus: gatus.gatus
     gitlab: gitlab.gitlab
-    grafana: kube-prometheus-stack.grafana
+    #grafana: kube-prometheus-stack.grafana
     grafana_oncall: grafana-oncall.grafana-oncall
     hedgedoc: hedgedoc.hedgedoc
     nextcloud: nextcloud.nextcloud
