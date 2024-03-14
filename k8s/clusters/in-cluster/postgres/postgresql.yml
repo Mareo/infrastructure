@@ -29,7 +29,7 @@ spec:
     gatus.gatus: []
     gitlab.gitlab: []
     hedgedoc.hedgedoc: []
-    kube-prometheus-stack.grafana: []
+    monitoring.grafana: []
     grafana-oncall.grafana-oncall: []
     nextcloud.nextcloud: []
     paperless-ngx.paperless-ngx: []
