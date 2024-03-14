@@ -30,7 +30,7 @@ spec:
     gitlab.gitlab: []
     hedgedoc.hedgedoc: []
     monitoring.grafana: []
-    grafana-oncall.grafana-oncall: []
+    monitoring.grafana-oncall: []
     nextcloud.nextcloud: []
     paperless-ngx.paperless-ngx: []
     petitstream-dev.petitstream-dev: []
