@@ -47,7 +47,7 @@ spec:
                 - grafana-oncall-app
               sidecar:
                 datasources:
-                  alertamanger:
+                  alertmanager:
                     enabled: true
                     handleGrafanaManagedAlerts: true
               useStatefulSet: true
