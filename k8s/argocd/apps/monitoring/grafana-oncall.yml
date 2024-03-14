@@ -44,6 +44,7 @@ spec:
                 enabled: true
                 host: smtp.mareo.fr
                 port: 465
+                tls: false
                 ssl: true
                 username: grafana-mail
                 fromEmail: oncall@grafana.mareo.fr
