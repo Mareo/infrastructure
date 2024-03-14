@@ -45,6 +45,11 @@ spec:
                 passwordKey: password
               plugins:
                 - grafana-oncall-app
+              sidecar:
+                datasources:
+                  alertamanger:
+                    enabled: true
+                    handleGrafanaManagedAlerts: true
               useStatefulSet: true
               persistence:
                 type: pvc
