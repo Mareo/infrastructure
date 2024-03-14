@@ -39,6 +39,14 @@ spec:
           values: |
             fullnameOverride: grafana-oncall
             base_url: oncall.mareo.fr
+            oncall:
+              smtp:
+                enabled: true
+                host: smtp.mareo.fr
+                port: 465
+                ssl: true
+                username: grafana-mail
+                fromEmail: oncall@grafana.mareo.fr
             ingress:
               className: internal
               annotations:
