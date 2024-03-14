@@ -53,7 +53,7 @@ spec:
               useStatefulSet: true
               persistence:
                 type: pvc
-                enabled: true
+                enabled: false
               smtp:
                 existingSecret: "grafana-mail"
                 userKey: username
