@@ -9,7 +9,7 @@ resource "random_password" "grafana_client-secret" {
 }
 
 resource "vault_generic_secret" "grafana_oidc-authentik" {
-  path = "k8s/kube-prometheus-stack/grafana/oidc-authentik"
+  path = "k8s/monitoring/grafana/oidc-authentik"
   data_json = jsonencode({
     client_id     = random_string.grafana_client-id.result
     client_secret = random_password.grafana_client-secret.result
@@ -77,7 +77,7 @@ resource "authentik_token" "grafana_mail" {
 }
 
 resource "vault_generic_secret" "grafana_mail" {
-  path = "k8s/kube-prometheus-stack/grafana/mail"
+  path = "k8s/monitoring/grafana/mail"
   data_json = jsonencode({
     username = authentik_user.grafana_mail.username
     password = authentik_token.grafana_mail.key
