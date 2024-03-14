@@ -1,0 +1,7 @@
+---
+kind: Kustomization
+namespace: argocd
+
+resources:
+  - grafana-oncall.yml
+  - kube-prometheus-stack.yml

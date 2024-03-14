@@ -30,7 +30,7 @@ spec:
           selfHeal: true
       destination:
         name: "{{.name}}"
-        namespace: kube-prometheus-stack
+        namespace: monitoring
       source:
         repoURL: https://prometheus-community.github.io/helm-charts
         chart: kube-prometheus-stack
@@ -55,7 +55,7 @@ spec:
                 passwordKey: password
               extraSecretMounts:
                 - name: db-secret-mount
-                  secretName: kube-prometheus-stack.grafana.in-cluster-main-cluster.credentials
+                  secretName: monitoring.grafana.in-cluster-main-cluster.credentials
                   defaultMode: 0440
                   mountPath: /etc/secrets/db
                   readOnly: true

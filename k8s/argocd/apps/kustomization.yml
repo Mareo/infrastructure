@@ -4,6 +4,7 @@ namespace: argocd
 
 resources:
   - mail/
+  - monitoring/
 
   - authentik.yml
   - argo-cd.yml
@@ -17,10 +18,8 @@ resources:
   - factorio.yml
   - gatus.yml
   - gitlab.yml
-  - grafana-oncall.yml
   - ingress-nginx-internal.yml
   - ingress-nginx-public.yml
-  - kube-prometheus-stack.yml
   - nextcloud.yml
   - paperless-ngx.yml
   - petitstream-dev.yml

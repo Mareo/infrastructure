@@ -30,7 +30,7 @@ spec:
           selfHeal: false
       destination:
         name: "{{.name}}"
-        namespace: grafana-oncall
+        namespace: monitoring
       source:
         repoURL: https://grafana.github.io/helm-charts
         chart: oncall
@@ -40,7 +40,7 @@ spec:
             fullnameOverride: grafana-oncall
             base_url: oncall.mareo.fr
             ingress:
-              className: public
+              className: internal
               annotations:
                 kubernetes.io/ingress.class: null
                 cert-manager.io/issuer: null
@@ -65,8 +65,8 @@ spec:
               host: in-cluster-main-cluster.postgres.svc.cluster.local
               port: 5432
               db_name: grafana_oncall
-              user: grafana-oncall.grafana-oncall
-              existingSecret: grafana-oncall.grafana-oncall.in-cluster-main-cluster.credentials
+              user: monitoring.grafana-oncall
+              existingSecret: monitoring.grafana-oncall.in-cluster-main-cluster.credentials
               passwordKey: password
               options: >-
                 sslmode=require
