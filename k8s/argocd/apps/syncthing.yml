@@ -48,7 +48,7 @@ spec:
                   nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
                   nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
                   nginx.ingress.kubernetes.io/auth-url: |-
-                      http://authentik.authentik.svc.cluster.local/outpost.goauthentik.io/auth/nginx
+                      http://authentik-server.authentik.svc.cluster.local/outpost.goauthentik.io/auth/nginx
                   nginx.ingress.kubernetes.io/auth-signin: |-
                       https://syncthing.mareo.fr/outpost.goauthentik.io/start?rd=$escaped_request_uri
                   nginx.ingress.kubernetes.io/auth-response-headers: |-
