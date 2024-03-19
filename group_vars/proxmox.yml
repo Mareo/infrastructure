@@ -74,6 +74,11 @@ proxmox_ceph_rgw_users:
     max_buckets: 1
     buckets:
       - hedgedoc-data
+  - uid: loki
+    display_name: loki
+    max_buckets: 1
+    buckets:
+      - loki
   - uid: petitstream
     display_name: petitstream
     max_buckets: 2

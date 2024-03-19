@@ -1,0 +1,89 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: loki
+  labels:
+    app: loki
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+            endpoints:
+              - 192.168.0.1
+  goTemplate: true
+  template:
+    metadata:
+      name: "{{.name}}-loki"
+      labels:
+        app: loki
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+        automated:
+          prune: true
+          selfHeal: false
+      destination:
+        name: "{{.name}}"
+        namespace: monitoring
+      source:
+        repoURL: https://grafana.github.io/helm-charts
+        chart: loki
+        targetRevision: 5.45.0
+        helm:
+          values: |
+            fullnameOverride: loki
+            loki:
+              auth_enabled: false
+              storage:
+                type: s3
+                bucketNames:
+                  chunks: loki
+                  ruler: loki
+                  admin: loki
+                s3:
+                  endpoint: https://ouranos.mareo.fr
+                  accessKeyId: ${AWS_ACCESS_KEY_ID}
+                  secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
+                  region: ceph
+                schemaConfig:
+                  - from: "2024-01-01"
+                    store: tsdb
+                    object_store: s3
+                    schema: v12
+                    indes:
+                      prefix: loki_index_
+                      period: 24h
+            write:
+              extraArgs:
+                - "-config.exapnd-env=true"
+              extraEnvFrom:
+                - secretRef:
+                    name: loki-s3-creds
+            read:
+              extraArgs:
+                - "-config.exapnd-env=true"
+              extraEnvFrom:
+                - secretRef:
+                    name: loki-s3-creds
+            backend:
+              extraArgs:
+                - "-config.exapnd-env=true"
+              extraEnvFrom:
+                - secretRef:
+                    name: loki-s3-creds
+
+            monitoring:
+              lokiCanary:
+                enabled: true
+              selfMonitoring:
+                enabled: true
+                grafanaAgent:
+                  installOperator: true
+            test:
+              enabled: false
