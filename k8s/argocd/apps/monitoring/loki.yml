@@ -40,6 +40,8 @@ spec:
             fullnameOverride: loki
             loki:
               auth_enabled: false
+              commonConfing:
+                replication_factor: 1
               storage:
                 type: s3
                 bucketNames:
