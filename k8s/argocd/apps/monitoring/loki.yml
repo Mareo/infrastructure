@@ -47,7 +47,7 @@ spec:
                   ruler: loki
                   admin: loki
                 s3:
-                  endpoint: https://ouranos.mareo.fr
+                  endpoint: https://ouranos.mareo.fr:7443
                   accessKeyId: ${AWS_ACCESS_KEY_ID}
                   secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
                   region: ceph
