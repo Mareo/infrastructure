@@ -51,6 +51,7 @@ spec:
                   accessKeyId: ${AWS_ACCESS_KEY_ID}
                   secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
                   region: ceph
+                  s3ForcePathStyle: true
                 schemaConfig:
                   - from: "2024-01-01"
                     store: tsdb
