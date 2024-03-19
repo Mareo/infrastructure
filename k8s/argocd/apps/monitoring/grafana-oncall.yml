@@ -48,6 +48,9 @@ spec:
                 ssl: "true"
                 username: grafana-mail
                 fromEmail: oncall@grafana.mareo.fr
+            env:
+              - name: SEND_ANONYMOUS_USAGE_STATS
+                value: "false"
             ingress:
               className: public
               annotations:
