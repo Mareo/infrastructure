@@ -32,7 +32,7 @@ resource "vault_generic_secret" "monitoring_loki_s3" {
   path         = "k8s/monitoring/loki/s3-creds"
   disable_read = true
   data_json = jsonencode({
-    AWS_ACCESS_KEY_ID     = try(yamldecode(file("../secrets/rgw_user_postgresql.yml")).access_key, "FIXME")
-    AWS_SECRET_ACCESS_KEY = try(yamldecode(file("../secrets/rgw_user_postgresql.yml")).secret_key, "FIXME")
+    AWS_ACCESS_KEY_ID     = try(yamldecode(file("../secrets/rgw_user_loki.yml")).access_key, "FIXME")
+    AWS_SECRET_ACCESS_KEY = try(yamldecode(file("../secrets/rgw_user_loki.yml")).secret_key, "FIXME")
   })
 }
