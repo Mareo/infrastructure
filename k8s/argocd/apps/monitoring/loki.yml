@@ -60,18 +60,21 @@ spec:
                       prefix: loki_index_
                       period: 24h
             write:
+              replicas: 1
               extraArgs:
                 - "-config.expand-env=true"
               extraEnvFrom:
                 - secretRef:
                     name: loki-s3-creds
             read:
+              replicas: 1
               extraArgs:
                 - "-config.expand-env=true"
               extraEnvFrom:
                 - secretRef:
                     name: loki-s3-creds
             backend:
+              replicas: 1
               extraArgs:
                 - "-config.expand-env=true"
               extraEnvFrom:
