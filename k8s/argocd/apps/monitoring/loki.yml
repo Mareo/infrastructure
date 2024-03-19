@@ -61,19 +61,19 @@ spec:
                       period: 24h
             write:
               extraArgs:
-                - "-config.exapnd-env=true"
+                - "-config.expand-env=true"
               extraEnvFrom:
                 - secretRef:
                     name: loki-s3-creds
             read:
               extraArgs:
-                - "-config.exapnd-env=true"
+                - "-config.expand-env=true"
               extraEnvFrom:
                 - secretRef:
                     name: loki-s3-creds
             backend:
               extraArgs:
-                - "-config.exapnd-env=true"
+                - "-config.expand-env=true"
               extraEnvFrom:
                 - secretRef:
                     name: loki-s3-creds
