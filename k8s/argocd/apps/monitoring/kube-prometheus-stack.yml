@@ -58,6 +58,10 @@ spec:
                 existingSecret: "grafana-mail"
                 userKey: username
                 passwordKey: password
+              additionalDataSources:
+                - name: Loki
+                  type: loki
+                  url: "http://loki-gateway.monitoring.svc"
               extraSecretMounts:
                 - name: db-secret-mount
                   secretName: monitoring.grafana.in-cluster-main-cluster.credentials
