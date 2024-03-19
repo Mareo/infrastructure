@@ -5,3 +5,4 @@ namespace: argocd
 resources:
   - grafana-oncall.yml
   - kube-prometheus-stack.yml
+  - loki.yml
