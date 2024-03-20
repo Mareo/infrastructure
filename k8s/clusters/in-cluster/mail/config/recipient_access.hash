@@ -2,7 +2,9 @@ admin@mareo.fr              REJECT
 choupy@mareo.fr             REJECT
 choupydan@mareo.fr          REJECT
 contact@mareo.fr            REJECT
+diplomatie-online@mareo.fr  REJECT
 facebook@mareo.fr           REJECT
+fumbo-3dmax@mareo.fr        REJECT
 fumbo@mareo.fr              REJECT
 gsoc@mareo.fr               REJECT
 info@mareo.fr               REJECT
@@ -15,4 +17,3 @@ saami@mareo.fr              REJECT
 staphylo@mareo.fr           REJECT
 weadmonke@mareo.fr          REJECT
 zed@mareo.fr                REJECT
-diplomatie-online@mareo.fr  REJECT
