@@ -34,7 +34,7 @@ spec:
       source:
         repoURL: https://grafana.github.io/helm-charts
         chart: loki
-        targetRevision: 5.45.0
+        targetRevision: 5.46.0
         helm:
           values: |
             fullnameOverride: loki
