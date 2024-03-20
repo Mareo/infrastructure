@@ -51,6 +51,8 @@ spec:
             env:
               - name: SEND_ANONYMOUS_USAGE_STATS
                 value: "false"
+              - name: GRAFANA_CLOUD_NOTIFICATIONS_ENABLED
+                value: "false"
             ingress:
               className: public
               annotations:
