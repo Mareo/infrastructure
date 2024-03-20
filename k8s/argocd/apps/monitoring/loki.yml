@@ -38,6 +38,9 @@ spec:
         helm:
           values: |
             fullnameOverride: loki
+            gateway:
+              enabled: true
+              replicas: 1
             loki:
               auth_enabled: false
               commonConfig:
