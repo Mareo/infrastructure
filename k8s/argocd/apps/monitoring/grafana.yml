@@ -1,0 +1,110 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  goTemplate: true
+  template:
+    metadata:
+      name: "{{.name}}-grafana"
+      labels:
+        app: grafana
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+        automated:
+          prune: true
+          selfHeal: true
+      destination:
+        name: "{{.name}}"
+        namespace: monitoring
+      source:
+        repoURL: https://grafana.github.io/helm-charts
+        chart: grafana
+        targetRevision: 7.3.7
+        helm:
+          values: |
+            fullnameOverride: grafana
+            admin:
+              existingSecret: "grafana-admin-credentials"
+              userKey: username
+              passwordKey: password
+            plugins:
+              - grafana-oncall-app
+            sidecar:
+              datasources: {}
+            useStatefulSet: true
+            persistence:
+              type: pvc
+              enabled: false
+            smtp:
+              existingSecret: "grafana-mail"
+              userKey: username
+              passwordKey: password
+            extraSecretMounts:
+              - name: db-secret-mount
+                secretName: monitoring.grafana.in-cluster-main-cluster.credentials
+                defaultMode: 0440
+                mountPath: /etc/secrets/db
+                readOnly: true
+              - name: auth-generic-oauth-secret-mount
+                secretName: grafana-oidc-authentik
+                defaultMode: 0440
+                mountPath: /etc/secrets/auth_generic_oauth
+                readOnly: true
+            grafana.ini:
+              smtp:
+                enabled: true
+                host: smtp.mareo.fr:465
+                from_address: no-reply@grafana.mareo.fr
+              database:
+                type: postgres
+                host: in-cluster-main-cluster.postgres.svc.cluster.local
+                name: grafana
+                user: "$__file{/etc/secrets/db/username}"
+                password: "$__file{/etc/secrets/db/password}"
+                ssl_mode: require
+              server:
+                root_url: https://grafana.mareo.fr
+              auth:
+                signout_redirect_url: https://auth.mareo.fr/if/session-end/grafana/
+              auth.generic_oauth:
+                enabled: true
+                allow_sign_up: true
+                name: Authentik
+                client_id: "$__file{/etc/secrets/auth_generic_oauth/client_id}"
+                client_secret: "$__file{/etc/secrets/auth_generic_oauth/client_secret}"
+                scopes: openid profile email
+                auth_url: https://auth.mareo.fr/application/o/authorize/
+                token_url: https://auth.mareo.fr/application/o/token/
+                api_url: https://auth.mareo.fr/application/o/userinfo/
+                use_pkce: true
+                login_attribute_path: preferred_username
+                groups_attribute_path: groups
+                allowed_groups: "grafana"
+                role_attribute_path: "contains(groups[*], 'grafana_admins') && 'GrafanaAdmin' || contains(groups[*], 'grafana_editors') && 'Editor' || 'Viewer'"
+                role_attribute_strict: true
+                allow_assign_grafana_admin: true
+            defaultDashboardTimezone: Europe/Paris
+            ingress:
+              enabled: true
+              ingressClassName: public
+              annotations:
+                cert-manager.io/cluster-issuer: default-issuer
+              hosts:
+                - grafana.mareo.fr
+              tls:
+                - secretName: grafana-tls
+                  hosts:
+                    - grafana.mareo.fr
