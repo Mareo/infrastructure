@@ -58,6 +58,7 @@ spec:
                   ingressClassName: public
                   annotations:
                     cert-manager.io/cluster-issuer: default-issuer
+                    nginx.ingress.kubernetes.io/app-root: /select/0/vmui
                     nginx.ingress.kubernetes.io/auth-url: |-
                       http://authentik-server.authentik.svc.cluster.local/outpost.goauthentik.io/auth/nginx
                     nginx.ingress.kubernetes.io/auth-signin: |-
