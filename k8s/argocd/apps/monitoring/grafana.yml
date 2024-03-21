@@ -42,8 +42,22 @@ spec:
               passwordKey: password
             plugins:
               - grafana-oncall-app
+            datasources:
+              datasources.yaml:
+                apiVersion: 1
+                datasources:
+                  - name: Loki
+                    type: loki
+                    url: http://loki-gateway.monitoring.svc
             sidecar:
-              datasources: {}
+              dashboards:
+                enabled: true
+                label: grafana_dashboard
+                labelValue: "1"
+                provider:
+                  foldersFromFilesStructure: true
+              datasources:
+                enabled: false
             useStatefulSet: true
             persistence:
               type: pvc

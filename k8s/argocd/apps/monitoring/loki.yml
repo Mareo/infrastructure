@@ -11,8 +11,6 @@ spec:
     - list:
         elements:
           - name: in-cluster
-            endpoints:
-              - 192.168.0.1
   goTemplate: true
   template:
     metadata:
@@ -88,11 +86,14 @@ spec:
                     name: loki-s3-creds
 
             monitoring:
+              dashboards:
+                annotations:
+                  k8s-sidecar-target-directory: /tmp/dashboards/Loki Dashboards
               lokiCanary:
-                enabled: true
+                enabled: false
               selfMonitoring:
-                enabled: true
+                enabled: false
                 grafanaAgent:
-                  installOperator: true
+                  installOperator: false
             test:
               enabled: false
