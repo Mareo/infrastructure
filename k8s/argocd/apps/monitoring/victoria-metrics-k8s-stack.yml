@@ -40,7 +40,7 @@ spec:
             victoria-metrics-operator:
               enabled: true
               operator:
-                disable_prometheus_convert: false
+                disable_prometheus_converter: false
                 prometheus_converter_add_argocd_ignore_annotations: true
                 enable_converter_ownership: true
                 useCustomConfigReloader: true
