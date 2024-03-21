@@ -53,6 +53,8 @@ spec:
                 value: "false"
               - name: GRAFANA_CLOUD_NOTIFICATIONS_ENABLED
                 value: "false"
+              - name: GRAFANA_CLOUD_ONCALL_HEARTBEAT_ENABLED
+                value: "false"
             ingress:
               className: public
               annotations:
