@@ -34,8 +34,9 @@ spec:
         chart: victoria-metrics-k8s-stack
         targetRevision: 0.19.4
         helm:
+          releaseName: victoria-metrics-k8s-stack
           values: |
-            fullnameOverride: victoria-metrics-k8s-stack
+            argocdReleaseOverride: victoria-metrics-k8s-stack
             victoria-metrics-operator:
               enabled: true
             vmsingle:
