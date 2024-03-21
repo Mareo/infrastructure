@@ -11,6 +11,8 @@ spec:
     - list:
         elements:
           - name: in-cluster
+            endpoints:
+              - 192.168.0.1
   goTemplate: true
   template:
     metadata:
@@ -130,9 +132,12 @@ spec:
               enabled: true
             kubeEtcd:
               enabled: true
+              endpoints: {{ toJson .endpoints }}
             kubeScheduler:
               enabled: true
+              endpoints: {{ toJson .endpoints }}
             kubeProxy:
               enabled: true
+              endpoints: {{ toJson .endpoints }}
             crds:
               enabled: true
