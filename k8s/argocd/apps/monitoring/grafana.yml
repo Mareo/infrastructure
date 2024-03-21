@@ -124,6 +124,12 @@ spec:
                 role_attribute_path: "contains(groups[*], 'grafana_admins') && 'GrafanaAdmin' || contains(groups[*], 'grafana_editors') && 'Editor' || 'Viewer'"
                 role_attribute_strict: true
                 allow_assign_grafana_admin: true
+              unified_alerting.state_history:
+                enabled: true
+                backend: "loki"
+                loki_remote_url: http://loki-gateway.monitoring.svc
+              feature_toggles:
+                enable: "alertStateHistoryLokiSecondary, alertStateHistoryLokiPrimary, alertStateHistoryLokiOnly, alertmanagerRemoteOnly"
             defaultDashboardTimezone: Europe/Paris
             ingress:
               enabled: true
