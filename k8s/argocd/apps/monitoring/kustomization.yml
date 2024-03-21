@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: argocd
 
 resources:
+  - grafana-agent.yml
   - grafana-oncall.yml
   - grafana.yml
   - loki.yml
