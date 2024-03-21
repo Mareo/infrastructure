@@ -134,6 +134,7 @@ spec:
               enabled: true
             kubeEtcd:
               enabled: true
+              endpoints: {{ toJson .endpoints }}
             kubeScheduler:
               enabled: true
               endpoints: {{ toJson .endpoints }}
