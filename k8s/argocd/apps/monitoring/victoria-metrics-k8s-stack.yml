@@ -97,6 +97,13 @@ spec:
               enabled: true
             grafana:
               enabled: false
+              sidecar:
+                dashboards:
+                  enabled: true
+                  additionalDashboardLabels:
+                    grafana_dashboard: "1"
+                  additionalDashboardAnnotations:
+                    k8s-sidecar-target-directory: "/tmp/dashboards/Cluster Dashboards"
             prometheus-node-exporter:
               enabled: true
             kube-state-metrics:
