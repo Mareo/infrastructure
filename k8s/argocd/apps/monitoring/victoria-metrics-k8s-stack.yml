@@ -39,6 +39,11 @@ spec:
             argocdReleaseOverride: victoria-metrics-k8s-stack
             victoria-metrics-operator:
               enabled: true
+              operator:
+                disabled_prometheus_convert: false
+                prometheus_converter_add_argocd_ignore_annotations: true
+                enable_converter_ownership: true
+                useCustomConfigReloader: true
             vmsingle:
               enabled: false
             vmcluster:
