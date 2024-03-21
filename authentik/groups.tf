@@ -32,6 +32,7 @@ locals {
     "vault_admins"               = {}
     "vault_theseus"              = {}
     "vaultwarden"                = {}
+    "victoria_metrics"           = {}
 
     "petitstream_admins" = {}
     "petitstream_devs"   = {}
