@@ -7,3 +7,4 @@ resources:
   - grafana-oncall.yml
   - grafana.yml
   - loki.yml
+  - victoria-metrics-k8s-stack.yml

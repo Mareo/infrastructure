@@ -1,0 +1,122 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: victoria-metrics-k8s-stack
+  labels:
+    app: victoria-metrics-k8s-stack
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  goTemplate: true
+  template:
+    metadata:
+      name: "{{.name}}-victoria-metrics-k8s-stack"
+      labels:
+        app: victoria-metrics-k8s-stack
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+        automated:
+          prune: true
+          selfHeal: false
+      destination:
+        name: "{{.name}}"
+        namespace: monitoring
+      source:
+        repoURL: https://victoriametrics.github.io/helm-charts/
+        chart: victoria-metrics-k8s-stack
+        targetRevision: 0.19.4
+        helm:
+          values: |
+            fullnameOverride: victoria-metrics-k8s-stack
+            victoria-metrics-operator:
+              enabled: true
+            vmsingle:
+              enabled: false
+            vmcluster:
+              enabled: true
+              ingress:
+                storage:
+                  enabled: false
+                select:
+                  enabled: true
+                  ingressClassName: public
+                  annotations:
+                    cert-manager.io/cluster-issuer: default-issuer
+                    nginx.ingress.kubernetes.io/auth-url: |-
+                      http://authentik-server.authentik.svc.cluster.local/outpost.goauthentik.io/auth/nginx
+                    nginx.ingress.kubernetes.io/auth-signin: |-
+                      https://victoria-metrics.mareo.fr/outpost.goauthentik.io/start?rd=$escaped_request_uri
+                    nginx.ingress.kubernetes.io/auth-response-headers: |-
+                      Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
+                    nginx.ingress.kubernetes.io/auth-snippet: |
+                      proxy_set_header X-Forwarded-Host $http_host;
+                  hosts:
+                    - victoria-metrics.mareo.fr
+                  tls:
+                    - secretName: victoria-metrics-tls
+                      hosts:
+                        - victoria-metrics.mareo.fr
+                insert:
+                  enabled: false
+            alertmanager:
+              enabled: true
+              ingress:
+                enabled: true
+                ingressClassName: public
+                annotations:
+                  cert-manager.io/cluster-issuer: default-issuer
+                  nginx.ingress.kubernetes.io/auth-url: |-
+                      http://authentik-server.authentik.svc.cluster.local/outpost.goauthentik.io/auth/nginx
+                  nginx.ingress.kubernetes.io/auth-signin: |-
+                      https://alertmanager.mareo.fr/outpost.goauthentik.io/start?rd=$escaped_request_uri
+                  nginx.ingress.kubernetes.io/auth-response-headers: |-
+                      Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
+                  nginx.ingress.kubernetes.io/auth-snippet: |
+                      proxy_set_header X-Forwarded-Host $http_host;
+                paths:
+                  - /
+                pathType: Prefix
+                hosts:
+                  - alertmanager.mareo.fr
+                tls:
+                  - secretName: alertmanager-tls
+                    hosts:
+                      - alertmanager.mareo.fr
+            vmalert:
+              enabled: true
+            vmagent:
+              enabled: true
+            grafana:
+              enabled: false
+            prometheus-node-exporter:
+              enabled: true
+            kube-state-metrics:
+              enabled: true
+            kubelet:
+              enabled: true
+              cadvisor: true
+              probes: true
+            kubeApiServer:
+              enabled: true
+            kubeControllerManager:
+              enabled: true
+            kubeDns:
+              enabled: false
+            coreDns:
+              enabled: true
+            kubeEtcd:
+              enabled: true
+            kubeScheduler:
+              enabled: true
+            kubeProxy:
+              enabled: true
+            crds:
+              enabled: true

@@ -64,6 +64,7 @@ locals {
         "vault_admins",
         "vault_theseus",
         "vaultwarden",
+        "victoria_metrics",
       ]
       is_admin = true
     }
@@ -152,6 +153,8 @@ locals {
         "argocd",
         "gitlab",
         "gitlab_theseus",
+        "grafana",
+        "grafana_admins",
         "hedgedoc",
         "mail",
         "nextcloud",
@@ -160,6 +163,7 @@ locals {
         "vault",
         "vault_theseus",
         "vaultwarden",
+        "victoria_metrics",
       ]
     }
     "deadeye" = {
