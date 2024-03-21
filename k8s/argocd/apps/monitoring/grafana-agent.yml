@@ -70,7 +70,7 @@ spec:
                   }
 
                   loki.source.kubernetes "all_pods" {
-                    targets = discovery.relabel.all_pods.targets
+                    targets = discovery.relabel.all_pods.output
                     forward_to = [loki.process.all_pods.receiver]
                   }
 
