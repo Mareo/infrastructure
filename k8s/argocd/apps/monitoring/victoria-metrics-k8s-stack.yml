@@ -126,13 +126,13 @@ spec:
               enabled: true
             kubeControllerManager:
               enabled: true
+              endpoints: {{ toJson .endpoints }}
             kubeDns:
               enabled: false
             coreDns:
               enabled: true
             kubeEtcd:
               enabled: true
-              endpoints: {{ toJson .endpoints }}
             kubeScheduler:
               enabled: true
               endpoints: {{ toJson .endpoints }}
