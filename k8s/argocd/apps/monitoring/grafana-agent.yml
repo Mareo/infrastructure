@@ -40,7 +40,7 @@ spec:
               mode: "flow"
               configMap:
                 create: true
-                content:|
+                content: |
                   discovery.kubernetes "all_pods" {
                     role = "pod"
                   }
