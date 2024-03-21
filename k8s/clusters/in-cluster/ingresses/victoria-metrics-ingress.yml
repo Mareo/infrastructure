@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: victoria-metrics-authentik
+  namespace: monitoring
+  annotations:
+    cert-manager.io/cluster-issuer: default-issuer
+spec:
+  rules:
+    - host: victoria-metrics.mareo.fr
+      http:
+        paths:
+          - path: /outpost.goauthentik.io
+            pathType: Prefix
+            backend:
+              service:
+                name: authentik-proxy
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - victoria-metrics.mareo.fr
+      secretName: victoria-metrics-tls

@@ -8,3 +8,4 @@ resources:
   - kube-prometheus-stack-ingress.yml
   - paperless-ngx-ingress.yml
   - syncthing-ingress.yml
+  - victoria-metrics-ingress.yml
