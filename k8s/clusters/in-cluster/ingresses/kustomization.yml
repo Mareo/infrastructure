@@ -4,6 +4,7 @@ kind: Kustomization
 
 resources:
   - gatus-ingress.yml
+  - grafana-agent-ingress.yml
   - kube-prometheus-stack-ingress.yml
   - paperless-ngx-ingress.yml
   - syncthing-ingress.yml
