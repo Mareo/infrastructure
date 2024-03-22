@@ -113,6 +113,8 @@ spec:
                     defaultMode: 288
                     secretName: alertmanager-gitlab
                 - name: alertmanager-gitlab
+              monzoTemplate:
+                enabled: false  # not compatible with Discord
               config:
                 route:
                   receiver: "discord_and_gitlab"
