@@ -99,6 +99,40 @@ spec:
                   - secretName: alertmanager-tls
                     hosts:
                       - alertmanager.mareo.fr
+              extraVolumeMounts:
+                - name: alertmanager-discord
+                  mountPath: /etc/alertmanager/secrets/alermanager-discord
+                  readOnly: true
+                - name: alertmanager-gitlab
+                  mountPath: /etc/alertmanager/secrets/alermanager-gitlab
+                  readOnly: true
+              extraVolumes:
+                - name: alertmanager-discord
+                  secret:
+                    defaultMode: 288
+                    secretName: alertmanager-discord
+                - name: alertmanager-gitlab
+                  secret:
+                    defaultMode: 288
+                    secretName: alertmanager-gitlab
+                - name: alertmanager-gitlab
+              config:
+                route:
+                  receiver: "discord_and_gitlab"
+                receivers:
+                  - name: "blackhole"
+                  - name: "discord_and_gitlab"
+                    slack_configs:
+                      - channel: "#alertmanager"
+                        send_resolved: true
+                        api_url_file: "/etc/alertmanager/secrets/alertmanager-discord/webhook"
+                    webhook_configs:
+                      - http_config:
+                          authorization:
+                            type: Bearer
+                            credentials_file: /etc/alertmanager/secrets/alertmanager-gitlab/token
+                        send_resolved: true
+                        url: "https://gitlab.mareo.fr/iac/infrastructure/prometheus/alerts/notify.json"
             vmalert:
               enabled: true
             vmagent:
