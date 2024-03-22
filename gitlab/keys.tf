@@ -4,12 +4,6 @@ resource "gitlab_user_sshkey" "mareo_cardno-11341889" {
   key     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJNwnObkPiK+p6EraNrC0eIn98vaHnPLsTTMw4rKsQM7"
 }
 
-resource "gitlab_user_sshkey" "mareo_apollo" {
-  user_id = gitlab_user.users["mareo"].id
-  title   = "apollo"
-  key     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC6qcdLNMZP8MeytZuPp9THvowbsys6vqHuEVQil0sulFzz2jWJcB0P++q9SDbLHxijRbrfbO2tl4gH/1HXuSAIUm+kipBHqoAcwZstygW/qqR1YTDjZ7wM1zhwsZRbqxkLYspTDLQ3wzhOIM8r8IH64PMPKfwt5G123gGLS2WlPnZh1m5pORjWBcx5xvNU95OMn0twIX5ok3DNNHNpSt4QO8vYAfzEeO/3RZ45gYuovVQkYDRMX72QJR9+nIb+UJp8rdNXFAaI/KBDt4oXjB7tFyDNVvAcfHnlqmJJdA2G5ke4+ftIJsXXhn/8YWlMgjYRgnUNjeBXaZ3D+I3+4pDa0X6NZOySJYWWVrhWoi2WDA7K/xU8qegO2QYkmYHU3iQTacq+jrWsWJrAheukdbXpIbYIzkKgzD7Gu3QA0X8hbMYp8vszba/XMZ7ZfTPRnQVl9LaMIwl0hJfWnqPEnuY4rLfjf9yxeb95Xivcs8tQEgPAVItp6wT23eJwfNHvp08="
-}
-
 resource "gitlab_user_sshkey" "mareo_eos" {
   user_id = gitlab_user.users["mareo"].id
   title   = "eos"
