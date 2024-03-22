@@ -10,6 +10,12 @@ resource "gitlab_group_membership" "iac_mareo" {
   access_level = "owner"
 }
 
+resource "gitlab_group_membership" "iac_chewie" {
+  group_id     = gitlab_group.iac.id
+  user_id      = gitlab_user.users["chewie"].id
+  access_level = "developer"
+}
+
 resource "gitlab_group_membership" "iac_renovate-bot" {
   group_id     = gitlab_group.iac.id
   user_id      = gitlab_user.renovate-bot.id
