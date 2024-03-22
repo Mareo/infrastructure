@@ -46,6 +46,7 @@ configMapGenerator:
       - "POSTFIX_SMTPD_TLS_CAFILE=/etc/ssl/certs/ca-certificates.crt"
       - "POSTFIX_SMTP_TLS_CAPATH=/etc/ssl/certs/"
       - "POSTFIX_SMTPD_TLS_RECEIVED_HEADER=yes"
+      - "POSTFIX_MAILBOX_SIZE_LIMIT=52428800"
       - "POSTFIX_MESSAGE_SIZE_LIMIT=52428800"
       - "POSTFIX_SENDER_CANONICAL_MAPS="
       - "POSTFIX_RECIPIENT_CANONICAL_MAPS="
