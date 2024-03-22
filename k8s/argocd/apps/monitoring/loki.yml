@@ -39,6 +39,7 @@ spec:
             gateway:
               enabled: true
               replicas: 1
+              affinity: ""
             loki:
               auth_enabled: false
               commonConfig:
@@ -65,6 +66,7 @@ spec:
                       period: 24h
             write:
               replicas: 1
+              affinity: ""
               extraArgs:
                 - "-config.expand-env=true"
               extraEnvFrom:
@@ -72,6 +74,7 @@ spec:
                     name: loki-s3-creds
             read:
               replicas: 1
+              affinity: ""
               extraArgs:
                 - "-config.expand-env=true"
               extraEnvFrom:
@@ -79,6 +82,7 @@ spec:
                     name: loki-s3-creds
             backend:
               replicas: 1
+              affinity: ""
               extraArgs:
                 - "-config.expand-env=true"
               extraEnvFrom:
