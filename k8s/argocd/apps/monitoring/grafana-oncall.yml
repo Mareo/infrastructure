@@ -70,6 +70,8 @@ spec:
 
             rabbitmq:
               enabled: true
+              auth:
+                existingPasswordSecret: grafana-oncall-rabbitmq-password
 
             mariadb:
               enabled: false
