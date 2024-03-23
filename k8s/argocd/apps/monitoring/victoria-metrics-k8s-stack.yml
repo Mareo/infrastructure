@@ -122,7 +122,7 @@ spec:
                   - name: "blackhole"
                   - name: "discord_and_gitlab"
                     slack_configs:
-                      - channel: "#alertmanager"
+                      - channel: ""
                         send_resolved: true
                         api_url_file: "/etc/vm/secrets/alertmanager-discord/webhook"
                         icon_emoji: ""
