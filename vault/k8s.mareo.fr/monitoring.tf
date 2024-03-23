@@ -12,6 +12,30 @@ resource "vault_generic_secret" "monitoring_grafana_admin-credentials" {
   })
 }
 
+resource "random_password" "monitoring_grafana-oncall_rabbitmq" {
+  length  = 32
+  special = false
+}
+
+resource "vault_generic_secret" "monitoring_grafana-oncall_rabbitmq" {
+  path = "k8s/monitoring/grafana-oncall/rabbitmq"
+  data_json = jsonencode({
+    password = random_password.monitoring_grafana-oncall_rabbitmq.result
+  })
+}
+
+resource "random_password" "monitoring_grafana-oncall_redis" {
+  length  = 32
+  special = false
+}
+
+resource "vault_generic_secret" "monitoring_grafana-oncall_redis" {
+  path = "k8s/monitoring/grafana-oncall/redis"
+  data_json = jsonencode({
+    password = random_password.monitoring_grafana-oncall_redis.result
+  })
+}
+
 resource "vault_generic_secret" "monitoring_alertmanager_discord" {
   path         = "k8s/monitoring/alertmanager/discord"
   disable_read = true
