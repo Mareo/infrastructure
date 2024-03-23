@@ -100,6 +100,8 @@ spec:
                     hosts:
                       - alertmanager.mareo.fr
               spec:
+                extraArgs:
+                  - "web.external-url=https://alertmanager.mareo.fr"
                 secrets:
                   - alertmanager-discord
                   - alertmanager-gitlab
@@ -125,8 +127,6 @@ spec:
                       - channel: ""
                         send_resolved: true
                         api_url_file: "/etc/vm/secrets/alertmanager-discord/webhook"
-                        icon_emoji: ""
-                        mrkdwn_in: []
                     webhook_configs:
                       - http_config:
                           authorization:
