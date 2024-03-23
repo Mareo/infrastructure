@@ -125,6 +125,7 @@ spec:
                       - channel: "#alertmanager"
                         send_resolved: true
                         api_url_file: "/etc/vm/secrets/alertmanager-discord/webhook"
+                        mrkdwn_in: []
                     webhook_configs:
                       - http_config:
                           authorization:
