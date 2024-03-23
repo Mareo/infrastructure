@@ -101,7 +101,7 @@ spec:
                       - alertmanager.mareo.fr
               spec:
                 extraArgs:
-                  - "web.external-url=https://alertmanager.mareo.fr"
+                  web.external-url: "https://alertmanager.mareo.fr"
                 secrets:
                   - alertmanager-discord
                   - alertmanager-gitlab
