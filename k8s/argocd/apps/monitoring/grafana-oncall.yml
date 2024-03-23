@@ -70,6 +70,7 @@ spec:
               enabled: true
               auth:
                 existingSecret: grafana-oncall-redis-password
+                existingSecretPasswordKey: password
             rabbitmq:
               enabled: true
               auth:
