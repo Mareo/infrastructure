@@ -136,6 +136,9 @@ spec:
                         url: "https://gitlab.mareo.fr/iac/infrastructure/prometheus/alerts/notify.json"
             vmalert:
               enabled: true
+              spec:
+                extraArgs:
+                  external.url: "https://victoria-metrics.mareo.fr/select/0/prometheus"
             vmagent:
               enabled: true
               spec:
