@@ -65,9 +65,11 @@ spec:
               enabled: false
             cert-manager:
               enabled: false
+
             redis:
               enabled: true
-
+              auth:
+                existingSecret: grafana-oncall-redis-password
             rabbitmq:
               enabled: true
               auth:
