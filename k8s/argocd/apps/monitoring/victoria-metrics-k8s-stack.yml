@@ -172,8 +172,9 @@ spec:
                     port: http-metrics
                     scheme: https
                     tlsConfig:
-                      serverName: localhost
                       caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                      serverName: localhost
+                      insecureSkipVerify: true
             kubeDns:
               enabled: false
             coreDns:
@@ -189,8 +190,9 @@ spec:
                     port: http-metrics
                     scheme: https
                     tlsConfig:
-                      serverName: 127.0.0.1
                       caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                      serverName: 127.0.0.1
+                      insecureSkipVerify: true
             kubeProxy:
               enabled: true
               endpoints: {{ toJson .endpoints }}
@@ -199,7 +201,5 @@ spec:
                   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
                     port: http-metrics
                     scheme: http
-                    tlsConfig:
-                      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
             crds:
               enabled: true
