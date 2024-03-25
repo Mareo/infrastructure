@@ -166,6 +166,14 @@ spec:
             kubeControllerManager:
               enabled: true
               endpoints: {{ toJson .endpoints }}
+              spec:
+                endpoints:
+                  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+                    port: http-metrics
+                    scheme: https
+                    tlsConfig:
+                      serverName: localhost
+                      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
             kubeDns:
               enabled: false
             coreDns:
@@ -175,8 +183,23 @@ spec:
             kubeScheduler:
               enabled: true
               endpoints: {{ toJson .endpoints }}
+              spec:
+                endpoints:
+                  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+                    port: http-metrics
+                    scheme: https
+                    tlsConfig:
+                      serverName: 127.0.0.1
+                      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
             kubeProxy:
               enabled: true
               endpoints: {{ toJson .endpoints }}
+              spec:
+                endpoints:
+                  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+                    port: http-metrics
+                    scheme: http
+                    tlsConfig:
+                      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
             crds:
               enabled: true
