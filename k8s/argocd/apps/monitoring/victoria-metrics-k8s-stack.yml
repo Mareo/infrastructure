@@ -142,6 +142,13 @@ spec:
             vmagent:
               enabled: true
               spec:
+                resources:
+                  limits:
+                    cpu: 1
+                    memory: 500Mi
+                  requests:
+                    cpu: 500m
+                    memory: 200Mi
                 externalLabels:
                   cluster: local
             grafana:
