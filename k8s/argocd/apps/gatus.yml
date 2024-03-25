@@ -215,10 +215,10 @@ spec:
                       - "[BODY].sealed == false"
                     alerts:
                       - type: discord
-                  - name: Prometheus
+                  - name: VictoriaMetrics
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://prometheus.mareo.fr/"
+                    url: "https://victoria-metrics.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                       - "[RESPONSE_TIME] < 500"
