@@ -15,6 +15,7 @@ resource "authentik_user" "theseus-mail" {
     mailboxes = [
       "root@theseus.fr",
       "contact@theseus.fr",
+      "travel@theseus.fr",
       "veille@theseus.fr",
     ]
     dovecotQuotaStorage  = "10G"
