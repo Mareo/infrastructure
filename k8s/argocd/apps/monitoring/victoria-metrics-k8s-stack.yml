@@ -100,6 +100,8 @@ spec:
                     hosts:
                       - alertmanager.mareo.fr
               spec:
+                image:
+                  tag: v0.27.0
                 extraArgs:
                   web.external-url: "https://alertmanager.mareo.fr"
                 secrets:
