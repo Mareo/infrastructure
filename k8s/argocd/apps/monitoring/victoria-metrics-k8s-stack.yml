@@ -121,10 +121,9 @@ spec:
                 receivers:
                   - name: "blackhole"
                   - name: "discord_and_gitlab"
-                    slack_configs:
-                      - channel: ""
+                    discord_configs:
+                      - webhook_url_file: "/etc/vm/secrets/alertmanager-discord/webhook"
                         send_resolved: true
-                        api_url_file: "/etc/vm/secrets/alertmanager-discord/webhook"
                     webhook_configs:
                       - http_config:
                           authorization:

@@ -41,7 +41,7 @@ locals {
           {
             avatar_path = "icons/prometheus.png"
             name        = "Alertmanager"
-            url_attr    = "slack_url"
+            url_attr    = "url"
             vault_path  = "k8s/monitoring/alertmanager/discord"
           },
         ]
