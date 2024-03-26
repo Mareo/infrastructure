@@ -101,7 +101,7 @@ spec:
                       - alertmanager.mareo.fr
               spec:
                 image:
-                  tag: v0.27.0
+                  tag: main  # FIXME: remove once v0.27.1 is released
                 extraArgs:
                   web.external-url: "https://alertmanager.mareo.fr"
                 secrets:
