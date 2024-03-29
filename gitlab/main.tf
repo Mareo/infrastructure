@@ -1,12 +1,16 @@
 terraform {
   required_providers {
-    vault = {
-      source  = "hashicorp/vault"
-      version = "4.2.0"
+    authentik = {
+      source  = "goauthentik/authentik"
+      version = "2024.2.0"
     }
     gitlab = {
       source  = "gitlabhq/gitlab"
       version = "16.10.0"
+    }
+    gpg = {
+      source  = "Olivr/gpg"
+      version = "0.2.1"
     }
     local = {
       source  = "hashicorp/local"
@@ -16,9 +20,9 @@ terraform {
       source  = "hashicorp/random"
       version = "3.6.0"
     }
-    authentik = {
-      source  = "goauthentik/authentik"
-      version = "2024.2.0"
+    vault = {
+      source  = "hashicorp/vault"
+      version = "4.2.0"
     }
   }
 

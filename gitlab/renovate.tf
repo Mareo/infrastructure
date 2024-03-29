@@ -4,7 +4,7 @@ resource "random_password" "renovate-bot" {
 }
 
 resource "gitlab_user" "renovate-bot" {
-  name             = "Renovate bot"
+  name             = "Renovate Bot"
   username         = "renovate-bot"
   password         = random_password.renovate-bot.result
   email            = "renovate@gitlab.mareo.fr"
@@ -73,4 +73,23 @@ resource "vault_generic_secret" "gitlab_renovate_pipeline-trigger" {
   data_json = jsonencode({
     token = gitlab_pipeline_trigger.iac_renovate.token
   })
+}
+
+resource "gpg_private_key" "renovate" {
+  name     = gitlab_user.renovate-bot.name
+  email    = gitlab_user.renovate-bot.email
+  rsa_bits = 4096
+}
+
+resource "gitlab_user_gpgkey" "renovate" {
+  user_id = gitlab_user.renovate-bot.id
+  key     = gpg_private_key.renovate.public_key
+}
+
+resource "gitlab_project_variable" "renovate_git-private-key" {
+  project   = gitlab_project.iac_renovate.id
+  key       = "RENOVATE_GIT_PRIVATE_KEY"
+  value     = gpg_private_key.renovate.private_key
+  protected = true
+  raw       = true
 }

@@ -161,3 +161,25 @@ provider "registry.terraform.io/hashicorp/vault" {
     "zh:f82094dc59e0bf8ce14ac342d84e7c959e4c395030c0dcb835ba8c4136c32138",
   ]
 }
+
+provider "registry.terraform.io/olivr/gpg" {
+  version     = "0.2.1"
+  constraints = "0.2.1"
+  hashes = [
+    "h1:+IxSHXkyhHgszKVym4qfp9rF8U0a1a2But15WdA1Xlg=",
+    "zh:014bb7c1140dd2bb96b13a729d450e0aaa743b7f233884ab471a1e029853e66b",
+    "zh:262fafa02f79402373b34c7a3bcb1b7b611a6e1fb6713b38480359d8582670e8",
+    "zh:5202f998398f8b0d0a9cce7c1dd891ecce493b7aeb23d970ba5319cfbb024086",
+    "zh:63609d1e453442453834bf7196e79d29d9340c76f172aec21c321aa13880011a",
+    "zh:7fda5a60fe84c4e592087befdbba0b28f0b7f2218d81474720a79bfc587745e8",
+    "zh:7fe14800b15f3a79efe9222047c34d0347c0a904356205c9a38abb5a668bc1cc",
+    "zh:85f80b1a074b1e616c15c78d6d97c802ee0b5bd2bd878febc8f8430467de9819",
+    "zh:a38ba53bd08827ef648f082efb216f65174ab2b18b5d6e14daf9b15ff8a9dfe8",
+    "zh:a7c5c35cac6466d60feabb5e2e27a8d582f104152b7e5b87adb0071108b413a6",
+    "zh:b6983ea1502698a74215fe2a52b3b81b48dc539daf5d9abe681ef9bcd9b67453",
+    "zh:da2a64d029a496d20cfd23bc63a6943e8b80ceead96f5967a2e040eb5e1aeac4",
+    "zh:e12b1fb462ab0df7cea32da5f3263d7c10305419dc86118e41687bb863737324",
+    "zh:e15335ccd1589cccfa539f0b17b7736b57175ce0ac2e0aad87800b492ee066bf",
+    "zh:ebc1e1032e6c996cb3295977196ee87f8babbf38c427bcbd2d8eca41d65f9ffd",
+  ]
+}
