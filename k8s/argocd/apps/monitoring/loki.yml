@@ -66,9 +66,7 @@ spec:
                       period: 24h
             write:
               replicas: 1
-              affinity:
-                podAntiAffinity:
-                  requiredDuringSchedulingIgnoredDuringExecution: []
+              affinity: null
               extraArgs:
                 - "-config.expand-env=true"
               extraEnvFrom:
@@ -76,9 +74,7 @@ spec:
                     name: loki-s3-creds
             read:
               replicas: 1
-              affinity:
-                podAntiAffinity:
-                  requiredDuringSchedulingIgnoredDuringExecution: []
+              affinity: null
               extraArgs:
                 - "-config.expand-env=true"
               extraEnvFrom:
@@ -86,9 +82,7 @@ spec:
                     name: loki-s3-creds
             backend:
               replicas: 1
-              affinity:
-                podAntiAffinity:
-                  requiredDuringSchedulingIgnoredDuringExecution: []
+              affinity: null
               extraArgs:
                 - "-config.expand-env=true"
               extraEnvFrom:
