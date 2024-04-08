@@ -32,7 +32,7 @@ spec:
       source:
         repoURL: https://grafana.github.io/helm-charts
         chart: loki
-        targetRevision: 5.47.2
+        targetRevision: 6.0.0
         helm:
           values: |
             fullnameOverride: loki
@@ -88,13 +88,12 @@ spec:
               extraEnvFrom:
                 - secretRef:
                     name: loki-s3-creds
-
+            lokiCanary:
+              enabled: false
             monitoring:
               dashboards:
                 annotations:
                   k8s-sidecar-target-directory: /tmp/dashboards/Loki Dashboards
-              lokiCanary:
-                enabled: false
               selfMonitoring:
                 enabled: false
                 grafanaAgent:
