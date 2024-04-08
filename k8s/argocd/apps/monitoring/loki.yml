@@ -88,12 +88,13 @@ spec:
               extraEnvFrom:
                 - secretRef:
                     name: loki-s3-creds
-            lokiCanary:
-              enabled: false
+
             monitoring:
               dashboards:
                 annotations:
                   k8s-sidecar-target-directory: /tmp/dashboards/Loki Dashboards
+              lokiCanary:
+                enabled: false
               selfMonitoring:
                 enabled: false
                 grafanaAgent:
