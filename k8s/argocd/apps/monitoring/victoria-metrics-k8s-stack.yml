@@ -120,6 +120,10 @@ spec:
               config:
                 route:
                   receiver: "discord_and_gitlab"
+                  routes:
+                    - receiver: blackhole
+                      match:
+                        alertname: Watchdog
                 receivers:
                   - name: "blackhole"
                   - name: "discord_and_gitlab"
