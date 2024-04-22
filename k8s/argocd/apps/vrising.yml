@@ -46,11 +46,10 @@ spec:
             config:
               hostSettings:
                 tz: "Europe/Paris"
+                serverName: "vrising.mareo.fr"
                 saveName: "world"
                 password:
                   secret: "vrising-passwords"
-              extraHostSettings:
-                Name: "La commu de l'anneau"
               gameSettings:
                 GameModeType: 0
                 CastleDamageMode: 0
