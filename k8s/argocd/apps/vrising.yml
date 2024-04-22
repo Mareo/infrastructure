@@ -57,6 +57,7 @@ spec:
                 DeathContainerPermission: 1
                 RelicSpawnType: 1
                 CanLootEnemyContainers: false
+                TeleportBoundItems: false
                 InventoryStacksModifier: 5.0
                 DropTableModifier_General: 4.0
                 DropTableModifier_Missions: 4.0
