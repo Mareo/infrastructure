@@ -43,8 +43,59 @@ spec:
             config:
               hostSettings:
                 tz: "Europe/Paris"
+                serverName: "La commu de l'anneau"
                 password:
                   secret: "vrising-passwords"
+              gameSettings:
+                GameModeType: 0
+                CastleDamageMode: 0
+                CastleHeartDamageMode: 0
+                DeathContainerPermission: 1
+                RelicSpawnType: 1
+                CanLootEnemyContainers: false
+                InventoryStacksModifier: 5.0
+                DropTableModifier_General: 4.0
+                DropTableModifier_Missions: 4.0
+                MaterialYieldModifier_Global: 4.0
+                BloodEssenceYieldModifier: 4.0
+                CastleMinimumDistanceInFloors: 1
+                ClanSize: 20
+                BloodDrainModifier: 0.2
+                DurabilityDrainModifier: 0.0
+                CastleDecayRateModifier: 0.2
+                CastleBloodEssenceDrainModifier: 0.2
+                AnnounceSiegeWeaponSpawn: false
+                CraftRateModifier: 8.0
+                RefinementRateModifier: 8.0
+                ServantConvertRateModifier: 2.0
+                Death_DurabilityFactorLoss: 0.0
+                Death_DurabilityLossFactorAsResources: 0.0
+                VBloodUnitSettings: []
+                UnlockedAchievements: []
+                UnlockedResearchs: []
+                GameTimeModifiers: {}
+                VampireStatModifiers:
+                  ResourcePowerModifier: 5.0
+                EquipmentStatModifiers_Global:
+                  ResourceYieldModifier: 3.0
+                CastleStatModifiers_Global:
+                  SafetyBoxLimit: 20
+                  VerminNestLimit: 8
+                  HeartLimits:
+                    Level1: {}
+                    Level2: {}
+                    Level3: {}
+                    Level4: {}
+                    Level5: {}
+                PlayerInteractionSettings:
+                  VSPlayerWeekdayTime: {}
+                  VSPlayerWeekendTime: {}
+                  VSCastleWeekdayTime: {}
+                  VSCastleWeekendTime: {}
+                TraderModifiers:
+                  StockModifier: 5.0
+                  PriceModifier: 5.0
+                  RestockTimerModifier: 10.0
               adminlist:
                 - "76561198035482540"  # mareoh
             rcon:
