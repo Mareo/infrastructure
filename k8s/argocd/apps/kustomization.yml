@@ -30,3 +30,4 @@ resources:
   - syncthing.yml
   - vault.yml
   - vaultwarden.yml
+  - vrising.yml

@@ -11,7 +11,7 @@ resource "gitlab_group" "meta" {
   path             = "meta"
   visibility_level = "internal"
 
-  emails_disabled         = true
+  emails_enabled          = false
   mentions_disabled       = true
   project_creation_level  = "noone"
   subgroup_creation_level = "owner"
@@ -26,7 +26,7 @@ resource "gitlab_group" "meta-children" {
   parent_id        = gitlab_group.meta.id
   visibility_level = "internal"
 
-  emails_disabled         = true
+  emails_enabled          = false
   project_creation_level  = "noone"
   subgroup_creation_level = "owner"
   request_access_enabled  = false
