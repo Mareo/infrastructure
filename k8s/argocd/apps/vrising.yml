@@ -43,9 +43,11 @@ spec:
             config:
               hostSettings:
                 tz: "Europe/Paris"
-                serverName: "La commu de l'anneau"
+                saveName: "world"
                 password:
                   secret: "vrising-passwords"
+              extraHostSettings:
+                Name: "La commu de l'anneau"
               gameSettings:
                 GameModeType: 0
                 CastleDamageMode: 0
