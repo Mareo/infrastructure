@@ -46,7 +46,7 @@ spec:
                 password:
                   secret: "vrising"
               adminlist:
-                - 76561198035482540  # mareoh
+                - "76561198035482540"  # mareoh
             rcon:
               external: true
               password:
