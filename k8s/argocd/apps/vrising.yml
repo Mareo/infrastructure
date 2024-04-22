@@ -44,10 +44,10 @@ spec:
               hostSettings:
                 tz: "Europe/Paris"
                 password:
-                  secret: "vrising"
+                  secret: "vrising-passwords"
               adminlist:
                 - "76561198035482540"  # mareoh
             rcon:
               external: true
               password:
-                secret: "vrising"
+                secret: "vrising-passwords"
