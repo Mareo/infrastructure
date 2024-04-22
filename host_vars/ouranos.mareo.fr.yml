@@ -78,9 +78,21 @@ forwarded_ports:
   - dport: 6443
     host: $k3s
 
+  # vrising
+  - dport: 9876
+    port: 32318
+    host: $k3s
+    protocol: udp
+  - dport: 9877
+    port: 31101
+    host: $k3s
+    protocol: udp
+
+  # factorio
   - dport: 34197
     host: $k3s
     protocol: udp
+
   - dport: 30100
     host: $k3s
 

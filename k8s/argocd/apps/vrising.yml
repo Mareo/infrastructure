@@ -35,6 +35,9 @@ spec:
             fullnameOverride: vrising
             service:
               type: LoadBalancer
+              nodePorts:
+                game: 32318
+                query: 31101
               annotations:
                 external-dns.alpha.kubernetes.io/hostname: vrising.mareo.fr.
             persistence:
