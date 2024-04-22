@@ -48,6 +48,7 @@ spec:
                 tz: "Europe/Paris"
                 serverName: "vrising.mareo.fr"
                 saveName: "world"
+                gameSettingsPreset: ""
                 password:
                   secret: "vrising-passwords"
               gameSettings:
