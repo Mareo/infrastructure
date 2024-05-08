@@ -48,6 +48,7 @@ spec:
                 tz: "Europe/Paris"
                 saveName: los_deglingos
                 serverName: "Los Deglingos (vrising.mareo.fr)"
+                listOnMasterServer: "true"
                 gameSettingsPreset: ""
                 gameDifficultyPreset: "Difficulty_Brutal"
                 password:
