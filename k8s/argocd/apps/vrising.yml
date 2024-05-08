@@ -46,7 +46,8 @@ spec:
             config:
               hostSettings:
                 tz: "Europe/Paris"
-                serverName: "vrising.mareo.fr"
+                saveName: los_deglingos
+                serverName: "Los Deglingos (vrising.mareo.fr)"
                 gameSettingsPreset: ""
                 gameDifficultyPreset: "Difficulty_Brutal"
                 password:
