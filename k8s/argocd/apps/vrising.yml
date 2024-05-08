@@ -113,6 +113,7 @@ spec:
                 VampireStatModifiers:
                   ResourcePowerModifier: 5.0
               adminlist:
+                - "76561198015953680"  # Sylvartas
                 - "76561198035482540"  # mareoh
             rcon:
               enabled: true
