@@ -89,6 +89,7 @@ spec:
                 DurabilityDrainModifier: 0.0
                 EquipmentStatModifiers_Global:
                   ResourceYieldModifier: 3.0
+                GameDifficulty: 2
                 GameModeType: "PvP"
                 GameTimeModifiers: {}
                 InventoryStacksModifier: 5.0
