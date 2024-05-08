@@ -47,13 +47,13 @@ spec:
               hostSettings:
                 tz: "Europe/Paris"
                 serverName: "vrising.mareo.fr"
-                saveName: "world"
                 gameSettingsPreset: ""
+                gameDifficultyPreset: "Difficulty_Brutal"
                 password:
                   secret: "vrising-passwords"
               gameSettings:
-                AnnounceSiegeWeaponSpawn: false
-                BloodDrainModifier: 0.2
+                AnnounceSiegeWeaponSpawn: true
+                BloodDrainModifier: 0.1
                 BloodEssenceYieldModifier: 4.0
                 CanLootEnemyContainers: false
                 CastleBloodEssenceDrainModifier: 0.2
@@ -101,7 +101,7 @@ spec:
                   VSPlayerWeekendTime: {}
                 RefinementRateModifier: 8.0
                 RelicSpawnType: 1
-                ServantConvertRateModifier: 2.0
+                ServantConvertRateModifier: 5.0
                 TeleportBoundItems: false
                 TraderModifiers:
                   PriceModifier: 1.0
