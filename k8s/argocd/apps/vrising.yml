@@ -115,6 +115,6 @@ spec:
               adminlist:
                 - "76561198035482540"  # mareoh
             rcon:
-              external: true
+              enabled: true
               password:
                 secret: "vrising-passwords"
