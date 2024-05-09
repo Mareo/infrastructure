@@ -50,7 +50,7 @@ spec:
                 serverName: "Los Deglingos (vrising.mareo.fr)"
                 listOnMasterServer: "true"
                 gameSettingsPreset: ""
-                gameDifficultyPreset: "Difficulty_Brutal"
+                gameDifficultyPreset: ""
                 password:
                   secret: "vrising-passwords"
               gameSettings:
@@ -64,7 +64,7 @@ spec:
                 CastleHeartDamageMode: 0
                 CastleMinimumDistanceInFloors: 1
                 CastleStatModifiers_Global:
-                  CastleLimit: 5
+                  CastleLimit: 3
                   HeartLimits:
                     Level1:
                       FloorLimit: 200
@@ -86,8 +86,8 @@ spec:
                 DeathContainerPermission: 1
                 Death_DurabilityFactorLoss: 0.0
                 Death_DurabilityLossFactorAsResources: 0.0
-                DropTableModifier_General: 4.0
-                DropTableModifier_Missions: 4.0
+                DropTableModifier_General: 5.0
+                DropTableModifier_Missions: 5.0
                 DurabilityDrainModifier: 0.0
                 EquipmentStatModifiers_Global:
                   ResourceYieldModifier: 3.0
@@ -109,6 +109,13 @@ spec:
                   PriceModifier: 1.0
                   RestockTimerModifier: 10.0
                   StockModifier: 5.0
+                UnitStatModifiers_Global:
+                  MaxHealthModifier: 1
+                  PowerModifier: 1.4
+                UnitStatModifiers_VBlood:
+                  MaxHealthModifier: 1.25
+                  PowerModifier: 1.7
+                  LevelIncrease: 3
                 UnlockedAchievements: []
                 UnlockedResearchs: []
                 VBloodUnitSettings: []
@@ -117,6 +124,8 @@ spec:
               adminlist:
                 - "76561198015953680"  # Sylvartas
                 - "76561198035482540"  # mareoh
+                - "76561198021205451"  # Chewie
+                - "76561197975736722"  # Compy
             rcon:
               enabled: true
               password:
