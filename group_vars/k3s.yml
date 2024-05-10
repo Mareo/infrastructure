@@ -22,5 +22,10 @@ k3s_server:
     - "bind-address=0.0.0.0"
   kube-proxy-arg:
     - "metrics-bind-address=0.0.0.0"
+  kubelet-arg:
+    - config=/etc/rancher/k3s/kubeletconfig.yaml
   kube-scheduler-arg:
     - "bind-address=0.0.0.0"
+
+k3s_kubelet_config:
+  maxPods: 250

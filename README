@@ -1,6 +1,7 @@
 # Operator setup
 
-    $ poetry install
+    $ poetry install --dev
+    $ poetry run pre-commit install
     $ poetry run ansible-galaxy install -r requirements.yml
     $ poetry run ansible-playbook playbooks/main.yml -t secrets  # skip on first install
 

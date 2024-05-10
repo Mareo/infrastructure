@@ -27,8 +27,12 @@ terraform {
   }
 }
 
+locals {
+  vault_addr = yamldecode(file("../config.yml")).vault_addr
+}
+
 provider "vault" {
-  address = yamldecode(file("../config.yml")).vault_addr
+  address = local.vault_addr
 }
 
 provider "dns" {
