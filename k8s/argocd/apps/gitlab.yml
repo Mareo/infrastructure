@@ -195,8 +195,6 @@ spec:
                       image = "ubuntu:18.04"
                       poll_timeout = 300
                       dns_policy = "default"
-                    [runners.kubernetes.pod_annotations]
-                      "container.apparmor.security.beta.kubernetes.io/build" = "unconfined"
                     [runners.cache]
                       Type = "s3"
                       Path = "gitlab-runner"
