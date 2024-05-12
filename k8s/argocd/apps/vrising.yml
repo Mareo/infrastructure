@@ -126,6 +126,8 @@ spec:
                 - "76561198035482540"  # mareoh
                 - "76561198021205451"  # Chewie
                 - "76561197975736722"  # Compy
+            serviceMonitor:
+              enabled: true
             api:
               enabled: true
             rcon:
