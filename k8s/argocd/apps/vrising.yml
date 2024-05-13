@@ -134,3 +134,4 @@ spec:
               enabled: true
               password:
                 secret: "vrising-passwords"
+              enableExperimental: true
