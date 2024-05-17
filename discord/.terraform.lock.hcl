@@ -92,24 +92,24 @@ provider "registry.terraform.io/hashicorp/vault" {
 }
 
 provider "registry.terraform.io/lucky3028/discord" {
-  version     = "1.7.0"
-  constraints = "1.7.0"
+  version     = "1.8.0"
+  constraints = "1.8.0"
   hashes = [
-    "h1:7pH6Rj0vpoiup73D0hO4MYqyK0agGCsCXbNiO9PpGl8=",
-    "h1:ElF+j1PKJi9Grc2qFolLbJi46MVyN+OcWU1a+d/UtWA=",
-    "h1:LOgiS65cYi1wH2O/3isAoqaiJnGfDlcB2KSA+fjj92s=",
-    "h1:LaqH8+H8u8YVZjz3VZjd51QHjV+FzxlUaVQN0O4o6gE=",
-    "h1:byZw5FeqjB1G4J86Pisr4K4U+EXE+mZlMlu8KbQonBg=",
-    "h1:c9o+4D2bkKn4fr/yLzzzZZjVmF77kF9d90N1vbEM93M=",
-    "h1:hnpCGLpJPGKbs60B6RS3GPcfXbGmPOqmE0N/mLafU3s=",
-    "h1:vl/QesCu/yr1WXAw9B0Yh+mufcL/Ovjys+rgUcwFqEA=",
-    "zh:0d7a4bd6eef5008ecacf064b2ec724d365eaa20d546bf89e8ca9e48ef66462b0",
-    "zh:12721db409fe47fb99e34dcf2d8fe8e69a3759fbd2a30681d38a8b45fb9d5f2c",
-    "zh:1f6e0edbfba3a39ee718620214dc692f3e3a781d6b3d943124d55af552bfe5ad",
-    "zh:491e0dec688c3c00ff2bedc1d2fc1ff03afefc2aff3b30255f53c80961729843",
-    "zh:8a99e739298746a68d0344a512d15bbfccaf69e3aabcc68ea1e473f4ec0fa0dc",
-    "zh:93a2033f4f016b54a29857fc7555e0a44a6677b884a0173aff6517ff8da0894d",
-    "zh:b117fee77b324dd8704b7c47c49f84231c044d617733ac3186f55ea32bbd0009",
-    "zh:c9db615708d78b5985977c8b0992417ca3211b8af6bf2df411612fb5d4f33840",
+    "h1:0DyNwi4Z760GjAkW28GZNSm81IJ7/EZ6EjIEydZRqEg=",
+    "h1:C/4OST6JjshqwWxbShdksz/UzSGr8UjknEeGNyXzYHw=",
+    "h1:DePsmiMB3tu8Y4rYJ0iDiEhlpZNcUxyphQu8/utNp7U=",
+    "h1:FTOF5qgboHmW9I/cNAEB7beJZCgT0mZZUJZXsMVMa5k=",
+    "h1:ODlk7yO4tUfY+ATawpgMI6JYKbDUBtU6264XnrZQdDI=",
+    "h1:Wx+/ro54bbUsEgIuNuuysOgsqF4svTLil+GC3W2OKXA=",
+    "h1:bKO18yqHayVWAquL7y+W4egbP3x7qEfwunCdveJWe5c=",
+    "h1:y/kK7g0/3lHnn3u+1GgkhrRu6vQ6L77nFjxVWupEsBc=",
+    "zh:27573873e7f45efffd7cdc9cb97abfb5af98c5e3a5fa492da0bc43783973a2a4",
+    "zh:5aad4aee854e2cfeb75c11f78aa9deb392c225f4c7e468041bdf65d1bd554379",
+    "zh:799bb713e9f2033228db7251992de17f34f4f10551ee38b2116153c618c2c6d0",
+    "zh:8da114ac96d6186317712e1c0e7833eed9fcc2ab3e5a54fcbf899f1ec2398b93",
+    "zh:936038b9fbf92d1198e19a030df202b5d41352a6cf32348f695dc478c7b108d2",
+    "zh:b46b34bb1f412c1e6b9d339d62481577d8bb78cf7651261dfee3a11db6bd0521",
+    "zh:e967d256c802f3e3c2edfac7d15a997931dcf0c86a5a1ee06d623edbff14c44d",
+    "zh:fe13c21ce52c593b8f757e7a261cce0517a1991d328e6b8ebaa97fa670080e11",
   ]
 }
