@@ -148,6 +148,11 @@ spec:
                       'default_language' => 'en',
                       'default_phone_region' => 'FR',
                     );
+                jobs.config.php: |-
+                  <?php
+                    $CONFIG = array (
+                      'maintenance_window_start' => 1,
+                    );
               mail:
                 enabled: true
                 fromAddress: no-reply
