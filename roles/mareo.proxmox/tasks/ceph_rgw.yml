@@ -45,7 +45,7 @@
   community.general.ini_file:
     path: /etc/pve/ceph.conf
     section: client.rgw
-    option: rgw frontends
+    option: rgw_frontends
     value: "beast port={{ proxmox_ceph_rgw_port }}{% if proxmox_ceph_rgw_sslport %} ssl_port={{ proxmox_ceph_rgw_sslport }} ssl_certificate=/etc/pve/local/pveproxy-ssl.pem ssl_private_key=/etc/pve/local/pveproxy-ssl.key{% endif %}"
     mode: "0640"
   notify:

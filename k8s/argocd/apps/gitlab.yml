@@ -215,6 +215,15 @@ spec:
                 persistence:
                   enabled: true
                   storageClass: csi-rbd-sc-retain
+              toolbox:
+                backups:
+                  cron:
+                    enabled: true
+                  objectStorage:
+                    backend: s3
+                    config:
+                      secret: gitlab-object-storage
+                      key: connection
               webservice:
                 ingress:
                   tls:

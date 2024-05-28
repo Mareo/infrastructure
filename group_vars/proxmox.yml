@@ -57,9 +57,10 @@ proxmox_ceph_rgw_users:
       - argo-workflows
   - uid: gitlab
     display_name: gitlab
-    max_buckets: 10
+    max_buckets: 12
     buckets:
       - gitlab-artifacts
+      - gitlab-backups
       - gitlab-dependency-proxy
       - gitlab-external-diffs
       - gitlab-lfs-objects
@@ -68,6 +69,7 @@ proxmox_ceph_rgw_users:
       - gitlab-registry
       - gitlab-runner-cache
       - gitlab-terraform-state
+      - gitlab-tmp-storage
       - gitlab-uploads
   - uid: hedgedoc
     display_name: hedgedoc
