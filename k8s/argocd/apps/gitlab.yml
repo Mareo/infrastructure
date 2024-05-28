@@ -230,7 +230,7 @@ spec:
                     backend: s3
                     config:
                       secret: gitlab-object-storage
-                      key: s3cmd
+                      key: s3cfg
               webservice:
                 ingress:
                   tls:
