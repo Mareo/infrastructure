@@ -62,6 +62,8 @@ spec:
             envFrom:
               - secretRef:
                   name: gatus-discord
+              - secretRef:
+                  name: gatus-gitlab
             env:
               POSTGRES_USERNAME:
                 valueFrom:
@@ -86,6 +88,13 @@ spec:
                 type: postgres
                 path: "postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@in-cluster-main-cluster-pooler.postgres.svc.cluster.local/gatus?sslmode=require"
               alerting:
+                gitlab:
+                  webhook-url: "${GITLAB_WEBHOOK_URL}"
+                  authorization-key: "${GITLAB_AUTHORIZATION_KEY}"
+                  default-alert:
+                    enabled: true
+                    failure-threshold: 2
+                    send-on-resolved: true
                 discord:
                   webhook-url: "${DISCORD_WEBHOOK}"
                   default-alert:
@@ -105,6 +114,7 @@ spec:
                       - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: "mareo.fr"
                     group: Domains
                     interval: "${DOMAIN_CHECK_INTERVAL}"
@@ -113,6 +123,7 @@ spec:
                       - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: "phanes.net"
                     group: Domains
                     interval: "${DOMAIN_CHECK_INTERVAL}"
@@ -121,6 +132,7 @@ spec:
                       - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   # SSH
                   - name: ouranos.mareo.fr
                     group: SSH
@@ -130,6 +142,7 @@ spec:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: mikros.mareo.fr
                     group: SSH
                     interval: "${SSH_CHECK_INTERVAL}"
@@ -138,6 +151,7 @@ spec:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   # infrastructure
                   - name: Argo CD
                     group: Infrastructure
@@ -150,6 +164,7 @@ spec:
                       - "[BODY] == pat(*<title>Argo CD</title>*)"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: Alertmanager
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -160,6 +175,7 @@ spec:
                       - "[STATUS] == 200"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: Authentik
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -171,6 +187,7 @@ spec:
                       - "[BODY] == pat(*<title>authentik</title>*)"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: DNS - ouranos.mareo.fr
                     group: Infrastructure
                     interval: "${DNS_CHECK_INTERVAL}"
@@ -182,6 +199,7 @@ spec:
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: DNS - mikros.mareo.fr
                     group: Infrastructure
                     interval: "${DNS_CHECK_INTERVAL}"
@@ -193,6 +211,7 @@ spec:
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: Grafana
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -204,6 +223,7 @@ spec:
                       - "[BODY] == pat(*<title>Grafana</title>*)"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: Hashicorp Vault
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -215,6 +235,7 @@ spec:
                       - "[BODY].sealed == false"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: VictoriaMetrics
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -225,6 +246,7 @@ spec:
                       - "[STATUS] == 200"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: Proxmox
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -236,6 +258,7 @@ spec:
                       - "[BODY] == pat(*<title>ouranos - Proxmox Virtual Environment</title>*)"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: Rados REST Gateway
                     group: Infrastructure
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -247,6 +270,7 @@ spec:
                       - "[BODY] == pat(*</ListAllMyBucketsResult>*)"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   # petitstream
                   - name: "Domain"
                     group: Petitstream
@@ -291,6 +315,7 @@ spec:
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: hannache.fr
                     group: Mail - MX records
                     interval: "${DNS_CHECK_INTERVAL}"
@@ -303,6 +328,7 @@ spec:
                       - "[DNS_RCODE] == NOERROR"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: imap.mareo.fr - imaps
                     group: Mail - IMAP
                     interval: 1m
@@ -314,6 +340,7 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: smtp.mareo.fr - smtp
                     group: Mail - SMTP
                     interval: "${SMTP_CHECK_INTERVAL}"
@@ -324,6 +351,7 @@ spec:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: smtp.mareo.fr - submission
                     group: Mail - SMTP
                     interval: "${SMTP_CHECK_INTERVAL}"
@@ -335,6 +363,7 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: smtp.mareo.fr - submissions
                     group: Mail - SMTP
                     interval: "${SMTP_CHECK_INTERVAL}"
@@ -346,6 +375,7 @@ spec:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   # services
                   - name: Factorio
                     group: Services
@@ -355,6 +385,7 @@ spec:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: GitLab - SSH
                     group: Services
                     interval: "${SSH_CHECK_INTERVAL}"
@@ -365,6 +396,7 @@ spec:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: GitLab - UI
                     group: Services
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -386,6 +418,7 @@ spec:
                       - "[BODY] == pat(*<title>HedgeDoc - *</title>*)"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: Nextcloud
                     group: Services
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -396,6 +429,7 @@ spec:
                       - "[STATUS] == 200"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: Syncthing
                     group: Services
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -412,6 +446,7 @@ spec:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: Syncthing (discovery)
                     group: Services
                     interval: 1m
@@ -420,6 +455,7 @@ spec:
                       - "[CONNECTED] == true"
                     alerts:
                       - type: discord
+                      - type: gitlab
                   - name: Vaultwarden
                     group: Services
                     interval: "${HTTP_CHECK_INTERVAL}"
@@ -431,3 +467,4 @@ spec:
                       - "[BODY] == pat(*<title page-title>Bitwarden Web Vault</title>*)"
                     alerts:
                       - type: discord
+                      - type: gitlab
