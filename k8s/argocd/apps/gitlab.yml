@@ -102,8 +102,13 @@ spec:
                 lfs:
                   enabled: true
                   proxy_download: true
+                  bucket: gitlab-lfs-objects
                 artifacts:
                   enabled: true
+                  proxy_download: true
+                externalDiffs:
+                  enabled: true
+                  when: outdated
                   proxy_download: true
                 terraformState:
                   enabled: true

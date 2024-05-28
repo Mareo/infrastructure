@@ -57,13 +57,14 @@ proxmox_ceph_rgw_users:
       - argo-workflows
   - uid: gitlab
     display_name: gitlab
-    max_buckets: 12
+    max_buckets: 13
     buckets:
       - gitlab-artifacts
       - gitlab-backups
       - gitlab-dependency-proxy
       - gitlab-external-diffs
       - gitlab-lfs-objects
+      - gitlab-mr-diffs
       - gitlab-packages
       - gitlab-pages
       - gitlab-registry
