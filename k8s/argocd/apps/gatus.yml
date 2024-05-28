@@ -371,7 +371,7 @@ spec:
                     url: "https://gitlab.mareo.fr/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 700"
+                      - "[RESPONSE_TIME] < 1500"
                       - "[STATUS] == 200"
                     alerts:
                       - type: discord
