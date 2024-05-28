@@ -112,6 +112,8 @@ spec:
                   proxy_download: true
                 terraformState:
                   enabled: true
+                ciSecureFiles:
+                  enabled: true
                 dependencyProxy:
                   enabled: true
                 object_store:

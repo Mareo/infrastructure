@@ -57,7 +57,7 @@ proxmox_ceph_rgw_users:
       - argo-workflows
   - uid: gitlab
     display_name: gitlab
-    max_buckets: 13
+    max_buckets: 14
     buckets:
       - gitlab-artifacts
       - gitlab-backups
@@ -69,6 +69,7 @@ proxmox_ceph_rgw_users:
       - gitlab-pages
       - gitlab-registry
       - gitlab-runner-cache
+      - gitlab-ci-secure-files
       - gitlab-terraform-state
       - gitlab-tmp-storage
       - gitlab-uploads
