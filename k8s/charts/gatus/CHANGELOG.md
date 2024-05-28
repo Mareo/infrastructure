@@ -6,6 +6,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.4] - 2024-04-21
+### Changed
+- Bump Gatus image v5.8.0 => v5.10.0
+
+## [3.4.3] - 2024-04-10
+### Changed
+- Move sidecarContainers to be first in the list of containers
+
+## [3.4.2] - 2024-04-09
+### Changed
+- Bump Gatus image v5.7.0 => v5.8.0
+
+## [3.4.1] - 2023-11-22
+### Added
+- Add support for existingSecret in extraVolumeMounts
+### Changed
+- Bump Gatus image v5.5.1 => v5.7.0
+
+## [3.4.0] - 2023-07-29
+### Changed
+- Bump Gatus image v5.4.0 => v5.5.1
+
 ## [3.3.5] - 2023-05-18
 ### Changed
 - Upgrade common lib 0.0.3 => 0.1.0
@@ -206,7 +228,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial implementation
 
-[Unreleased]: https://github.com/minicloudlabs/helm-charts/compare/gatus-3.3.4...HEAD
+[Unreleased]: https://github.com/minicloudlabs/helm-charts/compare/gatus-3.4.4...HEAD
+[3.4.4]: https://github.com/minicloudlabs/helm-charts/compare/gatus-3.4.3...gatus-3.4.4
+[3.4.3]: https://github.com/minicloudlabs/helm-charts/compare/gatus-3.4.2...gatus-3.4.3
+[3.4.2]: https://github.com/minicloudlabs/helm-charts/compare/gatus-3.4.1...gatus-3.4.2
+[3.4.1]: https://github.com/minicloudlabs/helm-charts/compare/gatus-3.4.0...gatus-3.4.1
+[3.4.0]: https://github.com/minicloudlabs/helm-charts/compare/gatus-3.3.4...gatus-3.4.0
 [3.3.4]: https://github.com/minicloudlabs/helm-charts/compare/gatus-3.3.3...gatus-3.3.4
 [3.3.3]: https://github.com/minicloudlabs/helm-charts/compare/gatus-3.3.2...gatus-3.3.3
 [3.3.2]: https://github.com/minicloudlabs/helm-charts/compare/gatus-3.3.1...gatus-3.3.2

@@ -91,8 +91,8 @@ ingress:
 
 # Extra environment variables that will be pass onto deployment pods
 env: {}
-  # ENV_VAR_1: VALUE
-  # ENV_VAR_2:
+  # GATUS_CONFIG_PATH: config/config.yaml
+  # ENV_VAR:
   #   valueFrom:
   #     secretKeyRef:
   #       name: gatus-secret
@@ -121,6 +121,10 @@ extraVolumeMounts: []
   #   mountPath: /mnt/volume2
   #   readOnly: true
   #   existingConfigMap: config-map
+  # - name: extra-volume-3
+  #   mountPath: /mnt/volume3
+  #   readOnly: true
+  #   existingSecret: secret-name
 
 # Include secret's content in pods environment
 secrets: false
@@ -188,4 +192,11 @@ networkPolicy:
 
 # Gatus configuration
 # ref: https://github.com/TwiN/gatus#configuration
-config: {}
+config:
+  endpoints:
+    - name: example
+      url: https://example.org
+      interval: 60s
+      conditions:
+        - "[STATUS] == 200"
+        - "[BODY] == pat(*<h1>Example Domain</h1>*)"
