@@ -29,7 +29,7 @@ spec:
       source:
         repoURL: https://coredns.github.io/helm
         chart: coredns
-        targetRevision: 1.29.0
+        targetRevision: 1.30.0
         helm:
           values: |
             fullnameOverride: coredns
