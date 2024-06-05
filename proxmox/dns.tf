@@ -33,6 +33,13 @@ locals {
         exchange   = "ouranos.mareo.fr."
       }]
     }
+    "hannache.fr." = {
+      zone = "hannache.fr."
+      records = [{
+        preference = 10
+        exchange   = "ouranos.mareo.fr."
+      }]
+    }
     "ouranos.mareo.fr." = {
       zone = "mareo.fr."
       records = [{

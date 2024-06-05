@@ -2,7 +2,6 @@
 
   * Deploy bind9 with ansible
   * Generate nsupdate keys
-  * Add MX, DKIM and SPF record for hannache.fr"
 
 # ouranos.mareo.fr
 
