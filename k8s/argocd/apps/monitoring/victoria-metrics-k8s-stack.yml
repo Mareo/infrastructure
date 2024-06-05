@@ -137,6 +137,13 @@ spec:
                             credentials_file: /etc/vm/secrets/alertmanager-gitlab/token
                         send_resolved: true
                         url: "https://gitlab.mareo.fr/iac/infrastructure/prometheus/alerts/notify.json"
+            vmselect:
+              resources:
+                limits:
+                  memory: 500Mi
+                requests:
+                  cpu: 500m
+                  memory: 250Mi
             vmalert:
               enabled: true
               spec:
