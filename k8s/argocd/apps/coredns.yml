@@ -33,6 +33,9 @@ spec:
         helm:
           values: |
             fullnameOverride: coredns
+            resources:
+              limits:
+                cpu: null
             prometheus:
               service:
                 enabled: true
