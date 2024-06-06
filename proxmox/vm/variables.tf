@@ -36,6 +36,11 @@ variable "memory" {
   default = 1024
 }
 
+variable "balloon" {
+  type    = number
+  default = 0
+}
+
 variable "template" {
   type = string
 }
