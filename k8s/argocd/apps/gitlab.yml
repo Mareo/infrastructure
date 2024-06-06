@@ -192,6 +192,9 @@ spec:
               oauth:
                 gitlab-pages:
                   authScope: read_api
+            runner:
+              registrationToken:
+                secret: gitlab-runner-secret
             gitlab-runner:
               install: true
               runners:
