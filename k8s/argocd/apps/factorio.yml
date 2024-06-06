@@ -35,6 +35,7 @@ spec:
             fullnameOverride: factorio
             image:
               tag: 1.1.76
+            replicaCount: 0
             service:
               type: LoadBalancer
               port: 34197
