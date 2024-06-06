@@ -18,6 +18,7 @@ resources:
   - factorio.yml
   - gatus.yml
   - gitlab.yml
+  - gitlab-runner.yml
   - ingress-nginx-internal.yml
   - ingress-nginx-public.yml
   - nextcloud.yml

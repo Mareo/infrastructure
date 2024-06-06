@@ -32,12 +32,3 @@ resource "vault_generic_secret" "gitlab_object-storage" {
     s3_secret_key = try(yamldecode(file("../secrets/rgw_user_gitlab.yml")).secret_key, "FIXME")
   })
 }
-
-resource "vault_generic_secret" "gitlab_runner" {
-  path         = "k8s/gitlab/runner"
-  disable_read = true
-  data_json = jsonencode({
-    runner-registration-token = ""
-    runner-token              = "FIXME"
-  })
-}

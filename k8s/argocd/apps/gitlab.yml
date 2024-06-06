@@ -192,29 +192,8 @@ spec:
               oauth:
                 gitlab-pages:
                   authScope: read_api
-            runner:
-              registrationToken:
-                secret: gitlab-runner-secret
             gitlab-runner:
-              install: true
-              runners:
-                config: |
-                  [[runners]]
-                    [runners.kubernetes]
-                      image = "ubuntu:18.04"
-                      poll_timeout = 300
-                      dns_policy = "default"
-                    [runners.cache]
-                      Type = "s3"
-                      Path = "gitlab-runner"
-                      Shared = true
-                    [runners.cache.s3]
-                      ServerAddress = "ouranos.mareo.fr:7443"
-                      BucketName = "gitlab-runner-cache"
-                      BucketLocation = "ceph"
-                      Insecure = false
-                cache:
-                  secretName: gitlab-runner-cache-s3
+              install: false
             gitlab:
               gitlab-shell:
                 sshDaemon: gitlab-sshd

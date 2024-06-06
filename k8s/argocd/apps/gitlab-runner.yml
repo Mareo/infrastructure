@@ -1,0 +1,94 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: gitlab-runner
+  labels:
+    app: gitlab-runner
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-gitlab-runner"
+      labels:
+        app: gitlab-runner
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: gitlab-runner
+      source:
+        repoURL: https://charts.gitlab.io/
+        chart: gitlab-runner
+        targetRevision: 0.65.0
+        helm:
+          releaseName: gitlab
+          values: |
+            rbac:
+              create: true
+            gitlabUrl: "https://gitlab.mareo.fr"
+            metrics:
+              enabled: true
+              serviceMonitor:
+                enabled: true
+              service:
+                enabled: true
+            runners:
+              name: "gitlab-runner@k8s.mareo.fr"
+              secret: gitlab-runner-secret
+              config: |
+                [[runners]]
+                  [runners.kubernetes]
+                    image = "ubuntu:22.04"
+                    poll_timeout = 300
+                    dns_policy = "default"
+                  [runners.cache]
+                    Type = "s3"
+                    Path = "gitlab-runner"
+                    Shared = true
+                  [runners.cache.s3]
+                    ServerAddress = "ouranos.mareo.fr:7443"
+                    BucketName = "gitlab-runner-cache"
+                    BucketLocation = "ceph"
+                    Insecure = false
+              cache:
+                secretName: gitlab-runner-cache-s3
+            extraObjects:
+              - apiVersion: external-secrets.io/v1beta1
+                kind: ExternalSecret
+                metadata:
+                  name: gitlab-runner-secret
+                spec:
+                  secretStoreRef:
+                    name: vault-backend
+                    kind: ClusterSecretStore
+                  dataFrom:
+                    - extract:
+                        key: gitlab-runner/token
+              - apiVersion: external-secrets.io/v1beta1
+                kind: ExternalSecret
+                metadata:
+                  name: gitlab-runner-cache-s3
+                spec:
+                  secretStoreRef:
+                    name: vault-backend
+                    kind: ClusterSecretStore
+                  dataFrom:
+                    - extract:
+                        key: gitlab-runner/object-storage
+                  target:
+                    template:
+                      engineVersion: v2
+                      type: Opaque
+                      data:
+                        accesskey: "{{ .s3_access_key | js }}"
+                        secretkey: "{{ .s3_secret_key | js }}"
