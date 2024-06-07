@@ -5,7 +5,7 @@ stages:
 
 ansible-lint:
   stage: linting
-  image: registry.gitlab.com/pipeline-components/ansible-lint:0.68.0@sha256:afcd02061d90ea65a217c4f28a1e23b323261b9f199438b052e2567158093452
+  image: registry.gitlab.com/pipeline-components/ansible-lint:0.69.0@sha256:aec4954fce75c30bf8d00079b00e845446d3b8719f489965813e2648dbc535d5
   cache:
     paths:
       - .cache/
