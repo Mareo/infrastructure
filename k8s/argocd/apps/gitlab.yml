@@ -259,7 +259,7 @@ spec:
                     cpu: 500m
                 metrics:
                   enabled: true
-                  serviceMonitor:
+                  podMonitor:
                     enabled: true
             registry:
               storage:
