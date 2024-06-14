@@ -201,10 +201,18 @@ spec:
                 sshDaemon: gitlab-sshd
                 config:
                   proxyProtocol: true
+                metrics:
+                  enabled: true
+                  serviceMonitor:
+                    enabled: true
               gitaly:
                 persistence:
                   enabled: true
                   storageClass: csi-rbd-sc-retain
+                metrics:
+                  enabled: true
+                  serviceMonitor:
+                    enabled: true
               toolbox:
                 backups:
                   cron:
@@ -219,14 +227,26 @@ spec:
                   tls:
                     secretName: gitlab-webservice-tls
                     smartcardSecretName: gitlab-smartcard-tls
+                metrics:
+                  enabled: true
+                  serviceMonitor:
+                    enabled: true
               kas:
                 ingress:
                   tls:
                     secretName: gitlab-kas-tls
+                metrics:
+                  enabled: true
+                  serviceMonitor:
+                    enabled: true
               gitlab-pages:
                 ingress:
                   tls:
                     secretName: gitlab-pages-tls
+                metrics:
+                  enabled: true
+                  serviceMonitor:
+                    enabled: true
               migrations:
                 annotations:
                   "helm.sh/hook": "pre-install"
@@ -237,6 +257,10 @@ spec:
                     memory: 5G
                   requests:
                     cpu: 500m
+                metrics:
+                  enabled: true
+                  serviceMonitor:
+                    enabled: true
             registry:
               storage:
                 secret: gitlab-registry-storage
