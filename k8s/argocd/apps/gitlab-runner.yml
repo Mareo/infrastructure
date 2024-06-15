@@ -90,5 +90,5 @@ spec:
                       engineVersion: v2
                       type: Opaque
                       data:
-                        accesskey: "{{ .s3_access_key | js }}"
-                        secretkey: "{{ .s3_secret_key | js }}"
+                        accesskey: '{{ "{{ .s3_access_key | js }}" }}'
+                        secretkey: '{{ "{{ .s3_secret_key | js }}" }}'
