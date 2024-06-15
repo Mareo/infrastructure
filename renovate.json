@@ -16,7 +16,7 @@
                 "pin",
                 "digest"
             ],
-            "matchPackagePrefixes": [
+            "matchDepPrefixes": [
                 "argo-cd",
                 "authentik",
                 "cert-manager",
