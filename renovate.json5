@@ -2,11 +2,11 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "argocd": {
         "fileMatch": [
-            "^k8s/argocd/apps/.+\\.ya?ml$"
-        ]
+            "^k8s/argocd/apps/.+\\.ya?ml$",
+        ],
     },
     "lockFileMaintenance": {
-        "automerge": true
+        "automerge": true,
     },
     "packageRules": [
         {
@@ -14,28 +14,28 @@
                 "minor",
                 "patch",
                 "pin",
-                "digest"
+                "digest",
             ],
             "matchDepPrefixes": [
                 "argo-cd",
+                "argo-workflows",
                 "authentik",
                 "cert-manager",
                 "external-dns",
                 "external-secrets",
-                "external-secrets",
                 "gitlab",
                 "ingress-nginx",
                 "kube-prometheus-stack",
-                "zalando/postgres-operator"
+                "zalando/postgres-operator",
             ],
-            "automerge": true
+            "automerge": true,
         },
         {
             "matchUpdateTypes": [
                 "minor",
                 "patch",
                 "pin",
-                "digest"
+                "digest",
             ],
             "matchManagers": [
                 "ansible-galaxy",
@@ -44,9 +44,9 @@
                 "poetry",
                 "pre-commit",
                 "terraform",
-                "terraform-version"
+                "terraform-version",
             ],
-            "automerge": true
-        }
-    ]
+            "automerge": true,
+        },
+    ],
 }
