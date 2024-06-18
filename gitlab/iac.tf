@@ -54,6 +54,17 @@ resource "gitlab_project_hook" "iac_infrastructure_argocd" {
   enable_ssl_verification   = true
 }
 
+resource "gitlab_project_hook" "iac_infrastructure_argocd-appset" {
+  project                   = gitlab_project.iac_infrastructure.path_with_namespace
+  url                       = "https://argocd-appset.mareo.fr/api/webhook"
+  token                     = data.vault_generic_secret.argocd_webhook-token.data["webhook.gitlab.secret"]
+  push_events               = true
+  tag_push_events           = true
+  merge_requests_events     = true
+  push_events_branch_filter = gitlab_project.iac_infrastructure.default_branch
+  enable_ssl_verification   = true
+}
+
 resource "gitlab_integration_slack" "iac_infrastructure_slack" {
   project = gitlab_project.iac_infrastructure.path_with_namespace
   webhook = data.vault_generic_secret.webhooks.data["gitlab-iac"]

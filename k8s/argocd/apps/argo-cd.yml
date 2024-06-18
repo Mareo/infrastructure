@@ -630,5 +630,5 @@ spec:
             annotations:
               cert-manager.io/cluster-issuer: default-issuer
             ingressClassName: public
-            hostname: argocd.mareo.fr
+            hostname: argocd-appset.mareo.fr
             tls: true
