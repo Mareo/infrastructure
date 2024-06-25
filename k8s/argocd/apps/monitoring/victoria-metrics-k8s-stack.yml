@@ -124,6 +124,11 @@ spec:
                     - receiver: blackhole
                       match:
                         alertname: Watchdog
+                    - receiver: blackhole
+                      match:
+                        severity: info
+                        alertname: CPUThrottlingHigh
+                        container: vmselect
                 receivers:
                   - name: "blackhole"
                   - name: "discord_and_gitlab"
