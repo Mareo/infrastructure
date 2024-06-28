@@ -1,9 +1,11 @@
-resource "vault_policy" "admin" {
-  name = "admin"
+data "vault_policy_document" "admin" {
+  rule {
+    path         = "*"
+    capabilities = ["create", "read", "update", "patch", "delete", "list", "sudo"]
+  }
+}
 
-  policy = <<-EOT
-    path "*" {
-      capabilities = ["create", "read", "update", "patch", "delete", "list", "sudo"]
-    }
-    EOT
+resource "vault_policy" "admin" {
+  name   = "admin"
+  policy = data.vault_policy_document.admin.hcl
 }
