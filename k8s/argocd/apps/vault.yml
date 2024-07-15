@@ -29,7 +29,7 @@ spec:
       source:
         repoURL: https://helm.releases.hashicorp.com
         chart: vault
-        targetRevision: 0.28.0
+        targetRevision: 0.28.1
         helm:
           values: |
             fullnameOverride: vault
