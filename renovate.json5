@@ -1,52 +1,52 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "argocd": {
-        "fileMatch": [
-            "^k8s/argocd/apps/.+\\.ya?ml$",
+    $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+    argocd: {
+        fileMatch: [
+            '^k8s/argocd/apps/.+\\.ya?ml$',
         ],
     },
-    "lockFileMaintenance": {
-        "automerge": true,
+    lockFileMaintenance: {
+        automerge: true,
     },
-    "packageRules": [
+    packageRules: [
         {
-            "matchUpdateTypes": [
-                "minor",
-                "patch",
-                "pin",
-                "digest",
+            matchUpdateTypes: [
+                'minor',
+                'patch',
+                'pin',
+                'digest',
             ],
-            "matchDepPrefixes": [
-                "argo-cd",
-                "argo-workflows",
-                "authentik",
-                "cert-manager",
-                "external-dns",
-                "external-secrets",
-                "gitlab",
-                "ingress-nginx",
-                "kube-prometheus-stack",
-                "zalando/postgres-operator",
+            automerge: true,
+            matchDepNames: [
+                'argo-cd**',
+                'argo-workflows**',
+                'authentik**',
+                'cert-manager**',
+                'external-dns**',
+                'external-secrets**',
+                'gitlab**',
+                'ingress-nginx**',
+                'kube-prometheus-stack**',
+                'zalando/postgres-operator**',
             ],
-            "automerge": true,
         },
         {
-            "matchUpdateTypes": [
-                "minor",
-                "patch",
-                "pin",
-                "digest",
+            matchUpdateTypes: [
+                'minor',
+                'patch',
+                'pin',
+                'digest',
             ],
-            "matchManagers": [
-                "ansible-galaxy",
-                "gitlabci",
-                "gitlabci-include",
-                "poetry",
-                "pre-commit",
-                "terraform",
-                "terraform-version",
+            matchManagers: [
+                'ansible-galaxy',
+                'gitlabci',
+                'gitlabci-include',
+                'poetry',
+                'pre-commit',
+                'terraform',
+                'terraform-version',
             ],
-            "automerge": true,
+            automerge: true,
         },
     ],
 }
