@@ -7,7 +7,7 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/hostname: smtp.mareo.fr, smtp.hannache.fr, smtp.theseus.fr, smtp.theseusformation.fr
 spec:
-  type: NodePort
+  type: LoadBalancer
   externalTrafficPolicy: Local
   selector:
     component: postfix
@@ -16,11 +16,14 @@ spec:
       port: 25
       nodePort: 30025
       targetPort: smtp
+      protocol: TCP
     - name: postfix-smtps
       port: 465
       nodePort: 30465
       targetPort: smtps
+      protocol: TCP
     - name: postfix-submission
       port: 587
       nodePort: 30587
       targetPort: submission
+      protocol: TCP
