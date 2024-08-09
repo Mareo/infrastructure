@@ -14,21 +14,16 @@ locals {
         }
         mailboxRules = [
           "@mareo.fr:mareo@mareo.fr",
-          "marin@theseusformation.fr:marin@theseus.fr",
         ]
         mailboxes = [
           "mareo@mareo.fr",
           "marin@hannache.fr",
-          "marin@theseus.fr",
-          "marin@theseusformation.fr",
         ]
         allowedEmails = [
           "@mareo.fr",
           "marin@hannache.fr",
-          "@theseus.fr",
-          "@theseusformation.fr",
         ]
-        dovecotAclGroups     = "mareo,theseus"
+        dovecotAclGroups     = "mareo"
         dovecotQuotaStorage  = "10G"
         dovecotQuotaMessages = 250000
       }
@@ -134,20 +129,6 @@ locals {
       path  = "users/friends"
       attributes = {
         nextcloud_quota = "50G"
-        mailboxRules = [
-          "kevin@theseusformation.fr:kevin@theseus.fr",
-        ]
-        mailboxes = [
-          "kevin@theseus.fr",
-          "kevin@theseusformation.fr",
-        ]
-        allowedEmails = [
-          "@theseus.fr",
-          "@theseusformation.fr",
-        ]
-        dovecotAclGroups     = "theseus"
-        dovecotQuotaStorage  = "10G"
-        dovecotQuotaMessages = 250000
       }
       groups = [
         "argocd",
@@ -156,7 +137,6 @@ locals {
         "grafana",
         "grafana_admins",
         "hedgedoc",
-        "mail",
         "nextcloud",
         "theseus",
         "theseus_ops",

@@ -15,8 +15,6 @@ resource "vault_pki_secret_backend_root_cert" "pki-root" {
   permitted_dns_domains = [
     "cluster.local",
     "mareo.fr",
-    "theseus.fr",
-    "theseusformation.fr",
   ]
 }
 

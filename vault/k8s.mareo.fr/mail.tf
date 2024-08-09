@@ -9,9 +9,7 @@ locals {
       "ouranos",
       "vaultwarden",
     ]
-    "hannache.fr."         = []
-    "theseus.fr."          = []
-    "theseusformation.fr." = []
+    "hannache.fr." = []
   }
 }
 

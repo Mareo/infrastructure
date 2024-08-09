@@ -10,10 +10,6 @@ spec:
     - imap.mareo.fr
     - imap.hannache.fr
     - mail.hannache.fr
-    - imap.theseus.fr
-    - mail.theseus.fr
-    - imap.theseusformation.fr
-    - mail.theseusformation.fr
   issuerRef:
     group: cert-manager.io
     kind: ClusterIssuer
