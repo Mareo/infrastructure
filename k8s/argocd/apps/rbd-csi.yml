@@ -41,6 +41,8 @@ spec:
               replicaCount: 1
               extraArgs:
                 - feature-gates=Topology=false
+            topology:
+              domainLabels: []
             nodeplugin:
               tolerations:
                 - operator: Exists
