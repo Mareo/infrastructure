@@ -39,6 +39,8 @@ spec:
             cephConfConfigMapName: ceph-config-rbd
             provisioner:
               replicaCount: 1
+              extraArgs:
+                - feature-gates=Topology=false
             nodeplugin:
               tolerations:
                 - operator: Exists
