@@ -34,7 +34,7 @@ spec:
       source:
         repoURL: https://grafana.github.io/helm-charts
         chart: oncall
-        targetRevision: 1.9.2
+        targetRevision: 1.9.3
         helm:
           values: |
             fullnameOverride: grafana-oncall
