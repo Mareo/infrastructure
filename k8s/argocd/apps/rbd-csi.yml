@@ -39,8 +39,9 @@ spec:
             cephConfConfigMapName: ceph-config-rbd
             provisioner:
               replicaCount: 1
-              extraArgs:
-                - feature-gates=Topology=false
+              provisioner:
+                extraArgs:
+                  - feature-gates=Topology=false
             topology:
               domainLabels: []
             nodeplugin:
