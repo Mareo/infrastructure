@@ -7,7 +7,7 @@ commonAnnotations:
 
 resources:
   - namespace.yml
-  - github.com/zalando/postgres-operator/manifests?ref=v1.12.2
+  - github.com/zalando/postgres-operator/manifests?ref=v1.13.0
   - podmonitor.yml
 
 patchesStrategicMerge:
