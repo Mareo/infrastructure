@@ -39,7 +39,7 @@ spec:
       source:
         repoURL: https://charts.bitnami.com/bitnami
         chart: external-dns
-        targetRevision: 8.3.5
+        targetRevision: 8.3.7
         helm:
           releaseName: external-dns-{{ .zone | replace "." "-" }}
           values: |
