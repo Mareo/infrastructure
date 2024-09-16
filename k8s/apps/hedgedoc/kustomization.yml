@@ -15,7 +15,7 @@ configMapGenerator:
       - CMD_DB_DIALECT=postgres
       - CMD_IMAGE_UPLOAD_TYPE=s3
       - CMD_PROTOCOL_USESSL=true
-      - CMD_ALLOW_ANONYMOUS=false
+      - CMD_ALLOW_ANONYMOUS=true
       - CMD_ALLOW_ANONYMOUS_EDIT=true
       - CMD_ALLOW_FREEURL=true
       - CMD_ALLOW_FREEURL_AUTHENTICATION=true
