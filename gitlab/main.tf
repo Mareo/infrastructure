@@ -6,7 +6,7 @@ terraform {
     }
     gitlab = {
       source  = "gitlabhq/gitlab"
-      version = "17.3.1"
+      version = "17.4.0"
     }
     gpg = {
       source  = "Olivr/gpg"
