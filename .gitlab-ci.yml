@@ -21,7 +21,7 @@ ansible-lint:
 
 shellcheck:
   stage: linting
-  image: registry.gitlab.com/pipeline-components/shellcheck:0.12.11@sha256:50d61bdfc1dab2953cdc34ade6de4af3aadf3b6b7b086afa85eefd2e36fc2450
+  image: registry.gitlab.com/pipeline-components/shellcheck:0.12.12@sha256:6b18bbca3f26338ce7f323862115df56f07628bfc4ffbe379c22b1d87d0b74f2
   script:
     - |
       find . -name .git -type d -prune -o -type f  -name \*.sh -print0 |
