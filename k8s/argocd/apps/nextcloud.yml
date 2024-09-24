@@ -29,7 +29,7 @@ spec:
       source:
         repoURL: https://nextcloud.github.io/helm/
         chart: nextcloud
-        targetRevision: 6.0.1
+        targetRevision: 6.0.2
         helm:
           releaseName: nextcloud
           values: |
