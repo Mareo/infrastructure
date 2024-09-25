@@ -19,7 +19,7 @@ spec:
   source:
     repoURL: https://argoproj.github.io/argo-helm
     chart: argo-cd
-    targetRevision: 7.6.3
+    targetRevision: 7.6.4
     helm:
       values: |
         dex:
