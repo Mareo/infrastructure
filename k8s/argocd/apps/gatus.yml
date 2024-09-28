@@ -286,7 +286,7 @@ spec:
                     url: "https://petitstream.com/api/get_next_stream_a/"
                     conditions:
                       - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 500"
+                      - "[RESPONSE_TIME] < 1000"
                       - "[STATUS] == 200"
                       - "has([BODY][0].id) == true"
                     alerts:
