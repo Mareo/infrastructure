@@ -27,12 +27,9 @@ spec:
         name: "{{name}}"
         namespace: gatus
       source:
-        # repoURL: https://minicloudlabs.github.io/helm-charts
-        # chart: gatus
-        # targetRevision: 3.3.5
-        repoURL: https://github.com/Mareo/gatus-helm-charts.git
-        targetRevision: add-support-for-env-valueFrom
-        path: "charts/gatus"
+        repoURL: "https://twin.github.io/helm-charts"
+        chart: gatus
+        targetRevision: 1.1.0
         helm:
           values: |
             fullnameOverride: gatus

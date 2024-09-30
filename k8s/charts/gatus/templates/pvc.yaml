@@ -1,3 +1,0 @@
-{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim)}}
-  {{- include "common.objects.PersistentVolumeClaim" . | nindent 0 }}
-{{- end -}}

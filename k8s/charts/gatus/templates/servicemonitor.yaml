@@ -1,3 +1,0 @@
-{{- if .Values.serviceMonitor.enabled }}
-  {{- include "common.objects.ServiceMonitor" . | nindent 0 }}
-{{- end }}
