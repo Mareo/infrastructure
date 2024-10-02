@@ -6,6 +6,16 @@ metadata:
   namespace: default
 spec:
   endpoints:
+    - dnsName: daedalus.theseus.fr
+      recordTTL: 3600
+      recordType: A
+      targets:
+        - 95.217.169.229
+    - dnsName: daedalus.theseus.fr
+      recordTTL: 3600
+      recordType: AAAA
+      targets:
+        - "2a01:4f9:c01e:121::1"
     - dnsName: icarus.daedalus.theseus.fr
       recordTTL: 3600
       recordType: A
