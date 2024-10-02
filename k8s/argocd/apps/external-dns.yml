@@ -50,6 +50,8 @@ spec:
               - {{ .zone }}
             publishHostIP: true
             policy: sync
+            crd:
+              create: true
             provider: rfc2136
             rfc2136:
               host: 164.132.225.201
