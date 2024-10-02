@@ -50,6 +50,10 @@ spec:
               - {{ .zone }}
             publishHostIP: true
             policy: sync
+            sources:
+              - crd
+              - service
+              - ingress
             crd:
               create: true
             provider: rfc2136
