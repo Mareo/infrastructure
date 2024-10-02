@@ -1,0 +1,23 @@
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: daedalus
+  namespace: default
+spec:
+  endpoints:
+    - dnsName: icarus.daedalus.theseus.fr
+      recordTTL: 3600
+      recordType: A
+      targets:
+        - 65.108.238.62
+    - dnsName: asterius.daedalus.theseus.fr
+      recordTTL: 3600
+      recordType: A
+      targets:
+        - 65.108.238.51
+    - dnsName: ariadne.daedalus.theseus.fr
+      recordTTL: 3600
+      recordType: A
+      targets:
+        - 65.108.28.147
