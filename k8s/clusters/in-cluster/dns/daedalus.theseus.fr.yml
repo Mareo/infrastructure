@@ -21,28 +21,13 @@ spec:
       recordType: A
       targets:
         - 65.108.238.62
-    - dnsName: icarus.daedalus.theseus.fr
-      recordTTL: 3600
-      recordType: AAAA
-      targets:
-        - "2a01:4f9:1a:b209::2"
     - dnsName: asterius.daedalus.theseus.fr
       recordTTL: 3600
       recordType: A
       targets:
         - 65.108.238.51
-    - dnsName: asterius.daedalus.theseus.fr
-      recordTTL: 3600
-      recordType: AAAA
-      targets:
-        - "2a01:4f9:1a:b21e::2"
     - dnsName: ariadne.daedalus.theseus.fr
       recordTTL: 3600
       recordType: A
       targets:
         - 65.108.28.147
-    - dnsName: ariadne.daedalus.theseus.fr
-      recordTTL: 3600
-      recordType: AAAA
-      targets:
-        - "2a01:4f9:3071:2a06::2"
