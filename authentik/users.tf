@@ -50,7 +50,6 @@ locals {
         "petitstream_admins",
         "petitstream_devs",
         "petitstream_ops",
-        "prometheus",
         "proxmox",
         "syncthing",
         "theseus",

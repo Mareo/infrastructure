@@ -25,7 +25,6 @@ locals {
     "nextcloud_admins"           = {}
     "nextcloud_service_accounts" = {}
     "paperless"                  = {}
-    "prometheus"                 = {}
     "proxmox"                    = {}
     "syncthing"                  = {}
     "vault"                      = {}
