@@ -5,8 +5,8 @@ proxmox_template_default_storage: "{{ proxmox_storage_local }}"
 proxmox_extra_images: []
 proxmox_default_images:
   - type: iso
-    name: ubuntu-22.04.2-live-server-amd64.iso
-    url: https://releases.ubuntu.com/jammy/ubuntu-22.04.2-live-server-amd64.iso
+    name: ubuntu-22.04.4-live-server-amd64.iso
+    url: https://releases.ubuntu.com/jammy/ubuntu-22.04.4-live-server-amd64.iso
   - type: template
     url: https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
     name: ubuntu-22.04-cloudinit-amd64
