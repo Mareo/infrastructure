@@ -158,28 +158,6 @@ locals {
         "petitstream_ops",
       ]
     }
-    "drummyjohn" = {
-      name  = "DrummyJohn"
-      email = "jonathan.monnet28@gmail.com"
-      path  = "users/petitstream"
-      groups = [
-        "grafana",
-        "hedgedoc",
-        "petitstream_devs",
-        "petitstream_ops",
-      ]
-    }
-    "sharpii" = {
-      name  = "shARPII"
-      email = "philippe.grad@gmail.com"
-      path  = "users/petitstream"
-      groups = [
-        "grafana",
-        "hedgedoc",
-        "petitstream_devs",
-        "petitstream_ops",
-      ]
-    }
     "superjp" = {
       name  = "superjp"
       email = "streampetit@gmail.com"
