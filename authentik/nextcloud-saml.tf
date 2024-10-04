@@ -38,15 +38,15 @@ resource "authentik_provider_saml" "nextcloud-saml" {
 
   assertion_valid_not_before = "minutes=-3"
 
-  name_id_mapping = data.authentik_property_mapping_saml.username.id
+  name_id_mapping = data.authentik_property_mapping_provider_saml.username.id
   property_mappings = [
-    data.authentik_property_mapping_saml.upn.id,
-    data.authentik_property_mapping_saml.name.id,
-    data.authentik_property_mapping_saml.email.id,
-    data.authentik_property_mapping_saml.username.id,
-    data.authentik_property_mapping_saml.uid.id,
-    authentik_property_mapping_saml.nextcloud-groups.id,
-    authentik_property_mapping_saml.nextcloud-quota.id,
+    data.authentik_property_mapping_provider_saml.upn.id,
+    data.authentik_property_mapping_provider_saml.name.id,
+    data.authentik_property_mapping_provider_saml.email.id,
+    data.authentik_property_mapping_provider_saml.username.id,
+    data.authentik_property_mapping_provider_saml.uid.id,
+    authentik_property_mapping_provider_saml.nextcloud-groups.id,
+    authentik_property_mapping_provider_saml.nextcloud-quota.id,
   ]
 }
 
@@ -73,7 +73,7 @@ resource "authentik_policy_binding" "nextcloud-saml_group-filtering" {
   order  = each.key
 }
 
-resource "authentik_property_mapping_saml" "nextcloud-groups" {
+resource "authentik_property_mapping_provider_saml" "nextcloud-groups" {
   name       = "SAML NextCloud Groups"
   saml_name  = "http://schemas.xmlsoap.org/claims/Group"
   expression = <<-EOT
@@ -84,7 +84,7 @@ resource "authentik_property_mapping_saml" "nextcloud-groups" {
   EOT
 }
 
-resource "authentik_property_mapping_saml" "nextcloud-quota" {
+resource "authentik_property_mapping_provider_saml" "nextcloud-quota" {
   name       = "SAML NextCloud Quota"
   saml_name  = "nextcloud_quota"
   expression = <<-EOT

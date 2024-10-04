@@ -15,12 +15,12 @@ resource "authentik_provider_saml" "gitlab-saml" {
   signing_kp         = data.authentik_certificate_key_pair.default.id
 
   property_mappings = [
-    data.authentik_property_mapping_saml.upn.id,
-    data.authentik_property_mapping_saml.name.id,
-    data.authentik_property_mapping_saml.email.id,
-    data.authentik_property_mapping_saml.username.id,
-    data.authentik_property_mapping_saml.uid.id,
-    data.authentik_property_mapping_saml.groups.id,
+    data.authentik_property_mapping_provider_saml.upn.id,
+    data.authentik_property_mapping_provider_saml.name.id,
+    data.authentik_property_mapping_provider_saml.email.id,
+    data.authentik_property_mapping_provider_saml.username.id,
+    data.authentik_property_mapping_provider_saml.uid.id,
+    data.authentik_property_mapping_provider_saml.groups.id,
   ]
 
   assertion_valid_not_before = "minutes=-3"

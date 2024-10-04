@@ -1,9 +1,9 @@
 resource "authentik_provider_ldap" "gitlab-ldap" {
-  name         = "gitlab-ldap"
-  base_dn      = "dc=gitlab,dc=mareo,dc=fr"
-  bind_flow    = data.authentik_flow.default-authentication-flow.id
-  search_group = authentik_group.groups["gitlab_service_accounts"].id
-  mfa_support  = false
+  name      = "gitlab-ldap"
+  base_dn   = "dc=gitlab,dc=mareo,dc=fr"
+  bind_flow = data.authentik_flow.default-authentication-flow.id
+  #search_group = authentik_group.groups["gitlab_service_accounts"].id
+  mfa_support = false
 }
 
 resource "authentik_application" "gitlab-ldap" {

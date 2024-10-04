@@ -25,9 +25,9 @@ resource "authentik_provider_oauth2" "gitlab-oidc" {
     "https://gitlab.mareo.fr/users/auth/openid_connect/callback"
   ]
   property_mappings = [
-    data.authentik_scope_mapping.scope-openid.id,
-    data.authentik_scope_mapping.scope-profile.id,
-    data.authentik_scope_mapping.scope-email.id,
+    data.authentik_property_mapping_provider_scope.scope-openid.id,
+    data.authentik_property_mapping_provider_scope.scope-profile.id,
+    data.authentik_property_mapping_provider_scope.scope-email.id,
   ]
   signing_key = data.authentik_certificate_key_pair.default.id
 }
