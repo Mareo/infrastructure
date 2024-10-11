@@ -6,6 +6,8 @@ metadata:
   name: victoria-metrics-k8s-stack
   labels:
     app: victoria-metrics-k8s-stack
+  annotations:
+    argocd.argoproj.io/compare-options: ServerSideDiff=true
 spec:
   generators:
     - list:
