@@ -187,15 +187,16 @@ spec:
             kubeControllerManager:
               enabled: true
               endpoints: {{ toJson .endpoints }}
-              spec:
-                endpoints:
-                  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-                    port: http-metrics
-                    scheme: https
-                    tlsConfig:
-                      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-                      serverName: localhost
-                      insecureSkipVerify: true
+              vmScrape:
+                spec:
+                  endpoints:
+                    - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+                      port: http-metrics
+                      scheme: https
+                      tlsConfig:
+                        caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                        serverName: localhost
+                        insecureSkipVerify: true
             kubeDns:
               enabled: false
             coreDns:
@@ -205,22 +206,24 @@ spec:
             kubeScheduler:
               enabled: true
               endpoints: {{ toJson .endpoints }}
-              spec:
-                endpoints:
-                  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-                    port: http-metrics
-                    scheme: https
-                    tlsConfig:
-                      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-                      serverName: 127.0.0.1
-                      insecureSkipVerify: true
+              vmScrape:
+                spec:
+                  endpoints:
+                    - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+                      port: http-metrics
+                      scheme: https
+                      tlsConfig:
+                        caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                        serverName: 127.0.0.1
+                        insecureSkipVerify: true
             kubeProxy:
               enabled: true
               endpoints: {{ toJson .endpoints }}
-              spec:
-                endpoints:
-                  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-                    port: http-metrics
-                    scheme: http
+              vmScrape:
+                spec:
+                  endpoints:
+                    - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+                      port: http-metrics
+                      scheme: http
             crds:
               enabled: true
