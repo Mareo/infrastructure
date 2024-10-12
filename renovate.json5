@@ -55,4 +55,16 @@
             automerge: true,
         },
     ],
+    customManagers: [
+       {
+          customType: 'regex',
+          fileMatch: ['group_vars/k3s.yml'],
+          datasourceTemplate: "github-releases",
+          packageNameTemplate: "k3s-io/k3s",
+          depNameTemplate: "k3s",
+          matchStrings: [
+              'k3s_release_version: (?<currentValue>v\\S+)',
+          ],
+       },
+    ],
 }
