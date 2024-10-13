@@ -10,9 +10,7 @@ spec:
   generators:
     - list:
         elements:
-          - name: in-cluster
-            endpoints:
-              - 192.168.0.1
+          #- name: in-cluster
   goTemplate: true
   template:
     metadata:
