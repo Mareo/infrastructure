@@ -374,15 +374,15 @@ spec:
                       - type: discord
                       - type: gitlab
                   # services
-                  - name: Factorio
-                    group: Services
-                    interval: 1m
-                    url: "udp://factorio.mareo.fr:34197"
-                    conditions:
-                      - "[CONNECTED] == true"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
+                  #- name: Factorio
+                  #  group: Services
+                  #  interval: 1m
+                  #  url: "udp://factorio.mareo.fr:34197"
+                  #  conditions:
+                  #    - "[CONNECTED] == true"
+                  #  alerts:
+                  #    - type: discord
+                  #    - type: gitlab
                   - name: GitLab - SSH
                     group: Services
                     interval: "${SSH_CHECK_INTERVAL}"
