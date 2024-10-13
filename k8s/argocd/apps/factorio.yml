@@ -10,7 +10,7 @@ spec:
   generators:
     - list:
         elements:
-          - name: in-cluster
+          #- name: in-cluster
   template:
     metadata:
       name: "{{name}}-factorio"
