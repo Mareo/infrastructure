@@ -1,0 +1,13 @@
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: cedric
+  namespace: default
+spec:
+  endpoints:
+    - dnsName: cedric.mareo.fr
+      recordTTL: 3600
+      recordType: A
+      targets:
+        - 88.176.0.212

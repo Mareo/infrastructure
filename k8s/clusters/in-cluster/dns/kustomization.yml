@@ -4,3 +4,4 @@ kind: Kustomization
 
 resources:
   - daedalus.theseus.fr.yml
+  - cedric.mareo.fr.yml
