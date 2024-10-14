@@ -16,6 +16,7 @@ resources:
   - external-dns.yml
   - external-secrets-operator.yml
   - factorio.yml
+  - foundry.yml
   - gatus.yml
   - gitlab.yml
   - gitlab-runner.yml

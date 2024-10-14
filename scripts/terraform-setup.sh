@@ -11,16 +11,21 @@ AWS_SECRET_ACCESS_KEY="$(shyaml get-value secret_key < "${BASEDIR}/secrets/rgw_u
 
 cat > "${BASEDIR}/secrets/terraform_config" <<EOF
 region     = "ceph"
-endpoint   = "${S3_ENDPOINT_URL}"
 access_key = "${AWS_ACCESS_KEY_ID}"
 secret_key = "${AWS_SECRET_ACCESS_KEY}"
 bucket     = "${TERRAFORM_BUCKET}"
+endpoints  = {
+  s3  = "${S3_ENDPOINT_URL}"
+}
 
 skip_credentials_validation = true
 skip_region_validation      = true
-force_path_style            = true
+skip_requesting_account_id  = true
+skip_s3_checksum            = true
+use_path_style              = true
 EOF
 
 for dir in authentik discord gitlab proxmox vault; do
-	terraform -chdir="${BASEDIR}/${dir}" init -backend-config="${BASEDIR}/secrets/terraform_config" -upgrade -reconfigure
+    echo "$dir"
+    terraform -chdir="${BASEDIR}/${dir}" init -backend-config="${BASEDIR}/secrets/terraform_config" -upgrade -reconfigure
 done

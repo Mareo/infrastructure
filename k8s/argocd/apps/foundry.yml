@@ -1,0 +1,58 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: foundry
+  labels:
+    app: foundry
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-foundry"
+      labels:
+        app: foundry
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: foundry
+      source:
+        repoURL: https://helm.mahahe.it/
+        chart: foundry-vtt
+        targetRevision: 0.1.4
+        helm:
+          values: |
+            fullnameOverride: foundry
+            image:
+              tag: 12.331.0
+            foundryvtt:
+              existingLicenseType: "account"
+              existingSecret: "foundry-secret"
+              hostname: "foundry.mareo.fr"
+              s3:
+                enabled: true
+                existingSecret: "foundry-s3"
+              version: 12.331
+              world: "hyperion"
+            persistence:
+              storageClass: "csi-rbd-sc-retain"
+            container:
+              preserveConfig: true
+              timezone: "Europe/Paris"
+            ingress:
+              enabled: true
+              annotations:
+                cert-manager.io/cluster-issuer: default-issuer
+              className: "public"
+              hostname: "foundry.mareo.fr"
+              tls: true
