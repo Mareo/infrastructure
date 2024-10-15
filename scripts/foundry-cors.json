@@ -1,0 +1,12 @@
+{
+    "CORSRules": [
+        {
+            "ID": "foundry",
+            "AllowedOrigins": ["https://foundry.mareo.fr"],
+            "AllowedHeaders": ["*"],
+            "AllowedMethods": ["GET", "POST", "HEAD"],
+            "ExposeHeaders": [],
+            "MaxAgeSeconds": 3000
+        }
+    ]
+}
