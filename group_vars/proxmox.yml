@@ -55,6 +55,11 @@ proxmox_ceph_rgw_users:
     max_buckets: 1
     buckets:
       - argo-workflows
+  - uid: foundry
+    display_name: foundry
+    max_buckets: 1
+    buckets:
+      - foundry
   - uid: gitlab
     display_name: gitlab
     max_buckets: 14
