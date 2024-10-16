@@ -53,6 +53,7 @@ spec:
               enabled: true
               annotations:
                 cert-manager.io/cluster-issuer: default-issuer
+                nginx.ingress.kubernetes.io/proxy-body-size: 50M
               className: "public"
               hostname: "foundry.mareo.fr"
               tls: true
