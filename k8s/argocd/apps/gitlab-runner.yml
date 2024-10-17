@@ -62,9 +62,6 @@ spec:
                     Insecure = false
               cache:
                 secretName: gitlab-runner-cache-s3
-            sessionServer:
-              enabled: true
-              serviceType: ClusterIP
             extraObjects:
               - apiVersion: external-secrets.io/v1beta1
                 kind: ExternalSecret
