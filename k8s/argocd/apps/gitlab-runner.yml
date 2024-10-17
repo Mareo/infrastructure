@@ -62,6 +62,17 @@ spec:
                     Insecure = false
               cache:
                 secretName: gitlab-runner-cache-s3
+            sessionServer:
+              enabled: true
+              publicIP: "gitlab-runner.mareo.fr"
+              serviceType: ClusterIP
+              internalPort: 8093
+              externalPort: 443
+              ingress:
+                enabled: true
+                className: public
+                annotations:
+                  nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
             extraObjects:
               - apiVersion: external-secrets.io/v1beta1
                 kind: ExternalSecret
