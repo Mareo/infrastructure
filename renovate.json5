@@ -66,5 +66,14 @@
               'k3s_release_version: (?<currentValue>v\\S+)',
           ],
        },
+       {
+          customType: 'regex',
+          fileMatch: ['k8s/argocs/apps/gitlab-runner.yml'],
+          datasourceTemplate: "docker",
+          versioningTemplate: "docker",
+          matchStrings: [
+              'image = "(?<depName>\\S+):(?<currentValue>\\S+)"',
+          ],
+       },
     ],
 }
