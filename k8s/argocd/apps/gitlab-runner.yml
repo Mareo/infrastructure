@@ -64,9 +64,7 @@ spec:
                 secretName: gitlab-runner-cache-s3
             sessionServer:
               enabled: true
-              serviceType: NodePort
-              publicIP: "148.251.4.90"
-              nodePort: 30093
+              serviceType: ClusterIP
             extraObjects:
               - apiVersion: external-secrets.io/v1beta1
                 kind: ExternalSecret
