@@ -68,7 +68,7 @@
        },
        {
           customType: 'regex',
-          fileMatch: ['k8s/argocs/apps/gitlab-runner.yml'],
+          fileMatch: ['k8s/argocd/apps/gitlab-runner.yml'],
           datasourceTemplate: "docker",
           versioningTemplate: "docker",
           matchStrings: [
