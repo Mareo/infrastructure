@@ -60,6 +60,9 @@ forwarded_ports:
   - dport: https
     host: $k3s
     port: 30443
+  - dport: 9000 # gitlab-runner-session-server
+    host: $k3s
+    port: 30093
   - dport: smtp
     host: $k3s
     port: 30025

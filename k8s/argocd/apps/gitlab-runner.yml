@@ -65,6 +65,7 @@ spec:
             sessionServer:
               enabled: true
               serviceType: NodePort
+              publicIP: "148.251.4.90"
               nodePort: 30093
             extraObjects:
               - apiVersion: external-secrets.io/v1beta1
