@@ -36,7 +36,7 @@ resource "vault_pki_secret_backend_root_sign_intermediate" "pki-intermediate" {
   issuer_ref = vault_pki_secret_backend_root_cert.pki-root.issuer_id
   csr        = vault_pki_secret_backend_intermediate_cert_request.pki-intermediate.csr
 
-  ttl            = 1 * 365 * 24 * 60 * 60 # 10y
+  ttl            = format("%dh", 3 * 365 * 24) # 3y
   use_csr_values = true
   common_name    = vault_pki_secret_backend_intermediate_cert_request.pki-intermediate.common_name
 
