@@ -7,7 +7,7 @@ resource "gitlab_user" "renovate-bot" {
   name             = "Renovate Bot"
   username         = "renovate-bot"
   password         = random_password.renovate-bot.result
-  email            = "renovate@gitlab.mareo.fr"
+  email            = "renovate-bot@gitlab.mareo.fr"
   is_admin         = false
   can_create_group = false
   is_external      = false
