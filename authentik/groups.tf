@@ -18,6 +18,8 @@ locals {
     "grafana_editors"            = {}
     "grafana_admins"             = {}
     "hedgedoc"                   = {}
+    "kargo"                      = {}
+    "kargo_admins"               = {}
     "kubernetes"                 = {}
     "kubernetes_admins"          = {}
     "mail"                       = {}

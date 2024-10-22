@@ -43,6 +43,8 @@ locals {
         "grafana_editors",
         "grafana_admins",
         "hedgedoc",
+        "kargo",
+        "kargo_admins",
         "kubernetes_admins",
         "mail",
         "nextcloud",

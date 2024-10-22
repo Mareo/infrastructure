@@ -23,6 +23,7 @@ resources:
   - gitlab-runner.yml
   - ingress-nginx-internal.yml
   - ingress-nginx-public.yml
+  - kargo.yml
   - nextcloud.yml
   - paperless-ngx.yml
   - petitstream-dev.yml

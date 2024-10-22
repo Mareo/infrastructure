@@ -1,0 +1,70 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kargo
+  labels:
+    app: kargo
+spec:
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: "in-cluster"
+    namespace: kargo
+  source:
+    repoURL: ghcr.io/akuity/kargo-charts
+    chart: kargo
+    targetRevision: 1.0.1
+    helm:
+      values: |
+        fullnameOverride: kargo
+        api:
+          host: kargo.mareo.fr
+          tls:
+            enabled: false
+            selfSignedCert: true
+          ingress:
+            enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: default-issuer
+            ingressClassName: public
+            tls:
+              selfSignedCert: false
+          secret:
+            name: kargo-secrets
+          adminAccount:
+            enabled: false
+          oidc:
+            enabled: true
+            issuerURL: "https://auth.mareo.fr/application/o/kargo/"
+            clientID: QBchGCHW2ZDKrLOgWFNYSOiArCf4hNAI
+            cliClientID: QBchGCHW2ZDKrLOgWFNYSOiArCf4hNAI
+            admins:
+              claims:
+                groups:
+                  - kargo_admins
+            viewers:
+              claims:
+                groups:
+                  - kargo
+            dex:
+              enabled: false
+          argocd:
+            urls:
+              "": "https://argocd.mareo.fr"
+        controller:
+          gitClient:
+            name: "Kargo"
+            email: "no-reply@kargo.mareo.fr"
+          signingKeySecret:
+            name: "kargo-secrets"
+            type: "gpg"
+        webhooksServer:
+          enabled: true
+          tls:
+            selfSignedCert: true
