@@ -3,6 +3,7 @@ apiversion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  - argo-rollouts-ingress.yml
   - gatus-ingress.yml
   - grafana-agent-ingress.yml
   - kube-prometheus-stack-ingress.yml

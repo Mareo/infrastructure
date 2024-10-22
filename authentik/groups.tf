@@ -3,6 +3,7 @@ locals {
     "alertmanager"               = {}
     "argocd"                     = {}
     "argocd_admins"              = {}
+    "argorollouts"               = {}
     "argowf"                     = {}
     "argowf_admins"              = {}
     "gatus"                      = {}
