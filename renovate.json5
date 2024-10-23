@@ -99,5 +99,15 @@
               'image = "(?<depName>\\S+):(?<currentValue>\\S+)"',
           ],
        },
+       {
+          customType: 'regex',
+          fileMatch: ['k8s/argocd/apps/factorio.yml'],
+          datasourceTemplate: "docker",
+          versioningTemplate: "docker",
+          packageNameTemplate: "factoriotools/factorio",
+          matchStrings: [
+              'tag: "?(?<currentValue>\\S+)"?',
+          ],
+       },
     ],
 }
