@@ -19,7 +19,7 @@ spec:
   source:
     repoURL: ghcr.io/akuity/kargo-charts
     chart: kargo
-    targetRevision: 1.0.1
+    targetRevision: 1.0.3
     helm:
       values: |
         fullnameOverride: kargo
