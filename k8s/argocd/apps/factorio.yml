@@ -50,6 +50,7 @@ spec:
               save_name: "marais-salants"
               generate_new_save: true
               update_mods_on_start: true
+              enable_space_age: true
             mods:
               enabled: true
               portal:
