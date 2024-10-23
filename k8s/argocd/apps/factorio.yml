@@ -34,8 +34,7 @@ spec:
           values: |
             fullnameOverride: factorio
             image:
-              tag: 1.1.76
-            replicaCount: 0
+              tag: 2.0.8
             service:
               type: LoadBalancer
               port: 34197
@@ -54,9 +53,9 @@ spec:
             mods:
               enabled: true
               portal:
-                #- BottleneckLite
-                #- flib
-                #- helmod
+                - BottleneckLite
+                - flib
+                - helmod
             serverPassword:
               passwordSecret: "factorio-server"
             server_settings:
