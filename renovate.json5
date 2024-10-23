@@ -18,8 +18,24 @@
                 'pinDigest',
             ],
             automerge: true,
+            matchPackageNames: [
+                'ghcr.io/akuity/kargo-charts/kargo',
+                'registry.mareo.fr/services/charts/dovecot/dovecot',
+                'registry.mareo.fr/services/docker/postfix',
+                'registry.mareo.fr/services/charts/vrising/vrising',
+                'quay.io/hedgedoc/hedgedoc',
+            ],
+        },
+        {
+            matchUpdateTypes: [
+                'digest',
+                'minor',
+                'patch',
+                'pin',
+                'pinDigest',
+            ],
+            automerge: true,
             matchDepNames: [
-                'akuity/kargo**',
                 'argo-cd**',
                 'argo-workflows**',
                 'authentik**',
@@ -54,6 +70,13 @@
                 'terraform-version',
             ],
             automerge: true,
+        },
+        {
+            matchManagers: [
+                'gitlabci',
+                'gitlabci-include',
+            ],
+            semanticCommitType: 'ci',
         },
     ],
     customManagers: [
