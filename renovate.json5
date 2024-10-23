@@ -19,6 +19,7 @@
             ],
             automerge: true,
             matchDepNames: [
+                'akuity/kargo**',
                 'argo-cd**',
                 'argo-workflows**',
                 'authentik**',
