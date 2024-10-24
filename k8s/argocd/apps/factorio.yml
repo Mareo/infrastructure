@@ -68,9 +68,8 @@ spec:
               only_admins_can_pause_the_game: false
               require_user_verification: true
               ignore_player_limit_for_returning_players: true
-            map_settings:
-              difficulty_settings:
-                research_queue_setting: after-victory
+            map_gen_settings:
+              seed: 537061636520416765
             rcon:
               external: false
               type: LoadBalancer
