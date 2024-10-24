@@ -69,7 +69,7 @@ spec:
               require_user_verification: true
               ignore_player_limit_for_returning_players: true
             map_gen_settings:
-              seed: 537061636520416765
+              seed: 4294967295
             rcon:
               external: false
               type: LoadBalancer
