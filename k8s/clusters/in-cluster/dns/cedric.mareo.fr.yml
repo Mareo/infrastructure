@@ -10,4 +10,4 @@ spec:
       recordTTL: 3600
       recordType: A
       targets:
-        - 88.176.0.212
+        - 82.66.112.127
