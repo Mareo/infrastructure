@@ -68,8 +68,7 @@ resource "gitlab_deploy_token" "theseus_infrastructure_argocd" {
 }
 
 resource "vault_generic_secret" "argocd_repo_theseus-infrastructure" {
-  path         = "k8s/argocd/repositories/theseus-infrastructure"
-  disable_read = true
+  path = "k8s/argocd/repositories/theseus-infrastructure"
   data_json = jsonencode({
     username = gitlab_deploy_token.theseus_infrastructure_argocd.username
     password = gitlab_deploy_token.theseus_infrastructure_argocd.token

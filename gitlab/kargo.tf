@@ -26,8 +26,7 @@ resource "gitlab_user_gpgkey" "kargo" {
 }
 
 resource "vault_generic_secret" "gitlab_kargo_gpg_key" {
-  path         = "k8s/kargo/git-client"
-  disable_read = true
+  path = "k8s/kargo/git-client"
   data_json = jsonencode({
     signingKey = gpg_private_key.kargo.private_key
   })

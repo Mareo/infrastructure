@@ -68,8 +68,7 @@ resource "gitlab_pipeline_trigger" "iac_renovate" {
 }
 
 resource "vault_generic_secret" "gitlab_renovate_pipeline-trigger" {
-  path         = "gitlab/renovate/pipeline-trigger"
-  disable_read = true
+  path = "gitlab/renovate/pipeline-trigger"
   data_json = jsonencode({
     token = gitlab_pipeline_trigger.iac_renovate.token
   })

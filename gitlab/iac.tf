@@ -88,8 +88,7 @@ resource "gitlab_deploy_token" "iac_infrastructure_argocd" {
 }
 
 resource "vault_generic_secret" "argocd_repo_iac-infrastructure" {
-  path         = "k8s/argocd/repositories/iac-infrastructure"
-  disable_read = true
+  path = "k8s/argocd/repositories/iac-infrastructure"
   data_json = jsonencode({
     username = gitlab_deploy_token.iac_infrastructure_argocd.username
     password = gitlab_deploy_token.iac_infrastructure_argocd.token
