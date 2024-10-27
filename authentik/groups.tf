@@ -8,12 +8,13 @@ locals {
     "argowf_admins"              = {}
     "gatus"                      = {}
     "gitlab"                     = {}
-    "gitlab_petitstream"         = { gitlab = { add_to_meta = true } }
-    "gitlab_theseus"             = { gitlab = { add_to_meta = true } }
-    "gitlab_externals"           = {}
-    "gitlab_auditors"            = {}
     "gitlab_admins"              = {}
+    "gitlab_auditors"            = {}
+    "gitlab_externals"           = {}
+    "gitlab_kubernetes"          = { gitlab = { add_to_meta = true } }
+    "gitlab_petitstream"         = { gitlab = { add_to_meta = true } }
     "gitlab_service_accounts"    = {}
+    "gitlab_theseus"             = { gitlab = { add_to_meta = true } }
     "grafana"                    = {}
     "grafana_editors"            = {}
     "grafana_admins"             = {}

@@ -37,6 +37,7 @@ locals {
         "gatus",
         "gitlab",
         "gitlab_admins",
+        "gitlab_kubernetes",
         "gitlab_petitstream",
         "gitlab_theseus",
         "grafana",
