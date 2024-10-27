@@ -42,6 +42,7 @@
                 'cert-manager**',
                 'external-dns**',
                 'external-secrets**',
+                'factorio-server-charts**',
                 'gitlab**',
                 'grafana**',
                 'ingress-nginx**',
