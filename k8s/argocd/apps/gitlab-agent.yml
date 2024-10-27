@@ -1,0 +1,41 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: gitlab-agent
+  labels:
+    app: gitlab-agent
+spec:
+  generators:
+    - list:
+        elements:
+          - name: in-cluster
+  template:
+    metadata:
+      name: "{{name}}-gitlab-agent"
+      labels:
+        app: gitlab-agent
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: "{{name}}"
+        namespace: gitlab-agent
+      source:
+        repoURL: https://charts.gitlab.io/
+        chart: gitlab-agent
+        targetRevision: 2.8.2
+        helm:
+          releaseName: gitlab-agent
+          values: |
+            fullnameOverride: gitlab-agent
+            serviceMonitor:
+              enabled: true
+            config:
+              kasAddress: 'wss://kas.mareo.fr'
+              secretName: gitlab-agent-secret

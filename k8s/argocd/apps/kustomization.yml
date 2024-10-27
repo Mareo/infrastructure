@@ -19,8 +19,9 @@ resources:
   - factorio.yml
   - foundry.yml
   - gatus.yml
-  - gitlab.yml
+  - gitlab-agent.yml
   - gitlab-runner.yml
+  - gitlab.yml
   - ingress-nginx-internal.yml
   - ingress-nginx-public.yml
   - kargo.yml

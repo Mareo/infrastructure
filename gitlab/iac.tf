@@ -44,6 +44,24 @@ resource "gitlab_project" "iac_infrastructure" {
   auto_devops_enabled                              = false
 }
 
+resource "gitlab_cluster_agent" "iac_infrastructure" {
+  project = gitlab_project.iac_infrastructure.id
+  name    = "kubernetes-agent"
+}
+
+resource "gitlab_cluster_agent_token" "iac_infrastructure" {
+  project  = gitlab_project.iac_infrastructure.id
+  agent_id = gitlab_cluster_agent.iac_infrastructure.agent_id
+  name     = "kubernetes-agent-token"
+}
+
+resource "vault_generic_secret" "iac_infrastructure-gitlab-agent-token" {
+  path = "k8s/gitlab-agent/token"
+  data_json = jsonencode({
+    token = gitlab_cluster_agent_token.iac_infrastructure.token
+  })
+}
+
 resource "gitlab_project_hook" "iac_infrastructure_argocd" {
   project                   = gitlab_project.iac_infrastructure.path_with_namespace
   url                       = "https://argocd.mareo.fr/api/webhook"
