@@ -51,6 +51,8 @@ spec:
               hosts:
                 domain: mareo.fr
                 https: true
+                kas:
+                  name: kas.gitlab.mareo.fr
               ingress:
                 class: public
                 configureCertmanager: false
