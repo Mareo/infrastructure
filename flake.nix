@@ -17,6 +17,7 @@
           buildInputs = with pkgs; [
             awscli
             git
+            glab
             jq
             kubectl
             kubelogin-oidc
