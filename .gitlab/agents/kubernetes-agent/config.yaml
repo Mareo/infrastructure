@@ -6,3 +6,42 @@ user_access:
     - id: iac/infrastructure
   groups:
     - id: meta/kubernetes
+container_scanning:
+  cadence: '0 3 * * *'
+  vulnerability_report:
+    namespaces:
+      - argo-rollouts
+      - argo-workflows
+      - argocd
+      - authentik
+      - cert-manager
+      - coredns
+      - default
+      - external-dns
+      - external-secrets-operator
+      - factorio
+      - foundry
+      - gatus
+      - gitlab
+      - gitlab-agent
+      - gitlab-runner
+      - grafana-oncall
+      - hedgedoc
+      - ingress-nginx
+      - kargo
+      - kube-node-lease
+      - kube-public
+      - kube-system
+      - mail
+      - monitoring
+      - nextcloud
+      - paperless-ngx
+      - petitstream
+      - petitstream-dev
+      - postgres
+      - postgres-operator
+      - redis-operator
+      - syncthing
+      - vault
+      - vaultwarden
+      - vrising
