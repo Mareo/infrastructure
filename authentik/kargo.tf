@@ -18,7 +18,7 @@ resource "authentik_provider_oauth2" "kargo" {
   access_token_validity = "days=1"
   redirect_uris = [
     "https://kargo.mareo.fr/login",
-    "http://localhost/login",
+    "http://localhost:8060/auth/callback",
   ]
   property_mappings = [
     data.authentik_property_mapping_provider_scope.scope-openid.id,
