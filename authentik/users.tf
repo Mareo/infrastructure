@@ -140,6 +140,8 @@ locals {
         "grafana",
         "grafana_admins",
         "hedgedoc",
+        "kargo",
+        "kargo_admins",
         "nextcloud",
         "theseus",
         "theseus_ops",
