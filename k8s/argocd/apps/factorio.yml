@@ -51,7 +51,7 @@ spec:
               update_mods_on_start: true
               enable_space_age: true
             mods:
-              enabled: true
+              enabled: false
               portal:
                 - BottleneckLite
                 - flib
