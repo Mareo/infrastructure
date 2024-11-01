@@ -52,10 +52,7 @@ spec:
               enable_space_age: true
             mods:
               enabled: false
-              portal:
-                - BottleneckLite
-                - flib
-                - helmod
+              portal: []
             serverPassword:
               passwordSecret: "factorio-server"
             server_settings:
