@@ -11,19 +11,10 @@ spec:
     - list:
         elements:
           - name: in-cluster
-            zone: mareo.fr
-          - name: in-cluster
-            zone: hannache.fr
-          - name: in-cluster
-            zone: theseus.fr
-          - name: in-cluster
-            zone: theseusformation.fr
-          - name: in-cluster
-            zone: theseusformation.com
   goTemplate: true
   template:
     metadata:
-      name: '{{ .name }}-external-dns-{{ .zone | replace "." "-" }}'
+      name: "{{ .name }}-external-dns"
       labels:
         app: external-dns
     spec:
@@ -34,20 +25,24 @@ spec:
         automated:
           prune: true
       destination:
-        name: "{{.name}}"
+        name: "{{ .name }}"
         namespace: external-dns
       source:
         repoURL: https://charts.bitnami.com/bitnami
         chart: external-dns
         targetRevision: 8.5.0
         helm:
-          releaseName: external-dns-{{ .zone | replace "." "-" }}
+          releaseName: external-dns
           values: |
-            fullnameOverride: external-dns-{{ .zone | replace "." "-" }}
+            fullnameOverride: external-dns
             txtOwnerId: "ouranos"
             txtPrefix: externaldns-
             domainFilters:
-              - {{ .zone }}
+              - mareo.fr
+              - hannache.fr
+              - theseus.fr
+              - theseusformation.fr
+              - theseusformation.com
             publishHostIP: true
             policy: upsert-only
             sources:
@@ -59,7 +54,12 @@ spec:
             provider: rfc2136
             rfc2136:
               host: 164.132.225.201
-              zone: {{ .zone }}
+              zones:
+                - mareo.fr
+                - hannache.fr
+                - theseus.fr
+                - theseusformation.fr
+                - theseusformation.com
               minTTL: 1h
               secretName: tsig-secret
               tsigSecretAlg: hmac-sha256
