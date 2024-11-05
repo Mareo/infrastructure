@@ -31,3 +31,13 @@ spec:
       recordType: A
       targets:
         - 65.108.28.147
+    - dnsName: '*.daedalus.theseus.fr'
+      recordTTL: 3600
+      recordType: A
+      targets:
+        - 95.217.175.227
+    - dnsName: '*.daedalus.theseus.fr'
+      recordTTL: 3600
+      recordType: AAAA
+      targets:
+        - "2a01:4f9:c01e:19e::1"
