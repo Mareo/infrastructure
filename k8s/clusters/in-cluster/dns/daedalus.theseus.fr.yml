@@ -35,9 +35,9 @@ spec:
       recordTTL: 3600
       recordType: A
       targets:
-        - 95.217.175.227
+        - 95.217.174.52
     - dnsName: '*.apps.daedalus.theseus.fr'
       recordTTL: 3600
       recordType: AAAA
       targets:
-        - "2a01:4f9:c01e:19e::1"
+        - "2a01:4f9:c01d:568::1"
