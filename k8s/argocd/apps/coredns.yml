@@ -31,7 +31,7 @@ spec:
         chart: coredns
         targetRevision: 1.36.1
         helm:
-          values: |
+          valuesObject:
             fullnameOverride: coredns
             resources:
               limits:

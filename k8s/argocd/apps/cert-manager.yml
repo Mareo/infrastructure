@@ -28,7 +28,7 @@ spec:
         chart: cert-manager
         targetRevision: v1.16.1
         helm:
-          values: |
+          valuesObject:
             installCRDs: true
             fullnameOverride: cert-manager
             resources:

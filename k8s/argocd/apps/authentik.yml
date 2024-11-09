@@ -32,7 +32,7 @@ spec:
         targetRevision: 2024.10.1
         helm:
           releaseName: authentik
-          values: |
+          valuesObject:
             global:
               env:
                 - name: AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL

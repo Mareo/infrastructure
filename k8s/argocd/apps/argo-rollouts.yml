@@ -21,7 +21,7 @@ spec:
     chart: argo-rollouts
     targetRevision: 2.37.8
     helm:
-      values: |
+      valuesObject:
         fullnameOverride: argo-rollouts
         notifications:
           configmap:
