@@ -31,7 +31,7 @@ spec:
         chart: vault
         targetRevision: 0.29.0
         helm:
-          values: |
+          valuesObject:
             fullnameOverride: vault
             global:
               enabled: true
