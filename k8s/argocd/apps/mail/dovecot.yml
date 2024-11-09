@@ -39,5 +39,5 @@ spec:
           helm:
             valueFiles:
               - $argocd/k8s/argocd/apps/mail/values/dovecot.yml
-            values: |
+            valuesObject:
               fullnameOverride: dovecot

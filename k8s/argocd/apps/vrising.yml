@@ -31,7 +31,7 @@ spec:
         chart: vrising
         targetRevision: 0.0.0-1
         helm:
-          values: |
+          valuesObject:
             fullnameOverride: vrising
             service:
               type: LoadBalancer

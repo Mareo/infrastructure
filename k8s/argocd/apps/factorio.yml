@@ -31,7 +31,7 @@ spec:
         chart: factorio-server-charts
         targetRevision: 2.5.0
         helm:
-          values: |
+          valuesObject:
             fullnameOverride: factorio
             image:
               tag: 2.0.14

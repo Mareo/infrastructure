@@ -32,7 +32,7 @@ spec:
         targetRevision: 0.70.3
         helm:
           releaseName: gitlab
-          values: |
+          valuesObject:
             rbac:
               create: true
             gitlabUrl: "https://gitlab.mareo.fr"

@@ -31,7 +31,7 @@ spec:
         chart: foundry-vtt
         targetRevision: 0.1.4
         helm:
-          values: |
+          valuesObject:
             fullnameOverride: foundry
             image:
               tag: 12.331.0

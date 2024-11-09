@@ -19,7 +19,7 @@ spec:
       targetRevision: 0.16.1
       helm:
         releaseName: "redis"
-        values: |
+        valuesObject:
           redisStandalone:
             redisSecret:
               secretName: "petitstream-redis"

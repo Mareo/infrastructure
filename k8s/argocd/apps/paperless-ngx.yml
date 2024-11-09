@@ -32,7 +32,7 @@ spec:
           targetRevision: 0.16.1
           helm:
             releaseName: "redis"
-            values: |
+            valuesObject:
               redisStandalone:
                 redisSecret:
                   secretName: "paperless-ngx-redis"
@@ -46,7 +46,7 @@ spec:
           targetRevision: 10.0.0
           helm:
             releaseName: paperless-ngx
-            values: |
+            valuesObject:
               env:
                 - name: COMPOSE_PROJECT_NAME
                   value: paperless

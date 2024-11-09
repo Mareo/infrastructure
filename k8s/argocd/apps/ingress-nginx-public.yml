@@ -23,7 +23,7 @@ spec:
     chart: ingress-nginx
     targetRevision: 4.11.3
     helm:
-      values: |
+      valuesObject:
         fullnameOverride: ingress-nginx-public
         controller:
           electionID: "ingress-nginx-public-controller-leader"
@@ -58,8 +58,8 @@ spec:
           minAvailable: 1
           replicaCount: 1
         tcp:
-          30022: gitlab/gitlab-gitlab-shell:22::PROXY
-          30843: ingress-nginx/ingress-nginx-public-controller:30443
+          "30022": "gitlab/gitlab-gitlab-shell:22::PROXY"
+          "30843": "ingress-nginx/ingress-nginx-public-controller:30443"
         defaultBackend:
           enabled: true
           replicaCount: 1

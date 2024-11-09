@@ -21,7 +21,7 @@ spec:
     chart: kargo
     targetRevision: 1.0.3
     helm:
-      values: |
+      valuesObject:
         fullnameOverride: kargo
         api:
           host: kargo.mareo.fr

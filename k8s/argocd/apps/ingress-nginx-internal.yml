@@ -23,7 +23,7 @@ spec:
     chart: ingress-nginx
     targetRevision: 4.11.3
     helm:
-      values: |
+      valuesObject:
         fullnameOverride: ingress-nginx-internal
         controller:
           electionID: "ingress-nginx-internal-controller-leader"

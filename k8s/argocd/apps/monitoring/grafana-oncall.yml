@@ -34,7 +34,7 @@ spec:
         chart: oncall
         targetRevision: 1.12.1
         helm:
-          values: |
+          valuesObject:
             fullnameOverride: grafana-oncall
             base_url: oncall.mareo.fr
             oncall:

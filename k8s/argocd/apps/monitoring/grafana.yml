@@ -34,7 +34,7 @@ spec:
         chart: grafana
         targetRevision: 8.5.12
         helm:
-          values: |
+          valuesObject:
             fullnameOverride: grafana
             admin:
               existingSecret: "grafana-admin-credentials"

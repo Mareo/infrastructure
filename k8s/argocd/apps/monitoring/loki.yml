@@ -34,7 +34,7 @@ spec:
         chart: loki
         targetRevision: 5.48.0
         helm:
-          values: |
+          valuesObject:
             fullnameOverride: loki
             gateway:
               enabled: true

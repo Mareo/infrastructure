@@ -32,7 +32,7 @@ spec:
         targetRevision: 6.2.1
         helm:
           releaseName: nextcloud
-          values: |
+          valuesObject:
             metrics:
               enabled: true
               https: true

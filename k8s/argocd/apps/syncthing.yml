@@ -32,7 +32,7 @@ spec:
         targetRevision: 4.0.0
         helm:
           releaseName: syncthing
-          values: |
+          valuesObject:
             image:
               tag: 1.27.4
             service:

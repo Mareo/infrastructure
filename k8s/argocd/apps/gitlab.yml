@@ -32,7 +32,7 @@ spec:
         targetRevision: 8.5.1
         helm:
           releaseName: gitlab
-          values: |
+          valuesObject:
             upgradeCheck:
               enabled: false
             postgresql:

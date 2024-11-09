@@ -34,7 +34,7 @@ spec:
         chart: grafana-agent
         targetRevision: 0.42.0
         helm:
-          values: |
+          valuesObject:
             fullnameOverride: grafana-agent
             agent:
               mode: "flow"

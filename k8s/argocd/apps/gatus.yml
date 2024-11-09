@@ -31,7 +31,7 @@ spec:
         chart: gatus
         targetRevision: 1.1.0
         helm:
-          values: |
+          valuesObject:
             fullnameOverride: gatus
             deployment:
               annotateConfigChecksum: false
