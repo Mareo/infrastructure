@@ -40,7 +40,7 @@ spec:
                 monitors:
                   - 172.31.0.254:6789
                 cephFS:
-                  subvolumeGroup: {{subvolumeGroup}}
+                  subvolumeGroup: "{{ subvolumeGroup }}"
             provisioner:
               replicaCount: 1
             nodeplugin:

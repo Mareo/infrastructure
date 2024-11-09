@@ -107,7 +107,7 @@ spec:
                 name: "authentik"
                 user: null
               redis:
-                  host: authentik-redis.authentik.svc
+                host: authentik-redis.authentik.svc
               email:
                 host: smtp.mareo.fr
                 port: 465

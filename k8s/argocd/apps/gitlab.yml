@@ -59,7 +59,7 @@ spec:
                 tls:
                   secretName: gitlab-tls
                 annotations:
-                   cert-manager.io/cluster-issuer: default-issuer
+                  cert-manager.io/cluster-issuer: default-issuer
               monitoring:
                 enabled: true
               shell:

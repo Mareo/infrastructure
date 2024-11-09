@@ -102,366 +102,357 @@ spec:
                     - group: "Petitstream"
                       webhook-url: "${DISCORD_WEBHOOK_PETITSTREAM}"
               endpoints:
-                  # domains
-                  - name: "hannache.fr"
-                    group: Domains
-                    interval: "${DOMAIN_CHECK_INTERVAL}"
-                    url: "https://hannache.fr"
-                    conditions:
-                      - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: "mareo.fr"
-                    group: Domains
-                    interval: "${DOMAIN_CHECK_INTERVAL}"
-                    url: "https://mareo.fr"
-                    conditions:
-                      - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: "phanes.net"
-                    group: Domains
-                    interval: "${DOMAIN_CHECK_INTERVAL}"
-                    url: "https://phanes.net"
-                    conditions:
-                      - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  # SSH
-                  - name: ouranos.mareo.fr
-                    group: SSH
-                    interval: "${SSH_CHECK_INTERVAL}"
-                    url: "tcp://ouranos.mareo.fr:2222"
-                    conditions:
-                      - "[CONNECTED] == true"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: mikros.mareo.fr
-                    group: SSH
-                    interval: "${SSH_CHECK_INTERVAL}"
-                    url: "tcp://mikros.mareo.fr:22"
-                    conditions:
-                      - "[CONNECTED] == true"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  # infrastructure
-                  - name: Argo CD
-                    group: Infrastructure
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://argocd.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 700"
-                      - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>Argo CD</title>*)"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: Alertmanager
-                    group: Infrastructure
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://alertmanager.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 700"
-                      - "[STATUS] == 200"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: Authentik
-                    group: Infrastructure
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://auth.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>authentik</title>*)"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: DNS - ouranos.mareo.fr
-                    group: Infrastructure
-                    interval: "${DNS_CHECK_INTERVAL}"
-                    url: "ouranos.mareo.fr"
-                    dns:
-                      query-name: "mareo.fr"
-                      query-type: "A"
-                    conditions:
-                      - "[DNS_RCODE] == NOERROR"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: DNS - mikros.mareo.fr
-                    group: Infrastructure
-                    interval: "${DNS_CHECK_INTERVAL}"
-                    url: "mikros.mareo.fr"
-                    dns:
-                      query-name: "mareo.fr"
-                      query-type: "A"
-                    conditions:
-                      - "[DNS_RCODE] == NOERROR"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: Grafana
-                    group: Infrastructure
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://grafana.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 700"
-                      - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>Grafana</title>*)"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: Hashicorp Vault
-                    group: Infrastructure
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://vault.mareo.fr/v1/sys/seal-status"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 200"
-                      - "[BODY].sealed == false"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: VictoriaMetrics
-                    group: Infrastructure
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://victoria-metrics.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 200"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: Proxmox
-                    group: Infrastructure
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://ouranos.mareo.fr:8006/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>ouranos - Proxmox Virtual Environment</title>*)"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: Rados REST Gateway
-                    group: Infrastructure
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://ouranos.mareo.fr:7443/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 200"
-                      - "[BODY] == pat(*</ListAllMyBucketsResult>*)"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  # petitstream
-                  - name: "Domain"
-                    group: Petitstream
-                    url: "https://petitstream.com"
-                    interval: "${DOMAIN_CHECK_INTERVAL}"
-                    conditions:
-                      - "[DOMAIN_EXPIRATION] > 720h"
-                    alerts:
-                      - type: discord
-                  - name: Site - backend
-                    group: Petitstream
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://petitstream.com/api/get_next_stream_a/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 1000"
-                      - "[STATUS] == 200"
-                      - "has([BODY][0].id) == true"
-                    alerts:
-                      - type: discord
-                  - name: Site - frontend
-                    group: Petitstream
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://petitstream.com"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>PetitStream</title>*)"
-                    alerts:
-                      - type: discord
-                  # mail
-                  - name: mareo.fr
-                    group: Mail - MX records
-                    interval: 30s
-                    url: "8.8.8.8"
-                    dns:
-                      query-name: "mareo.fr"
-                      query-type: "MX"
-                    conditions:
-                      - "[BODY] == ouranos.mareo.fr."
-                      - "[DNS_RCODE] == NOERROR"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: hannache.fr
-                    group: Mail - MX records
-                    interval: "${DNS_CHECK_INTERVAL}"
-                    url: "8.8.8.8"
-                    dns:
-                      query-name: "mareo.fr"
-                      query-type: "MX"
-                    conditions:
-                      - "[BODY] == ouranos.mareo.fr."
-                      - "[DNS_RCODE] == NOERROR"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: imap.mareo.fr - imaps
-                    group: Mail - IMAP
-                    interval: 1m
-                    url: "tls://imap.mareo.fr:993"
-                    client:
-                      timeout: 5s
-                    conditions:
-                      - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: smtp.mareo.fr - smtp
-                    group: Mail - SMTP
-                    interval: "${SMTP_CHECK_INTERVAL}"
-                    url: "tcp://smtp.mareo.fr:25"
-                    client:
-                      timeout: 5s
-                    conditions:
-                      - "[CONNECTED] == true"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: smtp.mareo.fr - submission
-                    group: Mail - SMTP
-                    interval: "${SMTP_CHECK_INTERVAL}"
-                    url: "starttls://smtp.mareo.fr:587"
-                    client:
-                      timeout: 5s
-                    conditions:
-                      - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: smtp.mareo.fr - submissions
-                    group: Mail - SMTP
-                    interval: "${SMTP_CHECK_INTERVAL}"
-                    url: "tls://smtp.mareo.fr:465"
-                    client:
-                      timeout: 5s
-                    conditions:
-                      - "[CONNECTED] == true"
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  # services
-                  #- name: Factorio
-                  #  group: Services
-                  #  interval: 1m
-                  #  url: "udp://factorio.mareo.fr:34197"
-                  #  conditions:
-                  #    - "[CONNECTED] == true"
-                  #  alerts:
-                  #    - type: discord
-                  #    - type: gitlab
-                  - name: GitLab - SSH
-                    group: Services
-                    interval: "${SSH_CHECK_INTERVAL}"
-                    url: "tcp://gitlab.mareo.fr:22"
-                    client:
-                      timeout: 5s
-                    conditions:
-                      - "[CONNECTED] == true"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: GitLab - UI
-                    group: Services
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://gitlab.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 1500"
-                      - "[STATUS] == 200"
-                    alerts:
-                      - type: discord
-                  - name: HedgeDoc
-                    group: Services
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://hedgedoc.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title>HedgeDoc - *</title>*)"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: Nextcloud
-                    group: Services
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://nextcloud.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 2500"
-                      - "[STATUS] == 200"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: Syncthing
-                    group: Services
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://syncthing.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 200"
-                  - name: Syncthing (data)
-                    group: Services
-                    interval: 1m
-                    url: "tcp://syncthing.mareo.fr:22000"
-                    conditions:
-                      - "[CONNECTED] == true"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: Syncthing (discovery)
-                    group: Services
-                    interval: 1m
-                    url: "udp://syncthing.mareo.fr:21027"
-                    conditions:
-                      - "[CONNECTED] == true"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
-                  - name: Vaultwarden
-                    group: Services
-                    interval: "${HTTP_CHECK_INTERVAL}"
-                    url: "https://vaultwarden.mareo.fr/"
-                    conditions:
-                      - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
-                      - "[RESPONSE_TIME] < 500"
-                      - "[STATUS] == 200"
-                      - "[BODY] == pat(*<title page-title>Bitwarden Web Vault</title>*)"
-                    alerts:
-                      - type: discord
-                      - type: gitlab
+                # domains
+                - name: "hannache.fr"
+                  group: Domains
+                  interval: "${DOMAIN_CHECK_INTERVAL}"
+                  url: "https://hannache.fr"
+                  conditions:
+                    - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: "mareo.fr"
+                  group: Domains
+                  interval: "${DOMAIN_CHECK_INTERVAL}"
+                  url: "https://mareo.fr"
+                  conditions:
+                    - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: "phanes.net"
+                  group: Domains
+                  interval: "${DOMAIN_CHECK_INTERVAL}"
+                  url: "https://phanes.net"
+                  conditions:
+                    - "[DOMAIN_EXPIRATION] > ${DOMAIN_EXPIRATION}"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                # SSH
+                - name: ouranos.mareo.fr
+                  group: SSH
+                  interval: "${SSH_CHECK_INTERVAL}"
+                  url: "tcp://ouranos.mareo.fr:2222"
+                  conditions:
+                    - "[CONNECTED] == true"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: mikros.mareo.fr
+                  group: SSH
+                  interval: "${SSH_CHECK_INTERVAL}"
+                  url: "tcp://mikros.mareo.fr:22"
+                  conditions:
+                    - "[CONNECTED] == true"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                # infrastructure
+                - name: Argo CD
+                  group: Infrastructure
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://argocd.mareo.fr/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 700"
+                    - "[STATUS] == 200"
+                    - "[BODY] == pat(*<title>Argo CD</title>*)"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: Alertmanager
+                  group: Infrastructure
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://alertmanager.mareo.fr/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 700"
+                    - "[STATUS] == 200"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: Authentik
+                  group: Infrastructure
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://auth.mareo.fr/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 500"
+                    - "[STATUS] == 200"
+                    - "[BODY] == pat(*<title>authentik</title>*)"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: DNS - ouranos.mareo.fr
+                  group: Infrastructure
+                  interval: "${DNS_CHECK_INTERVAL}"
+                  url: "ouranos.mareo.fr"
+                  dns:
+                    query-name: "mareo.fr"
+                    query-type: "A"
+                  conditions:
+                    - "[DNS_RCODE] == NOERROR"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: DNS - mikros.mareo.fr
+                  group: Infrastructure
+                  interval: "${DNS_CHECK_INTERVAL}"
+                  url: "mikros.mareo.fr"
+                  dns:
+                    query-name: "mareo.fr"
+                    query-type: "A"
+                  conditions:
+                    - "[DNS_RCODE] == NOERROR"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: Grafana
+                  group: Infrastructure
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://grafana.mareo.fr/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 700"
+                    - "[STATUS] == 200"
+                    - "[BODY] == pat(*<title>Grafana</title>*)"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: Hashicorp Vault
+                  group: Infrastructure
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://vault.mareo.fr/v1/sys/seal-status"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 500"
+                    - "[STATUS] == 200"
+                    - "[BODY].sealed == false"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: VictoriaMetrics
+                  group: Infrastructure
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://victoria-metrics.mareo.fr/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 500"
+                    - "[STATUS] == 200"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: Proxmox
+                  group: Infrastructure
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://ouranos.mareo.fr:8006/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 500"
+                    - "[STATUS] == 200"
+                    - "[BODY] == pat(*<title>ouranos - Proxmox Virtual Environment</title>*)"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: Rados REST Gateway
+                  group: Infrastructure
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://ouranos.mareo.fr:7443/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 500"
+                    - "[STATUS] == 200"
+                    - "[BODY] == pat(*</ListAllMyBucketsResult>*)"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                # petitstream
+                - name: "Domain"
+                  group: Petitstream
+                  url: "https://petitstream.com"
+                  interval: "${DOMAIN_CHECK_INTERVAL}"
+                  conditions:
+                    - "[DOMAIN_EXPIRATION] > 720h"
+                  alerts:
+                    - type: discord
+                - name: Site - backend
+                  group: Petitstream
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://petitstream.com/api/get_next_stream_a/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 1000"
+                    - "[STATUS] == 200"
+                    - "has([BODY][0].id) == true"
+                  alerts:
+                    - type: discord
+                - name: Site - frontend
+                  group: Petitstream
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://petitstream.com"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 500"
+                    - "[STATUS] == 200"
+                    - "[BODY] == pat(*<title>PetitStream</title>*)"
+                  alerts:
+                    - type: discord
+                # mail
+                - name: mareo.fr
+                  group: Mail - MX records
+                  interval: 30s
+                  url: "8.8.8.8"
+                  dns:
+                    query-name: "mareo.fr"
+                    query-type: "MX"
+                  conditions:
+                    - "[BODY] == ouranos.mareo.fr."
+                    - "[DNS_RCODE] == NOERROR"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: hannache.fr
+                  group: Mail - MX records
+                  interval: "${DNS_CHECK_INTERVAL}"
+                  url: "8.8.8.8"
+                  dns:
+                    query-name: "mareo.fr"
+                    query-type: "MX"
+                  conditions:
+                    - "[BODY] == ouranos.mareo.fr."
+                    - "[DNS_RCODE] == NOERROR"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: imap.mareo.fr - imaps
+                  group: Mail - IMAP
+                  interval: 1m
+                  url: "tls://imap.mareo.fr:993"
+                  client:
+                    timeout: 5s
+                  conditions:
+                    - "[CONNECTED] == true"
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: smtp.mareo.fr - smtp
+                  group: Mail - SMTP
+                  interval: "${SMTP_CHECK_INTERVAL}"
+                  url: "tcp://smtp.mareo.fr:25"
+                  client:
+                    timeout: 5s
+                  conditions:
+                    - "[CONNECTED] == true"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: smtp.mareo.fr - submission
+                  group: Mail - SMTP
+                  interval: "${SMTP_CHECK_INTERVAL}"
+                  url: "starttls://smtp.mareo.fr:587"
+                  client:
+                    timeout: 5s
+                  conditions:
+                    - "[CONNECTED] == true"
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: smtp.mareo.fr - submissions
+                  group: Mail - SMTP
+                  interval: "${SMTP_CHECK_INTERVAL}"
+                  url: "tls://smtp.mareo.fr:465"
+                  client:
+                    timeout: 5s
+                  conditions:
+                    - "[CONNECTED] == true"
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                # services
+                - name: GitLab - SSH
+                  group: Services
+                  interval: "${SSH_CHECK_INTERVAL}"
+                  url: "tcp://gitlab.mareo.fr:22"
+                  client:
+                    timeout: 5s
+                  conditions:
+                    - "[CONNECTED] == true"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: GitLab - UI
+                  group: Services
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://gitlab.mareo.fr/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 1500"
+                    - "[STATUS] == 200"
+                  alerts:
+                    - type: discord
+                - name: HedgeDoc
+                  group: Services
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://hedgedoc.mareo.fr/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 500"
+                    - "[STATUS] == 200"
+                    - "[BODY] == pat(*<title>HedgeDoc - *</title>*)"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: Nextcloud
+                  group: Services
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://nextcloud.mareo.fr/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 2500"
+                    - "[STATUS] == 200"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: Syncthing
+                  group: Services
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://syncthing.mareo.fr/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 500"
+                    - "[STATUS] == 200"
+                - name: Syncthing (data)
+                  group: Services
+                  interval: 1m
+                  url: "tcp://syncthing.mareo.fr:22000"
+                  conditions:
+                    - "[CONNECTED] == true"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: Syncthing (discovery)
+                  group: Services
+                  interval: 1m
+                  url: "udp://syncthing.mareo.fr:21027"
+                  conditions:
+                    - "[CONNECTED] == true"
+                  alerts:
+                    - type: discord
+                    - type: gitlab
+                - name: Vaultwarden
+                  group: Services
+                  interval: "${HTTP_CHECK_INTERVAL}"
+                  url: "https://vaultwarden.mareo.fr/"
+                  conditions:
+                    - "[CERTIFICATE_EXPIRATION] > ${CERTIFICATE_EXPIRATION}"
+                    - "[RESPONSE_TIME] < 500"
+                    - "[STATUS] == 200"
+                    - "[BODY] == pat(*<title page-title>Bitwarden Web Vault</title>*)"
+                  alerts:
+                    - type: discord
+                    - type: gitlab

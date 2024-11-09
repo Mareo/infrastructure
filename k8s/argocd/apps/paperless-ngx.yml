@@ -97,9 +97,9 @@ spec:
                 - name: PAPERLESS_PROXY_SSL_HEADER
                   value: '["HTTP_X_FORWARDED_PROTO", "https"]'
                 - name: PAPERLESS_USE_X_FORWARD_HOST
-                  value: True
+                  value: "True"
                 - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
-                  value: True
+                  value: "True"
                 - name: PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME
                   value: HTTP_X_AUTHENTIK_USERNAME
                 - name: PAPERLESS_LOGOUT_REDIRECT_URL
