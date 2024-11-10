@@ -43,6 +43,7 @@ locals {
         "grafana",
         "grafana_editors",
         "grafana_admins",
+        "headlamp",
         "hedgedoc",
         "kargo",
         "kargo_admins",

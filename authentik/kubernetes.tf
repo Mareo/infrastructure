@@ -5,7 +5,8 @@ resource "authentik_provider_oauth2" "kubernetes" {
   client_type           = "public"
   access_token_validity = "days=1"
   redirect_uris = [
-    "http://localhost:8000"
+    "http://localhost:8000",
+    "https://headlamp.mareo.fr/oidc-callback",
   ]
   sub_mode          = "user_username"
   invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id

@@ -1,0 +1,74 @@
+# yamllint disable rule:line-length
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: headlamp
+  labels:
+    app: headlamp
+spec:
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: "in-cluster"
+    namespace: headlamp
+  source:
+    repoURL: https://headlamp-k8s.github.io/headlamp/
+    chart: headlamp
+    targetRevision: 0.26.0
+    helm:
+      valuesObject:
+        fullnameOverride: headlamp
+        config:
+          oidc:
+            secret:
+              create: false
+            externalSecret:
+              enabled: true
+              name: headlamp-oidc
+        clusterRoleBinding:
+          create: false
+        persistentVolumeClaim:
+          enabled: true
+          storageClassName: csi-rbd-sc-delete
+          accessModes:
+            - ReadWriteOnce
+          size: 5Gi
+        volumeMounts:
+          - mountPath: /build/plugins
+            name: headlamp-plugins
+        volumes:
+          - name: headlamp-plugins
+            persistentVolumeClaim:
+              claimName: headlamp
+        ingress:
+          enabled: true
+          annotations:
+            cert-manager.io/cluster-issuer: default-issuer
+          ingressClassName: public
+          hosts:
+            - host: headlamp.mareo.fr
+              paths:
+                - path: /
+                  type: Prefix
+          tls:
+            - secretName: headlamp-tls
+              hosts:
+                - headlamp.mareo.fr
+        extraManifests:
+          - |-
+            apiVersion: external-secrets.io/v1beta1
+            kind: ExternalSecret
+            metadata:
+              name: headlamp-oidc
+            spec:
+              secretStoreRef:
+                name: vault-backend
+                kind: ClusterSecretStore
+              dataFrom:
+                - extract:
+                    key: headlamp/oidc-authentik

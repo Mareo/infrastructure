@@ -22,6 +22,7 @@ resources:
   - gitlab-agent.yml
   - gitlab-runner.yml
   - gitlab.yml
+  - headlamp.yml
   - ingress-nginx-internal.yml
   - ingress-nginx-public.yml
   - kargo.yml
