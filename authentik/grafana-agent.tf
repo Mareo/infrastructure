@@ -4,6 +4,7 @@ resource "authentik_provider_proxy" "grafana-agent" {
   access_token_validity = "days=1"
   mode                  = "forward_single"
   external_host         = "https://grafana-agent.mareo.fr/"
+  invalidation_flow     = data.authentik_flow.default-provider-invalidation-flow.id
 }
 
 resource "authentik_application" "grafana-agent" {

@@ -24,6 +24,7 @@ resource "authentik_provider_oauth2" "hedgedoc" {
   redirect_uris = [
     "https://hedgedoc.mareo.fr/auth/oauth2/callback"
   ]
+  invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [
     data.authentik_property_mapping_provider_scope.scope-openid.id,
     data.authentik_property_mapping_provider_scope.scope-profile.id,

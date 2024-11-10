@@ -38,7 +38,8 @@ resource "authentik_provider_saml" "nextcloud-saml" {
 
   assertion_valid_not_before = "minutes=-3"
 
-  name_id_mapping = data.authentik_property_mapping_provider_saml.username.id
+  invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
+  name_id_mapping   = data.authentik_property_mapping_provider_saml.username.id
   property_mappings = [
     data.authentik_property_mapping_provider_saml.upn.id,
     data.authentik_property_mapping_provider_saml.name.id,

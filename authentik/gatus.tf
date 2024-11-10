@@ -4,6 +4,7 @@ resource "authentik_provider_proxy" "gatus" {
   access_token_validity = "days=15"
   mode                  = "forward_single"
   external_host         = "https://gatus.mareo.fr/"
+  invalidation_flow     = data.authentik_flow.default-provider-invalidation-flow.id
 }
 
 resource "authentik_application" "gatus" {

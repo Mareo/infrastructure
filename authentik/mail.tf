@@ -6,6 +6,7 @@ resource "authentik_provider_ldap" "mail" {
   mfa_support = false
   bind_mode   = "cached"
   search_mode = "cached"
+  unbind_flow = data.authentik_flow.default-provider-invalidation-flow.id
 }
 
 resource "authentik_application" "mail" {

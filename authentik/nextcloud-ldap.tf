@@ -4,6 +4,7 @@ resource "authentik_provider_ldap" "nextcloud-ldap" {
   bind_flow = authentik_flow.apppassword-authentication-flow.uuid
   #search_group = authentik_group.groups["nextcloud_service_accounts"].id
   mfa_support = false
+  unbind_flow = data.authentik_flow.default-provider-invalidation-flow.id
 }
 
 resource "authentik_application" "nextcloud-ldap" {

@@ -43,6 +43,7 @@ resource "authentik_provider_proxy" "paperless-ngx" {
   access_token_validity = "days=1"
   mode                  = "forward_single"
   external_host         = "https://documents.mareo.fr/"
+  invalidation_flow     = data.authentik_flow.default-provider-invalidation-flow.id
 }
 
 resource "authentik_application" "paperless-ngx" {

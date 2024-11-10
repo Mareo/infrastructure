@@ -4,6 +4,7 @@ resource "authentik_provider_ldap" "gitlab-ldap" {
   bind_flow = data.authentik_flow.default-authentication-flow.id
   #search_group = authentik_group.groups["gitlab_service_accounts"].id
   mfa_support = false
+  unbind_flow = data.authentik_flow.default-provider-invalidation-flow.id
 }
 
 resource "authentik_application" "gitlab-ldap" {

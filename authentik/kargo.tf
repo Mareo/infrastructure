@@ -20,6 +20,7 @@ resource "authentik_provider_oauth2" "kargo" {
     "https://kargo.mareo.fr/login",
     "http://localhost:8060/auth/callback",
   ]
+  invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [
     data.authentik_property_mapping_provider_scope.scope-openid.id,
     data.authentik_property_mapping_provider_scope.scope-profile.id,

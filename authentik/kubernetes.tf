@@ -7,7 +7,8 @@ resource "authentik_provider_oauth2" "kubernetes" {
   redirect_uris = [
     "http://localhost:8000"
   ]
-  sub_mode = "user_username"
+  sub_mode          = "user_username"
+  invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [
     data.authentik_property_mapping_provider_scope.scope-openid.id,
     data.authentik_property_mapping_provider_scope.scope-profile.id,

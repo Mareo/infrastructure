@@ -14,6 +14,7 @@ resource "authentik_provider_saml" "gitlab-saml" {
   sp_binding         = "redirect"
   signing_kp         = data.authentik_certificate_key_pair.default.id
 
+  invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [
     data.authentik_property_mapping_provider_saml.upn.id,
     data.authentik_property_mapping_provider_saml.name.id,
