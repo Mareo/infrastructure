@@ -29,7 +29,7 @@ spec:
       source:
         repoURL: https://sqljames.github.io/factorio-server-charts/
         chart: factorio-server-charts
-        targetRevision: 2.5.0
+        targetRevision: 2.5.1
         helm:
           valuesObject:
             fullnameOverride: factorio
