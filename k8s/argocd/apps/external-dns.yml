@@ -41,6 +41,7 @@ spec:
               - mareo.fr
               - hannache.fr
               - theseus.fr
+              - daedalus.theseus.fr
               - theseusformation.fr
               - theseusformation.com
             publishHostIP: true
@@ -58,6 +59,7 @@ spec:
                 - mareo.fr
                 - hannache.fr
                 - theseus.fr
+                - daedalus.theseus.fr
                 - theseusformation.fr
                 - theseusformation.com
               minTTL: 1h
