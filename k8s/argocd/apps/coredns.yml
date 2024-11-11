@@ -60,6 +60,9 @@ spec:
                   - zone: theseus.fr
                     use_tcp: true
                     scheme: dns://
+                  - zone: daedalus.theseus.fr
+                    use_tcp: true
+                    scheme: dns://
                   - zone: theseusformation.fr
                     use_tcp: true
                     scheme: dns://
