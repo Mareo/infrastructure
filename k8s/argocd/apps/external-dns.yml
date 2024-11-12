@@ -45,7 +45,7 @@ spec:
               - theseusformation.fr
               - theseusformation.com
             publishHostIP: true
-            policy: sync
+            policy: upsert-only
             sources:
               - crd
               - service
