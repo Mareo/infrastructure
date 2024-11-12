@@ -4,7 +4,7 @@ resource "vault_generic_secret" "headlamp_oidc-authentik" {
     OIDC_CLIENT_ID     = authentik_provider_oauth2.kubernetes.client_id
     OIDC_CLIENT_SECRET = authentik_provider_oauth2.kubernetes.client_secret
     OIDC_ISSUER_URL    = data.authentik_provider_oauth2_config.kubernetes.issuer_url
-    OIDC_SCOPES        = "openid profile email"
+    OIDC_SCOPES        = "openid profile email groups"
   })
 }
 
