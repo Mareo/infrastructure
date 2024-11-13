@@ -29,7 +29,7 @@ spec:
       source:
         repoURL: https://charts.gitlab.io/
         chart: gitlab-agent
-        targetRevision: 2.8.2
+        targetRevision: 2.8.3
         helm:
           releaseName: gitlab-agent
           valuesObject:
