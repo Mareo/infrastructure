@@ -70,6 +70,7 @@ spec:
               readinessProbe:
                 enabled: true
                 path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+              updateStrategyType: RollingUpdate
               service:
                 type: NodePort
                 nodePort: 30820
