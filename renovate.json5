@@ -37,6 +37,7 @@
             automerge: true,
             matchDepNames: [
                 'argo-cd**',
+                'argo-rollouts**',
                 'argo-workflows**',
                 'authentik**',
                 'cert-manager**',
