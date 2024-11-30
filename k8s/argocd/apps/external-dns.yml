@@ -28,7 +28,8 @@ spec:
         name: "{{ .name }}"
         namespace: external-dns
       source:
-        repoURL: https://charts.bitnami.com/bitnami
+        repoURL: registry-1.docker.io/bitnamicharts
+        path: external-dns
         chart: external-dns
         targetRevision: 8.6.0
         helm:
