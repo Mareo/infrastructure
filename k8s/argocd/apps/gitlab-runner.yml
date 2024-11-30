@@ -48,7 +48,7 @@ spec:
               config: |
                 [[runners]]
                   [runners.kubernetes]
-                    image = "ubuntu:24.10"
+                    image = "ubuntu:24.10@sha256:278628f08d4979fb9af9ead44277dbc9c92c2465922310916ad0c46ec9999295"
                     poll_timeout = 300
                     dns_policy = "default"
                   [runners.cache]

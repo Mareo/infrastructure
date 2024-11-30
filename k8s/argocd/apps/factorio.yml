@@ -34,7 +34,7 @@ spec:
           valuesObject:
             fullnameOverride: factorio
             image:
-              tag: 2.0.23
+              tag: 2.0.23@sha256:2bffa62dea74a446b75635ba71917e9644c19ae08ebf1489dabf715becda8efc
             service:
               type: LoadBalancer
               port: 34197
