@@ -13,8 +13,11 @@ resource "authentik_provider_oauth2" "proxmox" {
   authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
   client_id          = random_string.proxmox_client-id.result
   client_secret      = random_password.proxmox_client-secret.result
-  redirect_uris = [
-    "https://ouranos.mareo.fr:8006",
+  allowed_redirect_uris = [
+    {
+      matching_mode = "strict"
+      url           = "https://ouranos.mareo.fr:8006"
+    },
   ]
   invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [

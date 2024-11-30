@@ -21,8 +21,11 @@ resource "authentik_provider_oauth2" "grafana" {
   authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
   client_id          = random_string.grafana_client-id.result
   client_secret      = random_password.grafana_client-secret.result
-  redirect_uris = [
-    "https://grafana.mareo.fr/login/generic_oauth"
+  allowed_redirect_uris = [
+    {
+      matching_mode = "strict"
+      url           = "https://grafana.mareo.fr/login/generic_oauth"
+    },
   ]
   invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [

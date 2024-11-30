@@ -16,9 +16,15 @@ resource "authentik_provider_oauth2" "argocd" {
   client_id             = random_string.argocd_client-id.result
   client_type           = "public"
   access_token_validity = "days=1"
-  redirect_uris = [
-    "https://argocd.mareo.fr/auth/callback",
-    "http://localhost:8085/auth/callback",
+  allowed_redirect_uris = [
+    {
+      matching_mode = "strict"
+      url           = "https://argocd.mareo.fr/auth/callback"
+    },
+    {
+      matching_mode = "strict"
+      url           = "http://localhost:8085/auth/callback"
+    },
   ]
   invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [

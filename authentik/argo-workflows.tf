@@ -22,8 +22,11 @@ resource "authentik_provider_oauth2" "argo-workflows" {
   client_id             = random_string.argo-workflows_client-id.result
   client_type           = "public"
   access_token_validity = "days=1"
-  redirect_uris = [
-    "https://workflows.mareo.fr/oauth2/callback",
+  allowed_redirect_uris = [
+    {
+      matching_mode = "strict"
+      url           = "https://workflows.mareo.fr/oauth2/callback"
+    },
   ]
   invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [

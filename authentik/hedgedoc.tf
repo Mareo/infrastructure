@@ -21,8 +21,11 @@ resource "authentik_provider_oauth2" "hedgedoc" {
   authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
   client_id          = random_string.hedgedoc_client-id.result
   client_secret      = random_password.hedgedoc_client-secret.result
-  redirect_uris = [
-    "https://hedgedoc.mareo.fr/auth/oauth2/callback"
+  allowed_redirect_uris = [
+    {
+      matching_mode = "strict"
+      url           = "https://hedgedoc.mareo.fr/auth/oauth2/callback"
+    },
   ]
   invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [

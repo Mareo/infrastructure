@@ -42,7 +42,7 @@ resource "vault_jwt_auth_backend_role" "authentik" {
   user_claim   = "sub"
   role_type    = "oidc"
 
-  allowed_redirect_uris = authentik_provider_oauth2.vault.redirect_uris
+  allowed_redirect_uris = [for aru in authentik_provider_oauth2.vault.allowed_redirect_uris : aru.url]
 }
 
 data "vault_identity_group" "admins" {
@@ -70,10 +70,19 @@ resource "authentik_provider_oauth2" "vault" {
   authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
   client_id          = random_string.vault_client-id.result
   client_secret      = random_password.vault_client-secret.result
-  redirect_uris = [
-    "https://vault.mareo.fr/ui/vault/auth/oidc/oidc/callback",
-    "https://vault.mareo.fr/oidc/callback",
-    "http://localhost:8250/oidc/callback",
+  allowed_redirect_uris = [
+    {
+      matching_mode = "strict"
+      url           = "https://vault.mareo.fr/ui/vault/auth/oidc/oidc/callback"
+    },
+    {
+      matching_mode = "strict"
+      url           = "https://vault.mareo.fr/oidc/callback"
+    },
+    {
+      matching_mode = "strict"
+      url           = "http://localhost:8250/oidc/callback"
+    },
   ]
   sub_mode          = "user_username"
   invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id

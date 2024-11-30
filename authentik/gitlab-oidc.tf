@@ -21,8 +21,11 @@ resource "authentik_provider_oauth2" "gitlab-oidc" {
   authorization_flow = data.authentik_flow.default-provider-authorization-implicit-consent.id
   client_id          = random_string.gitlab-oidc_client-id.result
   client_secret      = random_password.gitlab-oidc_client-secret.result
-  redirect_uris = [
-    "https://gitlab.mareo.fr/users/auth/openid_connect/callback"
+  allowed_redirect_uris = [
+    {
+      matching_mode = "strict"
+      url           = "https://gitlab.mareo.fr/users/auth/openid_connect/callback"
+    },
   ]
   invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [

@@ -16,9 +16,15 @@ resource "authentik_provider_oauth2" "kargo" {
   client_id             = random_string.kargo_client-id.result
   client_type           = "public"
   access_token_validity = "days=1"
-  redirect_uris = [
-    "https://kargo.mareo.fr/login",
-    "http://localhost:8060/auth/callback",
+  allowed_redirect_uris = [
+    {
+      matching_mode = "strict"
+      url           = "https://kargo.mareo.fr/login"
+    },
+    {
+      matching_mode = "strict"
+      url           = "http://localhost:8060/auth/callback"
+    },
   ]
   invalidation_flow = data.authentik_flow.default-provider-invalidation-flow.id
   property_mappings = [
