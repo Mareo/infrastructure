@@ -6,5 +6,6 @@ resources:
   - applications.yml
   - argocd-secrets.yml
 
-  - apps
-  - projects
+  - apps/
+  - projects/
+  - repositories/

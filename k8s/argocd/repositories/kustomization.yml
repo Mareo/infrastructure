@@ -1,0 +1,5 @@
+---
+kind: Kustomization
+
+resources:
+  - docker-io-helm-oci.yml
