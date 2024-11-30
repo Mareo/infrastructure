@@ -25,6 +25,7 @@
             kubelogin-oidc
             poetry
             pre-commit
+            python312
             shellcheck
             terraform
             vault
