@@ -83,6 +83,8 @@
         },
         {
             automerge: true,
+            separateMinorPatch: true,
+            separateMultipleMinor: true,
             matchDepNames: [
                 'python',
             ],
