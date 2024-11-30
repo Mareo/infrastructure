@@ -82,7 +82,7 @@
             semanticCommitType: 'ci',
         },
         {
-            automerge: true,
+            automerge: false,
             separateMinorPatch: true,
             separateMultipleMinor: true,
             matchDepNames: [
