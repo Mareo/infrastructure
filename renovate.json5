@@ -81,6 +81,15 @@
             ],
             semanticCommitType: 'ci',
         },
+        {
+            automerge: true,
+            matchDepNames: [
+                'python',
+            ],
+            matchManagers: [
+                'poetry',
+            ],
+        },
     ],
     customManagers: [
        {
