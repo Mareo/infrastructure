@@ -600,6 +600,13 @@ spec:
         server:
           extensions:
             enabled: true
+            extensionList:
+              - name: extension-metrics
+                env:
+                  - name: EXTENSION_URL
+                    value: https://github.com/argoproj-labs/argocd-extension-metrics/releases/download/v1.0.0/extension.tar.gz
+                  - name: EXTENSION_CHECKSUM_URL
+                    value: https://github.com/argoproj-labs/argocd-extension-metrics/releases/download/v1.0.0/extension_checksums.txt
           ingress:
             enabled: true
             annotations:
