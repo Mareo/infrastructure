@@ -14,9 +14,8 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          buildInputs = [
-            (pkgs.callPackage ./kargo.nix { })
-          ] ++ (with pkgs; [
+          buildInputs = with pkgs; [
+            (callPackage ./kargo.nix { })
             awscli
             git
             glab
@@ -30,7 +29,7 @@
             terraform
             vault
             yq
-          ]);
+          ];
         };
     });
 }
