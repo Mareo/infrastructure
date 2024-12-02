@@ -36,7 +36,7 @@ spec:
       source:
         repoURL: https://victoriametrics.github.io/helm-charts/
         chart: victoria-metrics-k8s-stack
-        targetRevision: 0.29.1
+        targetRevision: 0.30.0
         helm:
           releaseName: victoria-metrics-k8s-stack
           values: |
