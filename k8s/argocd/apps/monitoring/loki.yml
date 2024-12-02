@@ -56,13 +56,14 @@ spec:
                   secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
                   region: ceph
                   s3ForcePathStyle: true
-                schemaConfig:
+              schemaConfig:
+                configs:
                   - from: "2024-01-01"
                     store: tsdb
                     object_store: s3
-                    schema: v12
-                    indes:
-                      prefix: loki_index_
+                    schema: v13
+                    index:
+                      prefix: index_
                       period: 24h
             write:
               replicas: 1
