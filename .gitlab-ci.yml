@@ -38,6 +38,6 @@ yamllint:
 
 terraform-fmt:
   stage: linting
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/hashicorp/terraform:1.10.0@sha256:68d7361519003ff88b14559eb390e6c4f1b251d2d62265f2d28ed24f679cde6c
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/hashicorp/terraform:1.10.1@sha256:e2253e8196510ea0335702eaa26cf5acf12a2aae46bf8ec51e936cd536f482d9
   script:
     - terraform fmt -check -recursive -diff
