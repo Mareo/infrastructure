@@ -19,7 +19,7 @@ spec:
   source:
     repoURL: https://headlamp-k8s.github.io/headlamp/
     chart: headlamp
-    targetRevision: 0.26.0
+    targetRevision: 0.27.0
     helm:
       valuesObject:
         fullnameOverride: headlamp
