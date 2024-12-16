@@ -35,6 +35,7 @@ spec:
           values: |
             fullnameOverride: ceph-csi-cephfs
             cephConfConfigMapName: ceph-config-cephfs
+            kmsConfigMapName: ceph-csi-cephfs-encryption-kms-config
             csiConfig:
               - clusterID: f750781a-463e-4415-bf93-4dcc6d7991ab
                 monitors:

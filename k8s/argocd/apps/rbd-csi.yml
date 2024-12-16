@@ -37,6 +37,7 @@ spec:
             # deployed by cephfs-csi
             externallyManagedConfigmap: true
             cephConfConfigMapName: ceph-config-rbd
+            kmsConfigMapName: ceph-csi-rbd-encryption-kms-config
             provisioner:
               replicaCount: 1
               provisioner:
