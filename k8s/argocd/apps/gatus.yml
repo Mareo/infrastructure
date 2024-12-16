@@ -277,7 +277,7 @@ spec:
                     timeout: 5s
                     insecure: true
                   conditions:
-                    - "[RESPONSE_TIME] < 1000"
+                    - "[RESPONSE_TIME] < 3000"
                     - "[STATUS] == 403"
                 # petitstream
                 - name: "Domain"
