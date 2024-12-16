@@ -26,4 +26,4 @@ configMapGenerator:
 
 images:
   - name: registry.mareo.fr/services/docker/postfix
-    newTag: 1.0.4
+    newTag: 1.0.4@sha256:b42034f3ad1ecc5583ba1733d873b8f85f4574354099d62ecf25c5923c2e3c75
