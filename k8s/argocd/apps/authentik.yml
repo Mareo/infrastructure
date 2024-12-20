@@ -41,8 +41,10 @@ spec:
                   value: "false"
                 - name: AUTHENTIK_OUTPOSTS__DISCOVER
                   value: "false"
-                - name: AUTHENTIK_POSTGRESQL__USE_PGBOUNCER
+                - name: AUTHENTIK_POSTGRESQL__DISABLE_SERVER_SIDE_CURSORS
                   value: "true"
+                - name: AUTHENTIK_POSTGRESQL__CONN_MAX_AGE
+                  value: "null"
                 - name: AUTHENTIK_SECRET_KEY
                   valueFrom:
                     secretKeyRef:
