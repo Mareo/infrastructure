@@ -11,6 +11,10 @@ resource "authentik_provider_oauth2" "kubernetes" {
     },
     {
       matching_mode = "strict"
+      url           = "http://localhost:18000"
+    },
+    {
+      matching_mode = "strict"
       url           = "https://headlamp.mareo.fr/oidc-callback"
     },
   ]
