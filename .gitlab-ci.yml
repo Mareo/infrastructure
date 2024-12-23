@@ -44,6 +44,10 @@ yamllint:
       - DIR: gitlab
       - DIR: proxmox
       - DIR: vault
+  cache:
+    key: terraform
+    paths:
+      - "${DIR}/.terraform"
   before_script:
     - echo "validate" > ./secrets/authentik_token
     - echo "validate" > ./secrets/dns_key
