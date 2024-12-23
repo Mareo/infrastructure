@@ -36,8 +36,28 @@ yamllint:
   script:
     - yamllint .
 
+.terraform:
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/hashicorp/terraform:1.10.3@sha256:460267841b38628514b75c6b0eb1cebb2d2fb5d6b596087a9c277551c801e5f1
+  parallel:
+    matrix:
+      - DIR: authentik
+      - DIR: vault
+      - DIR: proxmox
+      - DIR: gitlab
+  before_script:
+    - echo "validate" > ./secrets/authentik_token
+    - echo "validate" > ./secrets/gitlab_token
+    - echo "validate" > ./secrets/dns_key
+
 terraform-fmt:
   stage: linting
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/hashicorp/terraform:1.10.3@sha256:460267841b38628514b75c6b0eb1cebb2d2fb5d6b596087a9c277551c801e5f1
+  extends: .terraform
   script:
-    - terraform fmt -check -recursive -diff
+    - terraform -chdir="${DIR}" fmt -check -recursive -diff
+
+terraform-validate:
+  stage: linting
+  extends: .terraform
+  script:
+    - terraform -chdir="${DIR}" init -backend=false
+    - terraform -chdir="${DIR}" validate
