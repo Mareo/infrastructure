@@ -41,13 +41,14 @@ yamllint:
   parallel:
     matrix:
       - DIR: authentik
-      - DIR: vault
-      - DIR: proxmox
       - DIR: gitlab
+      - DIR: proxmox
+      - DIR: vault
   before_script:
     - echo "validate" > ./secrets/authentik_token
-    - echo "validate" > ./secrets/gitlab_token
     - echo "validate" > ./secrets/dns_key
+    - echo "validate" > ./secrets/gitlab_token
+    - echo "validate" > ./secrets/proxmox_token
 
 terraform-fmt:
   stage: linting
