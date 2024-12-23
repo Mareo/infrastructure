@@ -20,7 +20,7 @@ resource "proxmox_vm_qemu" "vm" {
 
   ipconfig0 = var.network_gw4 != "" ? "gw=${var.network_gw4},ip=${var.network_ip4}" : "ip=dhcp"
   ciuser    = "root"
-  sshkeys   = replace(join("\n", var.sshkeys), ":", "-")
+  sshkeys   = replace(join("\n", sort(var.sshkeys)), ":", "-")
 
   bios   = "seabios"
   boot   = "order=scsi0"
@@ -39,6 +39,7 @@ resource "proxmox_vm_qemu" "vm" {
   }
 
   network {
+    id      = 0
     model   = var.network_driver
     bridge  = var.network_bridge
     macaddr = var.network_macaddr
